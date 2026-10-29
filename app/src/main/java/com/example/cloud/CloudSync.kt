@@ -196,7 +196,7 @@ object CloudSync {
 
     suspend fun backupNow() {
         val u = _user.value ?: return
-        db.collection("users").document(u.uid).set(snapshot(), SetOptions.merge()).await()
+        db.collection("zp_users").document(u.uid).set(snapshot(), SetOptions.merge()).await()
         _syncState.value = "Yedeklendi"
     }
 
@@ -204,7 +204,7 @@ object CloudSync {
     @Suppress("UNCHECKED_CAST")
     private suspend fun restoreIfCloudIsAhead(): Boolean {
         val u = _user.value ?: return false
-        val doc = db.collection("users").document(u.uid).get().await()
+        val doc = db.collection("zp_users").document(u.uid).get().await()
         if (!doc.exists()) return false
         val cloudStars = (doc.getLong("totalStars") ?: 0L).toInt()
         val dbLocal = ZihinParkDatabase.getInstance(appContext)
@@ -280,7 +280,7 @@ object CloudSync {
         return c.timeInMillis - now
     }
 
-    private fun scores(week: String) = db.collection("leagues").document(week).collection("scores")
+    private fun scores(week: String) = db.collection("zp_leagues").document(week).collection("scores")
 
     private suspend fun ensureLeagueEntry() {
         val u = _user.value ?: return
@@ -360,7 +360,7 @@ object CloudSync {
     private suspend fun checkWeeklyReward() {
         val u = _user.value ?: return
         val prev = weekId(-1)
-        val claimRef = db.collection("users").document(u.uid).collection("claims").document(prev)
+        val claimRef = db.collection("zp_users").document(u.uid).collection("claims").document(prev)
         if (claimRef.get().await().exists()) return
         val top = scores(prev).orderBy("score", Query.Direction.DESCENDING).limit(10).get().await()
         val rank = top.documents.indexOfFirst { it.id == u.uid && (it.getLong("score") ?: 0) > 0 } + 1
