@@ -72,7 +72,8 @@ fun HomeScreen(
     onOpenGame: (gameId: String) -> Unit,
     onPlayLevel: (gameId: String, level: Int) -> Unit,
     onOpenCategory: (categoryName: String) -> Unit,
-    onOpenShop: () -> Unit
+    onOpenShop: () -> Unit,
+    onOpenWow: () -> Unit = {}
 ) {
     val userName by repository.preferences.userName.collectAsState(initial = "Zihin Gezgini")
     val streak by repository.preferences.dailyStreak.collectAsState(initial = 0)
@@ -119,6 +120,8 @@ fun HomeScreen(
                 StatTile("Seri", streak, "🔥", NeonOrange, Modifier.weight(1f), suffix = " gün")
             }
         }
+
+        item { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
 
         if (continueGame != null) {
             item {

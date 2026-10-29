@@ -33,6 +33,8 @@ object AllGenerators {
         Match3Generator,
         SudokuGenerator,
         FlowGenerator,
+        ArrowGenerator,
+        ScrambleGenerator,
     )
 
     fun byId(id: String): PuzzleGenerator<*>? = list.firstOrNull { it.gameId == id }

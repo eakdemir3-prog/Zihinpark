@@ -115,6 +115,9 @@ object Routes {
     const val WEEKLY = "weekly_trends"
     const val LEVELS = "levels/{gameId}"
     const val PLAY = "play/{gameId}/{level}"
+    const val WOW = "wow"
+    const val WOW_PLAY = "wow/{level}"
+    fun wowPlay(level: Int) = "wow/$level"
     fun levels(gameId: String) = "levels/$gameId"
     fun play(gameId: String, level: Int) = "play/$gameId/$level"
 }
@@ -213,7 +216,8 @@ fun ZihinParkAppNavigation(
                                 gamesCategory = cat
                                 goTab(MainTab.Games)
                             },
-                            onOpenShop = { navController.navigate(Routes.SHOP) }
+                            onOpenShop = { navController.navigate(Routes.SHOP) },
+                            onOpenWow = { navController.navigate(Routes.WOW) }
                         )
                     }
                     composable(MainTab.Games.route) {
@@ -221,6 +225,31 @@ fun ZihinParkAppNavigation(
                             repository = repository,
                             initialCategory = gamesCategory,
                             onOpenGame = ::openGame,
+                            onOpenShop = { navController.navigate(Routes.SHOP) },
+                            onOpenWow = { navController.navigate(Routes.WOW) }
+                        )
+                    }
+                    composable(Routes.WOW) {
+                        com.example.ui.wow.WowMapScreen(
+                            repository = repository,
+                            onBack = { navController.popBackStack() },
+                            onPlay = { navController.navigate(Routes.wowPlay(it)) },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
+                        )
+                    }
+                    composable(
+                        Routes.WOW_PLAY,
+                        arguments = listOf(navArgument("level") { type = NavType.IntType })
+                    ) { entry ->
+                        val level = entry.arguments?.getInt("level") ?: 1
+                        com.example.ui.wow.WowPlayScreen(
+                            level = level,
+                            repository = repository,
+                            soundManager = soundManager,
+                            onBack = { navController.popBackStack() },
+                            onNext = { next ->
+                                navController.navigate(Routes.wowPlay(next)) { popUpTo(Routes.WOW_PLAY) { inclusive = true } }
+                            },
                             onOpenShop = { navController.navigate(Routes.SHOP) }
                         )
                     }

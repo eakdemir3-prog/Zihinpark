@@ -332,6 +332,28 @@ object GameRegistry {
                 "Tüm renkler bağlanıp tüm kareler dolunca tur biter."
             ),
             isNew = true
+        ),
+        GameMeta(
+            id = "arrow_escape", name = "Ok Bulmacası", category = GameCategory.STRATEGY_REFLEX,
+            description = "Okları doğru sırayla tahtadan çıkar; önü kapalı olan ok çıkamaz.",
+            difficulty = GameDifficulty.MEDIUM, iconEmoji = "➡️",
+            howTo = listOf(
+                "Bir oka dokununca gösterdiği yöne kayarak tahtadan çıkar.",
+                "Önünde başka bir ok varsa çarpar ve bir can gider.",
+                "Önce önü açık okları çıkar; bütün oklar çıkınca tur biter."
+            ),
+            isNew = true
+        ),
+        GameMeta(
+            id = "word_scramble", name = "Karışık Kelime", category = GameCategory.LOGIC,
+            description = "Karışık harflerden ipucuna uyan doğru kelimeyi kur.",
+            difficulty = GameDifficulty.EASY, iconEmoji = "🔤",
+            howTo = listOf(
+                "Üstteki ipucu kelimenin konusunu söyler.",
+                "Harflere sırayla dokunarak kelimeyi kur; yanlış harfe dokunup geri alabilirsin.",
+                "İleri seviyelerde fazladan tuzak harfler var. 3 yanlışta tur biter."
+            ),
+            isNew = true
         )
     )
 

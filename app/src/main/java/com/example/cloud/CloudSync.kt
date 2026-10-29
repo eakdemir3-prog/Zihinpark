@@ -190,6 +190,7 @@ object CloudSync {
             },
             "endless" to games.filter { it.endlessBest > 0 }.associate { it.id to it.endlessBest },
             "totalStars" to levels.sumOf { it.stars },
+            "wowLevel" to prefs.wowLevel.first(),
             "updatedAt" to System.currentTimeMillis()
         )
     }
@@ -211,6 +212,10 @@ object CloudSync {
         val dao = dbLocal.levelProgressDao()
         val local = dao.getAllLevels().first()
         val localStars = local.sumOf { it.stars }
+        // Kelime Diyarı seviyesi her durumda ileri alınır
+        val prefsW = UserPreferencesRepository(appContext)
+        val cloudWow = (doc.getLong("wowLevel") ?: 0L).toInt()
+        if (cloudWow > prefsW.wowLevel.first()) prefsW.setWowLevel(cloudWow)
         if (cloudStars <= localStars) return false
         // Seviyeleri birleştir: her seviyede en iyisini tut
         val levels = doc.get("levels") as? Map<String, List<Long>> ?: emptyMap()

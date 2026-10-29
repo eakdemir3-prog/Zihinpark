@@ -52,7 +52,63 @@ class UserPreferencesRepository(private val context: Context) {
         val LAST_PLAYED_GAME = stringPreferencesKey("last_played_game")
         val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
         val LAST_GIFT_DAY = longPreferencesKey("last_gift_day")
+
+        // Kelime Diyarı
+        val WOW_LEVEL = intPreferencesKey("wow_level")
+        val WOW_FOUND = stringSetPreferencesKey("wow_found")
+        val WOW_FOUND_LEVEL = intPreferencesKey("wow_found_level")
+        val WOW_BONUS = intPreferencesKey("wow_bonus")
+        val WOW_BONUS_WORDS = stringSetPreferencesKey("wow_bonus_words")
+        val WOW_REVEALED = stringSetPreferencesKey("wow_revealed")
     }
+
+    // ---- Kelime Diyarı ----
+    /** Oynanacak (açık olan en yüksek) seviye, 1..300; 301 = hepsi bitti. */
+    val wowLevel: Flow<Int> = context.dataStore.data.map { it[Keys.WOW_LEVEL] ?: 1 }
+    val wowBonus: Flow<Int> = context.dataStore.data.map { it[Keys.WOW_BONUS] ?: 0 }
+
+    data class WowSave(val found: Set<String>, val bonusWords: Set<String>, val revealed: Set<String>)
+
+    /** Yarım kalan seviyenin bulunan kelimeleri ve açılan harfleri. */
+    val wowSave: Flow<Pair<Int, WowSave>> = context.dataStore.data.map {
+        (it[Keys.WOW_FOUND_LEVEL] ?: 0) to WowSave(it[Keys.WOW_FOUND] ?: emptySet(), it[Keys.WOW_BONUS_WORDS] ?: emptySet(), it[Keys.WOW_REVEALED] ?: emptySet())
+    }
+
+    suspend fun saveWowProgress(level: Int, found: Set<String>, bonusWords: Set<String>, revealed: Set<String>) {
+        context.dataStore.edit {
+            it[Keys.WOW_FOUND_LEVEL] = level
+            it[Keys.WOW_FOUND] = found
+            it[Keys.WOW_BONUS_WORDS] = bonusWords
+            it[Keys.WOW_REVEALED] = revealed
+        }
+    }
+
+    /** Bonus kelime sayacı; her 10 bonusta true döner (ödül). */
+    suspend fun addWowBonus(): Boolean {
+        var reward = false
+        context.dataStore.edit {
+            val b = (it[Keys.WOW_BONUS] ?: 0) + 1
+            it[Keys.WOW_BONUS] = b
+            reward = b % 10 == 0
+        }
+        return reward
+    }
+
+    /** Seviye bitti: bir sonrakini aç, yarım kayıtları temizle. İlk kez bitiyorsa true. */
+    suspend fun completeWowLevel(level: Int): Boolean {
+        var first = false
+        context.dataStore.edit {
+            val cur = it[Keys.WOW_LEVEL] ?: 1
+            if (level >= cur) { it[Keys.WOW_LEVEL] = level + 1; first = true }
+            it[Keys.WOW_FOUND_LEVEL] = 0
+            it[Keys.WOW_FOUND] = emptySet()
+            it[Keys.WOW_BONUS_WORDS] = emptySet()
+            it[Keys.WOW_REVEALED] = emptySet()
+        }
+        return first
+    }
+
+    suspend fun setWowLevel(level: Int) { context.dataStore.edit { it[Keys.WOW_LEVEL] = level } }
 
     /** Bugünkü hediye alındı mı. */
     val dailyGiftClaimed: Flow<Boolean> = context.dataStore.data.map { (it[Keys.LAST_GIFT_DAY] ?: -1L) == epochDay(System.currentTimeMillis()) }

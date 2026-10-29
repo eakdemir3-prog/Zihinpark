@@ -262,7 +262,7 @@ fun ProfileScreen(
         item {
             GlassCard(accent = NeonBorder) {
                 Text("ZihinPark v2.0", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
-                Text("EA Vision Labs · 28 oyun, 1400 seviye", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                Text("EA Vision Labs · 30 oyun, 1500 seviye + Kelime Diyarı", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
                 Spacer(Modifier.height(12.dp))
                 NeonButton("Tüm ilerlemeyi sıfırla", { confirmReset = true }, color = NeonRed, outlined = true, height = 42.dp, modifier = Modifier.fillMaxWidth())
             }

@@ -33,6 +33,8 @@ object GameCatalog {
         "neon_match" to { s, c, f -> Match3Round(s, c, f) },
         "sudoku" to { s, c, f -> SudokuRound(s, c, f) },
         "neon_connect" to { s, c, f -> FlowRound(s, c, f) },
+        "arrow_escape" to { s, c, f -> ArrowRound(s, c, f) },
+        "word_scramble" to { s, c, f -> ScrambleRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =
