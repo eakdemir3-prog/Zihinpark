@@ -17,7 +17,9 @@ class PuzzleUniquenessTest {
     @Suppress("UNCHECKED_CAST")
     private fun <P : Any> check(gen: PuzzleGenerator<P>) {
         PuzzleBank.clear()
+        val t0 = System.currentTimeMillis()
         val all = PuzzleBank.all(gen)
+        println("${gen.gameId}: 210 tur ${System.currentTimeMillis() - t0} ms")
         assertEquals(gen.gameId, LevelRules.TOTAL_ROUNDS, all.size)
         val fps = all.map { gen.fingerprint(it) }
         assertEquals("${gen.gameId}: tekrar eden tur var", fps.size, fps.toSet().size)

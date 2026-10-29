@@ -8,6 +8,10 @@ object GameCatalog {
         "logic_detective" to { s, c, f -> DetectiveRound(s, c, f) },
         "number_chain" to { s, c, f -> NumberChainRound(s, c, f) },
         "memory_cards" to { s, c, f -> MemoryCardsRound(s, c, f) },
+        "memory_lights" to { s, c, f -> MemoryLightsRound(s, c, f) },
+        "reflex_arena" to { s, c, f -> ReflexRound(s, c, f) },
+        "color_stroop" to { s, c, f -> StroopRound(s, c, f) },
+        "target_tap" to { s, c, f -> TargetTapRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =

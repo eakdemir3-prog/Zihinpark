@@ -8,5 +8,9 @@ object AllGenerators {
         DetectiveGenerator,
         NumberChainGenerator,
         MemoryCardsGenerator,
+        MemoryLightsGenerator,
+        ReflexGenerator,
+        StroopGenerator,
+        TargetTapGenerator,
     )
 }

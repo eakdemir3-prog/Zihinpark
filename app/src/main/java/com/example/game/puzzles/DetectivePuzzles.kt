@@ -189,10 +189,10 @@ object DetectiveGenerator : PuzzleGenerator<DetectivePuzzle> {
         }
         // Zorlukla doğrudan "X şuradaydı" ipuçlarının oranını azalt
         val directWeight = if (difficulty < 0.3f) 1.0f else 0.35f
-        val ordered = pool.shuffled(rng).sortedBy { c ->
+        val ordered = pool.shuffled(rng).map { c ->
             val direct = c is Clue.PlaceIs || c is Clue.ColorIs
-            if (direct) rng.nextFloat() / directWeight else rng.nextFloat()
-        }
+            c to (if (direct) rng.nextFloat() / directWeight else rng.nextFloat())
+        }.sortedBy { it.second }.map { it.first }
 
         val chosen = ArrayList<Clue>()
         var candidates: List<Assignment> = all
