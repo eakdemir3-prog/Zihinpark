@@ -1,0 +1,61 @@
+name: Android Derleme
+
+on:
+  push:
+    branches: [zihinpark-v2]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.3.1'
+
+      - name: Imza anahtarlari (gecici)
+        run: |
+          keytool -genkeypair -noprompt -keystore debug.keystore -alias androiddebugkey \
+            -storepass android -keypass android -keyalg RSA -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+
+      - name: Birim testleri
+        run: gradle --no-configuration-cache :app:testDebugUnitTest --stacktrace --no-daemon
+
+      - name: Test APK
+        run: gradle --no-configuration-cache :app:assembleDebug --stacktrace --no-daemon
+
+      - name: Test raporlari
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: app/build/reports/tests/
+          if-no-files-found: ignore
+
+      - name: APK on surum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/debug/app-debug.apk out/ZihinPark-test.apk
+          TAG="build-${{ github.run_number }}"
+          gh release create "$TAG" out/* \
+            --target "${{ github.sha }}" --prerelease \
+            --title "ZihinPark test build #${{ github.run_number }}" \
+            --notes "Otomatik derleme (${GITHUB_REF_NAME} @ ${GITHUB_SHA::7})"
