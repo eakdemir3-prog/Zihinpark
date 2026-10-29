@@ -228,7 +228,7 @@ class UserPreferencesRepository(private val context: Context) {
     val welcomeDone: Flow<Boolean> = context.dataStore.data.map { it[Keys.WELCOME_DONE] ?: false }
     suspend fun setWelcomeDone() { context.dataStore.edit { it[Keys.WELCOME_DONE] = true } }
 
-    val lightTheme: Flow<Boolean> = context.dataStore.data.map { it[Keys.LIGHT_THEME] ?: false }
+    val lightTheme: Flow<Boolean> = context.dataStore.data.map { it[Keys.LIGHT_THEME] ?: true }
     suspend fun setLightTheme(on: Boolean) { context.dataStore.edit { it[Keys.LIGHT_THEME] = on } }
 
     suspend fun setDarkMode(enabled: Boolean) {

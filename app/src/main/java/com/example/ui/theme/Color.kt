@@ -41,7 +41,7 @@ val LightPalette = ZpPalette(
 )
 
 object ZpColors {
-    var palette by mutableStateOf(NeonPalette)
+    var palette by mutableStateOf(LightPalette)
 }
 private val P get() = ZpColors.palette
 
