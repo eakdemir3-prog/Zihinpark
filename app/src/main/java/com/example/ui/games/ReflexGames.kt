@@ -89,7 +89,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
 
-private val PAD_COLORS = listOf(NeonRed, NeonBlue, NeonGreen, NeonYellow, NeonPurple, NeonOrange, NeonPink, NeonCyan, Color(0xFFFFFFFF))
+private val PAD_COLORS get() = listOf(NeonRed, NeonBlue, NeonGreen, NeonYellow, NeonPurple, NeonOrange, NeonPink, NeonCyan, if (com.example.ui.theme.ZpColors.palette.isLight) Color(0xFF6E6A86) else Color(0xFFFFFFFF))
 
 // =====================================================================
 // Hafıza Işıkları
@@ -352,7 +352,7 @@ private fun ReflexBoard(p: ReflexPuzzle, ctl: RoundControls, finish: FinishOnce)
 // Renk Kaçışı
 // =====================================================================
 
-private val STROOP_COLORS = listOf(NeonRed, NeonBlue, NeonGreen, NeonYellow, NeonPurple, NeonOrange)
+private val STROOP_COLORS get() = listOf(NeonRed, NeonBlue, NeonGreen, NeonYellow, NeonPurple, NeonOrange)
 
 @Composable
 fun StroopRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> Unit) {
@@ -465,7 +465,7 @@ private fun StroopBoard(p: StroopPuzzle, ctl: RoundControls, finish: FinishOnce)
 // Hedefe Dokun
 // =====================================================================
 
-private val TARGET_PALETTE = listOf(NeonBlue, NeonPink, NeonGreen, NeonYellow, NeonPurple)
+private val TARGET_PALETTE get() = listOf(NeonBlue, NeonPink, NeonGreen, NeonYellow, NeonPurple)
 
 @Composable
 fun TargetTapRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> Unit) {

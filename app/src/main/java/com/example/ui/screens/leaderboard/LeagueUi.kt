@@ -65,7 +65,7 @@ import com.example.ui.theme.TextSecondary
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private val PODIUM = listOf(NeonYellow, Color(0xFFC9D1E8), NeonOrange)
+private val PODIUM get() = listOf(NeonYellow, Color(0xFFC9D1E8), NeonOrange)
 
 /** Google ile giriş kartı (Profil'de). */
 @Composable

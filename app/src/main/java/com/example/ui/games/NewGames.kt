@@ -99,9 +99,9 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /** Ortak 10 renkli neon paleti. */
-val PALETTE10 = listOf(
+val PALETTE10 get() = listOf(
     NeonPink, NeonCyan, NeonYellow, NeonGreen, NeonPurple, NeonOrange,
-    NeonBlue, NeonRed, Color(0xFFFFFFFF), Color(0xFFC08040)
+    NeonBlue, NeonRed, if (com.example.ui.theme.ZpColors.palette.isLight) Color(0xFF6E6A86) else Color(0xFFFFFFFF), Color(0xFFC08040)
 )
 
 // =====================================================================

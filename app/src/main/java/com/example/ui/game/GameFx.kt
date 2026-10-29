@@ -170,7 +170,7 @@ private class Particle(
     var rot: Float, val vr: Float, val color: Color, val w: Float, val h: Float
 )
 
-private val CONFETTI_COLORS = listOf(NeonCyan, NeonPink, NeonPurple, NeonGreen, NeonYellow, NeonOrange)
+private val CONFETTI_COLORS get() = listOf(NeonCyan, NeonPink, NeonPurple, NeonGreen, NeonYellow, NeonOrange)
 
 /** Ekranın üstünden yayılan neon konfeti. */
 @Composable

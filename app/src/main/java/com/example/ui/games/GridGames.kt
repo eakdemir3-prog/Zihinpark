@@ -348,7 +348,7 @@ private fun RotationBoard(p: RotationPuzzle, ctl: RoundControls, finish: FinishO
 // Desen Ustası
 // =====================================================================
 
-private val PATTERN_COLORS = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple)
+private val PATTERN_COLORS get() = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple)
 
 @Composable
 fun PatternRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> Unit) {

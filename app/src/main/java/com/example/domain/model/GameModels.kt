@@ -7,12 +7,15 @@ import com.example.ui.theme.NeonPink
 import com.example.ui.theme.NeonPurple
 import com.example.ui.theme.NeonYellow
 
-enum class GameCategory(val title: String, val color: Color, val emoji: String) {
-    LOGIC("Mantık & Çıkarım", NeonPink, "🧠"),
-    SPATIAL("Uzamsal Zekâ", NeonCyan, "📐"),
-    MATH("Sayısal & Analitik", NeonGreen, "🧮"),
-    ATTENTION("Dikkat & Gözlem", NeonYellow, "🔍"),
-    STRATEGY_REFLEX("Strateji & Hız", NeonPurple, "⚡");
+enum class GameCategory(val title: String, private val tint: () -> Color, val emoji: String) {
+    LOGIC("Mantık & Çıkarım", { NeonPink }, "🧠"),
+    SPATIAL("Uzamsal Zekâ", { NeonCyan }, "📐"),
+    MATH("Sayısal & Analitik", { NeonGreen }, "🧮"),
+    ATTENTION("Dikkat & Gözlem", { NeonYellow }, "🔍"),
+    STRATEGY_REFLEX("Strateji & Hız", { NeonPurple }, "⚡");
+
+    /** Temaya göre (neon/açık) güncel renk. */
+    val color: Color get() = tint()
 
     companion object {
         fun fromTitle(title: String): GameCategory? = entries.firstOrNull { it.title == title }

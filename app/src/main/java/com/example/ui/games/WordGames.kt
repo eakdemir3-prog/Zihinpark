@@ -317,7 +317,7 @@ fun WordHuntRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) ->
     PuzzleHost(WordHuntGenerator, spec) { p -> WordHuntBoard(p, ctl, rememberFinish(finish)) }
 }
 
-private val FOUND_COLORS = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple, NeonOrange)
+private val FOUND_COLORS get() = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple, NeonOrange)
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

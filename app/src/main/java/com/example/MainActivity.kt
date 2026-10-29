@@ -52,6 +52,12 @@ class MainActivity : ComponentActivity() {
         val debugRoute = if (BuildConfig.DEBUG) intent?.getStringExtra("zp_route") else null
         val skipTutorials = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_skip_tutorial", false) == true
 
+        // Tema tercihi ilk karede doğru olsun diye açılışta okunur
+        val light = kotlinx.coroutines.runBlocking {
+            com.example.data.pref.UserPreferencesRepository(applicationContext).lightTheme.first()
+        }
+        com.example.ui.theme.ZpColors.palette = if (light) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
+
         setContent {
             val repository = remember { GameRepository(applicationContext) }
             LaunchedEffect(skipTutorials) {

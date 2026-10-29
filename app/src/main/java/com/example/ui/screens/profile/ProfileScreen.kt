@@ -138,6 +138,7 @@ fun ProfileScreen(
     val frameId by prefs.equippedFrame.collectAsState(initial = "none")
     val owned by prefs.ownedCosmetics.collectAsState(initial = emptySet())
     val soundEnabled by prefs.soundEnabled.collectAsState(initial = true)
+    val lightTheme by prefs.lightTheme.collectAsState(initial = com.example.ui.theme.ZpColors.palette.isLight)
     val vibrationEnabled by prefs.vibrationEnabled.collectAsState(initial = true)
     val totalStars by repository.totalStars.collectAsState(initial = 0)
     val cleared by repository.completedLevelsCount.collectAsState(initial = 0)
@@ -229,6 +230,10 @@ fun ProfileScreen(
             SectionTitle("Ayarlar")
             Spacer(Modifier.height(10.dp))
             GlassCard(accent = NeonCyan, contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)) {
+                SettingRow("☀️", "Açık tema", if (lightTheme) "Lavanta açık tema" else "Neon koyu tema", lightTheme) {
+                    com.example.ui.theme.ZpColors.palette = if (it) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
+                    scope.launch { prefs.setLightTheme(it) }
+                }
                 SettingRow("🔊", "Ses efektleri", "Doğru, yanlış ve buton sesleri", soundEnabled) {
                     scope.launch { prefs.setSoundEnabled(it); if (it) soundManager.playCorrect() }
                 }

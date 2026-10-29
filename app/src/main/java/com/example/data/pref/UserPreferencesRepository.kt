@@ -55,6 +55,7 @@ class UserPreferencesRepository(private val context: Context) {
         val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
         val LAST_GIFT_DAY = longPreferencesKey("last_gift_day")
         val FIRST_OPEN_DAY = longPreferencesKey("first_open_day")
+        val LIGHT_THEME = booleanPreferencesKey("light_theme")
         val PRO_PROMPT_DAY = longPreferencesKey("pro_prompt_day")
 
         // Kelime Diyarı
@@ -222,6 +223,9 @@ class UserPreferencesRepository(private val context: Context) {
     suspend fun setAvatarId(avatarId: Int) {
         context.dataStore.edit { it[Keys.AVATAR_ID] = avatarId }
     }
+
+    val lightTheme: Flow<Boolean> = context.dataStore.data.map { it[Keys.LIGHT_THEME] ?: false }
+    suspend fun setLightTheme(on: Boolean) { context.dataStore.edit { it[Keys.LIGHT_THEME] = on } }
 
     suspend fun setDarkMode(enabled: Boolean) {
         context.dataStore.edit { it[Keys.IS_DARK_MODE] = enabled }

@@ -282,7 +282,7 @@ private fun CosmeticCell(
             else -> "💎 $cost" to accent
         }
         Text(
-            label, color = if (!has) Color(0xFF07070F) else color, fontWeight = FontWeight.ExtraBold,
+            label, color = if (!has) com.example.ui.theme.OnNeon else color, fontWeight = FontWeight.ExtraBold,
             style = MaterialTheme.typography.labelMedium, textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()

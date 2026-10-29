@@ -113,7 +113,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-private val PAIR_COLORS = listOf(NeonYellow, NeonPink, NeonGreen)
+private val PAIR_COLORS get() = listOf(NeonYellow, NeonPink, NeonGreen)
 
 // =====================================================================
 // Yolun Sonu
@@ -564,7 +564,7 @@ private fun Bank(p: RiverPuzzle, mask: Int, modifier: Modifier, active: Boolean,
 // Şekil Mimarı
 // =====================================================================
 
-private val PIECE_COLORS = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple, NeonOrange, NeonBlue)
+private val PIECE_COLORS get() = listOf(NeonCyan, NeonPink, NeonGreen, NeonYellow, NeonPurple, NeonOrange, NeonBlue)
 
 @Composable
 fun ArchitectRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> Unit) {
