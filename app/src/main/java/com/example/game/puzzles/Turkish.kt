@@ -24,10 +24,14 @@ object Turkish {
 
     val trLocale: java.util.Locale = java.util.Locale.forLanguageTag("tr-TR")
 
-    /** Bulunma eki: "mutfak" -> "mutfakta", "bahçe" -> "bahçede". */
+    /**
+     * Bulunma eki: "mutfak" -> "mutfakta", "bahçe" -> "bahçede".
+     * Ünlüyle biten iki kelimelik tamlamalarda kaynaştırma "n" eklenir: "toplantı odası" -> "toplantı odasında".
+     */
     fun locative(word: String): String {
         val d = if (endsVoiceless(word)) "t" else "d"
-        return word + d + (if (isBack(word)) "a" else "e")
+        val n = if (word.contains(' ') && endsVowel(word)) "n" else ""
+        return word + n + d + (if (isBack(word)) "a" else "e")
     }
 
     /** "mutfaktaydı", "bahçedeydi" */

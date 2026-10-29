@@ -5,20 +5,18 @@ mkdir -p shots
 adb install -r app-debug.apk
 PKG=com.aistudio.zihinpark.trkm
 ACT=$PKG/com.example.MainActivity
+T="timeout 25"
 shot() {
-  adb shell am start -S -n $ACT --es zp_route "$1" --ez zp_skip_tutorial true > /dev/null
+  name="$(echo "$1" | tr '/' '_')"
+  adb logcat -c
+  $T adb shell am start -S -n $ACT --es zp_route "$1" --ez zp_skip_tutorial true > /dev/null
   sleep ${2:-6}
-  adb exec-out screencap -p > "shots/$(echo "$1" | tr '/' '_').png"
+  $T adb exec-out screencap -p > "shots/$name.png"
+  $T adb logcat -d -s ZP:D AndroidRuntime:E ActivityManager:E > "shots/$name.log" || true
+  $T adb shell dumpsys activity processes | grep -i "anr\|notResponding" >> "shots/$name.log" || true
 }
-# İlk açılış (öğreticileri görüldü işaretler)
-adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 8
-adb exec-out screencap -p > shots/00_first_launch.png
-for r in tab_home tab_games tab_records tab_profile shop levels/logic_detective levels/memory_cards; do shot "$r" 6; done
-for g in logic_detective spatial_rotation nonogram cipher_breaker river_crossing shape_architect reverse_thinking \
-  math_engineer detail_hunter path_finder number_chain word_hunt memory_lights reflex_arena color_stroop \
-  pattern_master jigsaw_puzzle hidden_object number_merge logic_doors target_tap maze_escape memory_cards; do
-  shot "play/$g/1" 7
-done
-for g in nonogram word_hunt math_engineer shape_architect pattern_master logic_detective; do shot "play/$g/45" 9; done
-adb logcat -d -t 400 *:E > shots/logcat_errors.txt || true
+$T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 10
+for r in shop levels/logic_detective tab_profile; do shot "$r" 7; done
+for g in nonogram memory_cards logic_detective; do shot "play/$g/1" 12; done
+for g in nonogram word_hunt math_engineer shape_architect pattern_master logic_detective memory_cards river_crossing; do shot "play/$g/45" 15; done
 ls -la shots

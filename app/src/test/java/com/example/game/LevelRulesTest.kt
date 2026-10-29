@@ -80,3 +80,18 @@ class RegistryTest {
         assertEquals(ids, gens)
     }
 }
+
+class TurkishTest {
+    @Test
+    fun `ekler dogru`() {
+        val t = com.example.game.puzzles.Turkish
+        assertEquals("mutfaktaydı", t.locativePast("mutfak"))
+        assertEquals("bahçedeydi", t.locativePast("bahçe"))
+        assertEquals("hangardaydı", t.locativePast("hangar"))
+        assertEquals("jeneratör odasındaydı", t.locativePast("jeneratör odası"))
+        assertEquals("giriş holünde", t.locative("giriş holü"))
+        assertEquals("Kerem'den", t.ablativeName("Kerem"))
+        assertEquals("Burak'tan", t.ablativeName("Burak"))
+        assertEquals("Can'dan", t.ablativeName("Can"))
+    }
+}

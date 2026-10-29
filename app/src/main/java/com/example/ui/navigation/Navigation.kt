@@ -67,6 +67,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import kotlinx.coroutines.flow.first
 import com.example.data.repository.GameRepository
 import com.example.ui.components.NeonBackground
 import com.example.ui.components.bounceClick
@@ -160,6 +161,8 @@ fun ZihinParkAppNavigation(
     val navController = rememberNavController()
     androidx.compose.runtime.LaunchedEffect(startRoute) {
         if (!startRoute.isNullOrBlank() && startRoute != MainTab.Home.route) {
+            // Grafik kurulana kadar bekle
+            navController.currentBackStackEntryFlow.first()
             runCatching { navController.navigate(startRoute) }
         }
     }
@@ -183,6 +186,9 @@ fun ZihinParkAppNavigation(
     fun playLevel(gameId: String, level: Int) = navController.navigate(Routes.play(gameId, level))
 
     NeonBackground {
+        androidx.compose.runtime.CompositionLocalProvider(
+            androidx.compose.material3.LocalContentColor provides com.example.ui.theme.TextPrimary
+        ) {
         Column(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f)) {
                 NavHost(
@@ -275,6 +281,7 @@ fun ZihinParkAppNavigation(
             ) {
                 NeonBottomBar(selected = MainTab.indexOf(currentRoute).coerceAtLeast(0), onSelect = { goTab(MainTab.all[it]) })
             }
+        }
         }
     }
 }

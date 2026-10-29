@@ -30,7 +30,9 @@ fun <P : Any> PuzzleHost(
     content: @Composable (P) -> Unit
 ) {
     val puzzle by produceState<P?>(initialValue = null, spec) {
+        val t0 = System.currentTimeMillis()
         value = withContext(Dispatchers.Default) { PuzzleBank.forRound(gen, spec) }
+        android.util.Log.d("ZP", "${gen.gameId} #${spec.index} üretim ${System.currentTimeMillis() - t0} ms")
     }
     val p = puzzle
     if (p == null) {
