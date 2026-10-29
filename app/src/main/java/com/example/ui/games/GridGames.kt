@@ -166,8 +166,8 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
     }
 
     BoxWithConstraints(Modifier.fillMaxSize().padding(horizontal = 10.dp, vertical = 6.dp)) {
-        val clueRowW = (p.size / 2 + 1).coerceAtLeast(2) * 14.dp + 10.dp
-        val clueColH = (p.size / 2 + 1).coerceAtLeast(2) * 15.dp + 6.dp
+        val clueRowW = 14.dp * (p.size / 2 + 1).coerceAtLeast(2) + 10.dp
+        val clueColH = 15.dp * (p.size / 2 + 1).coerceAtLeast(2) + 6.dp
         val avail = min(maxWidth - clueRowW, maxHeight - clueColH - 80.dp)
         val cell = (avail / p.size).coerceAtMost(48.dp)
         Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {

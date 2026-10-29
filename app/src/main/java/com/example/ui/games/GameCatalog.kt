@@ -17,6 +17,10 @@ object GameCatalog {
         "pattern_master" to { s, c, f -> PatternRound(s, c, f) },
         "detail_hunter" to { s, c, f -> DetailRound(s, c, f) },
         "hidden_object" to { s, c, f -> HiddenObjectRound(s, c, f) },
+        "cipher_breaker" to { s, c, f -> CipherRound(s, c, f) },
+        "word_hunt" to { s, c, f -> WordHuntRound(s, c, f) },
+        "logic_doors" to { s, c, f -> DoorsRound(s, c, f) },
+        "reverse_thinking" to { s, c, f -> ReverseRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =

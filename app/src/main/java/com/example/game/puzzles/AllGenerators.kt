@@ -17,5 +17,9 @@ object AllGenerators {
         PatternGenerator,
         DetailGenerator,
         HiddenObjectGenerator,
+        CipherGenerator,
+        WordHuntGenerator,
+        DoorsGenerator,
+        ReverseGenerator,
     )
 }

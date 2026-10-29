@@ -270,7 +270,7 @@ object PatternGenerator : PuzzleGenerator<PatternPuzzle> {
         // Sıfır bilgi riskini azalt: cevap ilk 8 hücrede aynen varsa ve kural sabit değilse sorun yok
         val ruleText = attrs.joinToString(", ") { a ->
             val name = listOf("şekil", "renk", "adet", "açı")[a]
-            val r = when (rules[a]) { Rule.CONST -> "satırda sabit"; Rule.PROGRESS -> "adım adım artıyor"; else -> "her satırda üç farklı değer"; null -> "" }
+            val r = when (rules[a]) { Rule.CONST -> "satırda sabit"; Rule.PROGRESS -> "adım adım artıyor"; Rule.DISTRIBUTE -> "her satırda üç farklı değer"; null -> "" }
             "$name: $r"
         }
         return PatternPuzzle(grid, opts, opts.indexOf(sol), ruleText)
