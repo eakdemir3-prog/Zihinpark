@@ -345,7 +345,7 @@ fun LevelPlayScreen(
                     }
                 }
                 RoundBanner(round, if (isEndless) null else roundCount, accent, visibleKey = "$round-${showTutorial}")
-                AnimatedVisibility(
+                androidx.compose.animation.AnimatedVisibility(
                     visible = phase == Phase.RoundEnd,
                     enter = scaleIn(spring(Spring.DampingRatioMediumBouncy)) + fadeIn(),
                     exit = fadeOut(),
