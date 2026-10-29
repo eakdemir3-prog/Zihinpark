@@ -158,6 +158,10 @@ fun LevelPlayScreen(
     val extraTimes by repository.preferences.extraTimeCount.collectAsState(initial = 0)
     val undos by repository.preferences.undosCount.collectAsState(initial = 0)
 
+    DisposableEffect(gameId) {
+        soundManager.useGameTheme(gameId)
+        onDispose { soundManager.useGameTheme(null) }
+    }
     LaunchedEffect(Unit) {
         // Kalan turları arka planda hazırla
         launch(kotlinx.coroutines.Dispatchers.Default) {
@@ -183,14 +187,14 @@ fun LevelPlayScreen(
                 endlessRecord = repository.saveEndlessResult(gameId, results.count { it.success }, totalScore, duration)
                 com.example.cloud.CloudSync.addWeeklyScore(totalScore)
                 outcome = null
-                soundManager.playRoundClear()
+                soundManager.playLevelWin()
                 fx.confetti()
             } else {
                 val o = repository.saveLevelResult(gameId, level, results.toList(), duration)
                 outcome = o
                 // Lig puanı: geçilen seviyeler tam, geçilemeyenler yarım puan getirir
                 com.example.cloud.CloudSync.addWeeklyScore(if (o.stars > 0) totalScore else totalScore / 2)
-                if (o.stars > 0) fx.confetti() else soundManager.playLevelFail()
+                if (o.stars > 0) { fx.confetti(); soundManager.playLevelWin() } else soundManager.playLevelFail()
             }
             phase = Phase.Result
         }
