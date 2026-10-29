@@ -85,7 +85,7 @@ object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
     override val gameId = "path_finder"
 
     override fun generate(index: Int, difficulty: Float, rng: Random): PathFinderPuzzle? {
-        val m = step(difficulty, 3, 4, 5, 6, 7)
+        val m = scaled(difficulty, intArrayOf(3, 4, 5, 6, 7), extraWithin = 1).coerceAtMost(7)
         val pairs = step(difficulty, 1, 1, 2, 2, 3)
         val maze = Mazes.perfect(m, rng)
         val n = 2 * m + 1
@@ -206,15 +206,16 @@ object RiverGenerator : PuzzleGenerator<RiverPuzzle> {
 
     override fun generate(index: Int, difficulty: Float, rng: Random): RiverPuzzle? {
         val tier = tierOf(difficulty)
-        val k = scaled(difficulty, intArrayOf(3, 4, 4, 5, 5), extraWithin = 1).coerceAtMost(6)
-        val capacity = when (tier) { 0 -> 1; 1 -> if (rng.nextBoolean()) 1 else 2; 2 -> 2; 3 -> 2; else -> if (k >= 6) 3 else 2 }
+        // Kayık kapasitesi 1 iken bulmacalar gerçekten düşündürür; 6 eşyada bazen 2 kişilik kayık
+        val k = scaled(difficulty, intArrayOf(3, 4, 4, 5, 6), extraWithin = 1).coerceAtMost(6)
+        val capacity = if (k == 6 && rng.nextBoolean()) 2 else 1
         val chosen = RIVER_POOL.indices.shuffled(rng).take(k).sorted()
         val local = chosen.withIndex().associate { it.value to it.index }
         val eats = RIVER_EATS.filter { it.first in local && it.second in local }.map { local.getValue(it.first) to local.getValue(it.second) }
         if (eats.size < (if (tier == 0) 1 else 2)) return null
         val p = RiverPuzzle(chosen.map { RIVER_POOL[it] }, eats, capacity, 0)
         val opt = solve(p) ?: return null
-        val minMoves = step(difficulty, 5, 5, 5, 7, 7)
+        val minMoves = if (capacity == 2) 7 else step(difficulty, 5, 7, 7, 9, 11)
         if (opt < minMoves) return null
         return p.copy(optimalMoves = opt)
     }
