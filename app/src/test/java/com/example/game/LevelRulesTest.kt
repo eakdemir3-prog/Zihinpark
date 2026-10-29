@@ -70,3 +70,13 @@ class LevelRulesTest {
         assertEquals(3, LevelRules.firstClearDiamonds(21))
     }
 }
+
+class RegistryTest {
+    @Test
+    fun `her oyunun ureticisi var`() {
+        val gens = com.example.game.puzzles.AllGenerators.list.map { it.gameId }.toSet()
+        val ids = com.example.domain.model.GameRegistry.ALL_GAMES.map { it.id }.toSet()
+        assertEquals(23, ids.size)
+        assertEquals(ids, gens)
+    }
+}

@@ -21,5 +21,12 @@ object AllGenerators {
         WordHuntGenerator,
         DoorsGenerator,
         ReverseGenerator,
+        PathFinderGenerator,
+        MazeEscapeGenerator,
+        RiverGenerator,
+        ArchitectGenerator,
+        MathGridGenerator,
+        MergeGenerator,
+        JigsawGenerator,
     )
 }

@@ -21,10 +21,17 @@ object GameCatalog {
         "word_hunt" to { s, c, f -> WordHuntRound(s, c, f) },
         "logic_doors" to { s, c, f -> DoorsRound(s, c, f) },
         "reverse_thinking" to { s, c, f -> ReverseRound(s, c, f) },
+        "path_finder" to { s, c, f -> PathFinderRound(s, c, f) },
+        "maze_escape" to { s, c, f -> MazeEscapeRound(s, c, f) },
+        "river_crossing" to { s, c, f -> RiverRound(s, c, f) },
+        "shape_architect" to { s, c, f -> ArchitectRound(s, c, f) },
+        "math_engineer" to { s, c, f -> MathGridRound(s, c, f) },
+        "number_merge" to { s, c, f -> MergeRound(s, c, f) },
+        "jigsaw_puzzle" to { s, c, f -> JigsawRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =
-        map[gameId] ?: { s, c, f -> NumberChainRound(s, c, f) }
+        map[gameId] ?: error("Bilinmeyen oyun: $gameId")
 
     val ids: Set<String> get() = map.keys
 }

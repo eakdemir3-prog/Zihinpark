@@ -160,3 +160,5 @@ fun withinTier(t: Float): Float = (t * 5f - tierOf(t)).coerceIn(0f, 1f)
 /** Bölge ve bölge içi ilerlemeye göre [base] .. [base]+[span] arası tamsayı. */
 fun scaled(t: Float, perTier: IntArray, extraWithin: Int = 0): Int =
     perTier[tierOf(t)] + (withinTier(t) * (extraWithin + 0.999f)).toInt()
+
+fun String.pick(rng: Random): Char = this[rng.nextInt(length)]
