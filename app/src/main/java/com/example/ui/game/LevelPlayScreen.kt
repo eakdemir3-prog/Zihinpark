@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -375,10 +376,11 @@ fun LevelPlayScreen(
                 Row(
                     Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally)
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
                 ) {
-                    if (hintAction != null) BoosterButton("💡", "İpucu", hints) {
+                    val bm = Modifier.weight(1f, fill = false)
+                    if (hintAction != null) BoosterButton("💡", "İpucu", hints, bm) {
                         if (hints <= 0) { fx.float("İpucu kalmadı · Mağazadan al", NeonRed); soundManager.playWrong(); return@BoosterButton }
                         val msg = hintAction()
                         if (msg == null) { fx.float("Şu an ipucu gerekmiyor", NeonOrange) }
@@ -388,12 +390,12 @@ fun LevelPlayScreen(
                             soundManager.playCorrect()
                         }
                     }
-                    if (undoAction != null) BoosterButton("↩️", "Geri Al", undos) {
+                    if (undoAction != null) BoosterButton("↩️", "Geri Al", undos, bm) {
                         if (undos <= 0) { fx.float("Geri alma kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
                         if (!undoAction()) fx.float("Geri alınacak hamle yok", NeonOrange)
                         else scope.launch { repository.preferences.useBooster("undo"); soundManager.playTap() }
                     }
-                    if (hasTimer) BoosterButton("⏱️", "+10 sn", extraTimes) {
+                    if (hasTimer) BoosterButton("⏱️", "+10 sn", extraTimes, bm) {
                         if (extraTimes <= 0) { fx.float("Ek süre kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
                         ctl.addTime(10); fx.float("⏱️ +10 saniye", NeonCyan); soundManager.playCorrect()
                         scope.launch { repository.preferences.useBooster("time") }
@@ -552,22 +554,41 @@ private fun RoundEndBadge(success: Boolean) {
 }
 
 @Composable
-private fun BoosterButton(emoji: String, label: String, count: Int, onClick: () -> Unit) {
+private fun BoosterButton(emoji: String, label: String, count: Int, modifier: Modifier = Modifier, onClick: () -> Unit) {
     val shape = RoundedCornerShape(14.dp)
-    Row(
-        Modifier
-            .clip(shape)
-            .background(NeonCard)
-            .border(1.dp, NeonBorder, shape)
-            .bounceClick(onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(emoji, fontSize = 16.sp)
-        Spacer(Modifier.width(6.dp))
-        Text(label, color = TextPrimary, style = MaterialTheme.typography.labelMedium)
-        Spacer(Modifier.width(6.dp))
-        NeonChip("$count", if (count > 0) NeonCyan else TextMuted)
+    val c = if (count > 0) NeonCyan else TextMuted
+    Box(modifier.padding(top = 6.dp, end = 6.dp)) {
+        Row(
+            Modifier
+                .height(44.dp)
+                .clip(shape)
+                .background(NeonCard)
+                .border(1.dp, NeonBorder, shape)
+                .bounceClick(onClick = onClick)
+                .padding(horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(emoji, fontSize = 15.sp)
+            Spacer(Modifier.width(5.dp))
+            Text(
+                label, color = TextPrimary, style = MaterialTheme.typography.labelMedium,
+                maxLines = 1, softWrap = false
+            )
+        }
+        // Adet rozeti: butonun sağ üst köşesinde
+        Box(
+            Modifier
+                .align(Alignment.TopEnd)
+                .offset(x = 6.dp, y = (-6).dp)
+                .size(22.dp)
+                .clip(androidx.compose.foundation.shape.CircleShape)
+                .background(NeonBg)
+                .border(1.5.dp, c, androidx.compose.foundation.shape.CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("$count", color = c, fontSize = 11.sp, fontWeight = FontWeight.Bold, maxLines = 1)
+        }
     }
 }
 
