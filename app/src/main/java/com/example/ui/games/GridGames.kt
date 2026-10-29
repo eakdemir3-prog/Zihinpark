@@ -107,6 +107,7 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
     // 0 boş, 1 dolu, 2 çarpı, 3 hatalı dolu (gösterim)
     val marks = remember { mutableStateListOf(*Array(p.size * p.size) { 0 }) }
     var fillMode by remember { mutableStateOf(true) }
+    var nonoDoneRef: (() -> Unit)? = null
     var found by remember { mutableIntStateOf(0) }
     var done by remember { mutableStateOf(false) }
     val accent = NeonCyan
@@ -127,7 +128,7 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
             val inRow = missing.filter { it / p.size == row }.take(3)
             inRow.forEach { marks[it] = 1; found++ }
             ctl.statusText = "$found/${p.filledCount}"
-            checkNonoDone()
+            nonoDoneRef?.invoke()
             "${row + 1}. satırda ${inRow.size} kare boyandı"
         }
     }
@@ -144,6 +145,7 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
         val q = (100 - ctl.mistakes * 25 - (ctl.timeUsedRatio * 30).toInt()).coerceIn(10, 100)
         scope.launch { delay(1100); finish(true, q) }
     }
+    nonoDoneRef = { checkNonoDone() }
     fun colDone(c: Int) = (0 until p.size).all { r -> !p.filled(r, c) || marks[r * p.size + c] == 1 }
 
     fun tap(i: Int) {

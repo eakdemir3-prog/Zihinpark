@@ -28,6 +28,11 @@ object GameCatalog {
         "math_engineer" to { s, c, f -> MathGridRound(s, c, f) },
         "number_merge" to { s, c, f -> MergeRound(s, c, f) },
         "jigsaw_puzzle" to { s, c, f -> JigsawRound(s, c, f) },
+        "color_sort" to { s, c, f -> SortRound(s, c, f) },
+        "block_blast" to { s, c, f -> BlockBlastRound(s, c, f) },
+        "neon_match" to { s, c, f -> Match3Round(s, c, f) },
+        "sudoku" to { s, c, f -> SudokuRound(s, c, f) },
+        "neon_connect" to { s, c, f -> FlowRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =

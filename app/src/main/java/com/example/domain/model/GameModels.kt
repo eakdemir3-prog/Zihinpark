@@ -276,6 +276,60 @@ object GameRegistry {
                 "İki kart çevir; aynıysa açık kalır.",
                 "Farklıysa kapanırlar; yerlerini aklında tut.",
                 "Tüm çiftleri süre dolmadan, az hamleyle bul."
+            )
+        ),
+        GameMeta(
+            id = "color_sort", name = "Renk Sıralama", category = GameCategory.STRATEGY_REFLEX,
+            description = "Tüplerdeki karışık topları dök, her tüpte tek renk kalsın.",
+            difficulty = GameDifficulty.MEDIUM, iconEmoji = "🧪",
+            howTo = listOf(
+                "Bir tüpe dokun, sonra dökmek istediğin tüpe dokun.",
+                "Top yalnızca boş tüpe ya da aynı renkli topun üstüne dökülür.",
+                "Her tüp tek renk olunca tur biter. Takılırsan Geri Al'ı kullan."
+            ),
+            isNew = true
+        ),
+        GameMeta(
+            id = "block_blast", name = "Blok Patlat", category = GameCategory.SPATIAL,
+            description = "Blokları tahtaya yerleştir, dolan satır ve sütunları patlat.",
+            difficulty = GameDifficulty.MEDIUM, iconEmoji = "🟦",
+            howTo = listOf(
+                "Alttaki parçalardan birini tahtaya sürükle.",
+                "Bir satır ya da sütun tamamen dolunca patlar.",
+                "Hedef sayıda satırı, parça koyacak yer kalmadan patlat."
+            ),
+            isNew = true
+        ),
+        GameMeta(
+            id = "neon_match", name = "Neon Üçlü", category = GameCategory.ATTENTION,
+            description = "Aynı renkten üç taşı yan yana getir, hedefleri hamle bitmeden topla.",
+            difficulty = GameDifficulty.EASY, iconEmoji = "💎",
+            howTo = listOf(
+                "Komşu iki taşı kaydırarak yer değiştir.",
+                "3 aynı taş patlar; 4'lü çizgi, 5'li renk bombası yapar.",
+                "Üstteki hedef renkleri hamle bitmeden topla."
+            ),
+            isNew = true
+        ),
+        GameMeta(
+            id = "sudoku", name = "Sudoku", category = GameCategory.LOGIC,
+            description = "Her satır, sütun ve kutuya rakamları birer kez yerleştir.",
+            difficulty = GameDifficulty.HARD, iconEmoji = "9️⃣",
+            howTo = listOf(
+                "Bir kareye dokun, alttan rakam seç.",
+                "Her satırda, sütunda ve kalın çizgili kutuda her rakam bir kez olur.",
+                "Emin değilsen Not kipiyle aday rakamları yaz. 3 yanlışta tur biter."
+            ),
+            isNew = true
+        ),
+        GameMeta(
+            id = "neon_connect", name = "Neon Bağla", category = GameCategory.SPATIAL,
+            description = "Aynı renkli noktaları kesişmeyen çizgilerle bağla, tüm ızgarayı doldur.",
+            difficulty = GameDifficulty.MEDIUM, iconEmoji = "🔗",
+            howTo = listOf(
+                "Bir noktadan başlayıp parmağınla aynı renkteki eşine çiz.",
+                "Çizgiler birbirini kesemez; başka çizginin üstünden geçersen onu kesersin.",
+                "Tüm renkler bağlanıp tüm kareler dolunca tur biter."
             ),
             isNew = true
         )

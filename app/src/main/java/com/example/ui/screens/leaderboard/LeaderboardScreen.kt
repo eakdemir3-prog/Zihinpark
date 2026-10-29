@@ -76,7 +76,7 @@ fun LeaderboardScreen(repository: GameRepository) {
     val badges = listOf(
         Badge("🚀", "İlk Adım", "İlk seviyeni geç", cleared, 1, NeonCyan),
         Badge("🧭", "Kâşif", "10 farklı oyunda seviye geç", gamesStarted, 10, NeonGreen),
-        Badge("🌐", "Tam Tur", "23 oyunun hepsinde seviye geç", gamesStarted, GameRegistry.ALL_GAMES.size, NeonGreen),
+        Badge("🌐", "Tam Tur", "${GameRegistry.ALL_GAMES.size} oyunun hepsinde seviye geç", gamesStarted, GameRegistry.ALL_GAMES.size, NeonGreen),
         Badge("👑", "Boss Avcısı", "10 boss seviyesini yen", bosses, 10, NeonPink),
         Badge("🐉", "Boss Efsanesi", "50 boss seviyesini yen", bosses, 50, NeonPink),
         Badge("⭐", "Yıldız Toplayıcı", "100 yıldız topla", totalStars, 100, NeonYellow),
@@ -85,7 +85,7 @@ fun LeaderboardScreen(repository: GameRepository) {
         Badge("🏛️", "Bölge Ustası", "Bir bölgenin tüm 30 yıldızını al", zonesMastered, 1, NeonOrange),
         Badge("♾️", "Sonsuzluk", "Bir oyunda Sonsuz Mod'u aç", endless, 1, NeonPink),
         Badge("🔥", "Kararlı", "7 gün üst üste oyna", streak, 7, NeonOrange),
-        Badge("🧠", "Zihin Efsanesi", "Tüm 1150 seviyeyi geç", cleared, GameRegistry.ALL_GAMES.size * LevelRules.LEVEL_COUNT, NeonCyan)
+        Badge("🧠", "Zihin Efsanesi", "Tüm ${GameRegistry.ALL_GAMES.size * LevelRules.LEVEL_COUNT} seviyeyi geç", cleared, GameRegistry.ALL_GAMES.size * LevelRules.LEVEL_COUNT, NeonCyan)
     )
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {

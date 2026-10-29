@@ -28,5 +28,10 @@ object AllGenerators {
         MathGridGenerator,
         MergeGenerator,
         JigsawGenerator,
+        SortGenerator,
+        BlockBlastGenerator,
+        Match3Generator,
+        SudokuGenerator,
+        FlowGenerator,
     )
 }

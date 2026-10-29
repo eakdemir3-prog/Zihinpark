@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 /**
- * Oyun tablosunu GameRegistry'deki 23 oyunla eşitler ve şema geçişlerini tutar.
+ * Oyun tablosunu GameRegistry'deki oyunlarla eşitler ve şema geçişlerini tutar.
  * Seviye satırları önceden oluşturulmaz; oyuncu bir seviyeyi oynadıkça eklenir.
  */
 object RoomDatabaseModule {

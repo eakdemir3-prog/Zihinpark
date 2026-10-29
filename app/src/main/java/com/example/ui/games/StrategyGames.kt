@@ -572,6 +572,7 @@ private fun ArchitectBoard(p: ArchitectPuzzle, ctl: RoundControls, finish: Finis
     var done by remember { mutableStateOf(false) }
     var bad by remember { mutableIntStateOf(0) }
     val history = remember { mutableStateListOf<Int>() }
+    var completeRef: (() -> Unit)? = null
 
     LaunchedEffect(Unit) {
         ctl.statusText = "${p.pieces.size} parça"
@@ -598,7 +599,7 @@ private fun ArchitectBoard(p: ArchitectPuzzle, ctl: RoundControls, finish: Finis
                 if (sol != null) {
                     placedAt[i] = sol; history += i
                     selected = shapes.indices.firstOrNull { placedAt[it] == null }
-                    if (placedAt.filterNotNull().flatten().size == p.region.size) completeArchitect()
+                    if (placedAt.filterNotNull().flatten().size == p.region.size) completeRef?.invoke()
                     return@hint if (removed) "Yanlış parçalar kaldırıldı, bir parça yerleşti" else "Bir parça doğru yerine kondu"
                 }
             }
@@ -615,6 +616,7 @@ private fun ArchitectBoard(p: ArchitectPuzzle, ctl: RoundControls, finish: Finis
         ctl.correct("Siluet tamam!")
         scope.launch { delay(900); finish(true, (100 - (ctl.timeUsedRatio * 50).toInt()).coerceIn(20, 100)) }
     }
+    completeRef = { completeArchitect() }
 
     fun tryPlace(r: Int, c: Int) {
         if (done) return
