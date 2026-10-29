@@ -34,8 +34,15 @@ class MainActivity : ComponentActivity() {
             )
         }
 
+        // Yalnızca test derlemesinde: otomatik ekran görüntüsü için doğrudan bir ekranı açar
+        val debugRoute = if (BuildConfig.DEBUG) intent?.getStringExtra("zp_route") else null
+        val skipTutorials = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_skip_tutorial", false) == true
+
         setContent {
             val repository = remember { GameRepository(applicationContext) }
+            LaunchedEffect(skipTutorials) {
+                if (skipTutorials) com.example.domain.model.GameRegistry.ALL_GAMES.forEach { repository.preferences.markTutorialSeen(it.id) }
+            }
             val soundManager = remember { SoundAndVibeManager(applicationContext) }
 
             val soundOn by repository.preferences.soundEnabled.collectAsState(initial = true)
@@ -48,7 +55,8 @@ class MainActivity : ComponentActivity() {
             ZihinParkTheme {
                 ZihinParkAppNavigation(
                     repository = repository,
-                    soundManager = soundManager
+                    soundManager = soundManager,
+                    startRoute = debugRoute
                 )
             }
         }

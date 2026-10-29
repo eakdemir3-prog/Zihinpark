@@ -154,9 +154,15 @@ private fun AnimatedContentTransitionScope<NavBackStackEntry>.popExitFor(): Exit
 @Composable
 fun ZihinParkAppNavigation(
     repository: GameRepository,
-    soundManager: SoundAndVibeManager
+    soundManager: SoundAndVibeManager,
+    startRoute: String? = null
 ) {
     val navController = rememberNavController()
+    androidx.compose.runtime.LaunchedEffect(startRoute) {
+        if (!startRoute.isNullOrBlank() && startRoute != MainTab.Home.route) {
+            runCatching { navController.navigate(startRoute) }
+        }
+    }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     var gamesCategory by rememberSaveable { mutableStateOf<String?>(null) }

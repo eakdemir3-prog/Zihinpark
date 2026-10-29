@@ -59,6 +59,12 @@ jobs:
           done
           gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/comments" -F body=@summary.md > /dev/null
 
+      - name: APK'yi sonraki is icin sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
       - name: Test raporlari
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,3 +84,36 @@ jobs:
             --target "${{ github.sha }}" --prerelease \
             --title "ZihinPark test build #${{ github.run_number }}" \
             --notes "Otomatik derleme (${GITHUB_REF_NAME} @ ${GITHUB_SHA::7})"
+
+  screens:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: apk
+      - name: KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Emulator ekran goruntuleri
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: false
+          script: bash .github/screens.sh
+      - name: Goruntuleri dala yaz
+        if: always()
+        run: |
+          mkdir -p /tmp/shots && cp -r shots/* /tmp/shots/ 2>/dev/null || true
+          cd /tmp/shots && git init -q && git checkout -q -b ci-shots
+          git config user.name ci && git config user.email ci@example.com
+          echo "${{ github.sha }}" > SHA.txt
+          git add -A && git commit -qm "shots ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-shots
