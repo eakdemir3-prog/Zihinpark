@@ -56,7 +56,8 @@ class MainActivity : ComponentActivity() {
         val light = kotlinx.coroutines.runBlocking {
             com.example.data.pref.UserPreferencesRepository(applicationContext).lightTheme.first()
         }
-        com.example.ui.theme.ZpColors.palette = if (light) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
+        val forceLight = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_light", false) == true
+        com.example.ui.theme.ZpColors.palette = if (light || forceLight) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
 
         setContent {
             val repository = remember { GameRepository(applicationContext) }

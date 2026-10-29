@@ -62,4 +62,18 @@ store 8_sudoku play/sudoku/45 14
 store 9_connect play/neon_connect/45 14
 store 10_shop shop 10
 store 11_wowmap wow 10
+# Açık tema
+lstore() {
+  $T adb shell am start -S -n $ACT --es zp_route "$2" --ez zp_skip_tutorial true --ez zp_light true > /dev/null
+  sleep ${3:-10}
+  $T adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null
+  sleep 1
+  $T adb exec-out screencap -p > "shots/store_L$1.png"
+}
+lstore 1_home tab_home 12
+lstore 2_games tab_games 10
+lstore 3_wow wow/1 12
+lstore 4_sudoku play/sudoku/45 14
+lstore 5_profile tab_profile 10
+lstore 6_arrow play/arrow_escape/45 12
 ls -la shots
