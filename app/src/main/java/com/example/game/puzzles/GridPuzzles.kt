@@ -18,6 +18,7 @@ data class NonogramPuzzle(val size: Int, val cells: List<Boolean>, val rowClues:
 
 object NonogramGenerator : PuzzleGenerator<NonogramPuzzle> {
     override val gameId = "nonogram"
+    override val independent = true
 
     fun clues(line: List<Boolean>): List<Int> {
         val out = ArrayList<Int>()
@@ -200,6 +201,7 @@ data class PatternPuzzle(val grid: List<PatternCell>, val options: List<PatternC
 
 object PatternGenerator : PuzzleGenerator<PatternPuzzle> {
     override val gameId = "pattern_master"
+    override val independent = true
 
     private enum class Rule { CONST, PROGRESS, DISTRIBUTE }
 
@@ -299,6 +301,7 @@ data class DetailPuzzle(val size: Int, val original: List<String>, val modified:
 
 object DetailGenerator : PuzzleGenerator<DetailPuzzle> {
     override val gameId = "detail_hunter"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): DetailPuzzle? {
         val size = step(difficulty, 4, 5, 5, 6, 6)
@@ -342,6 +345,7 @@ private val SCENES = listOf(
 
 object HiddenObjectGenerator : PuzzleGenerator<HiddenObjectPuzzle> {
     override val gameId = "hidden_object"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): HiddenObjectPuzzle? {
         val (theme, pool) = SCENES.pick(rng)

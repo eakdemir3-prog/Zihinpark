@@ -158,6 +158,10 @@ fun LevelPlayScreen(
     val undos by repository.preferences.undosCount.collectAsState(initial = 0)
 
     LaunchedEffect(Unit) {
+        // Kalan turları arka planda hazırla
+        launch(kotlinx.coroutines.Dispatchers.Default) {
+            if (!isEndless) com.example.game.puzzles.AllGenerators.byId(gameId)?.let { com.example.game.engine.PuzzleBank.prefetch(it, level) }
+        }
         repository.preferences.setLastPlayedGame(gameId)
         if (isEndless) endlessBase = repository.preferences.nextEndlessSeedBase()
     }

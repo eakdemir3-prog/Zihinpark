@@ -18,6 +18,13 @@ interface PuzzleGenerator<P : Any> {
 
     /** Aynı bulmacayı (ayna/döndürme gibi eşdeğer hâller dahil) tanımlayan parmak izi. */
     fun fingerprint(puzzle: P): String
+
+    /**
+     * true ise her tur kendi sabit tohumundan bağımsız üretilir (önceki turları üretmek gerekmez,
+     * anında açılır). Olası bulmaca sayısı çok büyük olan oyunlar içindir; 210 turun benzersizliği
+     * birim testinde doğrulanır. false ise turlar sırayla üretilir ve tekrar edenler atlanır.
+     */
+    val independent: Boolean get() = false
 }
 
 /** Turda kullanılacak tüm bilgiler. */
@@ -58,10 +65,26 @@ object PuzzleBank {
     private val banks = HashMap<String, Bank>()
 
     /** Turları gerektiği kadar (sırayla) üretir; önceki tüm turlarla çakışmayan [index]. turu döner. */
+    private val independentCache = HashMap<String, HashMap<Int, Any>>()
+
     @Suppress("UNCHECKED_CAST")
-    @Synchronized
     fun <P : Any> get(gen: PuzzleGenerator<P>, index: Int): P {
         require(index in 0 until LevelRules.TOTAL_ROUNDS) { "index $index" }
+        if (gen.independent) {
+            synchronized(independentCache) {
+                independentCache[gen.gameId]?.get(index)?.let { return it as P }
+            }
+            val (level, round) = levelRoundOf(index)
+            val p = produce(gen, index, LevelRules.difficulty(level, round), HashSet())
+            synchronized(independentCache) { independentCache.getOrPut(gen.gameId) { HashMap() }[index] = p }
+            return p
+        }
+        return sequential(gen, index)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    @Synchronized
+    private fun <P : Any> sequential(gen: PuzzleGenerator<P>, index: Int): P {
         val bank = banks.getOrPut(gen.gameId) { Bank() }
         while (bank.items.size <= index) {
             val i = bank.items.size
@@ -84,12 +107,17 @@ object PuzzleBank {
      * Sonsuz mod: normal bankadaki hiçbir turla çakışmayan yeni bir bulmaca.
      * Tohum sırası sonsuz mod sayacından türediği için tekrar etmez.
      */
-    @Synchronized
     fun <P : Any> endless(gen: PuzzleGenerator<P>, n: Int, difficulty: Float): P {
-        get(gen, LevelRules.TOTAL_ROUNDS - 1)
-        val bank = banks.getValue(gen.gameId)
-        val seen = HashSet<String>(bank.seen)
+        if (gen.independent) return produce(gen, 100_000 + n, difficulty, HashSet())
+        sequential(gen, LevelRules.TOTAL_ROUNDS - 1)
+        val seen = synchronized(this) { HashSet<String>(banks.getValue(gen.gameId).seen) }
         return produce(gen, 100_000 + n, difficulty, seen)
+    }
+
+    /** Bir seviyenin turlarını arka planda önceden üretir (oyun açılınca bekleme olmasın). */
+    fun <P : Any> prefetch(gen: PuzzleGenerator<P>, level: Int) {
+        if (level !in 1..LevelRules.LEVEL_COUNT) return
+        for (r in 0 until LevelRules.roundsFor(level)) get(gen, LevelRules.globalRoundIndex(level, r))
     }
 
     private fun levelRoundOf(globalIndex: Int): Pair<Int, Int> {
@@ -126,6 +154,7 @@ object PuzzleBank {
     @Synchronized
     fun clear() {
         banks.clear()
+        synchronized(independentCache) { independentCache.clear() }
     }
 }
 

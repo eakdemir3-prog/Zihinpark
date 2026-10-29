@@ -21,6 +21,7 @@ data class MemoryCardsPuzzle(
 
 object MemoryCardsGenerator : PuzzleGenerator<MemoryCardsPuzzle> {
     override val gameId = "memory_cards"
+    override val independent = true
 
     val SYMBOLS = listOf(
         "🚀", "🌙", "⚡", "💎", "🔮", "🎧", "🎮", "🛸", "🌈", "🔥", "🍀", "🎯", "🧬", "🪐", "🌵", "🦄",

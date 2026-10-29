@@ -44,6 +44,7 @@ data class ReflexPuzzle(val trials: List<ReflexTrial>, val targetMs: Int, val sh
 
 object ReflexGenerator : PuzzleGenerator<ReflexPuzzle> {
     override val gameId = "reflex_arena"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): ReflexPuzzle? {
         val tier = tierOf(difficulty)
@@ -80,6 +81,7 @@ data class StroopPuzzle(val colors: Int, val items: List<StroopItem>, val timeLi
 
 object StroopGenerator : PuzzleGenerator<StroopPuzzle> {
     override val gameId = "color_stroop"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): StroopPuzzle? {
         val tier = tierOf(difficulty)
@@ -144,6 +146,7 @@ data class TargetTapPuzzle(val rule: TargetRule, val spawns: List<TargetSpawn>, 
 
 object TargetTapGenerator : PuzzleGenerator<TargetTapPuzzle> {
     override val gameId = "target_tap"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): TargetTapPuzzle? {
         val tier = tierOf(difficulty)

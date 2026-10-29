@@ -34,4 +34,6 @@ object AllGenerators {
         SudokuGenerator,
         FlowGenerator,
     )
+
+    fun byId(id: String): PuzzleGenerator<*>? = list.firstOrNull { it.gameId == id }
 }

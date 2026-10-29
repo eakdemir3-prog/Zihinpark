@@ -31,11 +31,11 @@ PY
 )
   [ -n "$b" ] && $T adb shell input tap $b
 }
-$T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 10
+$T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 adb exec-out screencap -p > shots/00_home.png
-for r in tab_games tab_records tab_profile shop; do shot "$r" 7; done
+for r in tab_games tab_records tab_profile shop; do shot "$r" 12; done
 for g in color_sort block_blast neon_match sudoku neon_connect; do shot "play/$g/1" 9; done
-for g in color_sort block_blast neon_match sudoku neon_connect; do shot "play/$g/45" 14; done
+for g in color_sort block_blast neon_match sudoku neon_connect; do shot "play/$g/45" 12; done
 # İpucu testi
 for g in number_chain spatial_rotation logic_detective; do
   shot "play/$g/1" 8

@@ -74,6 +74,7 @@ data class WordHuntPuzzle(val size: Int, val letters: List<Char>, val placements
 
 object WordHuntGenerator : PuzzleGenerator<WordHuntPuzzle> {
     override val gameId = "word_hunt"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): WordHuntPuzzle? {
         val tier = tierOf(difficulty)

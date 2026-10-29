@@ -126,6 +126,7 @@ private fun permutations(n: Int): List<IntArray> {
 
 object DetectiveGenerator : PuzzleGenerator<DetectivePuzzle> {
     override val gameId = "logic_detective"
+    override val independent = true
 
     private val permCache = HashMap<Int, List<IntArray>>()
     private fun perms(n: Int) = permCache.getOrPut(n) { permutations(n) }

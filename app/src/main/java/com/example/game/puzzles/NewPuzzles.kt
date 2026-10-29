@@ -16,6 +16,7 @@ data class SortPuzzle(val tubes: List<List<Int>>, val capacity: Int, val colors:
 
 object SortGenerator : PuzzleGenerator<SortPuzzle> {
     override val gameId = "color_sort"
+    override val independent = true
 
     /** Bir hamle kuralı: kaynak boş değil, hedefte yer var, hedef boş ya da üstü aynı renk. */
     fun canMove(tubes: List<List<Int>>, from: Int, to: Int, cap: Int): Boolean {
@@ -119,6 +120,7 @@ data class BlockBlastPuzzle(val size: Int, val initial: List<Int>, val targetLin
 
 object BlockBlastGenerator : PuzzleGenerator<BlockBlastPuzzle> {
     override val gameId = "block_blast"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): BlockBlastPuzzle? {
         val tier = tierOf(difficulty)
@@ -147,6 +149,7 @@ data class Match3Puzzle(val size: Int, val colors: Int, val board: List<Int>, va
 
 object Match3Generator : PuzzleGenerator<Match3Puzzle> {
     override val gameId = "neon_match"
+    override val independent = true
 
     fun hasMatchAt(b: List<Int>, n: Int, i: Int): Boolean {
         val r = i / n; val c = i % n; val v = b[i]
@@ -213,6 +216,7 @@ data class SudokuPuzzle(val n: Int, val boxR: Int, val boxC: Int, val solution: 
 
 object SudokuGenerator : PuzzleGenerator<SudokuPuzzle> {
     override val gameId = "sudoku"
+    override val independent = true
 
     private fun boxDims(n: Int) = when (n) { 4 -> 2 to 2; 6 -> 2 to 3; else -> 3 to 3 }
 
@@ -294,6 +298,7 @@ data class FlowPuzzle(val n: Int, val ends: List<Pair<Int, Int>>, val solution: 
 
 object FlowGenerator : PuzzleGenerator<FlowPuzzle> {
     override val gameId = "neon_connect"
+    override val independent = true
 
     /** Izgarayı yılan biçiminde dolaşan Hamilton yolu, "backbite" hamleleriyle karıştırılır. */
     private fun randomHamiltonian(n: Int, rng: Random): MutableList<Int> {
@@ -302,7 +307,7 @@ object FlowGenerator : PuzzleGenerator<FlowPuzzle> {
             val cols = if (r % 2 == 0) 0 until n else (n - 1 downTo 0)
             for (c in cols) path += r * n + c
         }
-        val steps = n * n * 30
+        val steps = n * n * 10
         repeat(steps) {
             val fromEnd = rng.nextBoolean()
             if (fromEnd) path.reverse()

@@ -83,6 +83,7 @@ data class PathFinderPuzzle(val n: Int, val tiles: List<Int>, val start: Pair<In
 
 object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
     override val gameId = "path_finder"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): PathFinderPuzzle? {
         val m = scaled(difficulty, intArrayOf(3, 4, 5, 6, 7), extraWithin = 1).coerceAtMost(7)
@@ -203,6 +204,7 @@ data class MazeEscapePuzzle(val n: Int, val walls: List<Boolean>, val exit: Pair
 
 object MazeEscapeGenerator : PuzzleGenerator<MazeEscapePuzzle> {
     override val gameId = "maze_escape"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): MazeEscapePuzzle? {
         val m = step(difficulty, 5, 6, 7, 8, 9)
@@ -336,6 +338,7 @@ data class ArchitectPuzzle(val rows: Int, val cols: Int, val region: Set<Pair<In
 
 object ArchitectGenerator : PuzzleGenerator<ArchitectPuzzle> {
     override val gameId = "shape_architect"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): ArchitectPuzzle? {
         val tier = tierOf(difficulty)
@@ -415,6 +418,7 @@ data class MathGridPuzzle(
 
 object MathGridGenerator : PuzzleGenerator<MathGridPuzzle> {
     override val gameId = "math_engineer"
+    override val independent = true
 
     fun eval(nums: List<Int>, ops: List<Char>): Int? {
         var acc = nums[0]
@@ -474,6 +478,7 @@ data class MergePuzzle(val size: Int, val board: List<Int>, val target: Int, val
 
 object MergeGenerator : PuzzleGenerator<MergePuzzle> {
     override val gameId = "number_merge"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): MergePuzzle? {
         val target = step(difficulty, 32, 64, 128, 128, 256)
@@ -521,6 +526,7 @@ data class JigsawPuzzle(val n: Int, val artSeed: Long, val palette: Int, val per
 
 object JigsawGenerator : PuzzleGenerator<JigsawPuzzle> {
     override val gameId = "jigsaw_puzzle"
+    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): JigsawPuzzle? {
         val tier = tierOf(difficulty)

@@ -95,6 +95,11 @@ fun LevelMapScreen(
     val accent = meta.category.color
     var showHowTo by remember { mutableStateOf(false) }
     val next = progress.nextPlayableLevel
+    LaunchedEffect(gameId, next) {
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
+            com.example.game.puzzles.AllGenerators.byId(gameId)?.let { com.example.game.engine.PuzzleBank.prefetch(it, next) }
+        }
+    }
 
     NeonBackground(accent = accent) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
