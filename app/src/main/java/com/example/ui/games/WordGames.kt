@@ -399,7 +399,7 @@ private fun WordHuntBoard(p: WordHuntPuzzle, ctl: RoundControls, finish: FinishO
                 )
             }
         }
-        BoxWithConstraints(Modifier.widthIn(max = 440.dp).fillMaxWidth().aspectRatio(1f)) {
+        BoxWithConstraints(Modifier.weight(1f, fill = false).widthIn(max = 440.dp).fillMaxWidth().aspectRatio(1f)) {
             val cellPx = constraints.maxWidth.toFloat() / p.size
             val selected = dragStart?.let { a -> lineCells(a, dragEnd ?: a) } ?: emptyList()
             Box(

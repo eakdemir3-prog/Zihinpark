@@ -906,7 +906,7 @@ private fun SudokuBoard(p: SudokuPuzzle, ctl: RoundControls, finish: FinishOnce)
     }
 
     GameColumn(scroll = false) {
-        BoxWithConstraints(Modifier.widthIn(max = 440.dp).fillMaxWidth().aspectRatio(1f)) {
+        BoxWithConstraints(Modifier.weight(1f, fill = false).widthIn(max = 440.dp).fillMaxWidth().aspectRatio(1f)) {
             val cell = maxWidth / n
             val selV = sel?.let { values[it] } ?: 0
             Box(Modifier.fillMaxSize().clip(RoundedCornerShape(12.dp)).background(NeonCard).border(2.dp, NeonCyan.copy(alpha = 0.6f), RoundedCornerShape(12.dp))) {
@@ -1093,6 +1093,7 @@ private fun FlowBoard(p: FlowPuzzle, ctl: RoundControls, finish: FinishOnce) {
     GameColumn(scroll = false) {
         BoxWithConstraints(
             Modifier
+                .weight(1f, fill = false)
                 .widthIn(max = 440.dp)
                 .fillMaxWidth()
                 .aspectRatio(1f)

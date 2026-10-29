@@ -211,6 +211,7 @@ private fun PathFinderBoard(p: PathFinderPuzzle, ctl: RoundControls, finish: Fin
         }
         BoxWithConstraints(
             Modifier
+                .weight(1f, fill = false)
                 .widthIn(max = 420.dp)
                 .fillMaxWidth()
                 .aspectRatio(1f)
@@ -335,6 +336,7 @@ private fun MazeEscapeBoard(p: MazeEscapePuzzle, ctl: RoundControls, finish: Fin
     GameColumn(scroll = false) {
         BoxWithConstraints(
             Modifier
+                .weight(1f, fill = false)
                 .widthIn(max = 440.dp)
                 .fillMaxWidth()
                 .aspectRatio(1f)
@@ -993,6 +995,7 @@ private fun MergeBoard(p: MergePuzzle, ctl: RoundControls, finish: FinishOnce) {
         }
         BoxWithConstraints(
             Modifier
+                .weight(1f, fill = false)
                 .widthIn(max = 400.dp)
                 .fillMaxWidth()
                 .aspectRatio(1f)
@@ -1146,7 +1149,7 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
                 else -> "İki parçaya dokunarak yerlerini değiştir"
             }
         )
-        BoxWithConstraints(Modifier.widthIn(max = 420.dp).fillMaxWidth().aspectRatio(1f)) {
+        BoxWithConstraints(Modifier.weight(1f, fill = false).widthIn(max = 420.dp).fillMaxWidth().aspectRatio(1f)) {
             val tile = maxWidth / p.n
             if (showPreview) {
                 Image(photo, null, Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp)), contentScale = ContentScale.Crop)
