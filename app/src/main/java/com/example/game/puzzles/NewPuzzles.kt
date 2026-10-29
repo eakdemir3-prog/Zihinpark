@@ -337,14 +337,19 @@ object FlowGenerator : PuzzleGenerator<FlowPuzzle> {
         val n = step(difficulty, 5, 6, 7, 8, 9)
         val k = scaled(difficulty, intArrayOf(4, 5, 6, 7, 8), extraWithin = 2).coerceAtMost(n + 1)
         val path = randomHamiltonian(n, rng)
-        // Yolu k parçaya böl (her parça en az 3 hücre)
+        // Yolu k parçaya böl (her parça en az 3 hücre, uçları komşu olmasın); aynı yolda birçok bölme dene
         val total = n * n
-        val cuts = (1 until total).shuffled(rng).take(k - 1).sorted()
-        val bounds = listOf(0) + cuts + listOf(total)
-        val segs = (0 until k).map { path.subList(bounds[it], bounds[it + 1]).toList() }
-        if (segs.any { it.size < 3 }) return null
-        // Uçlar birbirine komşuysa (kısa devre) bulmaca anlamsızlaşır
-        if (segs.any { adjacent(it.first(), it.last(), n) }) return null
+        var segs: List<List<Int>>? = null
+        for (attempt in 0 until 400) {
+            val cuts = (3..total - 3).shuffled(rng).take(k - 1).sorted()
+            val bounds = listOf(0) + cuts + listOf(total)
+            val trial = (0 until k).map { path.subList(bounds[it], bounds[it + 1]).toList() }
+            if (trial.any { it.size < 3 }) continue
+            if (trial.any { adjacent(it.first(), it.last(), n) }) continue
+            segs = trial
+            break
+        }
+        if (segs == null) return null
         val solution = MutableList(total) { -1 }
         segs.forEachIndexed { color, s -> s.forEach { solution[it] = color } }
         // Bir parça kendine komşu olup "kısa yol" veriyorsa tahta yine de çözülebilir; kabul edilir.
