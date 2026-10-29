@@ -151,7 +151,9 @@ data class DoorStatement(val text: String, val kind: Int, val a: Int, val b: Int
         6 -> safe > self                  // Güvenli kapı benden sağda
         7 -> safe < self                  // Güvenli kapı benden solda
         8 -> safe == 0 || safe == doors - 1 // Güvenli kapı kenarda
-        else -> kotlin.math.abs(safe - self) == 1 // Güvenli kapı bana komşu
+        9 -> kotlin.math.abs(safe - self) == 1 // Güvenli kapı bana komşu
+        10 -> safe != a && safe != b      // Güvenli kapı ne X ne Y
+        else -> safe % 2 == 1             // Güvenli kapının numarası çift
     }
 }
 
@@ -169,7 +171,7 @@ object DoorsGenerator : PuzzleGenerator<DoorsPuzzle> {
     override val gameId = "logic_doors"
 
     private fun makeStatement(self: Int, doors: Int, rng: Random, tier: Int): DoorStatement {
-        val maxKind = when (tier) { 0 -> 4; 1 -> 5; 2 -> 6; else -> 10 }
+        val maxKind = when (tier) { 0 -> 6; 1 -> 8; 2 -> 10; else -> 12 }
         val kind = rng.nextInt(maxKind)
         var a = rng.nextInt(doors)
         var b = rng.nextInt(doors)
@@ -185,7 +187,9 @@ object DoorsGenerator : PuzzleGenerator<DoorsPuzzle> {
             6 -> "Güvenli kapı benim sağımda."
             7 -> "Güvenli kapı benim solumda."
             8 -> "Güvenli kapı en uçtakilerden biri."
-            else -> "Güvenli kapı benim hemen yanımda."
+            9 -> "Güvenli kapı benim hemen yanımda."
+            10 -> "Güvenli kapı ne ${a + 1}. ne de ${b + 1}. kapı."
+            else -> "Güvenli kapının numarası çift."
         }
         return DoorStatement(text, kind, a, b)
     }

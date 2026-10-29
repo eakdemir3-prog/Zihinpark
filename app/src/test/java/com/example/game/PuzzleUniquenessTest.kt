@@ -34,6 +34,15 @@ class PuzzleUniquenessTest {
 
     @Test
     fun `tum oyunlarda 210 benzersiz tur`() {
-        for (g in AllGenerators.list) check(g as PuzzleGenerator<Any>)
+        val failures = ArrayList<String>()
+        for (g in AllGenerators.list) {
+            try {
+                @Suppress("UNCHECKED_CAST")
+                check(g as PuzzleGenerator<Any>)
+            } catch (t: Throwable) {
+                failures += "${g.gameId}: ${t.message}"
+            }
+        }
+        if (failures.isNotEmpty()) throw AssertionError(failures.joinToString(" || "))
     }
 }
