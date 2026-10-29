@@ -34,8 +34,8 @@ object Ads {
     // Google'ın resmi test birimleri. Gerçek kimlikler AdMob hesabı açılınca buraya yazılır.
     private const val TEST_REWARDED = "ca-app-pub-3940256099942544/5224354917"
     private const val TEST_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"
-    private const val REAL_REWARDED = ""
-    private const val REAL_INTERSTITIAL = ""
+    private const val REAL_REWARDED = "ca-app-pub-2435516035253344/7734658318"
+    private const val REAL_INTERSTITIAL = "ca-app-pub-2435516035253344/6272356657"
 
     private val rewardedId get() = if (BuildConfig.DEBUG || REAL_REWARDED.isEmpty()) TEST_REWARDED else REAL_REWARDED
     private val interstitialId get() = if (BuildConfig.DEBUG || REAL_INTERSTITIAL.isEmpty()) TEST_INTERSTITIAL else REAL_INTERSTITIAL

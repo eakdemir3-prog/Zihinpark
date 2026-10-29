@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ZihinPark</string>
     <string name="app_tagline">Düşün. Keşfet. Geliş.</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2435516035253344~6972240988</string>
 </resources>
