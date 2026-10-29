@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "437362291475",
+    "project_id": "com-example-firnex-74000",
+    "storage_bucket": "com-example-firnex-74000.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437362291475:android:d62e0719133cfac1c860e6",
+        "android_client_info": {
+          "package_name": "com.eavisionlabs.fitnex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALQYAdM9WJNUMQzR62LOkZsN1DLHZAmEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437362291475:android:2bb8f24a01dfb8b5c860e6",
+        "android_client_info": {
+          "package_name": "com.eavisionlabs.zihinpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437362291475-3rg7p5iaafkjp35k1uocksqevl0i6l28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eavisionlabs.zihinpark",
+            "certificate_hash": "824c93628e7512038bab2d1e745edc7fee67d26e"
+          }
+        },
+        {
+          "client_id": "437362291475-lbb0eq9pt1dhll81ljtv871rqqu1ap46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eavisionlabs.zihinpark",
+            "certificate_hash": "c7a69a6d95dcdf5b0bd42ad7996bc59c0a0d8e7b"
+          }
+        },
+        {
+          "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALQYAdM9WJNUMQzR62LOkZsN1DLHZAmEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437362291475:android:ff6ecdeb8fa34e95c860e6",
+        "android_client_info": {
+          "package_name": "com.example.firnex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALQYAdM9WJNUMQzR62LOkZsN1DLHZAmEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437362291475-l2plioqbn63plaf8io4o4teu93bbeq3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
