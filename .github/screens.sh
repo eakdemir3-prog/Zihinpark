@@ -3,7 +3,7 @@
 set -x
 mkdir -p shots
 adb install -r app-debug.apk
-PKG=com.aistudio.zihinpark.trkm
+PKG=com.eavisionlabs.zihinpark
 ACT=$PKG/com.example.MainActivity
 T="timeout 25"
 shot() {

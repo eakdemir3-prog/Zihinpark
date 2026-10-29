@@ -50,6 +50,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -100,7 +101,7 @@ sealed class MainTab(
 ) {
     data object Home : MainTab("tab_home", "Ana Sayfa", Icons.Filled.Home, Icons.Outlined.Home)
     data object Games : MainTab("tab_games", "Oyunlar", Icons.Filled.Extension, Icons.Outlined.Extension)
-    data object Records : MainTab("tab_records", "Rekorlar", Icons.Filled.EmojiEvents, Icons.Outlined.EmojiEvents)
+    data object Records : MainTab("tab_records", "Liderlik", Icons.Filled.EmojiEvents, Icons.Outlined.EmojiEvents)
     data object Profile : MainTab("tab_profile", "Profil", Icons.Filled.Person, Icons.Outlined.Person)
 
     companion object {
@@ -232,7 +233,8 @@ fun ZihinParkAppNavigation(
                             soundManager = soundManager,
                             onOpenGames = { goTab(MainTab.Games) },
                             onOpenWeeklyTrends = { navController.navigate(Routes.WEEKLY) },
-                            onOpenShop = { navController.navigate(Routes.SHOP) }
+                            onOpenShop = { navController.navigate(Routes.SHOP) },
+                            accountCard = { com.example.ui.screens.leaderboard.AccountCard() }
                         )
                     }
                     composable(Routes.SHOP) {
@@ -285,6 +287,17 @@ fun ZihinParkAppNavigation(
                 exit = slideOutVertically(tween(220)) { it } + fadeOut(tween(180))
             ) {
                 NeonBottomBar(selected = MainTab.indexOf(currentRoute).coerceAtLeast(0), onSelect = { goTab(MainTab.all[it]) })
+            }
+        }
+        val reward by com.example.cloud.CloudSync.pendingReward.collectAsState()
+        reward?.let { r ->
+            com.example.ui.screens.profile.NeonDialog(
+                title = "🏆 Haftalık lig ödülü!",
+                onDismiss = { com.example.cloud.CloudSync.consumeReward() },
+                confirm = "Harika!",
+                onConfirm = { com.example.cloud.CloudSync.consumeReward() }
+            ) {
+                Text("Geçen hafta ligi ${r.rank}. sırada bitirdin. +${r.diamonds} 💎 hesabına eklendi!", color = com.example.ui.theme.TextPrimary)
             }
         }
         }

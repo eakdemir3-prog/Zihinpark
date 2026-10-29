@@ -16,6 +16,11 @@ import com.example.ui.theme.ZihinParkTheme
 import com.example.util.SoundAndVibeManager
 
 class MainActivity : ComponentActivity() {
+    override fun onStop() {
+        super.onStop()
+        com.example.cloud.CloudSync.flush()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -33,6 +38,8 @@ class MainActivity : ComponentActivity() {
                 reminderPrefs.reminderMinute
             )
         }
+
+        com.example.cloud.CloudSync.init(applicationContext)
 
         // Yalnızca test derlemesinde: otomatik ekran görüntüsü için doğrudan bir ekranı açar
         val debugRoute = if (BuildConfig.DEBUG) intent?.getStringExtra("zp_route") else null

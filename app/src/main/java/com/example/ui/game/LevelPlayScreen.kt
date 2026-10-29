@@ -176,12 +176,15 @@ fun LevelPlayScreen(
         scope.launch {
             if (isEndless) {
                 endlessRecord = repository.saveEndlessResult(gameId, results.count { it.success }, totalScore, duration)
+                com.example.cloud.CloudSync.addWeeklyScore(totalScore)
                 outcome = null
                 soundManager.playRoundClear()
                 fx.confetti()
             } else {
                 val o = repository.saveLevelResult(gameId, level, results.toList(), duration)
                 outcome = o
+                // Lig puanı: geçilen seviyeler tam, geçilemeyenler yarım puan getirir
+                com.example.cloud.CloudSync.addWeeklyScore(if (o.stars > 0) totalScore else totalScore / 2)
                 if (o.stars > 0) fx.confetti() else soundManager.playLevelFail()
             }
             phase = Phase.Result

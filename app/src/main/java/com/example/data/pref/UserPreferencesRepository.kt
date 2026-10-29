@@ -72,6 +72,23 @@ class UserPreferencesRepository(private val context: Context) {
         return amount
     }
 
+    /** Bulut yedeğinden geri yükleme (yalnızca gelen değerler yazılır). */
+    suspend fun restoreFromCloud(
+        name: String?, avatar: Int?, frame: String?, diamonds: Int?,
+        hints: Int?, times: Int?, undos: Int?, owned: Set<String>?
+    ) {
+        context.dataStore.edit { p ->
+            name?.let { p[Keys.USER_NAME] = it }
+            avatar?.let { p[Keys.AVATAR_ID] = it }
+            frame?.let { p[Keys.EQUIPPED_FRAME] = it }
+            diamonds?.let { p[Keys.DIAMOND_BALANCE] = maxOf(it, p[Keys.DIAMOND_BALANCE] ?: 0) }
+            hints?.let { p[Keys.HINTS_COUNT] = maxOf(it, p[Keys.HINTS_COUNT] ?: 0) }
+            times?.let { p[Keys.EXTRA_TIME_COUNT] = maxOf(it, p[Keys.EXTRA_TIME_COUNT] ?: 0) }
+            undos?.let { p[Keys.UNDOS_COUNT] = maxOf(it, p[Keys.UNDOS_COUNT] ?: 0) }
+            owned?.let { p[Keys.OWNED_COSMETICS] = (p[Keys.OWNED_COSMETICS] ?: emptySet()) + it }
+        }
+    }
+
     /** Elmasla güç satın alır. */
     suspend fun buyBooster(type: String, count: Int, cost: Int): Boolean {
         var ok = false

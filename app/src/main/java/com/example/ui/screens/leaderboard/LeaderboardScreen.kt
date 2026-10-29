@@ -90,15 +90,16 @@ fun LeaderboardScreen(repository: GameRepository) {
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
         Column(Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-            Text("Rekorlar", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+            Text("Liderlik", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
             Text("⭐ $totalStars · $cleared seviye · ${badges.count { it.progress >= it.goal }}/${badges.size} rozet",
                 style = MaterialTheme.typography.bodySmall, color = TextSecondary)
             Spacer(Modifier.height(12.dp))
-            SegmentedTabs(listOf("Sıralama", "Skorlar", "Rozetler"), tab) { tab = it }
+            SegmentedTabs(listOf("Lig", "Oyunlar", "Skorlar", "Rozet"), tab) { tab = it }
         }
         AnimatedContent(tab, transitionSpec = { fadeIn().togetherWith(fadeOut()) }, label = "lb") { t ->
             when (t) {
-                0 -> {
+                0 -> LeagueTab()
+                1 -> {
                     val ranked = GameRegistry.ALL_GAMES.sortedWith(
                         compareByDescending<com.example.domain.model.GameMeta> { progress[it.id]?.totalStars ?: 0 }.thenBy { it.name }
                     )
@@ -126,7 +127,7 @@ fun LeaderboardScreen(repository: GameRepository) {
                         }
                     }
                 }
-                1 -> LazyColumn(contentPadding = PaddingValues(16.dp, 0.dp, 16.dp, 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                2 -> LazyColumn(contentPadding = PaddingValues(16.dp, 0.dp, 16.dp, 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     itemsIndexed(GameRegistry.ALL_GAMES, key = { _, g -> g.id }) { _, g ->
                         val p = progress[g.id] ?: GameProgress(emptyMap())
                         GlassCard(accent = g.category.color, contentPadding = PaddingValues(12.dp)) {
