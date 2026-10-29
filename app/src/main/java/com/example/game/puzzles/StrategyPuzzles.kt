@@ -520,7 +520,10 @@ object MergeGenerator : PuzzleGenerator<MergePuzzle> {
 // Parçaları Birleştir (yer değiştirmeli yapboz)
 // =====================================================================
 
-data class JigsawPuzzle(val n: Int, val artSeed: Long, val palette: Int, val permutation: List<Int>, val rotations: List<Int>)
+/** [photo]: JigsawPhotos dizinindeki gerçek fotoğraf. */
+data class JigsawPuzzle(val n: Int, val photo: Int, val permutation: List<Int>, val rotations: List<Int>) {
+    val category: PhotoCategory get() = JigsawPhotos.categoryOf(photo)
+}
 
 object JigsawGenerator : PuzzleGenerator<JigsawPuzzle> {
     override val gameId = "jigsaw_puzzle"
@@ -533,8 +536,13 @@ object JigsawGenerator : PuzzleGenerator<JigsawPuzzle> {
         var perm: List<Int>
         do { perm = (0 until count).shuffled(rng) } while (perm.withIndex().count { it.index == it.value } > count / 4)
         val rotations = if (tier >= 3) List(count) { if (rng.nextFloat() < 0.4f) 1 + rng.nextInt(3) else 0 } else List(count) { 0 }
-        return JigsawPuzzle(n, rng.nextLong(), rng.nextInt(6), perm, rotations)
+        // Ardışık turlar farklı kategoriden gelir; kategori içindeki fotoğraf turla birlikte döner
+        val cats = JigsawPhotos.CATEGORIES.size
+        val per = JigsawPhotos.PER_CATEGORY
+        val cat = Math.floorMod(index, cats)
+        val inCat = Math.floorMod(index / cats + cat * 5 + (if (index < 0) rng.nextInt(per) else 0), per)
+        return JigsawPuzzle(n, cat * per + inCat, perm, rotations)
     }
 
-    override fun fingerprint(puzzle: JigsawPuzzle) = "${puzzle.n}:${puzzle.artSeed}"
+    override fun fingerprint(puzzle: JigsawPuzzle) = "${puzzle.n}:${puzzle.photo}:${puzzle.permutation}:${puzzle.rotations}"
 }

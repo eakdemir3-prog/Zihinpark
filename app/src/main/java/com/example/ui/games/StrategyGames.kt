@@ -1,5 +1,12 @@
 package com.example.ui.games
 
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.Image
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -1044,70 +1051,6 @@ private fun MergeTile(v: Int, size: Dp, pop: Boolean) {
 // Parçaları Birleştir
 // =====================================================================
 
-private val ART_PALETTES = listOf(
-    listOf(NeonCyan, NeonPink, NeonPurple),
-    listOf(NeonGreen, NeonYellow, NeonCyan),
-    listOf(NeonPink, NeonOrange, NeonYellow),
-    listOf(NeonPurple, NeonBlue, NeonCyan),
-    listOf(NeonRed, NeonPink, NeonPurple),
-    listOf(NeonOrange, NeonGreen, NeonBlue)
-)
-
-/** Tohumdan belirlenimci neon tablo çizer (tüm yapboz için tek görüntü). */
-fun DrawScope.drawNeonArt(seed: Long, paletteIdx: Int, w: Float, h: Float) {
-    val rng = Random(seed)
-    val pal = ART_PALETTES[paletteIdx % ART_PALETTES.size]
-    drawRect(Brush.linearGradient(listOf(pal[0].copy(alpha = 0.55f), NeonBg, pal[1].copy(alpha = 0.45f)), Offset(0f, 0f), Offset(w, h)), size = Size(w, h))
-    // Güneş / gezegen
-    val sun = Offset(w * (0.2f + rng.nextFloat() * 0.6f), h * (0.2f + rng.nextFloat() * 0.3f))
-    val sr = w * (0.14f + rng.nextFloat() * 0.1f)
-    drawCircle(Brush.radialGradient(listOf(pal[2], pal[2].copy(alpha = 0f)), sun, sr * 1.8f), sr * 1.8f, sun)
-    drawCircle(pal[2], sr, sun)
-    for (k in 0 until 4) drawLine(NeonBg, Offset(sun.x - sr, sun.y + sr * (0.1f + k * 0.2f)), Offset(sun.x + sr, sun.y + sr * (0.1f + k * 0.2f)), strokeWidth = sr * 0.07f)
-    // Dağlar
-    for (layer in 0 until 2) {
-        val path = Path()
-        val base = h * (0.62f + layer * 0.12f)
-        path.moveTo(0f, h)
-        path.lineTo(0f, base)
-        var x = 0f
-        while (x < w) {
-            val peak = base - h * (0.08f + rng.nextFloat() * 0.16f)
-            path.lineTo(x + w * 0.09f, peak)
-            x += w * 0.18f
-            path.lineTo(x, base)
-        }
-        path.lineTo(w, h); path.close()
-        val col = pal[layer % pal.size]
-        drawPath(path, NeonBg.copy(alpha = 0.85f))
-        drawPath(path, col, style = Stroke(w * 0.008f))
-    }
-    // Izgara zemini
-    val horizon = h * 0.86f
-    for (k in 0..8) {
-        val y = horizon + (h - horizon) * (k / 8f) * (k / 8f)
-        drawLine(pal[0].copy(alpha = 0.6f), Offset(0f, y), Offset(w, y), strokeWidth = 2f)
-    }
-    for (k in -6..6) drawLine(pal[0].copy(alpha = 0.6f), Offset(w / 2 + k * w * 0.05f, horizon), Offset(w / 2 + k * w * 0.25f, h), strokeWidth = 2f)
-    // Yıldızlar ve halkalar
-    repeat(24) {
-        val p = Offset(rng.nextFloat() * w, rng.nextFloat() * h * 0.55f)
-        drawCircle(Color.White.copy(alpha = 0.5f + rng.nextFloat() * 0.5f), 1.5f + rng.nextFloat() * 2.5f, p)
-    }
-    repeat(3) {
-        val p = Offset(rng.nextFloat() * w, rng.nextFloat() * h * 0.6f)
-        val r = w * (0.03f + rng.nextFloat() * 0.06f)
-        drawCircle(pal[rng.nextInt(pal.size)], r, p, style = Stroke(w * 0.01f))
-    }
-    // Şimşek / çizgi
-    val zig = Path()
-    var zx = rng.nextFloat() * w
-    var zy = 0f
-    zig.moveTo(zx, zy)
-    repeat(5) { zx += (rng.nextFloat() - 0.5f) * w * 0.2f; zy += h * 0.09f; zig.lineTo(zx, zy) }
-    drawPath(zig, pal[1], style = Stroke(w * 0.012f, cap = StrokeCap.Round))
-}
-
 @Composable
 fun JigsawRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> Unit) {
     PuzzleHost(JigsawGenerator, spec) { p -> JigsawBoard(p, ctl, rememberFinish(finish)) }
@@ -1116,6 +1059,7 @@ fun JigsawRound(spec: RoundSpec, ctl: RoundControls, finish: (Boolean, Int) -> U
 @Composable
 private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce) {
     val scope = rememberCoroutineScope()
+    val photo = ImageBitmap.imageResource(JIGSAW_DRAWABLES[p.photo % JIGSAW_DRAWABLES.size])
     val count = p.n * p.n
     // slots[i] = i. yuvadaki parçanın asıl konumu
     val slots = remember { mutableStateListOf(*p.permutation.toTypedArray()) }
@@ -1194,17 +1138,18 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
 
     GameColumn(scroll = false) {
         PromptCard(
-            if (showPreview) "Tabloyu aklında tut..." else "İki parçaya dokunarak yerlerini değiştir",
+            "${p.category.emoji} ${p.category.title}",
             accent = NeonCyan,
-            sub = if (p.rotations.any { it != 0 }) "Dönük parçayı çevirmek için ona iki kez dokun" else null
+            sub = when {
+                showPreview -> "Resmi aklında tut..."
+                p.rotations.any { it != 0 } -> "Parçaların yerini değiştir · dönük parçaya iki kez dokun"
+                else -> "İki parçaya dokunarak yerlerini değiştir"
+            }
         )
         BoxWithConstraints(Modifier.widthIn(max = 420.dp).fillMaxWidth().aspectRatio(1f)) {
-            val density = LocalDensity.current
-            val boardPx = with(density) { maxWidth.toPx() }
-            val tilePx = boardPx / p.n
             val tile = maxWidth / p.n
             if (showPreview) {
-                Canvas(Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))) { drawNeonArt(p.artSeed, p.palette, size.width, size.height) }
+                Image(photo, null, Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp)), contentScale = ContentScale.Crop)
             } else {
                 for (i in 0 until count) {
                     val piece = slots[i]
@@ -1228,7 +1173,15 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
                             .pointerInput(i) { detectTapGestures { tap(i) } }
                     ) {
                         Canvas(Modifier.fillMaxSize().clipToBounds()) {
-                            translate(-pc * tilePx, -pr * tilePx) { drawNeonArt(p.artSeed, p.palette, boardPx, boardPx) }
+                            val sw = photo.width / p.n
+                            val sh = photo.height / p.n
+                            drawImage(
+                                photo,
+                                srcOffset = IntOffset(pc * sw, pr * sh),
+                                srcSize = IntSize(sw, sh),
+                                dstSize = IntSize(size.width.toInt(), size.height.toInt()),
+                                filterQuality = FilterQuality.High
+                            )
                         }
                     }
                 }
@@ -1237,7 +1190,7 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("Önizleme:", color = TextMuted, style = MaterialTheme.typography.labelMedium)
             Spacer(Modifier.width(8.dp))
-            Canvas(Modifier.size(64.dp).clip(RoundedCornerShape(8.dp))) { drawNeonArt(p.artSeed, p.palette, size.width, size.height) }
+            Image(photo, null, Modifier.size(64.dp).clip(RoundedCornerShape(8.dp)), contentScale = ContentScale.Crop)
         }
     }
 }
