@@ -307,7 +307,7 @@ object FlowGenerator : PuzzleGenerator<FlowPuzzle> {
             val cols = if (r % 2 == 0) 0 until n else (n - 1 downTo 0)
             for (c in cols) path += r * n + c
         }
-        val steps = n * n * 10
+        val steps = n * n * 25
         repeat(steps) {
             val fromEnd = rng.nextBoolean()
             if (fromEnd) path.reverse()

@@ -201,7 +201,6 @@ data class PatternPuzzle(val grid: List<PatternCell>, val options: List<PatternC
 
 object PatternGenerator : PuzzleGenerator<PatternPuzzle> {
     override val gameId = "pattern_master"
-    override val independent = true
 
     private enum class Rule { CONST, PROGRESS, DISTRIBUTE }
 

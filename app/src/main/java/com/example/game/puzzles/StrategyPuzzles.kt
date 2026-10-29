@@ -83,7 +83,6 @@ data class PathFinderPuzzle(val n: Int, val tiles: List<Int>, val start: Pair<In
 
 object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
     override val gameId = "path_finder"
-    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): PathFinderPuzzle? {
         val m = scaled(difficulty, intArrayOf(3, 4, 5, 6, 7), extraWithin = 1).coerceAtMost(7)
@@ -338,7 +337,6 @@ data class ArchitectPuzzle(val rows: Int, val cols: Int, val region: Set<Pair<In
 
 object ArchitectGenerator : PuzzleGenerator<ArchitectPuzzle> {
     override val gameId = "shape_architect"
-    override val independent = true
 
     override fun generate(index: Int, difficulty: Float, rng: Random): ArchitectPuzzle? {
         val tier = tierOf(difficulty)
