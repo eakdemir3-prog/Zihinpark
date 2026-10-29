@@ -10,6 +10,8 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
@@ -20,6 +22,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -81,6 +84,7 @@ import com.example.ui.screens.profile.ProfileHubScreen
 import com.example.ui.screens.progress.WeeklyTrendScreen
 import com.example.ui.screens.shop.ShopScreen
 import com.example.ui.theme.NeonCard
+import com.example.ui.theme.NeonBlue
 import com.example.ui.theme.NeonCyan
 import com.example.ui.theme.NeonPurple
 import com.example.ui.theme.NeonSurface
@@ -301,13 +305,13 @@ private fun exitToLevels(navController: NavHostController, gameId: String) {
 }
 
 /**
- * 4 sekmeli neon alt navigasyon: seçili sekmenin arkasında yaylanarak kayan bir neon hap,
- * seçili ikon büyür ve parlar.
+ * LUMEXA tarzı alt navigasyon: seçili sekme genişleyip ikon + yazılı neon bir hapa dönüşür,
+ * diğerleri yalnızca ikon olarak kalır. Genişleme yaylı animasyonla olur.
  */
 @Composable
 fun NeonBottomBar(selected: Int, onSelect: (Int) -> Unit) {
     val tabs = MainTab.all
-    val shape = RoundedCornerShape(26.dp)
+    val shape = RoundedCornerShape(36.dp)
     Box(
         Modifier
             .fillMaxWidth()
@@ -315,57 +319,61 @@ fun NeonBottomBar(selected: Int, onSelect: (Int) -> Unit) {
             .navigationBarsPadding()
             .padding(horizontal = 14.dp, vertical = 8.dp)
     ) {
-        BoxWithConstraints(
+        Row(
             Modifier
                 .fillMaxWidth()
-                .height(64.dp)
-                .neonGlow(NeonPurple, 18.dp, 26.dp, 0.25f)
+                .height(68.dp)
+                .neonGlow(NeonPurple, 18.dp, 36.dp, 0.25f)
                 .clip(shape)
-                .background(NeonCard.copy(alpha = 0.96f))
-                .border(1.dp, Brush.horizontalGradient(listOf(NeonCyan.copy(alpha = 0.5f), NeonPurple.copy(alpha = 0.5f))), shape)
-                .padding(6.dp)
+                .background(NeonCard.copy(alpha = 0.97f))
+                .border(1.dp, Brush.horizontalGradient(listOf(NeonCyan.copy(alpha = 0.45f), NeonPurple.copy(alpha = 0.45f))), shape)
+                .padding(7.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            val itemW = maxWidth / tabs.size
-            val x by animateDpAsState(
-                itemW * selected,
-                spring(dampingRatio = 0.62f, stiffness = Spring.StiffnessMediumLow),
-                label = "pill"
-            )
-            // Kayan neon hap
-            Box(
-                Modifier
-                    .offset(x = x)
-                    .width(itemW)
-                    .fillMaxHeight()
-                    .padding(horizontal = 4.dp)
-                    .neonGlow(NeonCyan, 14.dp, 20.dp, 0.6f)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(Brush.horizontalGradient(listOf(NeonCyan, NeonPurple)))
-            )
-            Row(Modifier.fillMaxSize()) {
-                tabs.forEachIndexed { i, tab ->
-                    val isSel = i == selected
-                    val scale by animateFloatAsState(if (isSel) 1.12f else 1f, spring(dampingRatio = 0.45f), label = "s$i")
-                    Box(
-                        Modifier
-                            .weight(1f)
-                            .fillMaxHeight()
-                            .bounceClick { onSelect(i) },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(
-                                if (isSel) tab.icon else tab.iconOutlined,
-                                contentDescription = tab.title,
-                                tint = if (isSel) OnNeon else TextMuted,
-                                modifier = Modifier.size(24.dp).graphicsLayer { scaleX = scale; scaleY = scale }
+            tabs.forEachIndexed { i, tab ->
+                val isSel = i == selected
+                val weight by animateFloatAsState(
+                    if (isSel) 2.6f else 1f,
+                    spring(dampingRatio = 0.68f, stiffness = Spring.StiffnessMediumLow),
+                    label = "w$i"
+                )
+                val pill by animateFloatAsState(if (isSel) 1f else 0f, tween(260), label = "p$i")
+                val iconScale by animateFloatAsState(if (isSel) 1.08f else 1f, spring(dampingRatio = 0.45f), label = "s$i")
+                Box(
+                    Modifier
+                        .weight(weight)
+                        .fillMaxHeight()
+                        .padding(horizontal = 2.dp)
+                        .then(if (pill > 0.01f) Modifier.neonGlow(NeonPurple, 14.dp, 30.dp, 0.55f * pill) else Modifier)
+                        .clip(RoundedCornerShape(30.dp))
+                        .background(
+                            Brush.horizontalGradient(
+                                listOf(NeonPurple.copy(alpha = pill), NeonBlue.copy(alpha = pill), NeonCyan.copy(alpha = pill))
                             )
-                            Spacer(Modifier.height(2.dp))
+                        )
+                        .bounceClick { onSelect(i) },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+                        Icon(
+                            if (isSel) tab.icon else tab.iconOutlined,
+                            contentDescription = tab.title,
+                            tint = if (isSel) androidx.compose.ui.graphics.Color.White else TextMuted,
+                            modifier = Modifier.size(26.dp).graphicsLayer { scaleX = iconScale; scaleY = iconScale }
+                        )
+                        AnimatedVisibility(
+                            visible = isSel,
+                            enter = expandHorizontally(spring(dampingRatio = 0.75f, stiffness = Spring.StiffnessMediumLow)) + fadeIn(tween(220, delayMillis = 60)),
+                            exit = shrinkHorizontally(tween(180)) + fadeOut(tween(120))
+                        ) {
                             Text(
                                 tab.title,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = if (isSel) OnNeon else TextMuted,
-                                maxLines = 1
+                                modifier = Modifier.padding(start = 8.dp),
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+                                color = androidx.compose.ui.graphics.Color.White,
+                                maxLines = 1,
+                                softWrap = false
                             )
                         }
                     }

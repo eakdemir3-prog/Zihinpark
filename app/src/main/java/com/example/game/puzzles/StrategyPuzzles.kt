@@ -155,6 +155,41 @@ object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
         return null
     }
 
+    /**
+     * Şu anki konum ve anahtarlarla en kısa çözümün ilk bölümü: bir sonraki yeni anahtara
+     * (ya da anahtar gerekmiyorsa hedefe) kadar olan karolar. Başlangıç karosu hariç.
+     */
+    fun routeFrom(p: PathFinderPuzzle, from: Pair<Int, Int>, keys: Int): List<Pair<Int, Int>> {
+        val n = p.n
+        val start = Triple(from.first, from.second, keys)
+        val prev = HashMap<Triple<Int, Int, Int>, Triple<Int, Int, Int>?>()
+        prev[start] = null
+        val q = ArrayDeque<Triple<Int, Int, Int>>(); q.add(start)
+        var end: Triple<Int, Int, Int>? = null
+        while (q.isNotEmpty()) {
+            val s = q.poll()
+            val (r, c, mask) = s
+            if (p.at(r, c) == 2) { end = s; break }
+            for ((dr, dc) in listOf(-1 to 0, 1 to 0, 0 to -1, 0 to 1)) {
+                val nr = r + dr; val nc = c + dc
+                if (nr !in 0 until n || nc !in 0 until n) continue
+                val t = p.at(nr, nc)
+                if (t == 1) continue
+                if (t in 10..19 && (mask shr (t - 10)) and 1 == 0) continue
+                val nm = if (t in 20..29) mask or (1 shl (t - 20)) else mask
+                val ns = Triple(nr, nc, nm)
+                if (ns !in prev) { prev[ns] = s; q.add(ns) }
+            }
+        }
+        var cur = end ?: return emptyList()
+        val path = ArrayList<Triple<Int, Int, Int>>()
+        while (cur != start) { path += cur; cur = prev[cur] ?: break }
+        path.reverse()
+        val firstKey = path.indexOfFirst { it.third != keys }
+        val cut = if (firstKey >= 0) path.take(firstKey + 1) else path
+        return cut.map { it.first to it.second }
+    }
+
     override fun fingerprint(puzzle: PathFinderPuzzle) = puzzle.tiles.joinToString("")
 }
 
@@ -250,6 +285,37 @@ object RiverGenerator : PuzzleGenerator<RiverPuzzle> {
                     if (p.conflict(leftBehind) == null) {
                         val ns = newMask to newSide
                         if (ns !in dist) { dist[ns] = dist.getValue(s) + 1; q.add(ns) }
+                    }
+                }
+                if (sub == 0) break
+                sub = (sub - 1) and hereMask
+            }
+        }
+        return null
+    }
+
+    /** Şu anki durumdan en kısa çözümün ilk hamlesinde kayığa binecekler (bit maskesi). Çözüm yoksa null. */
+    fun nextMove(p: RiverPuzzle, far: Int, side: Int): Int? {
+        val n = p.items.size
+        val all = (1 shl n) - 1
+        val start = far to side
+        val firstLoad = HashMap<Pair<Int, Int>, Int>()
+        val seen = hashSetOf(start)
+        val q = ArrayDeque<Pair<Int, Int>>(); q.add(start)
+        while (q.isNotEmpty()) {
+            val s = q.poll()
+            val (mask, sd) = s
+            if (mask == all && sd == 1) return firstLoad[s]
+            val hereMask = if (sd == 0) all and mask.inv() else mask
+            var sub = hereMask
+            while (true) {
+                if (Integer.bitCount(sub) <= p.capacity) {
+                    val newMask = if (sd == 0) mask or sub else mask and sub.inv()
+                    val ns = 1 - sd
+                    val leftBehind = if (ns == 1) all and newMask.inv() else newMask
+                    if (p.conflict(leftBehind) == null) {
+                        val st = newMask to ns
+                        if (seen.add(st)) { firstLoad[st] = if (s == start) sub else firstLoad.getValue(s); q.add(st) }
                     }
                 }
                 if (sub == 0) break

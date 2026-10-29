@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -137,7 +139,7 @@ private fun EdgeFlash(trigger: Int, color: Color) {
 private fun FloatingLabel(f: Floater, wPx: Int, hPx: Int, onDone: () -> Unit) {
     val p = remember { Animatable(0f) }
     LaunchedEffect(Unit) {
-        p.animateTo(1f, tween(950, easing = LinearEasing))
+        p.animateTo(1f, tween(if (f.text.length > 14) 1700 else 950, easing = LinearEasing))
         onDone()
     }
     val v = p.value
@@ -149,18 +151,15 @@ private fun FloatingLabel(f: Floater, wPx: Int, hPx: Int, onDone: () -> Unit) {
             color = f.color,
             fontFamily = Exo2,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 30.sp,
+            fontSize = if (f.text.length > 14) 20.sp else 30.sp,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
             style = androidx.compose.ui.text.TextStyle(
                 shadow = androidx.compose.ui.graphics.Shadow(f.color, blurRadius = 24f)
             ),
             modifier = Modifier
-                .align(Alignment.TopStart)
-                .offset {
-                    IntOffset(
-                        (wPx * f.x).roundToInt() - 60,
-                        (hPx * f.y - v * hPx * 0.14f).roundToInt()
-                    )
-                }
+                .align(Alignment.TopCenter)
+                .padding(horizontal = 24.dp)
+                .offset { IntOffset(((f.x - 0.5f) * wPx).roundToInt(), (hPx * f.y - v * hPx * 0.14f).roundToInt()) }
                 .graphicsLayer { this.alpha = alpha.coerceIn(0f, 1f); scaleX = scale; scaleY = scale }
         )
     }

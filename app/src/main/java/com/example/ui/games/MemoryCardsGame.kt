@@ -82,16 +82,20 @@ private fun MemoryCardsBoard(p: MemoryCardsPuzzle, ctl: RoundControls, finish: F
             scope.launch { delay(900); finish(false, 0) }
         }
         ctl.hint = hint@{
-            // Henüz açılmamış bir çifti kısa süre göster
-            val downIdx = faces.indices.filter { faces[it] == CardFace.Down }
-            val target = downIdx.firstOrNull() ?: return@hint
-            val pair = downIdx.first { it != target && p.cards[it] == p.cards[target] }
-            scope.launch {
-                faces[target] = CardFace.Up; faces[pair] = CardFace.Up
-                delay(900)
-                if (faces[target] == CardFace.Up) faces[target] = CardFace.Down
-                if (faces[pair] == CardFace.Up) faces[pair] = CardFace.Down
+            if (done || busy || peeking) return@hint null
+            // Açık tek kart varsa onun eşini, yoksa bir çifti eşleştir
+            val f = first
+            val target = f ?: faces.indices.firstOrNull { faces[it] == CardFace.Down } ?: return@hint null
+            val pair = faces.indices.firstOrNull { it != target && faces[it] != CardFace.Matched && p.cards[it] == p.cards[target] } ?: return@hint null
+            first = null
+            faces[target] = CardFace.Matched; faces[pair] = CardFace.Matched
+            matched++
+            if (matched == p.pairs) {
+                done = true
+                ctl.stopTimer()
+                scope.launch { delay(900); finish(true, (85 - (ctl.timeUsedRatio * 15).toInt()).coerceIn(15, 100)) }
             }
+            "${p.symbols[p.cards[target]]} çifti eşleşti"
         }
     }
 

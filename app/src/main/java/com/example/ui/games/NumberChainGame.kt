@@ -70,10 +70,7 @@ private fun NumberChainBoard(p: NumberChainPuzzle, spec: RoundSpec, ctl: RoundCo
             ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            val wrong = p.options.indices.filter { p.options[it] != p.answer && states[it] == TileState.Normal }
-            wrong.take(2).forEach { states[it] = TileState.Disabled }
-        }
+        ctl.hint = { if (solved) null else "Kural ipucu: ${ruleHint(p)} · " + (eliminateOptions(states, p.options.indexOf(p.answer), 1, solved) ?: "") }
     }
 
     GameColumn {
@@ -125,7 +122,7 @@ private fun NumberChainBoard(p: NumberChainPuzzle, spec: RoundSpec, ctl: RoundCo
             tileHeight = 70.dp,
             fontSize = 24.sp,
             onPick = { i ->
-                if (solved || states[i] != TileState.Normal) return@OptionGrid
+                if (solved || !states[i].pickable) return@OptionGrid
                 if (p.options[i] == p.answer) {
                     solved = true
                     states[i] = TileState.Correct
@@ -152,3 +149,22 @@ private fun NumberChainBoard(p: NumberChainPuzzle, spec: RoundSpec, ctl: RoundCo
     }
 }
 
+
+
+/** Kuralın tamamını vermeden yön gösteren kısa ipucu. */
+private fun ruleHint(p: NumberChainPuzzle): String {
+    val r = p.rule
+    return when {
+        r.startsWith("Her adımda ×") -> "sayılar çarpılarak büyüyor"
+        r.startsWith("Her adımda") -> "aradaki farka bak"
+        r.startsWith("Sırayla") -> "iki işlem sırayla tekrar ediyor"
+        r.contains("Farklar") -> "farkların kendisi de değişiyor"
+        r.contains("n²") -> "kare sayılarla ilgili"
+        r.contains("n³") -> "küp sayılarla ilgili"
+        r.contains("önceki iki") -> "önceki terimleri topla"
+        r.contains("İç içe") -> "tek ve çift sıraları ayrı incele"
+        r.contains("üçgen") -> "1, 3, 6, 10... üçgen sayılar"
+        r.contains("önceki ×") -> "önce çarp, sonra ekle/çıkar"
+        else -> "sayılar arasındaki ilişkiye bak"
+    }
+}

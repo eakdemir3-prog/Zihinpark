@@ -127,6 +127,7 @@ private fun PathFinderBoard(p: PathFinderPuzzle, ctl: RoundControls, finish: Fin
     var done by remember { mutableStateOf(false) }
     var bump by remember { mutableIntStateOf(0) }
     val history = remember { mutableStateListOf<Triple<Pair<Int, Int>, Int, Int>>() }
+    var hintPath by remember { mutableStateOf<List<Pair<Int, Int>>>(emptyList()) }
 
     LaunchedEffect(Unit) {
         ctl.statusText = "Hamle 0 · en iyi ${p.optimalMoves}"
@@ -138,7 +139,18 @@ private fun PathFinderBoard(p: PathFinderPuzzle, ctl: RoundControls, finish: Fin
             history.removeLastOrNull()?.let { (pp, k, mv) ->
                 pos = pp; keys = k; moves = mv
                 opened.removeAll { door -> (k shr (door - 10)) and 1 == 0 }
-            }
+                ctl.statusText = "Hamle $moves · en iyi ${p.optimalMoves}"
+                true
+            } ?: false
+        }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val route = PathFinderGenerator.routeFrom(p, pos, keys)
+            if (route.isEmpty()) return@hint null
+            scope.launch { hintPath = route.take(8); delay(3500); hintPath = emptyList() }
+            val target = route.last()
+            val t = p.at(target.first, target.second)
+            if (t in 20..29) "Önce parlayan yoldan anahtara git" else "Parlayan yol hedefe götürür"
         }
     }
 
@@ -214,6 +226,9 @@ private fun PathFinderBoard(p: PathFinderPuzzle, ctl: RoundControls, finish: Fin
                             drawRect(NeonCard, tl, sz)
                             drawRect(NeonPurple.copy(alpha = 0.35f), tl, sz, style = Stroke(1.5f))
                         }
+                        (r to c) in hintPath -> {
+                            drawRoundRect(NeonYellow.copy(alpha = 0.35f), tl + Offset(cellPx * 0.25f, cellPx * 0.25f), Size(cellPx * 0.5f, cellPx * 0.5f), CornerRadius(cellPx * 0.25f))
+                        }
                         t in 10..19 && t !in opened -> {
                             val col = PAIR_COLORS[t - 10]
                             drawRoundRect(col.copy(alpha = 0.35f), tl + Offset(cellPx * 0.08f, cellPx * 0.08f), Size(cellPx * 0.84f, cellPx * 0.84f), CornerRadius(cellPx * 0.15f))
@@ -269,6 +284,7 @@ private fun MazeEscapeBoard(p: MazeEscapePuzzle, ctl: RoundControls, finish: Fin
     val trail = remember { mutableStateListOf(1 to 1) }
     var done by remember { mutableStateOf(false) }
     var bump by remember { mutableIntStateOf(0) }
+    var mazeHint by remember { mutableStateOf<List<Pair<Int, Int>>>(emptyList()) }
 
     LaunchedEffect(Unit) {
         ctl.statusText = if (p.fogRadius > 0) "Sis var! Yolu hatırla" else "Çıkışı bul"
@@ -276,10 +292,12 @@ private fun MazeEscapeBoard(p: MazeEscapePuzzle, ctl: RoundControls, finish: Fin
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            // Çıkışa giden yolun sonraki 6 adımını iz olarak göster
+        ctl.hint = hint@{
+            if (done) return@hint null
             val path = com.example.game.puzzles.Mazes.path({ r, c -> p.wall(r, c) }, p.n, pos, p.exit)
-            path.take(8).forEach { if (it !in trail) trail += it }
+            if (path.size < 2) return@hint null
+            scope.launch { mazeHint = path.drop(1).take(12); delay(4000); mazeHint = emptyList() }
+            "Parlayan yolu takip et"
         }
     }
 
@@ -333,6 +351,8 @@ private fun MazeEscapeBoard(p: MazeEscapePuzzle, ctl: RoundControls, finish: Fin
                         drawRect(NeonPink.copy(alpha = 0.12f), tl, sz)
                     }
                 }
+                // İpucu yolu (sisin üstünde de görünsün diye sonra tekrar çizilir)
+                for ((hr, hc) in mazeHint) drawCircle(NeonYellow.copy(alpha = 0.8f), cellPx * 0.18f, Offset(hc * cellPx + cellPx / 2, hr * cellPx + cellPx / 2))
                 // Çıkış
                 drawRoundRect(NeonGreen, Offset(p.exit.second * cellPx + cellPx * 0.15f, p.exit.first * cellPx + cellPx * 0.15f), Size(cellPx * 0.7f, cellPx * 0.7f), CornerRadius(cellPx * 0.2f))
                 // Oyuncu
@@ -348,6 +368,7 @@ private fun MazeEscapeBoard(p: MazeEscapePuzzle, ctl: RoundControls, finish: Fin
                             center = center, radius = rad * 1.4f
                         )
                     )
+                    for ((hr, hc) in mazeHint) drawCircle(NeonYellow.copy(alpha = 0.9f), cellPx * 0.18f, Offset(hc * cellPx + cellPx / 2, hr * cellPx + cellPx / 2))
                 }
             }
         }
@@ -384,10 +405,18 @@ private fun RiverBoard(p: RiverPuzzle, ctl: RoundControls, finish: FinishOnce) {
         ctl.setLives(3)
         ctl.statusText = "Kayık: ${p.capacity} yük · en iyi ${p.optimalMoves} geçiş"
         ctl.undo = {
-            if (!crossing) history.removeLastOrNull()?.let { (f, s, m) ->
+            if (crossing) false else history.removeLastOrNull()?.let { (f, s, m) ->
                 far = f; boatSide = s; moves = m; boat = 0
                 scope.launch { boatX.animateTo(s.toFloat(), tween(300)) }
-            }
+                true
+            } ?: false
+        }
+        ctl.hint = hint@{
+            if (done || crossing) return@hint null
+            val load = RiverGenerator.nextMove(p, far, boatSide) ?: return@hint null
+            boat = load
+            if (load == 0) "Kayıkçı tek başına geçmeli"
+            else "Kayığa koy: " + (0 until n).filter { load and (1 shl it) != 0 }.joinToString(", ") { p.items[it].name }
         }
     }
 
@@ -551,20 +580,41 @@ private fun ArchitectBoard(p: ArchitectPuzzle, ctl: RoundControls, finish: Finis
             scope.launch { delay(900); finish(false, 0) }
         }
         ctl.undo = {
-            history.removeLastOrNull()?.let { placedAt[it] = null; selected = it }
+            history.removeLastOrNull()?.let { placedAt[it] = null; selected = it; true } ?: false
         }
-        ctl.hint = {
-            // Yerleşmemiş bir parçayı çözümdeki yerine koy (çakışma yoksa)
+        ctl.hint = hint@{
+            if (done) return@hint null
+            // Çözümle çelişen parçaları kaldır, sonra bir parçayı doğru yerine koy
+            val solKeys = p.solution.map { s -> s.sortedWith(compareBy({ it.first }, { it.second })) }.toSet()
+            var removed = false
+            for (i in p.pieces.indices) {
+                val pl = placedAt[i] ?: continue
+                if (pl.sortedWith(compareBy({ it.first }, { it.second })) !in solKeys) { placedAt[i] = null; removed = true }
+            }
             val occupied = placedAt.filterNotNull().flatten().toSet()
             for (i in p.pieces.indices) {
                 if (placedAt[i] != null) continue
                 val sol = p.solution.firstOrNull { s -> Shapes.canonical(s) == Shapes.canonical(p.pieces[i]) && s.none { it in occupied } }
-                if (sol != null) { placedAt[i] = sol; history += i; break }
+                if (sol != null) {
+                    placedAt[i] = sol; history += i
+                    selected = shapes.indices.firstOrNull { placedAt[it] == null }
+                    if (placedAt.filterNotNull().flatten().size == p.region.size) completeArchitect()
+                    return@hint if (removed) "Yanlış parçalar kaldırıldı, bir parça yerleşti" else "Bir parça doğru yerine kondu"
+                }
             }
+            null
         }
     }
 
     fun occupied() = placedAt.filterNotNull().flatten().toSet()
+
+    fun completeArchitect() {
+        if (done) return
+        done = true
+        ctl.stopTimer()
+        ctl.correct("Siluet tamam!")
+        scope.launch { delay(900); finish(true, (100 - (ctl.timeUsedRatio * 50).toInt()).coerceIn(20, 100)) }
+    }
 
     fun tryPlace(r: Int, c: Int) {
         if (done) return
@@ -583,12 +633,7 @@ private fun ArchitectBoard(p: ArchitectPuzzle, ctl: RoundControls, finish: Finis
             ctl.fx.correct()
             ctl.sound.playTap()
             selected = shapes.indices.firstOrNull { placedAt[it] == null }
-            if (occupied().size == p.region.size) {
-                done = true
-                ctl.stopTimer()
-                ctl.correct("Siluet tamam!")
-                scope.launch { delay(900); finish(true, (100 - (ctl.timeUsedRatio * 50).toInt()).coerceIn(20, 100)) }
-            }
+            if (occupied().size == p.region.size) completeArchitect()
         } else {
             bad++
             ctl.fx.float("Sığmıyor", NeonOrange)
@@ -663,6 +708,7 @@ private fun MathGridBoard(p: MathGridPuzzle, ctl: RoundControls, finish: FinishO
     val wrongRows = remember { mutableStateListOf<Int>() }
     val wrongCols = remember { mutableStateListOf<Int>() }
     var shakeKey by remember { mutableIntStateOf(0) }
+    var checkRef: (() -> Unit)? = null
 
     LaunchedEffect(Unit) {
         ctl.setLives(3)
@@ -671,8 +717,13 @@ private fun MathGridBoard(p: MathGridPuzzle, ctl: RoundControls, finish: FinishO
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.hidden.firstOrNull { inputs[it] != p.values[it].toString() }?.let { inputs[it] = p.values[it].toString() }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val i = p.hidden.sorted().firstOrNull { inputs[it] != p.values[it].toString() } ?: return@hint null
+            inputs[i] = p.values[i].toString()
+            selected = p.hidden.sorted().firstOrNull { inputs[it].isEmpty() } ?: i
+            checkRef?.invoke()
+            "Bir kutu dolduruldu: ${p.values[i]}"
         }
     }
 
@@ -702,6 +753,8 @@ private fun MathGridBoard(p: MathGridPuzzle, ctl: RoundControls, finish: FinishO
             }
         }
     }
+
+    checkRef = { check() }
 
     fun press(k: String) {
         if (done) return
@@ -839,10 +892,24 @@ private fun MergeBoard(p: MergePuzzle, ctl: RoundControls, finish: FinishOnce) {
     var moves by remember { mutableIntStateOf(0) }
     var done by remember { mutableStateOf(false) }
     val history = remember { mutableStateListOf<List<Int>>() }
+    var hintDir by remember { mutableStateOf<Dir?>(null) }
+    var bestDirRef: (() -> Dir?)? = null
 
     LaunchedEffect(Unit) {
         ctl.statusText = "Hedef ${p.target} · hamle 0/${p.moveLimit}"
-        ctl.undo = { history.removeLastOrNull()?.let { prev -> prev.forEachIndexed { i, v -> board[i] = v }; moves-- } }
+        ctl.undo = {
+            history.removeLastOrNull()?.let { prev ->
+                prev.forEachIndexed { i, v -> board[i] = v }; moves--
+                ctl.statusText = "Hedef ${p.target} · hamle $moves/${p.moveLimit}"
+                true
+            } ?: false
+        }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val d = bestDirRef?.invoke() ?: return@hint null
+            scope.launch { hintDir = d; delay(2500); hintDir = null }
+            "En iyi hamle: " + when (d) { Dir.UP -> "yukarı ↑"; Dir.DOWN -> "aşağı ↓"; Dir.LEFT -> "sola ←"; Dir.RIGHT -> "sağa →" }
+        }
     }
 
     fun line(idx: Int, d: Dir): List<Int> {
@@ -859,8 +926,21 @@ private fun MergeBoard(p: MergePuzzle, ctl: RoundControls, finish: FinishOnce) {
 
     fun canMove(): Boolean = Dir.entries.any { d -> (0 until p.size).any { MergeGenerator.slideRow(line(it, d).map { i -> board[i] }).third } }
 
+    bestDirRef = {
+        // Birleşmeyle en çok puan getiren (eşitse en büyük taşı köşede tutan) yön
+        Dir.entries.mapNotNull { d ->
+            var gained = 0; var changed = false
+            for (idx in 0 until p.size) {
+                val (_, g, ch) = MergeGenerator.slideRow(line(idx, d).map { board[it] })
+                gained += g; if (ch) changed = true
+            }
+            if (changed) d to gained else null
+        }.maxByOrNull { (d, g) -> g * 10 + if (d == Dir.LEFT || d == Dir.DOWN) 1 else 0 }?.first
+    }
+
     fun swipe(d: Dir) {
         if (done) return
+        hintDir = null
         val snapshot = board.toList()
         var changed = false
         popAt.clear()
@@ -926,7 +1006,13 @@ private fun MergeBoard(p: MergePuzzle, ctl: RoundControls, finish: FinishOnce) {
                 }
             }
         }
-        Text("Kaydırarak oyna", color = TextMuted, style = MaterialTheme.typography.labelMedium)
+        val hd = hintDir
+        Text(
+            if (hd != null) "İpucu: " + when (hd) { Dir.UP -> "↑ yukarı"; Dir.DOWN -> "↓ aşağı"; Dir.LEFT -> "← sola"; Dir.RIGHT -> "→ sağa" } + " kaydır" else "Kaydırarak oyna",
+            color = if (hd != null) NeonYellow else TextMuted,
+            style = if (hd != null) MaterialTheme.typography.titleMedium else MaterialTheme.typography.labelMedium,
+            modifier = if (hd != null) Modifier.pop(hd.ordinal + 1, 0.2f) else Modifier
+        )
     }
 }
 
@@ -1036,6 +1122,7 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
     var swaps by remember { mutableIntStateOf(0) }
     var done by remember { mutableStateOf(false) }
     var showPreview by remember { mutableStateOf(true) }
+    var checkRef: (() -> Unit)? = null
     val minSwaps = remember {
         val seen = BooleanArray(count)
         var cycles = 0
@@ -1051,13 +1138,18 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            val wrong = (0 until count).firstOrNull { slots[it] != it }
-            if (wrong != null) {
-                val j = slots.indexOf(wrong)
+        ctl.hint = hint@{
+            if (done || showPreview) return@hint null
+            val wrong = (0 until count).firstOrNull { !(slots[it] == it && rot[it] == 0) } ?: return@hint null
+            val j = slots.indexOf(wrong)
+            if (j != wrong) {
                 val t = slots[wrong]; slots[wrong] = slots[j]; slots[j] = t
-                rot[wrong] = 0
+                val tr = rot[wrong]; rot[wrong] = rot[j]; rot[j] = tr
             }
+            rot[wrong] = 0
+            sel = null
+            checkRef?.invoke()
+            "Bir parça yerine oturdu"
         }
     }
 
@@ -1073,6 +1165,8 @@ private fun JigsawBoard(p: JigsawPuzzle, ctl: RoundControls, finish: FinishOnce)
             scope.launch { delay(1100); finish(true, q) }
         }
     }
+
+    checkRef = { checkDone() }
 
     fun tap(i: Int) {
         if (done || showPreview || isRight(i)) return

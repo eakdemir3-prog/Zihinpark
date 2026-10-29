@@ -119,16 +119,31 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
             ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            val idx = (0 until p.size * p.size).firstOrNull { p.cells[it] && marks[it] != 1 }
-            if (idx != null) {
-                marks[idx] = 1; found++
-                ctl.statusText = "$found/${p.filledCount}"
-            }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val missing = (0 until p.size * p.size).filter { p.cells[it] && marks[it] != 1 }
+            if (missing.isEmpty()) return@hint null
+            val row = missing.first() / p.size
+            val inRow = missing.filter { it / p.size == row }.take(3)
+            inRow.forEach { marks[it] = 1; found++ }
+            ctl.statusText = "$found/${p.filledCount}"
+            checkNonoDone()
+            "${row + 1}. satırda ${inRow.size} kare boyandı"
         }
     }
 
     fun rowDone(r: Int) = (0 until p.size).all { c -> !p.filled(r, c) || marks[r * p.size + c] == 1 }
+
+    fun checkNonoDone() {
+        if (done || found < p.filledCount) return
+        done = true
+        ctl.stopTimer()
+        // Kalan boşlukları çarpıyla doldur (tamamlanma görüntüsü)
+        for (k in marks.indices) if (marks[k] == 0) marks[k] = 2
+        ctl.correct("Resim tamam!")
+        val q = (100 - ctl.mistakes * 25 - (ctl.timeUsedRatio * 30).toInt()).coerceIn(10, 100)
+        scope.launch { delay(1100); finish(true, q) }
+    }
     fun colDone(c: Int) = (0 until p.size).all { r -> !p.filled(r, c) || marks[r * p.size + c] == 1 }
 
     fun tap(i: Int) {
@@ -142,15 +157,7 @@ private fun NonogramBoard(p: NonogramPuzzle, ctl: RoundControls, finish: FinishO
                 ctl.tap()
                 ctl.statusText = "$found/${p.filledCount}"
                 if (rowDone(r) || colDone(c)) ctl.fx.correct()
-                if (found == p.filledCount) {
-                    done = true
-                    ctl.stopTimer()
-                    // Kalan boşlukları çarpıyla doldur (tamamlanma görüntüsü)
-                    for (k in marks.indices) if (marks[k] == 0) marks[k] = 2
-                    ctl.correct("Resim tamam!")
-                    val q = (100 - ctl.mistakes * 25 - (ctl.timeUsedRatio * 30).toInt()).coerceIn(10, 100)
-                    scope.launch { delay(1100); finish(true, q) }
-                }
+                checkNonoDone()
             } else {
                 marks[i] = 3
                 if (ctl.mistake()) {
@@ -279,9 +286,7 @@ private fun RotationBoard(p: RotationPuzzle, ctl: RoundControls, finish: FinishO
             solved = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.options.indices.filter { it != p.answer && states[it] == TileState.Normal }.take(1).forEach { states[it] = TileState.Disabled }
-        }
+        ctl.hint = { eliminateOptions(states, p.answer, 2, solved) }
     }
 
     GameColumn {
@@ -306,7 +311,7 @@ private fun RotationBoard(p: RotationPuzzle, ctl: RoundControls, finish: FinishO
                         NeonTile(
                             Modifier.weight(1f).aspectRatio(1.35f), state = states[i], accent = NeonCyan,
                             onClick = {
-                                if (solved || states[i] != TileState.Normal) return@NeonTile
+                                if (solved || !states[i].pickable) return@NeonTile
                                 if (i == p.answer) {
                                     solved = true
                                     states[i] = TileState.Correct
@@ -377,9 +382,7 @@ private fun PatternBoard(p: PatternPuzzle, ctl: RoundControls, finish: FinishOnc
             solved = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.options.indices.filter { it != p.answer && states[it] == TileState.Normal }.take(2).forEach { states[it] = TileState.Disabled }
-        }
+        ctl.hint = { eliminateOptions(states, p.answer, 2, solved) }
     }
 
     GameColumn {
@@ -424,7 +427,7 @@ private fun PatternBoard(p: PatternPuzzle, ctl: RoundControls, finish: FinishOnc
                         NeonTile(
                             Modifier.weight(1f).aspectRatio(1f), state = states[i], accent = NeonYellow,
                             onClick = {
-                                if (solved || states[i] != TileState.Normal) return@NeonTile
+                                if (solved || !states[i].pickable) return@NeonTile
                                 if (i == p.answer) {
                                     solved = true; states[i] = TileState.Correct; popKey++
                                     ctl.stopTimer(); ctl.correct("Doğru!")
@@ -470,11 +473,16 @@ private fun DetailBoard(p: DetailPuzzle, ctl: RoundControls, finish: FinishOnce)
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.diffs.firstOrNull { it !in found }?.let {
-                found += it
-                ctl.statusText = "Fark ${found.size}/${p.diffs.size}"
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val d = p.diffs.firstOrNull { it !in found } ?: return@hint null
+            found += d
+            ctl.statusText = "Fark ${found.size}/${p.diffs.size}"
+            if (found.size == p.diffs.size) {
+                done = true; ctl.stopTimer()
+                scope.launch { delay(800); finish(true, (100 - ctl.mistakes * 25 - (ctl.timeUsedRatio * 35).toInt() - 15).coerceIn(10, 100)) }
             }
+            "Bir fark işaretlendi"
         }
     }
 
@@ -562,8 +570,11 @@ private fun HiddenObjectBoard(p: HiddenObjectPuzzle, ctl: RoundControls, finish:
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.targets.firstOrNull { it !in found }?.let { t -> scope.launch { hintAt = t; delay(1500); hintAt = null } }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val t = p.targets.firstOrNull { it !in found } ?: return@hint null
+            scope.launch { hintAt = t; delay(3000); if (hintAt == t) hintAt = null }
+            "${p.items[t].emoji} parlayan yerde"
         }
     }
 
@@ -608,7 +619,7 @@ private fun HiddenObjectBoard(p: HiddenObjectPuzzle, ctl: RoundControls, finish:
                         .offset(w * it.x - s / 2, h * it.y - s / 2)
                         .size(s)
                         .graphicsLayer { rotationZ = it.rot; this.alpha = alpha }
-                        .then(if (hintAt == i) Modifier.neonGlow(NeonCyan, 14.dp, s, 1f) else Modifier)
+                        .then(if (hintAt == i) Modifier.neonGlow(NeonYellow, 22.dp, s, 1f).border(3.dp, NeonYellow, CircleShape).pop(hintAt ?: 0, 0.35f) else Modifier)
                         .then(if (isFound) Modifier.border(2.dp, NeonGreen, CircleShape) else Modifier)
                         .then(if (wrongAt == i) Modifier.border(2.dp, NeonRed, CircleShape) else Modifier)
                         .pointerInput(i) { detectTapGestures { tap(i) } },

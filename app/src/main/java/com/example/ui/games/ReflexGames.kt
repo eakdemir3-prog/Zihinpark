@@ -110,7 +110,15 @@ private fun MemoryLightsBoard(p: MemoryLightsPuzzle, ctl: RoundControls, finish:
     var done by remember { mutableStateOf(false) }
     var wrongPad by remember { mutableStateOf<Int?>(null) }
 
-    LaunchedEffect(Unit) { ctl.setLives(2) }
+    LaunchedEffect(Unit) {
+        ctl.setLives(2)
+        ctl.hint = hint@{
+            if (showing || done) return@hint null
+            val next = p.sequence[userIndex]
+            scope.launch { repeat(2) { active = next; delay(350); active = null; delay(200) } }
+            "Sıradaki ışık yanıp sönüyor"
+        }
+    }
     LaunchedEffect(playKey) {
         showing = true
         userIndex = 0
@@ -217,7 +225,15 @@ private fun ReflexBoard(p: ReflexPuzzle, ctl: RoundControls, finish: FinishOnce)
     var attemptKey by remember { mutableIntStateOf(0) }
     var done by remember { mutableStateOf(false) }
 
-    LaunchedEffect(Unit) { ctl.setLives(3) }
+    var shield by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        ctl.setLives(3)
+        ctl.hint = hint@{
+            if (done || shield) return@hint null
+            shield = true
+            "🛡️ Kalkan: bir erken dokunuş affedilir"
+        }
+    }
 
     LaunchedEffect(trial, attemptKey) {
         if (done) return@LaunchedEffect
@@ -265,6 +281,12 @@ private fun ReflexBoard(p: ReflexPuzzle, ctl: RoundControls, finish: FinishOnce)
                 val wasDecoy = phase == ReflexPhase.Decoy
                 phase = ReflexPhase.Result
                 lastMs = null
+                if (shield) {
+                    shield = false
+                    ctl.fx.float("🛡️ Kalkan korudu", NeonCyan)
+                    scope.launch { delay(800); attemptKey++ }
+                    return
+                }
                 if (ctl.mistake(if (wasDecoy) "Sahte sinyal!" else "Erken!")) {
                     done = true
                     scope.launch { delay(900); finish(false, 0) }
@@ -344,10 +366,17 @@ private fun StroopBoard(p: StroopPuzzle, ctl: RoundControls, finish: FinishOnce)
     var done by remember { mutableStateOf(false) }
     var correctCount by remember { mutableIntStateOf(0) }
     var popKey by remember { mutableIntStateOf(0) }
+    var answerRef: ((Int) -> Unit)? = null
 
     LaunchedEffect(Unit) {
         ctl.setLives(p.allowedMistakes + 1)
         ctl.statusText = "0/${p.items.size}"
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val it = p.items[idx]
+            answerRef?.invoke(it.answer)
+            "Cevap ${STROOP_NAMES[it.answer]} idi, otomatik geçildi"
+        }
         ctl.startTimer(p.timeLimitSec) {
             done = true
             ctl.mistake("Süre bitti")
@@ -383,6 +412,7 @@ private fun StroopBoard(p: StroopPuzzle, ctl: RoundControls, finish: FinishOnce)
         ctl.statusText = "${idx}/${p.items.size}"
     }
 
+    answerRef = { answer(it) }
     val item = p.items[idx]
     GameColumn(scroll = false) {
         val ruleColor = if (item.byMeaning) NeonPink else NeonCyan
@@ -450,9 +480,15 @@ private fun TargetTapBoard(p: TargetTapPuzzle, ctl: RoundControls, finish: Finis
     var hits by remember { mutableIntStateOf(0) }
     var done by remember { mutableStateOf(false) }
 
+    var reveal by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         ctl.setLives(3)
         ctl.statusText = "İsabet 0/${p.quota}"
+        ctl.hint = hint@{
+            if (done || reveal) return@hint null
+            scope.launch { reveal = true; delay(4000); reveal = false }
+            "4 saniye doğru hedefler parlıyor"
+        }
         ctl.startTimer(p.timeLimitSec) {
             done = true
             ctl.mistake("Süre bitti")
@@ -511,11 +547,13 @@ private fun TargetTapBoard(p: TargetTapPuzzle, ctl: RoundControls, finish: Finis
                     val fade = if (life > 0.8f) (1f - life) / 0.2f else 1f
                     val x = ((s.x + s.vx * age / 1000f).mod(1f))
                     val y = ((s.y + s.vy * age / 1000f).mod(1f))
+                    val good = reveal && p.rule.matches(s.shape, s.color)
                     Box(
                         Modifier
                             .offset(w * x, h * y)
                             .size(size)
-                            .graphicsLayer { scaleX = appear; scaleY = appear; alpha = fade }
+                            .graphicsLayer { scaleX = appear; scaleY = appear; alpha = if (reveal && !good) fade * 0.25f else fade }
+                            .then(if (good) Modifier.neonGlow(NeonYellow, 14.dp, size, 0.9f) else Modifier)
                             .pointerInput(i) { detectTapOnce { tapSpawn(i) } },
                         contentAlignment = Alignment.Center
                     ) {

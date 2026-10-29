@@ -95,7 +95,7 @@ fun NeonTile(
     val shape = RoundedCornerShape(corner)
     Box(
         modifier
-            .graphicsLayer { scaleX = scale; scaleY = scale; alpha = if (state == TileState.Disabled) 0.45f else 1f }
+            .graphicsLayer { scaleX = scale; scaleY = scale; alpha = if (state == TileState.Disabled) 0.55f else 1f }
             .neonGlow(border, radius = 12.dp, cornerRadius = corner, alpha = glow)
             .clip(shape)
             .background(
@@ -109,7 +109,12 @@ fun NeonTile(
             .border(if (state == TileState.Normal) 1.dp else 2.dp, border, shape)
             .then(if (onClick != null && state != TileState.Disabled) Modifier.bounceClick(onClick = onClick) else Modifier),
         contentAlignment = Alignment.Center
-    ) { content() }
+    ) {
+        content()
+        if (state == TileState.Disabled) {
+            Text("✕", color = NeonRed.copy(alpha = 0.85f), fontSize = 34.sp, fontWeight = FontWeight.ExtraBold)
+        }
+    }
 }
 
 /** Soru/komut kartı. */
@@ -270,3 +275,25 @@ class FinishOnce(private val finish: (Boolean, Int) -> Unit) {
 
 @Composable
 fun rememberFinish(finish: (Boolean, Int) -> Unit): FinishOnce = remember { FinishOnce(finish) }
+
+
+/**
+ * Çoktan seçmeli ipucu: [n] yanlış şıkkı eler. Elenecek yanlış kalmadıysa doğru şıkkı parlatır.
+ * Mesaj döner; yapacak bir şey yoksa null.
+ */
+fun eliminateOptions(states: MutableList<TileState>, answer: Int, n: Int, finished: Boolean): String? {
+    if (finished) return null
+    val wrong = states.indices.filter { it != answer && states[it] == TileState.Normal }
+    return if (wrong.size > 1) {
+        val k = minOf(n, wrong.size - 0).coerceAtMost(wrong.size)
+        wrong.shuffled().take(k).forEach { states[it] = TileState.Disabled }
+        "$k yanlış şık elendi"
+    } else if (states[answer] == TileState.Normal) {
+        wrong.forEach { states[it] = TileState.Disabled }
+        states[answer] = TileState.Hint
+        "Doğru cevap parlıyor"
+    } else null
+}
+
+/** Dokunulabilir mi (normal ya da ipucuyla parlatılmış). */
+val TileState.pickable: Boolean get() = this == TileState.Normal || this == TileState.Hint

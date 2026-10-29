@@ -84,11 +84,14 @@ class RoundControls(val fx: GameFxState, val sound: SoundAndVibeManager) {
     // ---- Durum yazısı ve ipucu ----
     var statusText by mutableStateOf<String?>(null)
 
-    /** İpucu desteği olan oyunlar buraya bir eylem bağlar. */
-    var hint by mutableStateOf<(() -> Unit)?>(null)
+    /**
+     * İpucu: oyun bir eylem bağlar. Eylem ne yaptığını anlatan kısa bir mesaj döner;
+     * yapacak bir şey yoksa null döner ve ipucu harcanmaz.
+     */
+    var hint by mutableStateOf<(() -> String?)?>(null)
 
-    /** Geri alma desteği olan oyunlar buraya bir eylem bağlar. */
-    var undo by mutableStateOf<(() -> Unit)?>(null)
+    /** Geri alma: geri alınacak hamle yoksa false döner ve hak harcanmaz. */
+    var undo by mutableStateOf<(() -> Boolean)?>(null)
 
     internal fun resetForRound() {
         timeLimitMs = 0L

@@ -111,6 +111,7 @@ private fun CipherBoard(p: CipherPuzzle, ctl: RoundControls, finish: FinishOnce)
     var shakeKey by remember { mutableIntStateOf(0) }
     val answerLen = p.plain.count { it != ' ' }
     val accent = NeonPink
+    var checkRef: (() -> Unit)? = null
 
     LaunchedEffect(Unit) {
         ctl.setLives(3)
@@ -119,17 +120,20 @@ private fun CipherBoard(p: CipherPuzzle, ctl: RoundControls, finish: FinishOnce)
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            // Sıradaki doğru harfi yerleştir
+        ctl.hint = hint@{
+            if (done) return@hint null
             val target = p.plain.filter { it != ' ' }
-            val nextIdx = picked.size
-            if (nextIdx < target.length) {
-                val ok = picked.indices.all { p.tiles[picked[it]] == target[it] }
-                if (!ok) picked.clear()
-                val need = target[picked.size]
-                val tile = p.tiles.indices.firstOrNull { it !in picked && p.tiles[it] == need }
-                if (tile != null) picked += tile
-            }
+            // Yanlış yerleştirilmiş harfleri temizle, sıradaki doğru harfi koy
+            var keep = 0
+            while (keep < picked.size && p.tiles[picked[keep]] == target[keep]) keep++
+            while (picked.size > keep) picked.removeAt(picked.size - 1)
+            if (picked.size >= target.length) return@hint null
+            val need = target[picked.size]
+            val tile = p.tiles.indices.firstOrNull { it !in picked && p.tiles[it] == need } ?: return@hint null
+            picked += tile
+            offset = p.shift
+            if (picked.size == target.length) checkRef?.invoke()
+            "Kaydırma ${p.shift}, sıradaki harf: $need"
         }
     }
 
@@ -150,6 +154,8 @@ private fun CipherBoard(p: CipherPuzzle, ctl: RoundControls, finish: FinishOnce)
             } else scope.launch { delay(500); picked.clear() }
         }
     }
+
+    checkRef = { check() }
 
     GameColumn {
         PromptCard(
@@ -330,7 +336,12 @@ private fun WordHuntBoard(p: WordHuntPuzzle, ctl: RoundControls, finish: FinishO
             done = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = { hinted = p.placements.indices.firstOrNull { it !in found } }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val i = p.placements.indices.firstOrNull { it !in found && it != hinted } ?: p.placements.indices.firstOrNull { it !in found } ?: return@hint null
+            hinted = i
+            "${p.placements[i].word}: ilk harfi parlıyor"
+        }
     }
 
     fun lineCells(a: Pair<Int, Int>, b: Pair<Int, Int>): List<Pair<Int, Int>>? {
@@ -471,8 +482,12 @@ private fun DoorsBoard(p: DoorsPuzzle, ctl: RoundControls, finish: FinishOnce) {
     LaunchedEffect(Unit) {
         ctl.setLives(2)
         ctl.statusText = "Tek kapı güvenli"
-        ctl.hint = {
-            (p.statements.indices).firstOrNull { it != p.safe && it !in wrong }?.let { wrong += it }
+        ctl.hint = hint@{
+            if (done) return@hint null
+            val d = p.statements.indices.firstOrNull { it != p.safe && it !in wrong } ?: return@hint null
+            if (p.statements.indices.count { it !in wrong } <= 1) return@hint null
+            wrong += d
+            "${d + 1}. kapı tuzak, elendi"
         }
     }
 
@@ -588,9 +603,7 @@ private fun ReverseBoard(p: ReversePuzzle, ctl: RoundControls, finish: FinishOnc
             solved = true; ctl.mistake("Süre bitti")
             scope.launch { delay(900); finish(false, 0) }
         }
-        ctl.hint = {
-            p.options.indices.filter { it != p.answer && states[it] == TileState.Normal }.take(2).forEach { states[it] = TileState.Disabled }
-        }
+        ctl.hint = { eliminateOptions(states, p.answer, 2, solved) }
         reveal.animateTo(1f, tween(500))
     }
 
@@ -607,7 +620,7 @@ private fun ReverseBoard(p: ReversePuzzle, ctl: RoundControls, finish: FinishOnc
             tileHeight = if (p.options.all { it.length <= 8 }) 64.dp else 56.dp,
             fontSize = if (p.options.all { it.length <= 8 }) 20.sp else 15.sp,
             onPick = { i ->
-                if (solved || states[i] != TileState.Normal) return@OptionGrid
+                if (solved || !states[i].pickable) return@OptionGrid
                 if (i == p.answer) {
                     solved = true; states[i] = TileState.Correct
                     ctl.stopTimer(); ctl.correct("Doğru!")

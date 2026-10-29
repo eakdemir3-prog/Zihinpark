@@ -66,9 +66,10 @@ private fun DetectiveBoard(p: DetectivePuzzle, ctl: RoundControls, finish: Finis
         ctl.statusText = "Suçlu kim?"
         ctl.hint = {
             val left = p.innocents.filter { it !in eliminated }
-            if (left.size > 1) {
+            if (solved || left.isEmpty()) null
+            else {
                 eliminated += left.first()
-                ctl.fx.float("Bir masum elendi", NeonYellow)
+                "${p.suspects[left.first()].name} masum, elendi"
             }
         }
     }

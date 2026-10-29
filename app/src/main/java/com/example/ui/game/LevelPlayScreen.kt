@@ -372,17 +372,24 @@ fun LevelPlayScreen(
                     horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally)
                 ) {
                     if (hintAction != null) BoosterButton("💡", "İpucu", hints) {
-                        scope.launch { if (repository.preferences.useBooster("hint")) { hintAction(); soundManager.playTap() } else fx.float("İpucu kalmadı", NeonRed) }
+                        if (hints <= 0) { fx.float("İpucu kalmadı · Mağazadan al", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        val msg = hintAction()
+                        if (msg == null) { fx.float("Şu an ipucu gerekmiyor", NeonOrange) }
+                        else scope.launch {
+                            repository.preferences.useBooster("hint")
+                            fx.float("💡 $msg", NeonCyan, 0.5f, 0.55f)
+                            soundManager.playCorrect()
+                        }
                     }
                     if (undoAction != null) BoosterButton("↩️", "Geri Al", undos) {
-                        scope.launch { if (repository.preferences.useBooster("undo")) { undoAction(); soundManager.playTap() } else fx.float("Geri alma kalmadı", NeonRed) }
+                        if (undos <= 0) { fx.float("Geri alma kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        if (!undoAction()) fx.float("Geri alınacak hamle yok", NeonOrange)
+                        else scope.launch { repository.preferences.useBooster("undo"); soundManager.playTap() }
                     }
                     if (hasTimer) BoosterButton("⏱️", "+10 sn", extraTimes) {
-                        scope.launch {
-                            if (repository.preferences.useBooster("time")) {
-                                ctl.addTime(10); fx.float("+10 sn", NeonCyan); soundManager.playTap()
-                            } else fx.float("Ek süre kalmadı", NeonRed)
-                        }
+                        if (extraTimes <= 0) { fx.float("Ek süre kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        ctl.addTime(10); fx.float("⏱️ +10 saniye", NeonCyan); soundManager.playCorrect()
+                        scope.launch { repository.preferences.useBooster("time") }
                     }
                 }
             }
