@@ -16,8 +16,8 @@ android {
     applicationId = "com.eavisionlabs.zihinpark"
     minSdk = 24
     targetSdk = 36
-    versionCode = 2
-    versionName = "2.0.0"
+    versionCode = 1
+    versionName = "1.0.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -47,7 +47,9 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
       // AI Studio.
-      signingConfig = signingConfigs.getByName("release")
+      // Anahtar yoksa (CI) imzasız paket üretilir; yükleme anahtarıyla sonradan imzalanır.
+      val rel = signingConfigs.getByName("release")
+      signingConfig = if (rel.storeFile?.exists() == true && rel.storePassword != null) rel else null
     }
     debug {
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
