@@ -51,6 +51,41 @@ class UserPreferencesRepository(private val context: Context) {
         val ENDLESS_COUNTER = intPreferencesKey("endless_counter")
         val LAST_PLAYED_GAME = stringPreferencesKey("last_played_game")
         val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
+        val LAST_GIFT_DAY = longPreferencesKey("last_gift_day")
+    }
+
+    /** Bugünkü hediye alındı mı. */
+    val dailyGiftClaimed: Flow<Boolean> = context.dataStore.data.map { (it[Keys.LAST_GIFT_DAY] ?: -1L) == epochDay(System.currentTimeMillis()) }
+
+    /** Günde bir kez ücretsiz elmas: seriye göre 10..30. Alındıysa 0 döner. */
+    suspend fun claimDailyGift(): Int {
+        var amount = 0
+        val today = epochDay(System.currentTimeMillis())
+        context.dataStore.edit { prefs ->
+            if ((prefs[Keys.LAST_GIFT_DAY] ?: -1L) == today) return@edit
+            val streak = prefs[Keys.DAILY_STREAK] ?: 0
+            amount = (10 + streak * 2).coerceAtMost(30)
+            prefs[Keys.LAST_GIFT_DAY] = today
+            prefs[Keys.DIAMOND_BALANCE] = (prefs[Keys.DIAMOND_BALANCE] ?: 50) + amount
+            prefs[Keys.TOTAL_EARNED_DIAMONDS] = (prefs[Keys.TOTAL_EARNED_DIAMONDS] ?: 50) + amount
+        }
+        return amount
+    }
+
+    /** Elmasla güç satın alır. */
+    suspend fun buyBooster(type: String, count: Int, cost: Int): Boolean {
+        var ok = false
+        context.dataStore.edit { prefs ->
+            val bal = prefs[Keys.DIAMOND_BALANCE] ?: 50
+            if (bal < cost) return@edit
+            prefs[Keys.DIAMOND_BALANCE] = bal - cost
+            prefs[Keys.TOTAL_SPENT_DIAMONDS] = (prefs[Keys.TOTAL_SPENT_DIAMONDS] ?: 0) + cost
+            val key = when (type) { "hint" -> Keys.HINTS_COUNT; "time" -> Keys.EXTRA_TIME_COUNT; else -> Keys.UNDOS_COUNT }
+            val def = if (type == "time") 2 else 3
+            prefs[key] = (prefs[key] ?: def) + count
+            ok = true
+        }
+        return ok
     }
 
     val seenTutorials: Flow<Set<String>> = context.dataStore.data.map { it[Keys.SEEN_TUTORIALS] ?: emptySet() }

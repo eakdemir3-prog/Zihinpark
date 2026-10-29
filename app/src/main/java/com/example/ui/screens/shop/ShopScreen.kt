@@ -1,84 +1,78 @@
 package com.example.ui.screens.shop
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Diamond
-import androidx.compose.material.icons.filled.PlayCircle
-import androidx.compose.material.icons.filled.ShoppingBag
-import androidx.compose.material.icons.filled.WorkspacePremium
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.repository.GameRepository
-import com.example.ui.theme.MintGreen
-import com.example.ui.theme.MintGreenDark
-import com.example.ui.theme.PastelBlue
-import com.example.ui.theme.PastelLavender
-import com.example.ui.theme.PastelPeach
-import com.example.ui.theme.PastelYellow
-import com.example.ui.theme.PrimaryCoral
+import com.example.domain.model.Cosmetics
+import com.example.ui.components.DiamondPill
+import com.example.ui.components.GlassCard
+import com.example.ui.components.InfoBanner
+import com.example.ui.components.NeonButton
+import com.example.ui.components.NeonChip
+import com.example.ui.components.NeonTopBar
+import com.example.ui.components.SectionTitle
+import com.example.ui.game.ConfettiLayer
+import com.example.ui.screens.profile.ProfileAvatar
+import com.example.ui.screens.profile.SegmentedTabs
+import com.example.ui.theme.NeonCyan
+import com.example.ui.theme.NeonGreen
+import com.example.ui.theme.NeonPink
+import com.example.ui.theme.NeonPurple
+import com.example.ui.theme.NeonYellow
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
 import com.example.util.SoundAndVibeManager
 import kotlinx.coroutines.launch
 
-data class CosmeticItem(
-    val id: String,
-    val name: String,
-    val type: String, // "avatar", "frame", "theme"
-    val visual: String,
-    val cost: Int,
-    val description: String
-)
+private data class BoosterOffer(val type: String, val emoji: String, val title: String, val desc: String, val count: Int, val cost: Int, val color: Color)
 
-private val SHOP_COSMETICS = listOf(
-    CosmeticItem("avatar_robot", "Siber Zihin", "avatar", "🤖", 150, "Mekanik düşünce gücü ve analitik görünüm"),
-    CosmeticItem("avatar_galaxy", "Kozmik Beyin", "avatar", "🌌", 250, "Derin evrensel düşünce avatarları"),
-    CosmeticItem("avatar_owl", "Bilge Baykuş", "avatar", "🦉", 120, "Antik bilgelik ve odaklanma simgesi"),
-    CosmeticItem("avatar_detective", "Büyük Dedektif", "avatar", "🕵️‍♂️", 180, "Çıkarım ve gözlem uzmanı"),
-    CosmeticItem("frame_gold", "Altın Kristal Çerçeve", "frame", "👑", 350, "Liderler için parıldayan altın profil kenarlığı"),
-    CosmeticItem("frame_neon", "Neon Işıltı Çerçevesi", "frame", "⚡", 280, "Canlı neon mavi ve mercan parıltısı")
+private val BOOSTERS = listOf(
+    BoosterOffer("hint", "💡", "İpucu", "Yanlış şıkları eler, yolu gösterir, parçayı yerine koyar.", 1, 30, NeonYellow),
+    BoosterOffer("hint", "💡", "İpucu Paketi ×5", "5 ipucu, %20 indirimli.", 5, 120, NeonYellow),
+    BoosterOffer("time", "⏱️", "+10 Saniye", "Süreli turlarda saati 10 saniye uzatır.", 1, 25, NeonCyan),
+    BoosterOffer("time", "⏱️", "Süre Paketi ×5", "5 adet ek süre, %20 indirimli.", 5, 100, NeonCyan),
+    BoosterOffer("undo", "↩️", "Geri Al", "Labirent, nehir, yapboz gibi oyunlarda son hamleyi geri alır.", 1, 25, NeonPink),
+    BoosterOffer("undo", "↩️", "Geri Al Paketi ×5", "5 geri alma, %20 indirimli.", 5, 100, NeonPink)
 )
 
 @Composable
@@ -87,466 +81,241 @@ fun ShopScreen(
     soundManager: SoundAndVibeManager,
     onBack: (() -> Unit)? = null
 ) {
-    val coroutineScope = rememberCoroutineScope()
-    val diamondBalance by repository.preferences.diamondBalance.collectAsState(initial = 50)
-    val ownedCosmetics by repository.preferences.ownedCosmetics.collectAsState(initial = emptySet())
-    val hintsCount by repository.preferences.hintsCount.collectAsState(initial = 3)
-    val extraTimeCount by repository.preferences.extraTimeCount.collectAsState(initial = 2)
-    val undosCount by repository.preferences.undosCount.collectAsState(initial = 3)
-    val dailyAdsCount by repository.preferences.dailyRewardsCount.collectAsState(initial = 0)
-    val isProMember by repository.preferences.isProMember.collectAsState(initial = false)
+    val scope = rememberCoroutineScope()
+    val prefs = repository.preferences
+    val diamonds by prefs.diamondBalance.collectAsState(initial = 0)
+    val owned by prefs.ownedCosmetics.collectAsState(initial = emptySet())
+    val avatarId by prefs.avatarId.collectAsState(initial = 0)
+    val frameId by prefs.equippedFrame.collectAsState(initial = "none")
+    val hints by prefs.hintsCount.collectAsState(initial = 0)
+    val times by prefs.extraTimeCount.collectAsState(initial = 0)
+    val undos by prefs.undosCount.collectAsState(initial = 0)
+    val giftClaimed by prefs.dailyGiftClaimed.collectAsState(initial = true)
+    var tab by rememberSaveable { mutableIntStateOf(0) }
+    var message by rememberSaveable { androidx.compose.runtime.mutableStateOf<String?>(null) }
+    var confetti by rememberSaveable { mutableIntStateOf(0) }
 
-    var selectedTab by remember { mutableIntStateOf(0) } // 0: Kozmetik, 1: Güçler, 2: Elmas Al & Pro
-    var feedbackMsg by remember { mutableStateOf<String?>(null) }
+    fun toast(text: String, ok: Boolean) {
+        message = text
+        if (ok) { soundManager.playCorrect(); confetti++ } else soundManager.playWrong()
+    }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .statusBarsPadding()
-            .padding(horizontal = 16.dp)
-    ) {
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Header with diamond counter
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (onBack != null) {
-                androidx.compose.material3.IconButton(onClick = onBack) {
-                    androidx.compose.material3.Icon(
-                        androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Geri",
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                }
-            }
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = "Elmas Mağazası",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "Görünümler, Güçler ve Avantajlar",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(PastelYellow)
-                    .padding(horizontal = 14.dp, vertical = 8.dp)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.Diamond,
-                        contentDescription = null,
-                        tint = com.example.ui.theme.NeonOrange,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(6.dp))
-                    Text(
-                        text = "$diamondBalance Elmas",
-                        fontWeight = FontWeight.ExtraBold,
-                        color = com.example.ui.theme.NeonYellow,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Tabs Row
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            FilterChip(
-                selected = selectedTab == 0,
-                onClick = { selectedTab = 0 },
-                label = { Text("Görünüm") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = com.example.ui.theme.OnNeon
-                )
+    Box(Modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize().statusBarsPadding()) {
+            NeonTopBar(
+                title = "Mağaza",
+                subtitle = "Görünümler ve güçler",
+                onBack = onBack,
+                trailing = { DiamondPill(diamonds, onClick = null) }
             )
-            FilterChip(
-                selected = selectedTab == 1,
-                onClick = { selectedTab = 1 },
-                label = { Text("Oyun Güçleri") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = com.example.ui.theme.OnNeon
-                )
-            )
-            FilterChip(
-                selected = selectedTab == 2,
-                onClick = { selectedTab = 2 },
-                label = { Text("Elmas & Pro") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = com.example.ui.theme.OnNeon
-                )
-            )
-        }
-
-        if (feedbackMsg != null) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Card(
-                shape = RoundedCornerShape(10.dp),
-                colors = CardDefaults.cardColors(containerColor = MintGreen),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Row(
-                    modifier = Modifier.padding(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(feedbackMsg ?: "", color = MintGreenDark, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodySmall)
-                }
+            Box(Modifier.padding(horizontal = 16.dp, vertical = 6.dp)) {
+                SegmentedTabs(listOf("Görünüm", "Güçler", "Elmas"), tab) { tab = it; soundManager.playTap() }
             }
-        }
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            when (selectedTab) {
-                0 -> {
-                    // Cosmetics
-                    items(SHOP_COSMETICS) { item ->
-                        val isOwned = ownedCosmetics.contains(item.id)
-                        Card(
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.weight(1f)
-                                ) {
-                                    Text(item.visual, fontSize = 36.sp)
-                                    Spacer(modifier = Modifier.width(14.dp))
-                                    Column {
-                                        Text(item.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
-                                        Text(item.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                    }
-                                }
-
-                                if (isOwned) {
-                                    Box(
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(8.dp))
-                                            .background(MintGreen)
-                                            .padding(horizontal = 12.dp, vertical = 6.dp)
-                                    ) {
-                                        Text("Sahip Olundu", fontWeight = FontWeight.Bold, color = MintGreenDark, style = MaterialTheme.typography.labelSmall)
-                                    }
-                                } else {
-                                    Button(
-                                        onClick = {
-                                            coroutineScope.launch {
-                                                val success = repository.preferences.buyCosmetic(item.id, item.cost)
-                                                if (success) {
-                                                    soundManager.playSuccessSound()
-                                                    soundManager.vibrateSuccess()
-                                                    feedbackMsg = "${item.name} satın alındı!"
-                                                } else {
-                                                    soundManager.playErrorSound()
-                                                    feedbackMsg = "Yetersiz elmas bakiyesi!"
-                                                }
-                                            }
-                                        },
-                                        colors = ButtonDefaults.buttonColors(containerColor = PrimaryCoral),
-                                        shape = RoundedCornerShape(10.dp)
-                                    ) {
-                                        Text("💎 ${item.cost}", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
-                                    }
+            message?.let {
+                InfoBanner(it, color = NeonGreen, emoji = "✨", modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
+            }
+            AnimatedContent(tab, transitionSpec = { fadeIn().togetherWith(fadeOut()) }, label = "shop") { t ->
+                when (t) {
+                    0 -> LazyVerticalGrid(
+                        columns = GridCells.Fixed(3),
+                        contentPadding = PaddingValues(16.dp, 8.dp, 16.dp, 32.dp),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        item(span = { GridItemSpan(3) }) {
+                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 4.dp)) {
+                                ProfileAvatar(avatarId, frameId, 64.dp)
+                                Spacer(Modifier.width(14.dp))
+                                Column {
+                                    Text("Önizleme", color = TextSecondary, style = MaterialTheme.typography.labelMedium)
+                                    Text("${Cosmetics.avatar(avatarId).name} · ${Cosmetics.frame(frameId).name}", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
                                 }
                             }
                         }
-                    }
-                }
-                1 -> {
-                    // Boosters
-                    item {
-                        BoosterPurchaseCard(
-                            title = "İpucu Güçlendirmesi",
-                            description = "Zorlandığın seviyelerde doğru yuvayı veya cevabı işaret eder.",
-                            icon = "💡",
-                            currentCount = hintsCount,
-                            cost = 35,
-                            onBuy = {
-                                coroutineScope.launch {
-                                    if (repository.preferences.spendDiamonds(35)) {
-                                        repository.preferences.addBooster("hint", 1)
-                                        soundManager.playSuccessSound()
-                                        feedbackMsg = "+1 İpucu eklendi!"
-                                    } else {
-                                        soundManager.playErrorSound()
-                                        feedbackMsg = "Yetersiz elmas!"
+                        item(span = { GridItemSpan(3) }) { SectionTitle("Avatarlar") }
+                        items(Cosmetics.AVATARS, key = { "a${it.id}" }) { a ->
+                            val has = Cosmetics.owns(owned, a)
+                            val equipped = avatarId == a.id
+                            CosmeticCell(
+                                title = a.name,
+                                equipped = equipped,
+                                has = has,
+                                cost = a.cost,
+                                accent = if (a.cost >= 300) NeonYellow else if (a.cost > 0) NeonPink else NeonCyan,
+                                visual = { Text(a.emoji, fontSize = 34.sp) },
+                                onClick = {
+                                    scope.launch {
+                                        if (has) { prefs.setAvatarId(a.id); toast("${a.name} avatarın oldu", true) }
+                                        else if (prefs.buyCosmetic(a.shopId, a.cost)) { prefs.setAvatarId(a.id); toast("${a.name} alındı ve takıldı!", true) }
+                                        else toast("Yetersiz elmas: ${a.cost - diamonds} 💎 daha lazım", false)
                                     }
                                 }
-                            }
-                        )
-                    }
-                    item {
-                        BoosterPurchaseCard(
-                            title = "Ekstra Süre (+30s)",
-                            description = "Zamana karşı oynanan refleks ve kaçış oyunlarında +30 saniye ekler.",
-                            icon = "⏳",
-                            currentCount = extraTimeCount,
-                            cost = 50,
-                            onBuy = {
-                                coroutineScope.launch {
-                                    if (repository.preferences.spendDiamonds(50)) {
-                                        repository.preferences.addBooster("time", 1)
-                                        soundManager.playSuccessSound()
-                                        feedbackMsg = "+1 Ekstra Süre gücü eklendi!"
-                                    } else {
-                                        soundManager.playErrorSound()
-                                        feedbackMsg = "Yetersiz elmas!"
+                            )
+                        }
+                        item(span = { GridItemSpan(3) }) { SectionTitle("Çerçeveler", modifier = Modifier.padding(top = 8.dp)) }
+                        items(Cosmetics.FRAMES, key = { "f${it.id}" }) { f ->
+                            val has = Cosmetics.owns(owned, f)
+                            CosmeticCell(
+                                title = f.name,
+                                equipped = frameId == f.id,
+                                has = has,
+                                cost = f.cost,
+                                accent = f.colors.first(),
+                                visual = { ProfileAvatar(avatarId, f.id, 52.dp) },
+                                onClick = {
+                                    scope.launch {
+                                        if (has) { prefs.equipFrame(f.id); toast("${f.name} takıldı", true) }
+                                        else if (prefs.buyCosmetic(f.shopId, f.cost)) { prefs.equipFrame(f.id); toast("${f.name} alındı ve takıldı!", true) }
+                                        else toast("Yetersiz elmas: ${f.cost - diamonds} 💎 daha lazım", false)
                                     }
                                 }
-                            }
-                        )
-                    }
-                    item {
-                        BoosterPurchaseCard(
-                            title = "Hata Telafisi / Geri Al",
-                            description = "Yanlış yaptığın hamleyi veya yanlış dokunuşu iptal eder.",
-                            icon = "↩️",
-                            currentCount = undosCount,
-                            cost = 40,
-                            onBuy = {
-                                coroutineScope.launch {
-                                    if (repository.preferences.spendDiamonds(40)) {
-                                        repository.preferences.addBooster("undo", 1)
-                                        soundManager.playSuccessSound()
-                                        feedbackMsg = "+1 Geri Alma gücü eklendi!"
-                                    } else {
-                                        soundManager.playErrorSound()
-                                        feedbackMsg = "Yetersiz elmas!"
-                                    }
-                                }
-                            }
-                        )
-                    }
-                }
-                2 -> {
-                    // Free Rewarded Ad & Diamonds Bundles
-                    item {
-                        Card(
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = PastelYellow.copy(alpha = 0.5f)),
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Column(modifier = Modifier.padding(16.dp)) {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Icon(Icons.Default.PlayCircle, contentDescription = null, tint = com.example.ui.theme.NeonOrange, modifier = Modifier.size(28.dp))
-                                        Spacer(modifier = Modifier.width(10.dp))
-                                        Column {
-                                            Text("Ücretsiz Elmas (Ödüllü Reklam)", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
-                                            Text("Günde en fazla 3 kez izlenebilir ($dailyAdsCount/3)", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                        }
-                                    }
-                                }
-
-                                Spacer(modifier = Modifier.height(12.dp))
-
-                                Button(
-                                    onClick = {
-                                        coroutineScope.launch {
-                                            val rewarded = repository.preferences.recordRewardedAdView()
-                                            if (rewarded) {
-                                                soundManager.playSuccessSound()
-                                                soundManager.vibrateSuccess()
-                                                feedbackMsg = "Tebrikler! +3 Elmas kazandın 💎"
-                                            } else {
-                                                soundManager.playErrorSound()
-                                                feedbackMsg = "Günlük reklam limitine (3/3) ulaştınız. Yarın tekrar izleyebilirsiniz."
-                                            }
-                                        }
-                                    },
-                                    enabled = dailyAdsCount < 3,
-                                    colors = ButtonDefaults.buttonColors(containerColor = com.example.ui.theme.NeonOrange),
-                                    shape = RoundedCornerShape(10.dp),
-                                    modifier = Modifier.fillMaxWidth()
-                                ) {
-                                    Text("Reklamı İzle (+3 Elmas)", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
-                                }
-                            }
+                            )
                         }
                     }
-
-                    // Pro Membership
-                    item {
-                        Card(
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = PrimaryCoral),
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Column(modifier = Modifier.padding(20.dp)) {
+                    1 -> LazyColumn(contentPadding = PaddingValues(16.dp, 8.dp, 16.dp, 32.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        item {
+                            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                Stock("💡", "İpucu", hints, NeonYellow, Modifier.weight(1f))
+                                Stock("⏱️", "Süre", times, NeonCyan, Modifier.weight(1f))
+                                Stock("↩️", "Geri Al", undos, NeonPink, Modifier.weight(1f))
+                            }
+                        }
+                        items(BOOSTERS.size) { i ->
+                            val b = BOOSTERS[i]
+                            GlassCard(accent = b.color, contentPadding = PaddingValues(14.dp)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(Icons.Default.WorkspacePremium, contentDescription = null, tint = com.example.ui.theme.OnNeon, modifier = Modifier.size(32.dp))
-                                    Spacer(modifier = Modifier.width(10.dp))
-                                    Text("ZihinPark PRO Üyelik", fontWeight = FontWeight.ExtraBold, color = com.example.ui.theme.OnNeon, style = MaterialTheme.typography.titleLarge)
-                                }
-                                Spacer(modifier = Modifier.height(8.dp))
-                                Text(
-                                    "Tüm özel avatarlar ve çerçevelere tam erişim, gelişmiş performans analizleri, reklamsız deneyim ve haftalık ekstra görevler.",
-                                    color = com.example.ui.theme.OnNeon.copy(alpha = 0.9f),
-                                    style = MaterialTheme.typography.bodySmall
-                                )
-                                Spacer(modifier = Modifier.height(14.dp))
-                                Button(
-                                    onClick = {
-                                        coroutineScope.launch {
-                                            repository.preferences.setProMember(true)
-                                            soundManager.playSuccessSound()
-                                            feedbackMsg = "ZihinPark PRO üyeliğiniz aktif edildi! 🎉"
+                                    Text(b.emoji, fontSize = 30.sp)
+                                    Spacer(Modifier.width(12.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text(b.title, color = TextPrimary, style = MaterialTheme.typography.titleSmall)
+                                        Text(b.desc, color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                                    }
+                                    Spacer(Modifier.width(10.dp))
+                                    PriceButton(b.cost, b.color) {
+                                        scope.launch {
+                                            if (prefs.buyBooster(b.type, b.count, b.cost)) toast("+${b.count} ${b.title.substringBefore(" Paketi")} eklendi", true)
+                                            else toast("Yetersiz elmas: ${b.cost - diamonds} 💎 daha lazım", false)
                                         }
-                                    },
-                                    colors = ButtonDefaults.buttonColors(containerColor = com.example.ui.theme.NeonBg),
-                                    shape = RoundedCornerShape(10.dp),
-                                    modifier = Modifier.fillMaxWidth()
-                                ) {
-                                    Text(if (isProMember) "PRO Üyeliğiniz Aktif ✓" else "Pro'ya Geç (79,99 ₺ / Ay)", color = PrimaryCoral, fontWeight = FontWeight.Bold)
+                                    }
                                 }
                             }
                         }
                     }
-
-                    // Google Play Diamond Packages
-                    item {
-                        Text("Google Play Elmas Paketleri", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
-                    }
-                    item {
-                        DiamondBundleItem(name = "Başlangıç Paketi", diamonds = 250, price = "29,99 ₺", onBuy = {
-                            coroutineScope.launch {
-                                repository.preferences.addDiamonds(250)
-                                soundManager.playSuccessSound()
-                                feedbackMsg = "+250 Elmas hesabına tanımlandı!"
+                    else -> LazyColumn(contentPadding = PaddingValues(16.dp, 8.dp, 16.dp, 32.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        item {
+                            GlassCard(accent = NeonYellow, glow = !giftClaimed) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text("🎁", fontSize = 40.sp)
+                                    Spacer(Modifier.width(12.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text("Günlük Hediye", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
+                                        Text(
+                                            if (giftClaimed) "Bugünkü hediyeni aldın. Yarın yine gel!" else "Her gün ücretsiz elmas. Serin uzadıkça hediye büyür (en fazla 30 💎).",
+                                            color = TextSecondary, style = MaterialTheme.typography.bodySmall
+                                        )
+                                    }
+                                }
+                                Spacer(Modifier.height(12.dp))
+                                NeonButton(
+                                    if (giftClaimed) "Yarın tekrar" else "Hediyeyi Al",
+                                    onClick = {
+                                        scope.launch {
+                                            val got = prefs.claimDailyGift()
+                                            if (got > 0) toast("+$got 💎 hediye hesabına eklendi!", true)
+                                        }
+                                    },
+                                    color = NeonYellow, enabled = !giftClaimed, modifier = Modifier.fillMaxWidth()
+                                )
                             }
-                        })
-                    }
-                    item {
-                        DiamondBundleItem(name = "Orta Paket", diamonds = 1600, price = "119,99 ₺", onBuy = {
-                            coroutineScope.launch {
-                                repository.preferences.addDiamonds(1600)
-                                soundManager.playSuccessSound()
-                                feedbackMsg = "+1.600 Elmas hesabına tanımlandı!"
+                        }
+                        item {
+                            GlassCard(accent = NeonCyan) {
+                                Text("💎 Elmas nasıl kazanılır?", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
+                                Spacer(Modifier.height(8.dp))
+                                listOf(
+                                    "Bir seviyeyi ilk kez geç: 2–3 💎",
+                                    "Boss seviyesini yen: 10 💎",
+                                    "Bir seviyeyi ilk kez 3 yıldızla bitir: +1 💎",
+                                    "Haftalık ligde ilk 3'e gir: 150–500 💎 (yakında)",
+                                    "Her gün hediye kutusunu aç: 10–30 💎"
+                                ).forEach {
+                                    Text("• $it", color = TextSecondary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 2.dp))
+                                }
                             }
-                        })
+                        }
+                        item {
+                            GlassCard(accent = NeonPurple) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text("👑", fontSize = 32.sp)
+                                    Spacer(Modifier.width(12.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text("Elmas paketleri ve PRO", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
+                                        Text("Google Play üzerinden satın alma çok yakında.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                                    }
+                                    NeonChip("YAKINDA", NeonPurple)
+                                }
+                            }
+                        }
                     }
                 }
             }
-
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
         }
+        ConfettiLayer(confetti)
     }
 }
 
 @Composable
-fun BoosterPurchaseCard(
+private fun CosmeticCell(
     title: String,
-    description: String,
-    icon: String,
-    currentCount: Int,
+    equipped: Boolean,
+    has: Boolean,
     cost: Int,
-    onBuy: () -> Unit
+    accent: Color,
+    visual: @Composable () -> Unit,
+    onClick: () -> Unit
 ) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        modifier = Modifier.fillMaxWidth()
+    GlassCard(
+        accent = if (equipped) NeonGreen else accent,
+        glow = equipped,
+        onClick = onClick,
+        contentPadding = PaddingValues(8.dp),
+        modifier = Modifier.aspectRatio(0.78f)
     ) {
-        Row(
+        Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) { visual() }
+        Text(
+            title, color = TextPrimary, style = MaterialTheme.typography.labelMedium, maxLines = 1,
+            overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(4.dp))
+        val (label, color) = when {
+            equipped -> "Takılı" to NeonGreen
+            has -> "Tak" to NeonCyan
+            else -> "💎 $cost" to accent
+        }
+        Text(
+            label, color = if (!has) Color(0xFF07070F) else color, fontWeight = FontWeight.ExtraBold,
+            style = MaterialTheme.typography.labelMedium, textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(icon, fontSize = 32.sp)
-                Spacer(modifier = Modifier.width(12.dp))
-                Column {
-                    Text(title, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
-                    Text("Mevcut: $currentCount Adet", style = MaterialTheme.typography.labelSmall, color = MintGreenDark, fontWeight = FontWeight.Bold)
-                    Text(description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
+                .clip(RoundedCornerShape(50))
+                .background(if (!has) color else color.copy(alpha = 0.12f))
+                .padding(vertical = 4.dp)
+        )
+    }
+}
 
-            Button(
-                onClick = onBuy,
-                colors = ButtonDefaults.buttonColors(containerColor = PrimaryCoral),
-                shape = RoundedCornerShape(10.dp)
-            ) {
-                Text("💎 $cost", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
-            }
+@Composable
+private fun Stock(emoji: String, label: String, count: Int, color: Color, modifier: Modifier) {
+    GlassCard(accent = color, modifier = modifier, contentPadding = PaddingValues(10.dp)) {
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(emoji, fontSize = 22.sp)
+            Text("$count", color = TextPrimary, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
+            Text(label, color = TextSecondary, style = MaterialTheme.typography.labelSmall)
         }
     }
 }
 
 @Composable
-fun DiamondBundleItem(
-    name: String,
-    diamonds: Int,
-    price: String,
-    onBuy: () -> Unit
-) {
-    Card(
-        shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("💎", fontSize = 28.sp)
-                Spacer(modifier = Modifier.width(12.dp))
-                Column {
-                    Text(name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
-                    Text("+$diamonds Elmas", style = MaterialTheme.typography.labelMedium, color = com.example.ui.theme.NeonOrange, fontWeight = FontWeight.Bold)
-                }
-            }
-            Button(
-                onClick = onBuy,
-                colors = ButtonDefaults.buttonColors(containerColor = MintGreenDark),
-                shape = RoundedCornerShape(8.dp)
-            ) {
-                Text(price, color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
-            }
-        }
-    }
+private fun PriceButton(cost: Int, color: Color, onClick: () -> Unit) {
+    NeonButton("💎 $cost", onClick, color = color, height = 42.dp)
 }

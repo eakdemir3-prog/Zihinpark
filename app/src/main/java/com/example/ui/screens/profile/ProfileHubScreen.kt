@@ -56,7 +56,9 @@ fun ProfileHubScreen(
     repository: GameRepository,
     soundManager: SoundAndVibeManager,
     onOpenGames: () -> Unit,
-    onOpenWeeklyTrends: () -> Unit
+    onOpenWeeklyTrends: () -> Unit,
+    onOpenShop: () -> Unit = {},
+    accountCard: @Composable () -> Unit = {}
 ) {
     var tab by rememberSaveable { mutableIntStateOf(0) }
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
@@ -72,7 +74,7 @@ fun ProfileHubScreen(
             },
             label = "profileTabs"
         ) { t ->
-            if (t == 0) ProfileScreen(repository, soundManager)
+            if (t == 0) ProfileScreen(repository, soundManager, onOpenShop, accountCard)
             else ProgressScreen(
                 repository = repository,
                 onNavigateToGames = onOpenGames,

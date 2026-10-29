@@ -231,7 +231,8 @@ fun ZihinParkAppNavigation(
                             repository = repository,
                             soundManager = soundManager,
                             onOpenGames = { goTab(MainTab.Games) },
-                            onOpenWeeklyTrends = { navController.navigate(Routes.WEEKLY) }
+                            onOpenWeeklyTrends = { navController.navigate(Routes.WEEKLY) },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
                         )
                     }
                     composable(Routes.SHOP) {
