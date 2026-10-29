@@ -48,6 +48,8 @@ data class WeeklyReward(val weekId: String, val rank: Int, val diamonds: Int)
 object CloudSync {
     private const val TAG = "ZP-Cloud"
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    /** Ekrandan bağımsız (ekran değişse de iptal olmayan) arayüz işleri. */
+    internal val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private lateinit var appContext: Context
 
     /** Lig ödülleri: sıra -> elmas. */
@@ -88,7 +90,7 @@ object CloudSync {
         return if (id != 0) appContext.getString(id) else null
     }
 
-    private val _phase = MutableStateFlow("")
+    internal val _phase = MutableStateFlow("")
     /** Giriş sırasında hangi adımda olunduğu (ekranda gösterilir). */
     val phase: StateFlow<String> = _phase.asStateFlow()
 
@@ -129,10 +131,15 @@ object CloudSync {
                 else -> "Giriş yapılamadı: ${e.javaClass.simpleName} ${msg.take(80)}"
             }
         }
+        return firebaseSignIn(GoogleAuthProvider.getCredential(token, null))
+    }
+
+    /** Google kimliğiyle Firebase oturumu açar. */
+    internal suspend fun firebaseSignIn(credential: com.google.firebase.auth.AuthCredential): String? {
         return try {
             _phase.value = "Hesap doğrulanıyor..."
             val res = kotlinx.coroutines.withTimeoutOrNull(25_000) {
-                auth.signInWithCredential(GoogleAuthProvider.getCredential(token, null)).await()
+                auth.signInWithCredential(credential).await()
             } ?: return "Sunucuya bağlanılamadı (zaman aşımı). İnternetini kontrol edip tekrar dene."
             val u = res.user ?: return "Giriş yapılamadı."
             _user.value = CloudUser(u.uid, u.displayName ?: "Oyuncu", u.email, u.photoUrl?.toString())

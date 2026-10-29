@@ -60,10 +60,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun WelcomeScreen(onDone: () -> Unit) {
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    var busy by remember { mutableStateOf(false) }
-    var error by remember { mutableStateOf<String?>(null) }
     val phase by CloudSync.phase.collectAsState()
+    val g = com.example.cloud.rememberGoogleSignIn(onSuccess = onDone)
     val t = rememberInfiniteTransition(label = "w")
     val float by t.animateFloat(-8f, 8f, infiniteRepeatable(tween(2200), RepeatMode.Reverse), label = "f")
 
@@ -94,21 +92,19 @@ fun WelcomeScreen(onDone: () -> Unit) {
             Spacer(Modifier.height(28.dp))
             if (CloudSync.isConfigured) {
                 NeonButton(
-                    if (busy) (phase.ifBlank { "Bağlanıyor..." }) else "G   Google ile giriş yap",
-                    onClick = {
-                        val act = context as? Activity ?: return@NeonButton
-                        if (busy) return@NeonButton
-                        busy = true; error = null
-                        scope.launch {
-                            val err = CloudSync.signIn(act)
-                            busy = false
-                            if (err == null) onDone() else error = err
-                        }
-                    },
-                    color = NeonCyan, enabled = !busy,
+                    if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "G   Google ile giriş yap",
+                    onClick = { g.signIn() },
+                    color = NeonCyan, enabled = !g.busy,
                     modifier = Modifier.fillMaxWidth().neonGlow(NeonCyan, 14.dp, 26.dp, 0.5f)
                 )
-                error?.let {
+                if (g.showAlternative) {
+                    Spacer(Modifier.height(10.dp))
+                    Text(
+                        "Pencere açılmadı mı? Başka yöntemle dene →", color = NeonCyan, fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.clip(RoundedCornerShape(10.dp)).bounceClick { g.signInAlternative() }.padding(8.dp)
+                    )
+                }
+                g.error?.let {
                     Spacer(Modifier.height(10.dp))
                     Text(it, color = NeonRed, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
                 }

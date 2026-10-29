@@ -43,9 +43,11 @@ googleid = "1.1.1"
 playServicesAds = "24.4.0"
 ump = "3.2.0"
 billing = "8.0.0"
+playServicesAuth = "21.3.0"
 
 
 [libraries]
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 ump = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "ump" }
 billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }

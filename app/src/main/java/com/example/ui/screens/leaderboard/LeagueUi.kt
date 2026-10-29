@@ -74,7 +74,8 @@ fun AccountCard() {
     val scope = rememberCoroutineScope()
     val user by CloudSync.user.collectAsState()
     val sync by CloudSync.syncState.collectAsState()
-    var busy by remember { mutableStateOf(false) }
+    val phase by CloudSync.phase.collectAsState()
+    val g = com.example.cloud.rememberGoogleSignIn(onSuccess = { Toast.makeText(context, "Giriş yapıldı ✓", Toast.LENGTH_SHORT).show() })
     GlassCard(accent = if (user != null) NeonGreen else NeonCyan, glow = user == null) {
         val u = user
         if (!CloudSync.isConfigured) {
@@ -97,16 +98,13 @@ fun AccountCard() {
                 }
             }
             Spacer(Modifier.height(12.dp))
-            NeonButton(if (busy) "Bağlanıyor..." else "G  Google ile giriş", onClick = {
-                val act = context as? Activity ?: return@NeonButton
-                if (busy) return@NeonButton
-                busy = true
-                scope.launch {
-                    val err = CloudSync.signIn(act)
-                    busy = false
-                    Toast.makeText(context, err ?: "Giriş yapıldı ✓", Toast.LENGTH_SHORT).show()
-                }
-            }, color = NeonCyan, modifier = Modifier.fillMaxWidth(), enabled = !busy)
+            NeonButton(if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "G  Google ile giriş", onClick = { g.signIn() },
+                color = NeonCyan, modifier = Modifier.fillMaxWidth(), enabled = !g.busy)
+            if (g.showAlternative) {
+                Text("Pencere açılmadı mı? Başka yöntemle dene →", color = NeonCyan, style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.clickable { g.signInAlternative() }.padding(8.dp))
+            }
+            g.error?.let { Text(it, color = com.example.ui.theme.NeonRed, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 6.dp)) }
         } else {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("✅", fontSize = 26.sp)
