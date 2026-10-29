@@ -143,9 +143,14 @@ fun LevelPlayScreen(
 
     val seenTutorials by repository.preferences.seenTutorials.collectAsState(initial = null)
     var showTutorial by remember { mutableStateOf(false) }
+    // İlk tur, öğretici kapanana kadar başlamaz (sonradan menüden açılan öğretici turu sıfırlamaz)
+    var started by remember { mutableStateOf(false) }
     LaunchedEffect(seenTutorials) {
         val seen = seenTutorials ?: return@LaunchedEffect
-        if (gameId !in seen) showTutorial = true
+        if (!started && gameId !in seen) showTutorial = true
+    }
+    LaunchedEffect(seenTutorials, showTutorial) {
+        if (seenTutorials != null && !showTutorial) started = true
     }
 
     val hints by repository.preferences.hintsCount.collectAsState(initial = 0)
@@ -321,7 +326,7 @@ fun LevelPlayScreen(
                     .shake(shakeKey, 8.dp)
             ) {
                 val base = endlessBase
-                if (base != null) {
+                if (base != null && started) {
                     AnimatedContent(
                         targetState = round,
                         transitionSpec = {
