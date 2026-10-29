@@ -12,6 +12,11 @@ object GameCatalog {
         "reflex_arena" to { s, c, f -> ReflexRound(s, c, f) },
         "color_stroop" to { s, c, f -> StroopRound(s, c, f) },
         "target_tap" to { s, c, f -> TargetTapRound(s, c, f) },
+        "nonogram" to { s, c, f -> NonogramRound(s, c, f) },
+        "spatial_rotation" to { s, c, f -> RotationRound(s, c, f) },
+        "pattern_master" to { s, c, f -> PatternRound(s, c, f) },
+        "detail_hunter" to { s, c, f -> DetailRound(s, c, f) },
+        "hidden_object" to { s, c, f -> HiddenObjectRound(s, c, f) },
     )
 
     fun contentFor(gameId: String): RoundContent =

@@ -10,6 +10,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -527,7 +528,7 @@ private fun TargetTapBoard(p: TargetTapPuzzle, ctl: RoundControls, finish: Finis
 }
 
 private suspend fun androidx.compose.ui.input.pointer.PointerInputScope.detectTapOnce(onTap: () -> Unit) {
-    androidx.compose.foundation.gestures.detectTapGestures(onPress = { onTap() })
+    detectTapGestures(onPress = { onTap() })
 }
 
 /** Neon çizgili şekil: 0 daire, 1 kare, 2 üçgen, 3 yıldız, 4 altıgen. */

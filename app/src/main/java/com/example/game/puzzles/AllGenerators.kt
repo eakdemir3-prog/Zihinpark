@@ -12,5 +12,10 @@ object AllGenerators {
         ReflexGenerator,
         StroopGenerator,
         TargetTapGenerator,
+        NonogramGenerator,
+        RotationGenerator,
+        PatternGenerator,
+        DetailGenerator,
+        HiddenObjectGenerator,
     )
 }
