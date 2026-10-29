@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -82,7 +83,8 @@ private val SHOP_COSMETICS = listOf(
 @Composable
 fun ShopScreen(
     repository: GameRepository,
-    soundManager: SoundAndVibeManager
+    soundManager: SoundAndVibeManager,
+    onBack: (() -> Unit)? = null
 ) {
     val coroutineScope = rememberCoroutineScope()
     val diamondBalance by repository.preferences.diamondBalance.collectAsState(initial = 50)
@@ -100,6 +102,7 @@ fun ShopScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .statusBarsPadding()
             .padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(12.dp))
@@ -110,7 +113,16 @@ fun ShopScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
+            if (onBack != null) {
+                androidx.compose.material3.IconButton(onClick = onBack) {
+                    androidx.compose.material3.Icon(
+                        androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Geri",
+                        tint = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            }
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = "Elmas Mağazası",
                     style = MaterialTheme.typography.headlineSmall,
@@ -133,14 +145,14 @@ fun ShopScreen(
                     Icon(
                         imageVector = Icons.Default.Diamond,
                         contentDescription = null,
-                        tint = Color(0xFFD97706),
+                        tint = com.example.ui.theme.NeonOrange,
                         modifier = Modifier.size(20.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
                         text = "$diamondBalance Elmas",
                         fontWeight = FontWeight.ExtraBold,
-                        color = Color(0xFF92400E),
+                        color = com.example.ui.theme.NeonYellow,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -160,7 +172,7 @@ fun ShopScreen(
                 label = { Text("Görünüm") },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = Color.White
+                    selectedLabelColor = com.example.ui.theme.OnNeon
                 )
             )
             FilterChip(
@@ -169,7 +181,7 @@ fun ShopScreen(
                 label = { Text("Oyun Güçleri") },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = Color.White
+                    selectedLabelColor = com.example.ui.theme.OnNeon
                 )
             )
             FilterChip(
@@ -178,7 +190,7 @@ fun ShopScreen(
                 label = { Text("Elmas & Pro") },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = PrimaryCoral,
-                    selectedLabelColor = Color.White
+                    selectedLabelColor = com.example.ui.theme.OnNeon
                 )
             )
         }
@@ -261,7 +273,7 @@ fun ShopScreen(
                                         colors = ButtonDefaults.buttonColors(containerColor = PrimaryCoral),
                                         shape = RoundedCornerShape(10.dp)
                                     ) {
-                                        Text("💎 ${item.cost}", color = Color.White, fontWeight = FontWeight.Bold)
+                                        Text("💎 ${item.cost}", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -349,7 +361,7 @@ fun ShopScreen(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Icon(Icons.Default.PlayCircle, contentDescription = null, tint = Color(0xFFD97706), modifier = Modifier.size(28.dp))
+                                        Icon(Icons.Default.PlayCircle, contentDescription = null, tint = com.example.ui.theme.NeonOrange, modifier = Modifier.size(28.dp))
                                         Spacer(modifier = Modifier.width(10.dp))
                                         Column {
                                             Text("Ücretsiz Elmas (Ödüllü Reklam)", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
@@ -375,11 +387,11 @@ fun ShopScreen(
                                         }
                                     },
                                     enabled = dailyAdsCount < 3,
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD97706)),
+                                    colors = ButtonDefaults.buttonColors(containerColor = com.example.ui.theme.NeonOrange),
                                     shape = RoundedCornerShape(10.dp),
                                     modifier = Modifier.fillMaxWidth()
                                 ) {
-                                    Text("Reklamı İzle (+3 Elmas)", color = Color.White, fontWeight = FontWeight.Bold)
+                                    Text("Reklamı İzle (+3 Elmas)", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
                                 }
                             }
                         }
@@ -394,14 +406,14 @@ fun ShopScreen(
                         ) {
                             Column(modifier = Modifier.padding(20.dp)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(Icons.Default.WorkspacePremium, contentDescription = null, tint = Color.White, modifier = Modifier.size(32.dp))
+                                    Icon(Icons.Default.WorkspacePremium, contentDescription = null, tint = com.example.ui.theme.OnNeon, modifier = Modifier.size(32.dp))
                                     Spacer(modifier = Modifier.width(10.dp))
-                                    Text("ZihinPark PRO Üyelik", fontWeight = FontWeight.ExtraBold, color = Color.White, style = MaterialTheme.typography.titleLarge)
+                                    Text("ZihinPark PRO Üyelik", fontWeight = FontWeight.ExtraBold, color = com.example.ui.theme.OnNeon, style = MaterialTheme.typography.titleLarge)
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     "Tüm özel avatarlar ve çerçevelere tam erişim, gelişmiş performans analizleri, reklamsız deneyim ve haftalık ekstra görevler.",
-                                    color = Color.White.copy(alpha = 0.9f),
+                                    color = com.example.ui.theme.OnNeon.copy(alpha = 0.9f),
                                     style = MaterialTheme.typography.bodySmall
                                 )
                                 Spacer(modifier = Modifier.height(14.dp))
@@ -413,7 +425,7 @@ fun ShopScreen(
                                             feedbackMsg = "ZihinPark PRO üyeliğiniz aktif edildi! 🎉"
                                         }
                                     },
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                                    colors = ButtonDefaults.buttonColors(containerColor = com.example.ui.theme.NeonBg),
                                     shape = RoundedCornerShape(10.dp),
                                     modifier = Modifier.fillMaxWidth()
                                 ) {
@@ -494,7 +506,7 @@ fun BoosterPurchaseCard(
                 colors = ButtonDefaults.buttonColors(containerColor = PrimaryCoral),
                 shape = RoundedCornerShape(10.dp)
             ) {
-                Text("💎 $cost", color = Color.White, fontWeight = FontWeight.Bold)
+                Text("💎 $cost", color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -524,7 +536,7 @@ fun DiamondBundleItem(
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text(name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
-                    Text("+$diamonds Elmas", style = MaterialTheme.typography.labelMedium, color = Color(0xFFD97706), fontWeight = FontWeight.Bold)
+                    Text("+$diamonds Elmas", style = MaterialTheme.typography.labelMedium, color = com.example.ui.theme.NeonOrange, fontWeight = FontWeight.Bold)
                 }
             }
             Button(
@@ -532,7 +544,7 @@ fun DiamondBundleItem(
                 colors = ButtonDefaults.buttonColors(containerColor = MintGreenDark),
                 shape = RoundedCornerShape(8.dp)
             ) {
-                Text(price, color = Color.White, fontWeight = FontWeight.Bold)
+                Text(price, color = com.example.ui.theme.OnNeon, fontWeight = FontWeight.Bold)
             }
         }
     }

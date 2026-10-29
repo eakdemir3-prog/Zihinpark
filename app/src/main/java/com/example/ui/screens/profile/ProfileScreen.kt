@@ -90,7 +90,8 @@ fun ProfileScreen(
 
     val userName by repository.preferences.userName.collectAsState(initial = "Zihin Gezgini")
     val avatarId by repository.preferences.avatarId.collectAsState(initial = 0)
-    val isDarkMode by repository.preferences.isDarkMode.collectAsState(initial = false)
+    val totalStars by repository.totalStars.collectAsState(initial = 0)
+    val clearedLevels by repository.completedLevelsCount.collectAsState(initial = 0)
     val soundEnabled by repository.preferences.soundEnabled.collectAsState(initial = true)
     val vibrationEnabled by repository.preferences.vibrationEnabled.collectAsState(initial = true)
 
@@ -200,7 +201,7 @@ fun ProfileScreen(
                         }
 
                         Text(
-                            text = "ZihinPark Kaşifi • Seviye 1",
+                            text = "${rankTitle(totalStars ?: 0)} • ⭐ ${totalStars ?: 0} • $clearedLevels seviye",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -252,34 +253,6 @@ fun ProfileScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        // Dark Mode Toggle
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Icon(Icons.Default.DarkMode, contentDescription = null, tint = PrimaryCoral)
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Column {
-                                    Text("Karanlık Mod", fontWeight = FontWeight.SemiBold)
-                                    Text("Gözü yormayan koyu tema", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                }
-                            }
-                            Switch(
-                                checked = isDarkMode,
-                                onCheckedChange = {
-                                    soundManager.playClickSound()
-                                    coroutineScope.launch {
-                                        repository.preferences.setDarkMode(it)
-                                    }
-                                },
-                                colors = SwitchDefaults.colors(checkedThumbColor = PrimaryCoral, checkedTrackColor = PrimaryCoral.copy(alpha = 0.4f))
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(12.dp))
-
                         // Sound Effects Toggle
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -508,7 +481,7 @@ fun ProfileScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "ZihinPark v1.0.0 — Düşün. Keşfet. Geliş.\n" +
+                            text = "ZihinPark v2.0 — Düşün. Keşfet. Geliş.\n" +
                                    "16 bağımsız zekâ, mantık ve analitik oyunu içeren %100 çevrimdışı beyin egzersizi platformu. Tüm veriler cihazınızda Room ve DataStore ile güvenle saklanır.",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -522,13 +495,13 @@ fun ProfileScreen(
             item {
                 Button(
                     onClick = { showResetDialog = true },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEF4444)),
+                    colors = ButtonDefaults.buttonColors(containerColor = com.example.ui.theme.NeonRed),
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
                 ) {
-                    Text("Tüm Verileri ve İlerlemeyi Sıfırla", fontWeight = FontWeight.Bold, color = Color.White)
+                    Text("Tüm Verileri ve İlerlemeyi Sıfırla", fontWeight = FontWeight.Bold, color = com.example.ui.theme.OnNeon)
                 }
             }
 
@@ -576,16 +549,16 @@ fun ProfileScreen(
         AlertDialog(
             onDismissRequest = { showResetDialog = false },
             title = { Text("Verileri Sıfırla") },
-            text = { Text("Tüm skorlar, günlük seriler ve kullanıcı tercihleri tamamen sıfırlanacaktır. Bu işlem geri alınamaz.") },
+            text = { Text("Tüm seviyeler, yıldızlar, skorlar, günlük seri ve tercihler tamamen sıfırlanacaktır. Bu işlem geri alınamaz.") },
             confirmButton = {
                 TextButton(onClick = {
                     coroutineScope.launch {
-                        repository.clearHistory()
+                        repository.resetAllProgress()
                         repository.preferences.resetAll()
                         showResetDialog = false
                     }
                 }) {
-                    Text("Tümünü Sil", color = Color.Red, fontWeight = FontWeight.Bold)
+                    Text("Tümünü Sil", color = com.example.ui.theme.NeonRed, fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -712,7 +685,7 @@ fun ProfileScreen(
                                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface
+                                    color = if (isSelected) com.example.ui.theme.OnNeon else MaterialTheme.colorScheme.onSurface
                                 )
                             }
                         }
@@ -742,4 +715,16 @@ fun ProfileScreen(
             }
         )
     }
+}
+
+
+/** Toplam yıldıza göre unvan. */
+fun rankTitle(stars: Int): String = when {
+    stars >= 2500 -> "Zihin Efsanesi"
+    stars >= 1500 -> "Büyük Usta"
+    stars >= 800 -> "Usta Stratejist"
+    stars >= 400 -> "Keskin Zekâ"
+    stars >= 150 -> "Mantık Avcısı"
+    stars >= 30 -> "Zihin Kaşifi"
+    else -> "Çaylak"
 }

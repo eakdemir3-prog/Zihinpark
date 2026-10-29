@@ -1,64 +1,65 @@
 package com.example.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
+import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
-private val LightColorScheme = lightColorScheme(
-    primary = PrimaryCoral,
-    onPrimary = SoftCreamSurface,
-    primaryContainer = PastelPeach,
-    onPrimaryContainer = DarkSlateText,
-    secondary = PrimaryCoralVariant,
-    onSecondary = SoftCreamSurface,
-    secondaryContainer = PastelLavender,
-    onSecondaryContainer = DarkSlateText,
-    tertiary = MintGreenDark,
-    onTertiary = SoftCreamSurface,
-    tertiaryContainer = MintGreen,
-    onTertiaryContainer = DarkSlateText,
-    background = WarmCreamBackground,
-    onBackground = DarkSlateText,
-    surface = SoftCreamSurface,
-    onSurface = DarkSlateText,
-    surfaceVariant = LavenderCard,
-    onSurfaceVariant = DarkSlateText,
-    outline = LightGrayBorder
+private val NeonColorScheme = darkColorScheme(
+    primary = NeonCyan,
+    onPrimary = OnNeon,
+    primaryContainer = NeonCyanDim,
+    onPrimaryContainer = NeonCyan,
+    secondary = NeonPink,
+    onSecondary = OnNeon,
+    secondaryContainer = NeonPinkDim,
+    onSecondaryContainer = NeonPink,
+    tertiary = NeonPurple,
+    onTertiary = TextPrimary,
+    tertiaryContainer = PastelLavender,
+    onTertiaryContainer = TextPrimary,
+    error = NeonRed,
+    onError = OnNeon,
+    background = NeonBg,
+    onBackground = TextPrimary,
+    surface = NeonSurface,
+    onSurface = TextPrimary,
+    surfaceVariant = NeonCard,
+    onSurfaceVariant = TextSecondary,
+    surfaceContainer = NeonCard,
+    surfaceContainerHigh = NeonCardHigh,
+    surfaceContainerHighest = NeonCardHigh,
+    surfaceContainerLow = NeonSurface,
+    surfaceContainerLowest = NeonBgDeep,
+    outline = NeonBorder,
+    outlineVariant = NeonBorder,
+    inverseSurface = TextPrimary,
+    inverseOnSurface = NeonBg
 )
 
-private val DarkColorScheme = darkColorScheme(
-    primary = DarkCoralPrimary,
-    onPrimary = DarkBackground,
-    primaryContainer = DarkCardBg,
-    onPrimaryContainer = DarkTextPrimary,
-    secondary = AccentSalmon,
-    onSecondary = DarkBackground,
-    secondaryContainer = DarkCardBg,
-    onSecondaryContainer = DarkTextPrimary,
-    tertiary = MintGreen,
-    onTertiary = DarkBackground,
-    tertiaryContainer = DarkCardBg,
-    onTertiaryContainer = DarkTextPrimary,
-    background = DarkBackground,
-    onBackground = DarkTextPrimary,
-    surface = DarkSurface,
-    onSurface = DarkTextPrimary,
-    surfaceVariant = DarkCardBg,
-    onSurfaceVariant = DarkTextSecondary,
-    outline = DarkBorder
-)
-
+/**
+ * ZihinPark her zaman neon koyu temayla çalışır.
+ * [darkTheme] parametresi eski çağrılar bozulmasın diye korunur.
+ */
 @Composable
 fun ZihinParkTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    @Suppress("UNUSED_PARAMETER") darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as? Activity)?.window ?: return@SideEffect
+            val controller = WindowCompat.getInsetsController(window, view)
+            controller.isAppearanceLightStatusBars = false
+            controller.isAppearanceLightNavigationBars = false
+        }
+    }
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = NeonColorScheme,
         typography = Typography,
         content = content
     )

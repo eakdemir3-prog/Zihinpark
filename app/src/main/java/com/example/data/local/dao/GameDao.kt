@@ -70,6 +70,12 @@ interface GameDao {
     /**
      * Oyunun toplam yıldız sayısını günceller.
      */
+    @Query("UPDATE games SET name = :name, category = :category, difficulty = :difficulty, iconEmoji = :icon, description = :description WHERE id = :gameId")
+    suspend fun updateMeta(gameId: String, name: String, category: String, difficulty: String, icon: String, description: String): Int
+
+    @Query("UPDATE games SET endlessBest = :best WHERE id = :gameId AND :best > endlessBest")
+    suspend fun updateEndlessBest(gameId: String, best: Int): Int
+
     @Query("UPDATE games SET totalStars = :stars WHERE id = :gameId")
     suspend fun updateTotalStars(gameId: String, stars: Int): Int
 

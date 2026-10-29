@@ -320,13 +320,13 @@ fun ProgressScreen(
                             Text(
                                 "Grafikleri ve İlerlemeyi Görüntüle",
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White
+                                color = com.example.ui.theme.OnNeon
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                                 contentDescription = null,
-                                tint = Color.White,
+                                tint = com.example.ui.theme.OnNeon,
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -503,7 +503,7 @@ fun ProgressScreen(
                         showClearDialog = false
                     }
                 }) {
-                    Text("Evet, Temizle", color = Color.Red, fontWeight = FontWeight.Bold)
+                    Text("Evet, Temizle", color = com.example.ui.theme.NeonRed, fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {

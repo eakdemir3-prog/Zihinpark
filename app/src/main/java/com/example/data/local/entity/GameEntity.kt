@@ -48,5 +48,9 @@ data class GameEntity(
     val description: String = "",
 
     @ColumnInfo(name = "maxScore")
-    val maxScore: Int = 100
+    val maxScore: Int = 100,
+
+    /** Sonsuz moddaki en iyi tur sayısı. */
+    @ColumnInfo(name = "endlessBest", defaultValue = "0")
+    val endlessBest: Int = 0
 )

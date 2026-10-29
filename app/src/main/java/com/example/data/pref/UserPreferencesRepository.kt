@@ -45,6 +45,35 @@ class UserPreferencesRepository(private val context: Context) {
         // Ad Rewarded Daily Count
         val DAILY_REWARD_DATE = longPreferencesKey("daily_reward_date")
         val DAILY_REWARDS_COUNT = intPreferencesKey("daily_rewards_count")
+
+        // Seviye sistemi
+        val SEEN_TUTORIALS = stringSetPreferencesKey("seen_tutorials")
+        val ENDLESS_COUNTER = intPreferencesKey("endless_counter")
+        val LAST_PLAYED_GAME = stringPreferencesKey("last_played_game")
+        val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
+    }
+
+    val seenTutorials: Flow<Set<String>> = context.dataStore.data.map { it[Keys.SEEN_TUTORIALS] ?: emptySet() }
+    val lastPlayedGame: Flow<String?> = context.dataStore.data.map { it[Keys.LAST_PLAYED_GAME] }
+
+    suspend fun markTutorialSeen(gameId: String) {
+        context.dataStore.edit { prefs ->
+            prefs[Keys.SEEN_TUTORIALS] = (prefs[Keys.SEEN_TUTORIALS] ?: emptySet()) + gameId
+        }
+    }
+
+    suspend fun setLastPlayedGame(gameId: String) {
+        context.dataStore.edit { it[Keys.LAST_PLAYED_GAME] = gameId }
+    }
+
+    /** Sonsuz mod için her seferinde artan sayaç: üretilen bulmacalar hiç tekrar etmez. */
+    suspend fun nextEndlessSeedBase(): Int {
+        var value = 0
+        context.dataStore.edit { prefs ->
+            value = prefs[Keys.ENDLESS_COUNTER] ?: 0
+            prefs[Keys.ENDLESS_COUNTER] = value + 1000
+        }
+        return value
     }
 
     val userName: Flow<String> = context.dataStore.data.map { it[Keys.USER_NAME] ?: "Zihin Gezgini" }
@@ -52,7 +81,12 @@ class UserPreferencesRepository(private val context: Context) {
     val isDarkMode: Flow<Boolean> = context.dataStore.data.map { it[Keys.IS_DARK_MODE] ?: false }
     val soundEnabled: Flow<Boolean> = context.dataStore.data.map { it[Keys.SOUND_ENABLED] ?: true }
     val vibrationEnabled: Flow<Boolean> = context.dataStore.data.map { it[Keys.VIBRATION_ENABLED] ?: true }
-    val dailyStreak: Flow<Int> = context.dataStore.data.map { it[Keys.DAILY_STREAK] ?: 1 }
+    /** Dün ya da bugün oynanmadıysa seri bozulmuş sayılır ve 0 gösterilir. */
+    val dailyStreak: Flow<Int> = context.dataStore.data.map { prefs ->
+        val streak = prefs[Keys.DAILY_STREAK] ?: 0
+        val lastDay = prefs[Keys.LAST_STREAK_DAY] ?: return@map streak
+        if (epochDay(System.currentTimeMillis()) - lastDay > 1L) 0 else streak
+    }
     val lastPlayedDate: Flow<Long> = context.dataStore.data.map { it[Keys.LAST_PLAYED_DATE] ?: 0L }
 
     val diamondBalance: Flow<Int> = context.dataStore.data.map { it[Keys.DIAMOND_BALANCE] ?: 50 } // initial welcome 50 diamonds
@@ -217,25 +251,27 @@ class UserPreferencesRepository(private val context: Context) {
         return canReward
     }
 
+    /** Günlük seri takvim gününe göre hesaplanır (gece yarısını geçince yeni gün). */
     suspend fun recordGamePlayed() {
         val now = System.currentTimeMillis()
+        val today = epochDay(now)
         context.dataStore.edit { prefs ->
-            val last = prefs[Keys.LAST_PLAYED_DATE] ?: 0L
+            val lastDay = prefs[Keys.LAST_STREAK_DAY] ?: (prefs[Keys.LAST_PLAYED_DATE]?.let { if (it > 0) epochDay(it) else null } ?: -1L)
             val currentStreak = prefs[Keys.DAILY_STREAK] ?: 0
-            val oneDayMillis = 24 * 60 * 60 * 1000L
-
-            if (last == 0L) {
-                prefs[Keys.DAILY_STREAK] = 1
-            } else {
-                val diffDays = (now - last) / oneDayMillis
-                if (diffDays == 1L) {
-                    prefs[Keys.DAILY_STREAK] = currentStreak + 1
-                } else if (diffDays > 1L) {
-                    prefs[Keys.DAILY_STREAK] = 1
-                }
+            prefs[Keys.DAILY_STREAK] = when {
+                lastDay < 0 -> 1
+                today == lastDay -> maxOf(currentStreak, 1)
+                today - lastDay == 1L -> currentStreak + 1
+                else -> 1
             }
+            prefs[Keys.LAST_STREAK_DAY] = today
             prefs[Keys.LAST_PLAYED_DATE] = now
         }
+    }
+
+    private fun epochDay(millis: Long): Long {
+        val offset = java.util.TimeZone.getDefault().getOffset(millis)
+        return Math.floorDiv(millis + offset, 86_400_000L)
     }
 
     suspend fun resetAll() {

@@ -196,7 +196,7 @@ fun WeeklyTrendScreen(
                             },
                             colors = FilterChipDefaults.filterChipColors(
                                 selectedContainerColor = PrimaryCoral,
-                                selectedLabelColor = Color.White
+                                selectedLabelColor = com.example.ui.theme.OnNeon
                             ),
                             modifier = Modifier.testTag("filter_chip_${metric.name.lowercase()}")
                         )
@@ -357,7 +357,7 @@ fun WeeklyTrendScreen(
                         title = "En Aktif Gün",
                         value = "${peakDay.dayName} (${formatDuration(peakDay.playTimeSeconds)})",
                         icon = "🔥",
-                        color = Color(0xFFD97706),
+                        color = com.example.ui.theme.NeonOrange,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -486,7 +486,7 @@ fun RechartsBarChart(
             // If selected, draw an accent top cap highlight
             if (isSelected) {
                 drawRoundRect(
-                    color = Color.White.copy(alpha = 0.7f),
+                    color = com.example.ui.theme.OnNeon.copy(alpha = 0.7f),
                     topLeft = Offset(left + 2f, top + 2f),
                     size = Size(barWidth - 4f, 4.dp.toPx()),
                     cornerRadius = CornerRadius(6.dp.toPx(), 6.dp.toPx())
@@ -629,13 +629,13 @@ fun RechartsAreaCurveChart(
                         center = point
                     )
                     drawCircle(
-                        color = Color.White,
+                        color = com.example.ui.theme.OnNeon,
                         radius = 3.dp.toPx(),
                         center = point
                     )
                 } else {
                     drawCircle(
-                        color = Color.White,
+                        color = com.example.ui.theme.OnNeon,
                         radius = 4.dp.toPx(),
                         center = point
                     )
@@ -683,7 +683,7 @@ fun RechartsGamesBarChart(
 
     val gridLineColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
     val textPrimaryColor = MaterialTheme.colorScheme.onSurfaceVariant.toArgb()
-    val barColor = Color(0xFF3B82F6) // Recharts blue
+    val barColor = com.example.ui.theme.NeonCyan // Recharts blue
 
     Canvas(
         modifier = Modifier
@@ -724,7 +724,7 @@ fun RechartsGamesBarChart(
             val isSelected = index == selectedIndex
 
             val brush = if (isSelected) {
-                Brush.verticalGradient(listOf(Color(0xFF2563EB), Color(0xFF60A5FA)))
+                Brush.verticalGradient(listOf(com.example.ui.theme.NeonPurple, com.example.ui.theme.NeonCyan))
             } else {
                 Brush.verticalGradient(listOf(barColor.copy(alpha = 0.7f), barColor.copy(alpha = 0.3f)))
             }
@@ -743,7 +743,7 @@ fun RechartsGamesBarChart(
                 left + (barWidth / 2f),
                 height - 12.dp.toPx(),
                 android.graphics.Paint().apply {
-                    color = if (isSelected) Color(0xFF2563EB).toArgb() else textPrimaryColor
+                    color = if (isSelected) com.example.ui.theme.NeonPurple.toArgb() else textPrimaryColor
                     textSize = if (isSelected) 28f else 26f
                     isFakeBoldText = isSelected
                     textAlign = android.graphics.Paint.Align.CENTER
@@ -817,7 +817,7 @@ fun SelectedDayTooltip(
                         ChartMetricType.SCORE -> "+${day.scoreEarned} P"
                         ChartMetricType.GAMES_PLAYED -> "${day.gamesCount} Oyun"
                     },
-                    color = Color.White,
+                    color = com.example.ui.theme.OnNeon,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.labelMedium
                 )

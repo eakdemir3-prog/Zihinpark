@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
         GameRecordEntity::class,
         UserDailyActivityEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class ZihinParkDatabase : RoomDatabase() {
@@ -49,7 +49,7 @@ abstract class ZihinParkDatabase : RoomDatabase() {
         /**
          * Singleton pattern ile ZihinParkDatabase örneğini döner.
          * Thread-safe (çift kilitli senkronizasyon).
-         * İlk açılışta RoomDatabaseModule üzerinden 16 temel oyunu yükler.
+         * Oyun tablosunu her açılışta GameRegistry ile eşitler.
          */
         fun getInstance(context: Context): ZihinParkDatabase {
             return INSTANCE ?: synchronized(this) {
@@ -58,8 +58,10 @@ abstract class ZihinParkDatabase : RoomDatabase() {
                     ZihinParkDatabase::class.java,
                     DATABASE_NAME
                 )
-                    .fallbackToDestructiveMigration()
-                    .addCallback(RoomDatabaseModule.createPreseedCallback(context))
+                    .addMigrations(RoomDatabaseModule.MIGRATION_3_4)
+                    // Yalnızca bilinmeyen eski şemalarda sıfırla; v3 ve sonrası ilerlemeyi korur.
+                    .fallbackToDestructiveMigrationFrom(true, 1, 2)
+                    .fallbackToDestructiveMigrationOnDowngrade(true)
                     .build()
 
                 INSTANCE = instance
