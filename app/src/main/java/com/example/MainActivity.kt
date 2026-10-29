@@ -11,6 +11,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.setValue
 import com.example.data.repository.GameRepository
 import com.example.ui.navigation.ZihinParkAppNavigation
 import com.example.ui.theme.ZihinParkTheme
@@ -53,9 +55,12 @@ class MainActivity : ComponentActivity() {
         val skipTutorials = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_skip_tutorial", false) == true
 
         // Tema tercihi ilk karede doğru olsun diye açılışta okunur
-        val light = kotlinx.coroutines.runBlocking {
-            com.example.data.pref.UserPreferencesRepository(applicationContext).lightTheme.first()
-        }
+        val startPrefs = com.example.data.pref.UserPreferencesRepository(applicationContext)
+        val light = kotlinx.coroutines.runBlocking { startPrefs.lightTheme.first() }
+        // İlk açılışta karşılama/giriş ekranı (zaten giriş yapılmışsa ya da test rotası varsa gösterme)
+        val needWelcome = debugRoute == null && !skipTutorials &&
+            kotlinx.coroutines.runBlocking { !startPrefs.welcomeDone.first() } &&
+            com.example.cloud.CloudSync.user.value == null
         val forceLight = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_light", false) == true
         com.example.ui.theme.ZpColors.palette = if (light || forceLight) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
 
@@ -73,12 +78,21 @@ class MainActivity : ComponentActivity() {
                 soundManager.vibrationOn = vibrationOn
             }
 
+            var showWelcome by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(needWelcome) }
+            val scope = androidx.compose.runtime.rememberCoroutineScope()
             ZihinParkTheme {
-                ZihinParkAppNavigation(
-                    repository = repository,
-                    soundManager = soundManager,
-                    startRoute = debugRoute
-                )
+                if (showWelcome) {
+                    com.example.ui.screens.welcome.WelcomeScreen(onDone = {
+                        showWelcome = false
+                        scope.launch { repository.preferences.setWelcomeDone() }
+                    })
+                } else {
+                    ZihinParkAppNavigation(
+                        repository = repository,
+                        soundManager = soundManager,
+                        startRoute = debugRoute
+                    )
+                }
             }
         }
     }

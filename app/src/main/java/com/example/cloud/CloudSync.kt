@@ -112,7 +112,15 @@ object CloudSync {
             } else return "Google hesabı alınamadı."
         } catch (e: Exception) {
             Log.w(TAG, "signIn", e)
-            return if (e.javaClass.simpleName.contains("Cancel")) "Giriş iptal edildi." else "Giriş yapılamadı: ${e.localizedMessage ?: e.javaClass.simpleName}"
+            val msg = e.localizedMessage.orEmpty()
+            return when {
+                // Kullanıcı pencereyi kendisi kapattıysa
+                e.javaClass.simpleName.contains("Cancel") && (msg.isBlank() || msg.contains("cancel", true)) -> "Giriş iptal edildi."
+                // [16] / [28444]: SHA-1 ya da OAuth ayarı uyuşmazlığı
+                msg.contains("16") || msg.contains("28444") || msg.contains("reauth", true) || msg.contains("Developer console", true) ->
+                    "Google girişi bu sürümde henüz etkin değil (kod: ${msg.take(60)}). Biraz sonra tekrar dene."
+                else -> "Giriş yapılamadı: ${e.javaClass.simpleName} ${msg.take(80)}"
+            }
         }
         return try {
             val res = auth.signInWithCredential(GoogleAuthProvider.getCredential(token, null)).await()
