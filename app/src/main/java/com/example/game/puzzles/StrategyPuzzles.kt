@@ -95,7 +95,7 @@ object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
         var goal = start
         for (r in 0 until n) for (c in 0 until n) if (distStart[r][c] > distStart[goal.first][goal.second]) goal = r to c
         val mainPath = Mazes.path({ r, c -> maze[r][c] }, n, start, goal)
-        if (mainPath.size < 6 + pairs * 3) return null
+        if (mainPath.size < 5 + pairs * 3) return null
         val tiles = IntArray(n * n) { if (maze[it / n][it % n]) 1 else 0 }
         tiles[goal.first * n + goal.second] = 2
         // Kapıları ana yola, eşit aralıklarla koy
@@ -117,7 +117,14 @@ object PathFinderGenerator : PuzzleGenerator<PathFinderPuzzle> {
                 val score = d[r][c] + rng.nextInt(4)
                 if (score > bestScore) { bestScore = score; best = r to c }
             }
-            val k = best ?: return null
+            // Yan yol yoksa anahtarı ana yolda, kapıdan önceki bir noktaya koy
+            val k = best ?: run {
+                val from = if (i == 0) 1 else doorIdx[i - 1] + 1
+                val to = doorIdx[i] - 1
+                val spots = (from until to).map { mainPath[it] }.filter { tiles[it.first * n + it.second] == 0 }
+                if (spots.isEmpty()) return null
+                spots.pick(rng)
+            }
             tiles[k.first * n + k.second] = 20 + i
         }
         val opt = optimal(n, tiles.toList(), start) ?: return null
