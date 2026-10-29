@@ -228,6 +228,7 @@ fun ShopScreen(
                                 )
                             }
                         }
+                        item { StoreSection(repository) }
                         item {
                             GlassCard(accent = NeonCyan) {
                                 Text("💎 Elmas nasıl kazanılır?", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
@@ -236,23 +237,11 @@ fun ShopScreen(
                                     "Bir seviyeyi ilk kez geç: 2–3 💎",
                                     "Boss seviyesini yen: 10 💎",
                                     "Bir seviyeyi ilk kez 3 yıldızla bitir: +1 💎",
-                                    "Haftalık ligde ilk 3'e gir: 150–500 💎 (yakında)",
+                                    "Haftalık ligde ilk 3'e gir: 150–500 💎",
+                                    "Kısa reklam izle: 20 💎 (günde en fazla 10)",
                                     "Her gün hediye kutusunu aç: 10–30 💎"
                                 ).forEach {
                                     Text("• $it", color = TextSecondary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 2.dp))
-                                }
-                            }
-                        }
-                        item {
-                            GlassCard(accent = NeonPurple) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text("👑", fontSize = 32.sp)
-                                    Spacer(Modifier.width(12.dp))
-                                    Column(Modifier.weight(1f)) {
-                                        Text("Elmas paketleri ve PRO", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
-                                        Text("Google Play üzerinden satın alma çok yakında.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
-                                    }
-                                    NeonChip("YAKINDA", NeonPurple)
                                 }
                             }
                         }

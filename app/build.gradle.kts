@@ -114,6 +114,10 @@ dependencies {
   implementation(libs.androidx.credentials.play.services)
   implementation(libs.googleid)
   implementation(libs.kotlinx.coroutines.play.services)
+  // Reklam (AdMob) ve Google Play ödemeleri
+  implementation(libs.play.services.ads)
+  implementation(libs.ump)
+  implementation(libs.billing)
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.coroutines.core)
   testImplementation(libs.androidx.compose.ui.test.junit4)

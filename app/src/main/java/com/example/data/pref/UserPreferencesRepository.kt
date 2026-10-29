@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.map
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "zihinpark_preferences")
 
 class UserPreferencesRepository(private val context: Context) {
+    companion object { const val REWARDED_PER_DAY = 10 }
+
 
     private object Keys {
         val USER_NAME = stringPreferencesKey("user_name")
@@ -52,6 +54,8 @@ class UserPreferencesRepository(private val context: Context) {
         val LAST_PLAYED_GAME = stringPreferencesKey("last_played_game")
         val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
         val LAST_GIFT_DAY = longPreferencesKey("last_gift_day")
+        val FIRST_OPEN_DAY = longPreferencesKey("first_open_day")
+        val PRO_PROMPT_DAY = longPreferencesKey("pro_prompt_day")
 
         // Kelime Diyarı
         val WOW_LEVEL = intPreferencesKey("wow_level")
@@ -120,7 +124,7 @@ class UserPreferencesRepository(private val context: Context) {
         context.dataStore.edit { prefs ->
             if ((prefs[Keys.LAST_GIFT_DAY] ?: -1L) == today) return@edit
             val streak = prefs[Keys.DAILY_STREAK] ?: 0
-            amount = (10 + streak * 2).coerceAtMost(30)
+            amount = (10 + streak * 2).coerceAtMost(30) * (if (prefs[Keys.IS_PRO_MEMBER] == true) 2 else 1)
             prefs[Keys.LAST_GIFT_DAY] = today
             prefs[Keys.DIAMOND_BALANCE] = (prefs[Keys.DIAMOND_BALANCE] ?: 50) + amount
             prefs[Keys.TOTAL_EARNED_DIAMONDS] = (prefs[Keys.TOTAL_EARNED_DIAMONDS] ?: 50) + amount
@@ -338,25 +342,49 @@ class UserPreferencesRepository(private val context: Context) {
         return used
     }
 
-    suspend fun recordRewardedAdView(): Boolean {
-        val now = System.currentTimeMillis()
-        val oneDayMillis = 24 * 60 * 60 * 1000L
-        var canReward = false
+    // ---- Ödüllü reklam: günde en fazla [REWARDED_PER_DAY] ----
+    val rewardedLeftToday: Flow<Int> = context.dataStore.data.map {
+        if ((it[Keys.DAILY_REWARD_DATE] ?: -1L) == epochDay(System.currentTimeMillis())) (REWARDED_PER_DAY - (it[Keys.DAILY_REWARDS_COUNT] ?: 0)).coerceAtLeast(0)
+        else REWARDED_PER_DAY
+    }
+
+    /** Bir ödüllü reklam hakkı kullanır; günlük sınır dolduysa false. */
+    suspend fun useRewardedSlot(): Boolean {
+        val today = epochDay(System.currentTimeMillis())
+        var ok = false
         context.dataStore.edit { prefs ->
-            val lastRewardDate = prefs[Keys.DAILY_REWARD_DATE] ?: 0L
-            val currentCount = if ((now - lastRewardDate) > oneDayMillis) 0 else (prefs[Keys.DAILY_REWARDS_COUNT] ?: 0)
-            if (currentCount < 3) {
-                canReward = true
-                prefs[Keys.DAILY_REWARDS_COUNT] = currentCount + 1
-                prefs[Keys.DAILY_REWARD_DATE] = now
-                // Award 3 diamonds per verified rewarded ad
-                val currentBalance = prefs[Keys.DIAMOND_BALANCE] ?: 50
-                val totalEarned = prefs[Keys.TOTAL_EARNED_DIAMONDS] ?: 50
-                prefs[Keys.DIAMOND_BALANCE] = currentBalance + 3
-                prefs[Keys.TOTAL_EARNED_DIAMONDS] = totalEarned + 3
+            val count = if ((prefs[Keys.DAILY_REWARD_DATE] ?: -1L) == today) prefs[Keys.DAILY_REWARDS_COUNT] ?: 0 else 0
+            if (count < REWARDED_PER_DAY) {
+                ok = true
+                prefs[Keys.DAILY_REWARDS_COUNT] = count + 1
+                prefs[Keys.DAILY_REWARD_DATE] = today
             }
         }
-        return canReward
+        return ok
+    }
+
+    /** Uygulamanın ilk açıldığı gün (ilk gün geçiş reklamı gösterilmez). */
+    suspend fun firstOpenDay(): Long {
+        val today = epochDay(System.currentTimeMillis())
+        var day = today
+        context.dataStore.edit { prefs ->
+            val d = prefs[Keys.FIRST_OPEN_DAY]
+            if (d == null) prefs[Keys.FIRST_OPEN_DAY] = today else day = d
+        }
+        return day
+    }
+
+    fun today(): Long = epochDay(System.currentTimeMillis())
+
+    /** PRO önerisi en fazla 2 günde bir gösterilir. */
+    suspend fun tryProPrompt(): Boolean {
+        val today = epochDay(System.currentTimeMillis())
+        var ok = false
+        context.dataStore.edit { prefs ->
+            val last = prefs[Keys.PRO_PROMPT_DAY] ?: -10L
+            if (today - last >= 2) { ok = true; prefs[Keys.PRO_PROMPT_DAY] = today }
+        }
+        return ok
     }
 
     /** Günlük seri takvim gününe göre hesaplanır (gece yarısını geçince yeni gün). */

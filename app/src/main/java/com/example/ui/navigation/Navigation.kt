@@ -305,7 +305,8 @@ fun ZihinParkAppNavigation(
                                 navController.navigate(Routes.play(gameId, next)) {
                                     popUpTo(Routes.PLAY) { inclusive = true }
                                 }
-                            }
+                            },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
                         )
                     }
                 }
@@ -317,6 +318,15 @@ fun ZihinParkAppNavigation(
             ) {
                 NeonBottomBar(selected = MainTab.indexOf(currentRoute).coerceAtLeast(0), onSelect = { goTab(MainTab.all[it]) })
             }
+        }
+        val billingMsg by com.example.monetize.Billing.message.collectAsState()
+        billingMsg?.let { m ->
+            com.example.ui.screens.profile.NeonDialog(
+                title = "Mağaza",
+                onDismiss = { com.example.monetize.Billing.consumeMessage() },
+                confirm = "Tamam",
+                onConfirm = { com.example.monetize.Billing.consumeMessage() }
+            ) { Text(m, color = com.example.ui.theme.TextPrimary) }
         }
         val reward by com.example.cloud.CloudSync.pendingReward.collectAsState()
         reward?.let { r ->

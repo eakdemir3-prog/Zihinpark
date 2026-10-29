@@ -97,6 +97,7 @@ import com.example.ui.theme.TextPrimary
 import com.example.ui.theme.TextSecondary
 import com.example.util.SoundAndVibeManager
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 private enum class Phase { Playing, RoundEnd, Saving, Result }
@@ -114,8 +115,10 @@ fun LevelPlayScreen(
     repository: GameRepository,
     soundManager: SoundAndVibeManager,
     onExit: () -> Unit,
-    onPlayLevel: (Int) -> Unit
+    onPlayLevel: (Int) -> Unit,
+    onOpenShop: () -> Unit = {}
 ) {
+    val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
     val meta = remember(gameId) { GameRegistry.getGameById(gameId) }
     if (meta == null) {
         LaunchedEffect(Unit) { onExit() }
@@ -157,6 +160,8 @@ fun LevelPlayScreen(
     val hints by repository.preferences.hintsCount.collectAsState(initial = 0)
     val extraTimes by repository.preferences.extraTimeCount.collectAsState(initial = 0)
     val undos by repository.preferences.undosCount.collectAsState(initial = 0)
+    // Güç bitince açılan "reklam izle, 1 tane al" penceresi
+    var refill by remember { mutableStateOf<String?>(null) }
 
     DisposableEffect(gameId) {
         soundManager.useGameTheme(gameId)
@@ -172,7 +177,7 @@ fun LevelPlayScreen(
     }
     LaunchedEffect(fx.wrongPulse) { if (fx.wrongPulse > 0) shakeKey++ }
 
-    val shouldPause = showPause || showTutorial || phase != Phase.Playing
+    val shouldPause = showPause || showTutorial || phase != Phase.Playing || refill != null
     androidx.compose.runtime.SideEffect { ctl.paused = shouldPause }
 
     val totalScore = results.sumOf { it.points }
@@ -385,7 +390,7 @@ fun LevelPlayScreen(
                 ) {
                     val bm = Modifier.weight(1f, fill = false)
                     if (hintAction != null) BoosterButton("💡", "İpucu", hints, bm) {
-                        if (hints <= 0) { fx.float("İpucu kalmadı · Mağazadan al", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        if (hints <= 0) { refill = "hint"; return@BoosterButton }
                         val msg = hintAction()
                         if (msg == null) { fx.float("Şu an ipucu gerekmiyor", NeonOrange) }
                         else scope.launch {
@@ -395,12 +400,12 @@ fun LevelPlayScreen(
                         }
                     }
                     if (undoAction != null) BoosterButton("↩️", "Geri Al", undos, bm) {
-                        if (undos <= 0) { fx.float("Geri alma kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        if (undos <= 0) { refill = "undo"; return@BoosterButton }
                         if (!undoAction()) fx.float("Geri alınacak hamle yok", NeonOrange)
                         else scope.launch { repository.preferences.useBooster("undo"); soundManager.playTap() }
                     }
                     if (hasTimer) BoosterButton("⏱️", "+10 sn", extraTimes, bm) {
-                        if (extraTimes <= 0) { fx.float("Ek süre kalmadı", NeonRed); soundManager.playWrong(); return@BoosterButton }
+                        if (extraTimes <= 0) { refill = "time"; return@BoosterButton }
                         ctl.addTime(10); fx.float("⏱️ +10 saniye", NeonCyan); soundManager.playCorrect()
                         scope.launch { repository.preferences.useBooster("time") }
                     }
@@ -474,16 +479,26 @@ fun LevelPlayScreen(
                     )
                 } else {
                     outcome?.let { o ->
+                        val passedLevel = o.stars > 0
+                        // Seviye sonundan çıkarken (kurallara uyarsa) seyrek geçiş reklamı
+                        fun leave(action: () -> Unit) {
+                            val act = activity
+                            if (act == null) action()
+                            else scope.launch { com.example.monetize.Ads.maybeInterstitial(act, repository.preferences, passedLevel, action) }
+                        }
                         LevelResultCard(
                             level = level,
                             outcome = o,
                             results = results.toList(),
                             accent = accent,
                             sound = soundManager,
-                            onNext = if (o.nextUnlocked) { { onPlayLevel(level + 1) } } else null,
+                            onNext = if (o.nextUnlocked) { { leave { onPlayLevel(level + 1) } } } else null,
                             nextLocked = o.stars > 0 && level < LevelRules.LEVEL_COUNT && !o.nextUnlocked,
-                            onRetry = { onPlayLevel(level) },
-                            onExit = onExit
+                            onRetry = { leave { onPlayLevel(level) } },
+                            onExit = { leave(onExit) },
+                            extra = {
+                                ResultExtras(o, passedLevel, level, repository, fx, soundManager, onOpenShop)
+                            }
                         )
                     }
                 }
@@ -606,7 +621,8 @@ private fun LevelResultCard(
     onNext: (() -> Unit)?,
     nextLocked: Boolean,
     onRetry: () -> Unit,
-    onExit: () -> Unit
+    onExit: () -> Unit,
+    extra: @Composable () -> Unit = {}
 ) {
     val passed = outcome.stars > 0
     GlassCard(accent = if (passed) accent else NeonRed, glow = true, modifier = Modifier.padding(20.dp)) {
@@ -657,6 +673,7 @@ private fun LevelResultCard(
                 Spacer(Modifier.height(8.dp))
                 Text("Elmas yalnızca ilk geçişte verilir.", color = TextMuted, style = MaterialTheme.typography.bodySmall)
             }
+            extra()
             Spacer(Modifier.height(18.dp))
             if (passed && onNext != null && !nextLocked) {
                 NeonButton("Sonraki Seviye", onNext, color = accent, icon = Icons.Default.SkipNext, modifier = Modifier.fillMaxWidth())
@@ -749,3 +766,95 @@ fun AnimatedStars(stars: Int, sound: SoundAndVibeManager?) {
     }
 }
 
+
+
+/** Güç bittiğinde: ödüllü reklamla 1 tane kazan ya da mağazaya git. */
+@Composable
+private fun BoosterRefillDialog(
+    type: String,
+    repository: GameRepository,
+    fx: GameFxState,
+    sound: SoundAndVibeManager,
+    onOpenShop: () -> Unit,
+    onClose: () -> Unit
+) {
+    val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
+    val scope = rememberCoroutineScope()
+    val left by repository.preferences.rewardedLeftToday.collectAsState(initial = 0)
+    val name = when (type) { "hint" -> "İpucu"; "undo" -> "Geri Al"; else -> "+10 sn" }
+    val emoji = when (type) { "hint" -> "💡"; "undo" -> "↩️"; else -> "⏱️" }
+    com.example.ui.screens.profile.NeonDialog(
+        title = "$emoji $name kalmadı",
+        onDismiss = onClose,
+        confirm = if (left > 0) "▶ Reklam izle, 1 $name al" else "Mağazaya git",
+        onConfirm = {
+            if (left <= 0 || activity == null) { onOpenShop(); return@NeonDialog }
+            scope.launch {
+                com.example.monetize.Ads.showRewarded(activity, repository.preferences,
+                    onUnavailable = { fx.float(it, NeonOrange); onClose() }) {
+                    scope.launch {
+                        repository.preferences.addBooster(type, 1)
+                        fx.float("$emoji +1 $name", NeonGreen); sound.playCoin()
+                    }
+                    onClose()
+                }
+            }
+        }
+    ) {
+        Column {
+            Text("Kısa bir reklam izleyerek 1 $name kazanabilirsin. (Bugün kalan: $left)", color = TextSecondary)
+            Spacer(Modifier.height(10.dp))
+            Text("Mağazaya göz at →", color = NeonCyan, modifier = Modifier.bounceClick(onClick = onOpenShop))
+        }
+    }
+}
+
+/** Sonuç kartının ek bölümü: ödülü 2× yapma (ödüllü reklam) ve seyrek PRO önerisi. */
+@Composable
+private fun ResultExtras(
+    o: LevelOutcome,
+    passed: Boolean,
+    level: Int,
+    repository: GameRepository,
+    fx: GameFxState,
+    sound: SoundAndVibeManager,
+    onOpenShop: () -> Unit
+) {
+    val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
+    val scope = rememberCoroutineScope()
+    val isPro by repository.preferences.isProMember.collectAsState(initial = true)
+    val left by repository.preferences.rewardedLeftToday.collectAsState(initial = 0)
+    var doubled by remember { mutableStateOf(false) }
+    var showPro by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        // PRO önerisi: yalnızca geçilen seviyede, 6. seviyeden sonra, birkaç seviyede bir ve 2 günde en fazla bir kez
+        if (passed && level >= 6 && level % 4 == 0 && !repository.preferences.isProMember.first() && repository.preferences.tryProPrompt()) showPro = true
+    }
+    if (passed && o.diamonds > 0 && !doubled && left > 0 && activity != null) {
+        Spacer(Modifier.height(10.dp))
+        NeonButton("▶ Reklam izle, ödülü 2× yap (+${o.diamonds} 💎)", {
+            scope.launch {
+                com.example.monetize.Ads.showRewarded(activity, repository.preferences, onUnavailable = { fx.float(it, NeonOrange) }) {
+                    doubled = true
+                    scope.launch { repository.preferences.addDiamonds(o.diamonds); sound.playCoin(); fx.float("+${o.diamonds} 💎", NeonCyan) }
+                }
+            }
+        }, color = NeonCyan, outlined = true, height = 44.dp, modifier = Modifier.fillMaxWidth())
+    }
+    if (showPro && !isPro) {
+        Spacer(Modifier.height(10.dp))
+        Row(
+            Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(NeonCard).border(1.dp, NeonYellow.copy(alpha = 0.6f), RoundedCornerShape(14.dp))
+                .bounceClick(onClick = onOpenShop).padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("👑", fontSize = 22.sp)
+            Spacer(Modifier.width(10.dp))
+            Column(Modifier.weight(1f)) {
+                Text("PRO ile reklamsız oyna", color = TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
+                Text("+500 💎 · günlük hediye 2×", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+            }
+            Text("✕", color = TextMuted, modifier = Modifier.padding(start = 8.dp).bounceClick { showPro = false })
+        }
+    }
+}

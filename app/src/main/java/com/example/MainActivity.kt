@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import kotlinx.coroutines.flow.first
 import com.example.data.repository.GameRepository
 import com.example.ui.navigation.ZihinParkAppNavigation
 import com.example.ui.theme.ZihinParkTheme
@@ -40,6 +41,12 @@ class MainActivity : ComponentActivity() {
         }
 
         com.example.cloud.CloudSync.init(applicationContext)
+        com.example.monetize.Billing.init(applicationContext)
+        com.example.monetize.Ads.playedLevelsProvider = {
+            com.example.data.local.ZihinParkDatabase.getInstance(applicationContext).levelProgressDao()
+                .getAllLevels().first().count { it.stars > 0 }
+        }
+        com.example.monetize.Ads.init(this)
 
         // Yalnızca test derlemesinde: otomatik ekran görüntüsü için doğrudan bir ekranı açar
         val debugRoute = if (BuildConfig.DEBUG) intent?.getStringExtra("zp_route") else null

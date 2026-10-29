@@ -199,6 +199,7 @@ fun WowPlayScreen(
     onOpenShop: () -> Unit
 ) {
     val context = LocalContext.current
+    val activity = context as? android.app.Activity
     val (chapters, levels) = remember { WowData.load(context) }
     val lv = levels[(level - 1).coerceIn(0, levels.size - 1)]
     val ch = chapters[lv.chapter]
@@ -312,7 +313,18 @@ fun WowPlayScreen(
         val cell = target.cells().firstOrNull { !cellShown(it) } ?: return
         scope.launch {
             val ok = if (hints > 0) prefs.useBooster("hint") else prefs.spendDiamonds(25)
-            if (!ok) { fx.float("Yetersiz 💎 · Mağazaya göz at", NeonRed); soundManager.playWrong(); return@launch }
+            if (!ok) {
+                val act = activity
+                if (act == null) { fx.float("Yetersiz 💎", NeonRed); return@launch }
+                // Elmas yoksa: ödüllü reklamla bedava harf
+                com.example.monetize.Ads.showRewarded(act, prefs, onUnavailable = { fx.float("Yetersiz 💎 · $it", NeonRed) }) {
+                    revealed += "${cell.first},${cell.second}"
+                    soundManager.playCorrect()
+                    checkComplete()
+                    persist()
+                }
+                return@launch
+            }
             revealed += "${cell.first},${cell.second}"
             soundManager.playCorrect()
             checkComplete()
