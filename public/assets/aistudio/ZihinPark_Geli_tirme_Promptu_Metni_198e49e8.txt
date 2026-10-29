@@ -1,0 +1,392 @@
+# ZİHİNPARK – KAPSAMLI OYUN, SEVİYE, ELMAS, MAĞAZA VE GELİR SİSTEMİ GELİŞTİRME PROMPTU
+
+Mevcut ZihinPark uygulamasını baştan sona analiz et ve aşağıdaki sistemi mevcut projeye entegre et. Bu çalışma yalnızca arayüz tasarımı değildir. Oyunlar, seviyeler, kullanıcı hesabı, kayıt sistemi, elmas ekonomisi, mağaza, satın almalar ve liderlik tablosu gerçekten çalışmalıdır.
+
+--------------------------------------------------------------------------------
+1. GENEL PROJE KURALLARI
+--------------------------------------------------------------------------------
+- Mevcut uygulamanın çalışan özelliklerini ve tasarım kimliğini koru.
+- Modern, kaliteli, akıcı animasyonlara sahip bir beyin egzersizi uygulaması oluştur.
+- Toplam 22 oyun bulunacak: mevcut 16 oyun iyileştirilecek ve 6 yeni oyun eklenecek.
+- Her oyunun kendine özgü oynanışı, seviyeleri, zorluk eğrisi, puan sistemi ve tamamlanma ekranı olacak.
+- Uygulama içinde yapay zekâ özelliği bulunmayacak.
+- Uygulama genelinde zorunlu veya geçiş reklamları gösterilmeyecek.
+- Yalnızca oyuncunun kendi isteğiyle başlattığı ödüllü reklam üzerinden elmas kazanma seçeneği sunulacak.
+- Google ile giriş, bulut senkronizasyonu, uygulama içi satın alma ve güvenilir sunucu altyapısı kurulacak.
+- Tasarım mobil ekranlara uyumlu, hızlı, erişilebilir ve Türkçe olacak.
+
+--------------------------------------------------------------------------------
+2. MEVCUT 16 OYUNU GELİŞTİR
+--------------------------------------------------------------------------------
+Mevcut 16 oyunu silip yerine boş ekranlar oluşturma. Önce projedeki gerçek oyunları tespit et, mevcut mekaniklerini incele ve her birini geliştir.
+
+Her oyun için:
+- Gerçek ve etkileşimli oynanış.
+- Kolaydan zora ilerleyen seviye sistemi.
+- Kısa görsel eğitim ve ücretsiz deneme turu.
+- Akıcı animasyonlar ve doğru/yanlış cevap efektleri.
+- Puan, rekor ve seviye ilerlemesi.
+- İlk kez seviye tamamlama ödülü.
+- Oyuna uygun güçlendirmeler.
+- Duraklatma, yeniden başlatma ve sonuç ekranı.
+- Oyuncu ilerlemesini kaydetme.
+- Tekrar oynandığında ödül istismarını önleme.
+
+Oyunların isimlerini, mevcut işlevlerini veya çalışan mekaniklerini analiz etmeden rastgele değiştirme. Gereksiz tekrar eden oyunları daha farklı ve eğlenceli mekaniklerle iyileştir.
+
+--------------------------------------------------------------------------------
+3. EKLENECEK 6 YENİ OYUN
+--------------------------------------------------------------------------------
+Oyun 17: Parçaları Birleştir
+Sürükle-bırak ile bulmaca parçalarını doğru konumlara yerleştir. Kolay şekillerle başla, daha karmaşık görsellerle ilerle. Yerleştirme animasyonları, tamamlanma efekti ve hamle sayacı kullan.
+
+Oyun 18: Gizli Nesneyi Bul
+Renkli ve ayrıntılı sahnelerde istenen nesneleri bul. Her seviyede farklı hedefler, görseller ve zorluklar kullan. Yanlış dokunuşlar sınırlı olsun ve görsel ipucu güçlendirmesi desteklensin.
+
+Oyun 19: Sayı Patlatma
+Aynı sayıdaki taşları birleştirerek daha büyük sayılar oluştur. Oyuncunun hamlelerini planlaması gereksin. Zincirleme birleşmeler, puan animasyonları ve artan zorluk kullan.
+
+Oyun 20: Doğru Kapıyı Seç
+Mantık soruları, ipuçları ve kurallar aracılığıyla doğru kapıyı seç. Yanlış seçimlerde kısa açıklama göster. Sorular birbirini tekrar etmesin ve seviyeler ilerledikçe karmaşıklaşsın.
+
+Oyun 21: Hedefe Dokun
+Belirtilen renk, şekil veya sembole doğru zamanda dokun. Tepki süresi ve isabet oranı hesapla. Hız giderek artsın ancak oyun adil kalsın.
+
+Oyun 22: Labirentten Kaçış
+Oyuncu, karakteri veya işaretçiyi başlangıç noktasından çıkışa ulaştırsın. Her bölümde yeni labirentler üret veya doğrulanmış hazır bölümler kullan. Duvarlar, hareketler, süre ve hamle sayısı doğru çalışsın.
+
+Yeni oyunlar mevcut oyunlarla aynı görsel kaliteye sahip olsun. Her oyunun kendine ait renkli ama uyumlu ekranı, ses efektleri, animasyonları ve ilerleme yapısı bulunsun.
+
+--------------------------------------------------------------------------------
+4. SEVİYE VE ZORLUK SİSTEMİ
+--------------------------------------------------------------------------------
+Her oyun için tercihen 100 seviyelik bir ilerleme sistemi oluştur. Oyunun yapısı gerektiriyorsa 50 seviyelik bölümler de kullanılabilir. Kısa oyunları gereksiz yere uzatma; uzun oyunlarda yeni mekanikler ve içerikler kullan.
+
+Örnek zorluk dağılımı:
+- 1–10: Öğretici ve çok kolay.
+- 11–25: Kolay.
+- 26–50: Orta.
+- 51–75: Zor.
+- 76–99: Çok zor.
+- 100: Özel ustalık seviyesi.
+
+Her 10 seviyede bir özel görev, yeni mekanik veya farklı bir mücadele sun.
+Seviye haritasında kilitli, açık ve tamamlanmış seviyeler farklı görünsün. Oyuncu tamamladığı seviyelere yeniden girebilsin. Sonraki seviyeler, önceki seviye başarıyla tamamlanınca açılsın.
+
+Her seviyede:
+- Hedef ve kurallar.
+- Zorluk derecesi.
+- Tamamlanma puanı.
+- İlk tamamlama ödülü.
+- En iyi skor.
+- Gerekli durumlarda üç yıldızlı performans değerlendirmesi.
+
+Yalnızca seviye numarasını artırarak zorluk oluşturma. Sayı uzunluğu, hız, hamle sınırı, görsel karmaşıklık, dikkat dağıtıcı öğeler ve görev çeşitliliği oyun türüne uygun biçimde değişsin.
+
+--------------------------------------------------------------------------------
+5. ELMAS EKONOMİSİ: ELMAS KAZANMAK ZOR OLSUN
+--------------------------------------------------------------------------------
+Elmas, mağazada kullanılan oyun içi para birimidir. Oyuncu elmasları oyun oynayarak, görevleri tamamlayarak, başarılar kazanarak, haftalık sıralamada derece yaparak veya gerçek parayla satın alarak elde edebilsin.
+
+Elmaslar kolayca birikmemeli. Ancak oyuncunun ilerlemesini de tamamen durdurmamalı.
+
+Başlangıç ödül dengesi:
+- İlk kez tamamlanan kolay seviye: 1–2 elmas.
+- Orta seviye: 2–4 elmas.
+- Zor seviye: 4–7 elmas.
+- Çok zor seviye: 6–10 elmas.
+- Günlük görevlerin tamamı: 5–10 elmas.
+- Haftalık görevler: zorluğa göre sınırlı ödül.
+- Başarı rozetleri: tek seferlik ödül.
+- Haftalık liderlik ödülleri: ayrı ödül havuzu.
+
+Bunlar başlangıç değerleridir; gerçek oyun süresi ve ekonomi test edilerek dengelenmelidir.
+
+ÖNEMLİ KURALLAR:
+- Bir seviye ilk kez tamamlandığında tam ödül ver.
+- Aynı seviyeyi tekrar oynayarak tekrar tekrar ilk tamamlama ödülü kazanılamasın.
+- Tekrarlı oyunlar elmas ekonomisini istismar etmeye izin vermesin.
+- Günlük görev ve reklam ödüllerinin sınırları olsun.
+- Elmas bakiyesi hiçbir zaman yalnızca cihazda saklanan değere güvenmesin.
+- Her elmas hareketi kayıt altına alınsın: kazanma, harcama, satın alma, iade ve düzeltme.
+- Eş zamanlı istekler nedeniyle çift ödül veya çift harcama oluşmasın.
+- Kullanıcı satın aldığı elmasları uygulamayı silip yüklediğinde veya yeni cihaza geçtiğinde kaybetmesin.
+
+Oyuncunun mevcut bakiyesi, toplam kazandığı ve toplam harcadığı elmas profilinde görüntülensin.
+
+--------------------------------------------------------------------------------
+6. ELMAS MAĞAZASI: KOZMETİKLER VE GÜÇLENDİRMELER
+--------------------------------------------------------------------------------
+Mağazayı iki ana kategoriye ayır:
+
+A. Görünüm Mağazası
+Elmaslarla satın alınabilecek öğeler:
+- Profil fotoğrafı yerine kullanılabilen özel avatarlar (Beyin, yıldız, kedi, robot, uzay, hayvan ve geometrik şekil ikonları).
+- Profil çerçeveleri (Altın, gümüş, neon, kristal ve hareketli çerçeveler).
+- Profil kartı temaları.
+- Uygulama arka plan temaları.
+- Oyun içi tahta ve kart tasarımları.
+- Elmas simgesi ve kazanma efektleri için görsel stiller.
+- Profilde kullanılabilecek özel rozetler.
+- Nadir ve efsanevi kozmetik koleksiyonları.
+
+Örnek başlangıç fiyatları:
+- Standart avatar: 100–200 elmas.
+- Özel avatar: 300–500 elmas.
+- Basit profil çerçevesi: 250–400 elmas.
+- Animasyonlu çerçeve: 800–1.500 elmas.
+- Özel profil teması: 1.000–2.000 elmas.
+- Nadir koleksiyon öğesi: 2.000–4.000 elmas.
+
+Fiyatlar nadirlik ve görsel kaliteye göre dengelensin.
+Oyuncu satın almadan önce her kozmetiği önizleyebilsin. Satın alma sonrasında öğe kalıcı olarak hesabına tanımlansın. Aynı öğeyi ikinci kez satın almak engellensin.
+Oyuncu satın aldığı avatarı, çerçeveyi ve temayı profilinden veya ayarlardan kuşanabilsin. Kuşanılan öğeler uygulamanın ilgili alanlarında gerçekten görüntülensin.
+Mağazada kategoriler, filtreler, nadirlik etiketleri, sahip olunan öğeler ve yeni öğeler bölümü olsun.
+
+B. Oyun Güçleri
+Oyunlara göre kullanılabilen güçler:
+- İpucu: 30–50 elmas.
+- Ekstra süre: 50–80 elmas.
+- Bir hatayı telafi etme: 70–100 elmas.
+- Son hamleyi geri alma: 40–60 elmas.
+- Bir engeli kaldırma: 60–100 elmas.
+- Özel yardım: 100–150 elmas.
+
+Bunlar örnek maliyetlerdir. Güçler yalnızca mekanik olarak uygun oyunlarda gösterilsin. Kullanılan güçün etkisi gerçek oynanışta uygulanmalı.
+Satın alınan güçler, oyuncu tarafından onaylanmadan harcanmasın. Harcama öncesinde maliyet ve kalan bakiye gösterilsin.
+
+--------------------------------------------------------------------------------
+7. GOOGLE İLE GİRİŞ VE HESAP SİSTEMİ
+--------------------------------------------------------------------------------
+Google ile giriş ana giriş yöntemi olsun.
+- Google hesabıyla güvenli giriş.
+- İlk girişte otomatik kullanıcı profili oluşturma.
+- Benzersiz kullanıcı kimliği.
+- Görünen kullanıcı adı.
+- Profil avatarı ve çerçevesi.
+- Seviye, skor, başarılar ve istatistikler.
+- Elmas bakiyesi ve satın alınan kozmetikler.
+- Pro üyelik durumu.
+- Oyun ilerlemesi ve liderlik tablosu verileri.
+- Hesabın farklı cihazlarda senkronize olması.
+- Oturum kapatma ve hesap silme seçenekleri.
+- Gizlilik politikası ve kullanım koşullarına erişim.
+
+Google girişini yalnızca ekranda çalışan bir düğme olarak bırakma. Gerçek kimlik doğrulamasını kur. Kimlik belirteçlerini sunucu tarafında doğrula ve hassas bilgileri güvenli biçimde sakla.
+Giriş yapılmadan önce oynama izni verilecekse geçici ilerlemenin daha sonra hesaba aktarılması için güvenli bir yöntem kullan.
+
+--------------------------------------------------------------------------------
+8. GERÇEK PARA İLE ELMAS SATIN ALMA
+--------------------------------------------------------------------------------
+Google Play Billing ile uygulama içi elmas paketleri oluştur.
+
+Örnek fiyatlandırma:
+- Başlangıç Paketi: 250 elmas, 29,99 TL.
+- Küçük Paket: 700 elmas, 59,99 TL.
+- Orta Paket: 1.600 elmas, 119,99 TL.
+- Büyük Paket: 3.500 elmas, 229,99 TL.
+- Mega Paket: 8.000 elmas, 449,99 TL.
+
+Bunlar önerilen başlangıç fiyatlarıdır. Nihai fiyatlar Google Play Console üzerinden tanımlanmalı ve uygulamada Google Play'den alınan yerelleştirilmiş fiyatlar gösterilmelidir.
+
+Satın alma akışı:
+1. Kullanıcı paketi seçer.
+2. Paket içeriği ve fiyatı gösterilir.
+3. Google Play satın alma ekranı açılır.
+4. Satın alma sonucu doğrulanır.
+5. Elmaslar sunucu tarafından bir kez tanımlanır.
+6. Bakiye güncellenir ve işlem geçmişine kaydedilir.
+7. Bekleyen, başarısız, iptal edilmiş veya iade edilmiş işlemler doğru yönetilir.
+
+Satın alma işlemini yalnızca istemci tarafındaki başarı mesajına göre onaylama. Sunucu doğrulaması, yinelenen işlem koruması ve iade yönetimi uygula. Satın alma işlemleri geri yüklenebilsin.
+Google Play ürün türlerini doğru kullan. Tüketilebilir elmas paketleri ve yenilenen Pro aboneliği birbirinden ayrı ürünler olarak yapılandırılsın.
+
+--------------------------------------------------------------------------------
+9. REKLAMSIZ UYGULAMA VE İSTEĞE BAĞLI ÖDÜLLÜ REKLAM
+--------------------------------------------------------------------------------
+Uygulamanın normal kullanımı reklamsız olacak.
+- Ana ekranda reklam yok.
+- Oyun sırasında zorunlu reklam yok.
+- Seviye geçişlerinde reklam yok.
+- Sonuç ekranında otomatik reklam yok.
+- Mağazada gezinirken reklam yok.
+- Oyuncunun karşısına kendiliğinden reklam çıkmayacak.
+
+Yalnızca elmas kazanma ekranında şu seçenek bulunacak:
+“Reklam izle, elmas kazan.”
+
+Kurallar:
+- Oyuncu reklam izlemeyi kendisi seçmeli.
+- Reklam izlemek zorunlu olmamalı.
+- Ödül miktarı reklam başlamadan önce belirtilmeli.
+- Yalnızca başarıyla tamamlanan ve reklam ağı tarafından doğrulanan reklam ödül kazandırsın.
+- Günlük reklam izleme limiti olsun.
+- Ödülün birden fazla kez alınması engellensin.
+- Reklam yüklenmezse oyuncu cezalandırılmasın.
+- Reklam gösterilemediğinde satın alma ekranına zorla yönlendirme yapılmasın.
+- Reklam ödülleri elmas ekonomisini bozmayacak kadar sınırlı olsun.
+
+Önerilen başlangıç: tamamlanan her ödüllü reklam için 3 elmas ve günde en fazla 3 reklam. Böylece günlük reklam geliri karşılığında en fazla 9 elmas verilir. Bu değerler test sonuçlarına göre değiştirilebilir.
+
+Google'ın desteklediği ödüllü reklam SDK'sını kullan. Mümkünse sunucu taraflı ödül doğrulaması uygula. Reklamı yalnızca test reklam birimleriyle geliştir, yayına çıkarken gerçek birimleri yapılandır.
+Reklam izleme seçeneğini elmas mağazasına veya ayrı bir “Ücretsiz Elmas” ekranına ekle. Normal oyun deneyimini kesintiye uğratma.
+
+--------------------------------------------------------------------------------
+10. PRO ÜYELİK SİSTEMİ
+--------------------------------------------------------------------------------
+Başlangıç paketi ücretsiz olacak. Pro üyelik isteğe bağlı ve gerçek satın alma işlemiyle etkinleşecek.
+
+Önerilen fiyatlar:
+- Pro Aylık: 79,99 TL.
+- Pro Yıllık: 599,99 TL.
+
+Google Play Console fiyatları nihai kaynak olsun.
+
+Pro özellikleri:
+- Reklamsız deneyim. Uygulamada zaten zorunlu reklam bulunmayacak.
+- Özel avatarlar, profil çerçeveleri ve temalar.
+- Gelişmiş oyun istatistikleri.
+- Ek günlük ve haftalık görevler.
+- Özel profil rozeti.
+- Ayrıntılı performans geçmişi.
+- Pro üyeye özel kozmetik koleksiyonları.
+- Üyelik durumuna göre tanımlanmış ek içerikler.
+
+Pro üyeliği otomatik olarak sınırsız elmas vermesin. Elmas ekonomisi korunmalı. Aboneliğin yenileme tarihi, fiyatı, avantajları ve iptal yönetimi açıkça gösterilsin.
+Üyelik iptal edildiğinde satın alınmış kalıcı kozmetikler silinmesin. Aboneliğe bağlı özellikler, ilgili erişim dönemi bittiğinde sona ersin.
+
+--------------------------------------------------------------------------------
+11. HAFTALIK LİDERLİK TABLOSU
+--------------------------------------------------------------------------------
+Gerçek oyuncuların yarışabileceği bir liderlik sistemi kur.
+
+Örnek haftalık ödüller:
+- Birinci: 1.000 elmas.
+- İkinci: 600 elmas.
+- Üçüncü: 300 elmas.
+
+Bu ödüller haftalık toplam ödül havuzunun parçasıdır ve sunucu tarafından yalnızca bir kez dağıtılır.
+
+Liderlik ekranında:
+- İlk üç oyuncu için altın, gümüş ve bronz podyum.
+- Kullanıcı adı, avatar, profil çerçevesi ve puan.
+- Oyuncunun kendi sırası.
+- Haftalık kalan süre.
+- Önceki haftaların sonuçları.
+- Güncel sıralama.
+- Ödül dağıtım geçmişi.
+
+Puanlama yalnızca oyun sayısına bağlı olmasın. İlk tamamlama, zorluk derecesi ve doğrulanmış performans kullanılsın. Tekrar oynayarak sınırsız puan elde edilmesi engellensin.
+
+Sunucu tarafında:
+- Haftalık dönem hesaplama.
+- Skor doğrulama.
+- Hile ve olağandışı skor tespiti.
+- Eşitlik bozma kuralları.
+- Haftalık sıfırlama.
+- Kazananların belirlenmesi.
+- Elmas ödüllerinin güvenli ve tek seferlik dağıtılması.
+
+Liderlik tablosunda ücret ödeyen kullanıcıya doğrudan rekabet puanı avantajı verme.
+
+--------------------------------------------------------------------------------
+12. GÜNLÜK GÖREVLER VE BAŞARILAR
+--------------------------------------------------------------------------------
+Oyuncuların düzenli oynamasını sağlayacak görevler ekle:
+- Üç farklı oyunda birer seviye tamamla.
+- Belirli sayıda doğru cevap ver.
+- Bir oyunda yeni rekor kır.
+- Belirli sayıda yıldız kazan.
+- Haftalık belirli bir başarıya ulaş.
+
+Görevler oyuncunun seviyesine uygun olsun. Görev ödülleri sınırlı ve kontrollü biçimde verilsin.
+
+Başarı örnekleri:
+- İlk Seviye.
+- Hafıza Ustası.
+- Hızlı Düşünür.
+- Yüz Seviye.
+- Koleksiyoncu.
+- Haftanın Şampiyonu.
+
+Başarılar profil ekranında görüntülensin ve uygun durumlarda özel rozet açsın.
+
+--------------------------------------------------------------------------------
+13. TASARIM VE ANİMASYON KALİTESİ
+--------------------------------------------------------------------------------
+Mevcut ZihinPark tasarımının pastel, modern ve sıcak kimliğini koru.
+- Akıcı sayfa geçişleri.
+- Yumuşak kart animasyonları.
+- Doğru cevaplarda pozitif görsel geri bildirim.
+- Yanlış cevaplarda rahatsız etmeyen geri bildirim.
+- Seviye tamamlanınca yıldız ve elmas animasyonu.
+- Yeni kozmetik açıldığında özel açılma animasyonu.
+- Mağazada canlı önizleme.
+- Liderlik ekranında podyum animasyonu.
+- Elmas bakiyesi değiştiğinde küçük animasyon.
+- Haptik geri bildirim ayarı.
+- Ses ve animasyonları kapatma seçenekleri.
+- Karanlık veya alternatif tema desteği uygunsa mevcut tasarıma uyumlu eklenmesi.
+
+Animasyonlar performansı düşürmemeli. Düşük donanımlı cihazlarda da akıcı çalışmalı. Hareket azaltma tercihlerine saygı göster.
+
+--------------------------------------------------------------------------------
+14. TEKNİK MİMARİ VE GÜVENLİK
+--------------------------------------------------------------------------------
+Mevcut teknoloji yığınını analiz et ve mümkünse koru. Sadece bu promptta bir teknoloji adı geçti diye çalışan projeyi gereksiz yere yeniden yazma.
+
+Gerçekleştir:
+- Güvenli Google kimlik doğrulaması.
+- Kullanıcı profili ve bulut veri modeli.
+- Sunucu tarafında elmas defteri ve bakiye doğrulaması.
+- Google Play Billing entegrasyonu.
+- Pro aboneliği doğrulaması.
+- Ödüllü reklam ve ödül doğrulaması.
+- Liderlik tablosu altyapısı.
+- Kullanıcı ilerlemesinin senkronizasyonu.
+- Ağ hatalarında yeniden deneme.
+- Yinelenen işlem koruması.
+- Hesap silme ve veri temizleme akışı.
+- Gizlilik politikası ve gerekli izinlerin açıklanması.
+
+Gizli anahtarları uygulamanın içine gömme. Elmas miktarını, satın alma sonucunu, liderlik puanını veya ödül dağıtımını yalnızca istemcinin gönderdiği değere güvenerek belirleme.
+Backend için mevcut projeye uygun, sürdürülebilir bir servis seç. Backend gerektiren özellikleri yalnızca yerel verilerle çalışıyormuş gibi gösterme.
+
+--------------------------------------------------------------------------------
+15. TEST VE TAMAMLANMA KRİTERLERİ
+--------------------------------------------------------------------------------
+Uygulama tamamlandı sayılmadan önce şu testleri yap:
+- 22 oyunun tamamında gerçek oynanış çalışıyor.
+- Her oyunda seviye ilerlemesi ve zorluk artışı var.
+- Uygulama kapatılıp açıldığında ilerleme korunuyor.
+- Aynı ilk tamamlama ödülü ikinci kez alınamıyor.
+- Elmas harcamaları ve satın almalar tutarlı.
+- Kozmetik satın alımı ve kuşanma çalışıyor.
+- Google ile giriş ve oturum yönetimi çalışıyor.
+- Satın alma iptali, başarısızlığı ve geri yüklemesi yönetiliyor.
+- Reklam ödülü yalnızca doğrulanmış tamamlanmada veriliyor.
+- Reklam izlemek isteğe bağlı kalıyor.
+- Haftalık sıralama ve ödüller gerçek kullanıcılar arasında çalışıyor.
+- Hileli skorlar ve çift ödül girişimleri engelleniyor.
+- Pro aboneliğinin süresi ve avantajları doğru yönetiliyor.
+- Arayüz farklı Android ekran boyutlarında test ediliyor.
+- Hatalar, yüklenme durumları ve internet kesintileri ele alınıyor.
+
+--------------------------------------------------------------------------------
+SON TALİMAT
+--------------------------------------------------------------------------------
+Önce mevcut projeyi analiz et. Ardından gerçek uygulama kodunda değişiklikleri uygula. Yalnızca tasarım maketi, örnek ekran, sahte satın alma butonu veya statik liderlik tablosu üretme.
+
+Çalışan mevcut özellikleri bozma. Eksik backend veya Google Play yapılandırması gerekiyorsa bunu açıkça belirt ve gerekli adımları tamamla. Uygulamanın gerçek çalışma durumunu test et; tamamlanmamış özellikleri tamamlanmış gibi sunma.
+
+Öncelik sırası:
+1. 22 gerçek oynanabilir oyun.
+2. 50–100 seviyelik ilerleme ve zorluk dengesi.
+3. Güvenilir elmas ekonomisi.
+4. Avatar, çerçeve, tema ve güç mağazası.
+5. Google ile giriş ve bulut kayıtları.
+6. Gerçek Google Play satın almaları.
+7. İsteğe bağlı ödüllü reklam.
+8. Pro üyelik.
+9. Güvenilir haftalık liderlik ve ödüller.
+10. Kapsamlı test, hata düzeltme ve performans iyileştirmesi.

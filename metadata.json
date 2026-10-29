@@ -1,0 +1,6 @@
+{
+  "name": "ZihinPark",
+  "description": "ZihinPark - Düşün. Keşfet. Geliş. 16 zekâ, mantık, hafıza ve dikkat oyunu içeren kapsamlı beyin egzersizi platformu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
