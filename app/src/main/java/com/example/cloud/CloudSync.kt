@@ -126,6 +126,35 @@ object CloudSync {
         }
     }
 
+    /**
+     * Hesabı ve buluttaki tüm ZihinPark verilerini kalıcı olarak siler (Play hesap silme şartı).
+     * Hata yoksa null, varsa kullanıcıya gösterilecek mesaj döner.
+     */
+    suspend fun deleteAccount(activity: android.app.Activity): String? {
+        if (!isConfigured) return "Bulut hesabı yok"
+        val u = auth.currentUser ?: return "Giriş yapılmamış"
+        return try {
+            val uid = u.uid
+            // Son haftaların lig kayıtları + kullanıcı belgesi
+            for (w in 0 downTo -12) runCatching { scores(weekId(w)).document(uid).delete().await() }
+            runCatching { db.collection("zp_users").document(uid).delete().await() }
+            try {
+                u.delete().await()
+            } catch (e: com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException) {
+                // Güvenlik gereği yakın zamanda giriş gerekir: yeniden giriş yapıp tekrar dene
+                val err = signIn(activity)
+                if (err != null) return err
+                auth.currentUser?.delete()?.await()
+            }
+            auth.signOut()
+            _user.value = null
+            _syncState.value = ""
+            null
+        } catch (e: Exception) {
+            "Silinemedi: ${e.message ?: "bilinmeyen hata"}"
+        }
+    }
+
     fun signOut() {
         if (!isConfigured) return
         auth.signOut()

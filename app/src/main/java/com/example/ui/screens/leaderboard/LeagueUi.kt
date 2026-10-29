@@ -1,5 +1,6 @@
 package com.example.ui.screens.leaderboard
 
+import androidx.compose.foundation.clickable
 import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -125,6 +126,30 @@ fun AccountCard() {
                     }
                 }, color = NeonGreen, outlined = true, height = 42.dp, modifier = Modifier.weight(1f))
                 NeonButton("Çıkış", onClick = { CloudSync.signOut() }, color = NeonPink, outlined = true, height = 42.dp)
+            }
+            Spacer(Modifier.height(8.dp))
+            var confirmDelete by remember { mutableStateOf(false) }
+            Text(
+                "Hesabımı sil", color = TextMuted, style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.clickable { confirmDelete = true }.padding(4.dp)
+            )
+            if (confirmDelete) {
+                com.example.ui.screens.profile.NeonDialog(
+                    title = "Hesabı sil?",
+                    onDismiss = { confirmDelete = false },
+                    confirm = "Kalıcı olarak sil",
+                    confirmColor = com.example.ui.theme.NeonRed,
+                    onConfirm = {
+                        confirmDelete = false
+                        val act = context as? Activity ?: return@NeonDialog
+                        scope.launch {
+                            val err = CloudSync.deleteAccount(act)
+                            Toast.makeText(context, err ?: "Hesabın ve bulut verilerin silindi", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                ) {
+                    Text("Bulut yedeğin, lig kayıtların ve Google bağlantılı hesabın kalıcı olarak silinir. Telefondaki ilerlemen kalır.", color = TextSecondary)
+                }
             }
         }
     }
