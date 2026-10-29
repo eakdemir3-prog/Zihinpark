@@ -88,11 +88,18 @@ object CloudSync {
         return if (id != 0) appContext.getString(id) else null
     }
 
+    private val _phase = MutableStateFlow("")
+    /** Giriş sırasında hangi adımda olunduğu (ekranda gösterilir). */
+    val phase: StateFlow<String> = _phase.asStateFlow()
+
     /** Google ile giriş. Başarılıysa null, değilse kullanıcıya gösterilecek hata mesajı döner. */
-    suspend fun signIn(activity: Activity): String? {
+    suspend fun signIn(activity: Activity): String? = try { signInInner(activity) } finally { _phase.value = "" }
+
+    private suspend fun signInInner(activity: Activity): String? {
         if (!isConfigured) return "Bulut bağlantısı henüz kurulmadı."
         val clientId = webClientId() ?: return "Google girişi yapılandırılmamış."
         val cm = CredentialManager.create(activity)
+        _phase.value = "Google hesabı seçiliyor..."
         val token = try {
             val quick = GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
@@ -123,10 +130,14 @@ object CloudSync {
             }
         }
         return try {
-            val res = auth.signInWithCredential(GoogleAuthProvider.getCredential(token, null)).await()
+            _phase.value = "Hesap doğrulanıyor..."
+            val res = kotlinx.coroutines.withTimeoutOrNull(25_000) {
+                auth.signInWithCredential(GoogleAuthProvider.getCredential(token, null)).await()
+            } ?: return "Sunucuya bağlanılamadı (zaman aşımı). İnternetini kontrol edip tekrar dene."
             val u = res.user ?: return "Giriş yapılamadı."
             _user.value = CloudUser(u.uid, u.displayName ?: "Oyuncu", u.email, u.photoUrl?.toString())
-            afterSignIn()
+            // Eşitleme arka planda: giriş ekranı beklemez
+            scope.launch { afterSignIn() }
             null
         } catch (e: Exception) {
             Log.w(TAG, "firebase signIn", e)

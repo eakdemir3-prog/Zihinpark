@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,6 +63,7 @@ fun WelcomeScreen(onDone: () -> Unit) {
     val scope = rememberCoroutineScope()
     var busy by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
+    val phase by CloudSync.phase.collectAsState()
     val t = rememberInfiniteTransition(label = "w")
     val float by t.animateFloat(-8f, 8f, infiniteRepeatable(tween(2200), RepeatMode.Reverse), label = "f")
 
@@ -92,7 +94,7 @@ fun WelcomeScreen(onDone: () -> Unit) {
             Spacer(Modifier.height(28.dp))
             if (CloudSync.isConfigured) {
                 NeonButton(
-                    if (busy) "Bağlanıyor..." else "G   Google ile giriş yap",
+                    if (busy) (phase.ifBlank { "Bağlanıyor..." }) else "G   Google ile giriş yap",
                     onClick = {
                         val act = context as? Activity ?: return@NeonButton
                         if (busy) return@NeonButton
