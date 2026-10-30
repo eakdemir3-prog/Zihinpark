@@ -175,14 +175,20 @@ object CloudSync {
             auth.signOut()
             _user.value = null
             _syncState.value = ""
+            _signedOut.value++
             null
         } catch (e: Exception) {
             "Silinemedi: ${e.message ?: "bilinmeyen hata"}"
         }
     }
 
+    private val _signedOut = MutableStateFlow(0)
+    /** Kullanıcı çıkış yaptığında (ya da hesabını sildiğinde) artar; uygulama giriş ekranına döner. */
+    val signedOut: StateFlow<Int> = _signedOut.asStateFlow()
+
     fun signOut() {
         if (!isConfigured) return
+        _signedOut.value++
         auth.signOut()
         _user.value = null
         _syncState.value = ""

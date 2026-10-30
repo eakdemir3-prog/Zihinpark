@@ -92,7 +92,7 @@ fun WelcomeScreen(onDone: () -> Unit) {
             Spacer(Modifier.height(28.dp))
             if (CloudSync.isConfigured) {
                 NeonButton(
-                    if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "G   Google ile giriş yap",
+                    if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "Google ile giriş yap",
                     onClick = { g.signIn() },
                     color = NeonCyan, enabled = !g.busy,
                     modifier = Modifier.fillMaxWidth().neonGlow(NeonCyan, 14.dp, 26.dp, 0.5f)

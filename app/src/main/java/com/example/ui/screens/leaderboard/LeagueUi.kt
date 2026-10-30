@@ -98,7 +98,7 @@ fun AccountCard() {
                 }
             }
             Spacer(Modifier.height(12.dp))
-            NeonButton(if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "G  Google ile giriş", onClick = { g.signIn() },
+            NeonButton(if (g.busy) (phase.ifBlank { "Bağlanıyor..." }) else "Google ile giriş yap", onClick = { g.signIn() },
                 color = NeonCyan, modifier = Modifier.fillMaxWidth(), enabled = !g.busy)
             if (g.showAlternative) {
                 Text("Pencere açılmadı mı? Başka yöntemle dene →", color = NeonCyan, style = MaterialTheme.typography.bodySmall,

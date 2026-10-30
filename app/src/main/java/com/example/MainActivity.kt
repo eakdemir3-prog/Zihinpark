@@ -80,6 +80,8 @@ class MainActivity : ComponentActivity() {
 
             var showWelcome by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(needWelcome) }
             val scope = androidx.compose.runtime.rememberCoroutineScope()
+            val signedOut by com.example.cloud.CloudSync.signedOut.collectAsState()
+            LaunchedEffect(signedOut) { if (signedOut > 0) showWelcome = true }
             ZihinParkTheme {
                 if (showWelcome) {
                     com.example.ui.screens.welcome.WelcomeScreen(onDone = {
