@@ -90,21 +90,10 @@ fun rememberGoogleSignIn(onSuccess: () -> Unit): GoogleSignInState {
             .addOnFailureListener { e -> finish("Giriş yapılamadı: ${e.message}") }
     }
 
+    // Ana düğme doğrudan klasik Google hesap seçme ekranını açar (her telefonda çalışır)
     state.start = start@{
-        val act = activity ?: return@start
         if (state.busy) return@start
-        state.busy = true; state.error = null; state.showAlternative = false
-        job = CloudSync.mainScope.launch {
-            // Pencere birkaç saniyede gelmezse alternatif yöntemi göster
-            val watcher = launch { delay(6_000); if (state.busy) state.showAlternative = true }
-            val err = CloudSync.signIn(act)
-            watcher.cancel()
-            if (err != null && !err.contains("iptal", true)) {
-                // Credential Manager başarısız: klasik yönteme otomatik geç
-                state.busy = false
-                state.alternative()
-            } else finish(err)
-        }
+        state.alternative()
     }
     return state
 }
