@@ -109,7 +109,7 @@ fun ShopScreen(
                 trailing = { DiamondPill(diamonds, onClick = null) }
             )
             Box(Modifier.padding(horizontal = 16.dp, vertical = 6.dp)) {
-                SegmentedTabs(listOf("Görünüm", "Güçler", "Elmas"), tab) { tab = it; soundManager.playTap() }
+                SegmentedTabs(listOf("Görünüm", "Güçler", "Elmas"), tab) { tab = it; soundManager.uiTick() }
             }
             message?.let {
                 InfoBanner(it, color = NeonGreen, emoji = "✨", modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))

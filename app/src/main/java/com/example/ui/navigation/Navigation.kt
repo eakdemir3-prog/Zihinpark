@@ -181,7 +181,7 @@ fun ZihinParkAppNavigation(
 
     fun goTab(tab: MainTab) {
         if (currentRoute == tab.route) return
-        soundManager.playTap()
+        soundManager.uiTick()
         navController.navigate(tab.route) {
             popUpTo(navController.graph.findStartDestination().id) { saveState = true }
             launchSingleTop = true

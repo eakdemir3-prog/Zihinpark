@@ -63,7 +63,7 @@ fun ProfileHubScreen(
     var tab by rememberSaveable { mutableIntStateOf(0) }
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
         Box(Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 4.dp)) {
-            SegmentedTabs(listOf("Profil", "İlerleme"), tab) { tab = it; soundManager.playTap() }
+            SegmentedTabs(listOf("Profil", "İlerleme"), tab) { tab = it; soundManager.uiTick() }
         }
         AnimatedContent(
             targetState = tab,

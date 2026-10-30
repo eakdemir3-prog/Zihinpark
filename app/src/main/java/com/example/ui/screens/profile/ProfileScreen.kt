@@ -212,7 +212,7 @@ fun ProfileScreen(
                             .clip(CircleShape)
                             .background(if (sel) NeonCyan.copy(alpha = 0.2f) else NeonCard)
                             .border(if (sel) 2.dp else 1.dp, if (sel) NeonCyan else NeonBorder, CircleShape)
-                            .bounceClick { soundManager.playTap(); scope.launch { prefs.setAvatarId(a.id) } },
+                            .bounceClick { soundManager.uiTick(); scope.launch { prefs.setAvatarId(a.id) } },
                         contentAlignment = Alignment.Center
                     ) { Text(a.emoji, fontSize = 26.sp) }
                 }

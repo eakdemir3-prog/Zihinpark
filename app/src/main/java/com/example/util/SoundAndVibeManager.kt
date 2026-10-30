@@ -118,6 +118,15 @@ class SoundAndVibeManager(context: Context) {
         vibrate(longArrayOf(0, 40, 60, 40, 60, 90), intArrayOf(0, 140, 0, 180, 0, 255))
     }
 
+    /** Menü dokunuşu: ses yok, sadece çok kısa hafif titreşim. */
+    fun uiTick() {
+        if (!vibrationOn || vibrator?.hasVibrator() != true) return
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK))
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(8, 40))
+        } catch (_: Exception) {}
+    }
+
     fun playLevelFail() = play(sFail, 0.9f)
 
     fun playCoin() = play(sCoin, 0.8f)
