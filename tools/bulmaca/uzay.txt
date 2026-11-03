@@ -1,0 +1,94 @@
+Güneş sistemimizin merkezindeki yıldız|GÜNEŞ
+Dünya'nın doğal uydusu|AY
+Güneşe en yakın gezegen|MERKÜR
+Kızıl gezegen|MARS
+Halkalarıyla ünlü gezegen|SATÜRN
+En büyük gezegen|JÜPİTER
+Çoban yıldızı denilen parlak gezegen|VENÜS
+Yan yatmış dönen buz devi|URANÜS
+Güneş'e en uzak gezegen|NEPTÜN
+Cüce gezegen sayılan eski dokuzuncu|PLÜTON
+Yaşadığımız gezegen|DÜNYA
+İçinde bulunduğumuz galaksi|SAMANYOLU
+Bize en yakın büyük galaksi|ANDROMEDA
+Işığı bile kaçırmayan uzay cismi|KARADELİK
+Kuyruklu yıldız|KOMET
+Gökyüzünde kayan taş|METEOR
+Dünya'ya düşen göktaşı|METEORİT
+Mars ile Jüpiter arasındaki kayalık bölge|ASTEROİT
+Yıldızların oluşturduğu şekil|TAKIMYILDIZ
+Kutup yıldızını gösteren takımyıldız|BÜYÜKAYI
+Gece yön bulmaya yarayan yıldız|KUTUPYILDIZI
+Ay'ın Dünya ile Güneş arasına girmesi|GÜNEŞTUTULMASI
+Ay'ın tamamen görünen hali|DOLUNAY
+Ay'ın ince hilal hali|HİLAL
+Ay'ın hiç görünmediği evre|YENİAY
+Ay yüzeyindeki çukurlar|KRATER
+Uzaya giden araç|ROKET
+Uzayda çalışan insan|ASTRONOT
+Rusların uzay insanına verdiği ad|KOZMONOT
+Astronotların giydiği kıyafet|UZAYGİYSİSİ
+Dünya etrafında dönen yapay cisim|UYDU
+Uzayda insanlı kalınan istasyon|UZAYİSTASYONU
+Uzaydaki ilk insan Yuri|GAGARİN
+Ay'a giden ünlü görevlerin adı|APOLLO
+Ay'a ilk ayak basan Neil|ARMSTRONG
+Uzaya giden ilk köpek|LAİKA
+ABD'nin uzay ajansı|NASA
+Avrupa'nın uzay ajansı|ESA
+Hubble'ın türü|TELESKOP
+Mars'ta dolaşan tekerlekli araç|KEŞİFARACI
+Gezegenlerin Güneş etrafındaki yolu|YÖRÜNGE
+Dünya'nın kendi ekseni etrafında dönüşü|GÜNDÜZGECE
+Dünya'nın Güneş etrafında dönüşünün sonucu|MEVSİMLER
+Bir yıldaki gün sayısı yaklaşık|ÜÇYÜZALTMIŞBEŞ
+Güneşten gelen ışığın Dünya'ya varış süresi dakika|SEKİZ
+Işığın bir yılda aldığı yol|IŞIKYILI
+Evrenin başlangıcı kabul edilen patlama|BÜYÜKPATLAMA
+Uzaydaki gaz ve toz bulutu|NEBULA
+Patlayan dev yıldız|SÜPERNOVA
+Kuzey ışıklarının diğer adı|AURORA
+Güneş yüzeyindeki karanlık lekeler|GÜNEŞLEKESİ
+Güneşin enerjisini üreten olay|FÜZYON
+Yer çekiminin olmadığı ortam|BOŞLUK
+Uzayda ağırlıksızlık hali|SIFIRYERÇEKİMİ
+Yıldız falı ile karışan gerçek bilim|ASTRONOMİ
+Gökyüzünü gözlemleyen bina|RASATHANE
+İstanbul'daki ünlü rasathane|KANDİLLİ
+Uluğ Bey'in gözlemevi şehri|SEMERKANT
+Gezegenlerin adlarının geldiği mitoloji|ROMA
+Jüpiter'in büyük kırmızı fırtınası|LEKE
+Satürn'ün en büyük uydusu|TİTAN
+Jüpiter'in uydusu, buzla kaplı|EUROPA
+Mars'ın iki küçük uydusundan biri|FOBOS
+Mars'ın kızıl renginin sebebi|PAS
+En sıcak gezegen|VENÜS
+Gece gökyüzünde parlayan uzak güneşler|YILDIZ
+Güneş gibi orta büyüklükteki yıldız türü|CÜCE
+Dev kırmızı yıldızlara verilen ad|KIRMIZIDEV
+Gökyüzündeki parlak beyaz şerit|SAMANYOLU
+Dünya'nın atmosferinin en içteki katmanı|TROPOSFER
+Uydu yayınlarını alan çanak|ANTEN
+Konumu uydularla bulan sistem|GPS
+Uzay mekiklerinin fırlatıldığı yer|ÜS
+Roketin geri sayımından sonra|ATEŞLEME
+Uzay aracının Dünya'ya dönüşü|İNİŞ
+Astronotların uzayda yediği|TÜPYEMEK
+Türk Uzay Ajansı'nın kısaltması|TUA
+Türkiye'nin uydusu|TÜRKSAT
+İlk Türk astronot Alper|GEZERAVCI
+Ay'ın Dünya'ya dönük olmayan yüzü|KARANLIKYÜZ
+Gelgiti oluşturan gök cismi|AY
+Ekinoks olayı|GECEGÜNDÜZEŞİTLİĞİ
+Yılın en uzun günü|YAZGÜNDÖNÜMÜ
+Takvimimizin dayandığı gök cismi|GÜNEŞ
+Hicri takvimin dayandığı gök cismi|AY
+Kayan yıldız yağmurunun adı|METEORYAĞMURU
+Uzaydaki ölçülemeyecek kadar büyük her şey|EVREN
+Galaksilerin toplu adı|GÖKADA
+Gezegenlerin yakınından geçen uzay sondası|VOYAGER
+James Webb'in türü|TELESKOP
+Dünya'yı fotoğraflayan uzaydan bakış adı|SOLUKMAVİNOKTA
+Yıldızlararası filmi|İNTERSTELLAR
+Yıldız Savaşları'nın ünlü kılıcı|IŞINKILICI
+Uzaylıların aracı denilen|UFO

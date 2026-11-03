@@ -1,0 +1,98 @@
+On bir kişiyle oynanan, top ayakla atılan oyun|FUTBOL
+Potaya top atılan oyun|BASKETBOL
+Fileli sahada eller ile oynanan oyun|VOLEYBOL
+Raketle sarı topa vurulan spor|TENİS
+Masada oynanan küçük raket sporu|MASATENİSİ
+Tüylü topla oynanan raket sporu|BADMİNTON
+Havuzda yapılan spor|YÜZME
+Ata binerek yapılan spor|BİNİCİLİK
+Yayla hedefe ok atılan spor|OKÇULUK
+Kırkpınar'da yapılan geleneksel spor|YAĞLIGÜREŞ
+Kırkpınar'ın şehri|EDİRNE
+Eldivenlerle yapılan dövüş sporu|BOKS
+Kuşak renkleriyle ilerleyen Japon dövüş sporu|JUDO
+Tekmeyle puan alınan Kore sporu|TEKVANDO
+Ağırlık kaldırma sporu|HALTER
+Halterde ünlü Türk sporcu Naim|SÜLEYMANOĞLU
+Cep Herkülü lakaplı sporcu|NAİM
+Engellerin üzerinden atlanan koşu|ENGELLİ
+Uzun mesafe koşusu|MARATON
+Maratonun kilometresi (kırk iki ve)|KIRKİKİ
+Sırıkla yapılan atlama|SIRIK
+Kum ve çakıllı alanda yapılan atlama|UZUN
+Gülle, cirit, disk atılan spor dalı|ATLETİZM
+Atlarla oynanan Türk sporu|CİRİT
+Buzda pateniyle ve sopayla oynanan|HOKEY
+Karda kayılan spor|KAYAK
+Dalgalarda tahtayla yapılan spor|SÖRF
+Tekerlekli tahtayla yapılan spor|KAYKAY
+İki tekerlekli spor aracı|BİSİKLET
+Bisiklet yarışının en ünlü turu|TURDEFRANS
+Yarış arabalarının döndüğü pist türü|PİST
+Golf topunun düştüğü yer|DELİK
+Satrançta en güçlü taş|VEZİR
+Satrançta korunan taş|ŞAH
+At gibi L çizen satranç taşı|AT
+Satrançta oyunu bitiren hamle|MAT
+Oyuncuların forması üzerindeki sayı|NUMARA
+Futbolda kaleyi koruyan oyuncu|KALECİ
+Topun ağlara gitmesi|GOL
+Futbolda sarı ve kırmızı veren|HAKEM
+Ceza alanında verilen vuruş|PENALTI
+Oyunun dışına çıkan topun yan çizgiden atılması|TAÇ
+Köşe atışı|KORNER
+Hücum oyuncusunun öndeki son adamı geçmesi kuralı|OFSAYT
+İki devre arasındaki dinlenme|DEVREARASI
+Basketbolda üç sayılık atışın çizgisi|ÜÇLÜK
+Basketbolda topu sektirerek ilerleme|DRİPLİNG
+Voleybolda servisi karşılama|MANŞET
+Voleybolda sert vuruş|SMAÇ
+Tenisin ünlü çim turnuvası|WİMBLEDON
+Dört yılda bir yapılan büyük spor organizasyonu|OLİMPİYAT
+Olimpiyat halkalarının sayısı|BEŞ
+Birinciye verilen madalya|ALTIN
+İkinciye verilen madalya|GÜMÜŞ
+Üçüncüye verilen madalya|BRONZ
+Kazananların çıktığı basamaklı yer|KÜRSÜ
+Takımın kaptanının kolundaki|PAZIBENT
+Sporcuların çalıştığı yer|SALON
+Sporcuyu çalıştıran kişi|ANTRENÖR
+Maçı izleyen kalabalık|SEYİRCİ
+Maçların oynandığı büyük yapı|STADYUM
+Futbol takımlarının ligindeki sıralama|PUANDURUMU
+Dünya Kupası'nın düzenlendiği spor|FUTBOL
+Türkiye'nin 2002 Dünya Kupası'ndaki derecesi|ÜÇÜNCÜLÜK
+Avrupa şampiyonu olan voleybolcularımıza denilen|FİLENİNSULTANLARI
+Ünlü Türk basketbolcu Hidayet|TÜRKOĞLU
+Ünlü Türk futbolcu Hakan|ŞÜKÜR
+Eskrimde kullanılan ince kılıç|FLORE
+Halatla iki takımın çektiği oyun|HALATÇEKME
+Kızakla buzda kayılan spor|KIZAK
+Dağa tırmanma sporu|DAĞCILIK
+Paraşütle atlama sporu|PARAŞÜT
+Yamaç paraşütüyle ünlü Fethiye tepesi|BABADAĞ
+Kanoyla yapılan su sporu|KANO
+Kürekle sürülen yarış teknesi|KÜREK
+Rüzgârla ilerleyen tekne|YELKENLİ
+Su altında yapılan spor|DALIŞ
+Dalgıçların taktığı ayak yüzgeci|PALET
+Yüzücülerin taktığı göz koruyucu|GÖZLÜK
+Koşucunun bitirdiği çizgi|FİNİŞ
+Koşunun başladığı yer|START
+Rekoru kırılan süre ölçülür|KRONOMETRE
+Sporcunun içtiği mineralli içecek|SU
+Sporun bedene kattığı|SAĞLIK
+Kas geliştiren egzersiz|ŞINAV
+Karın kası egzersizi|MEKİK
+Esneme hareketleri|ESNEME
+Yoga matında yapılan nefes|MEDİTASYON
+Esnekliği gösteren jimnastik hareketi|KÖPRÜ
+Paralel barda yapılan spor|JİMNASTİK
+Jimnastikte ünlü atlama aleti|BEYGİR
+Bilardo masasında topa vurulan sopa|ISTAKA
+Bovlingde devrilen hedefler|LOBUT
+Dart oyununda okların atıldığı|HEDEF
+Takımın sahadaki dizilişi|TAKTİK
+Maç sonucunun berabere bitmesi|BERABERLİK
+Uzatmada da eşitlik bozulmazsa atılan|PENALTILAR
+Bir sporcunun aldığı ceza süresi|CEZA

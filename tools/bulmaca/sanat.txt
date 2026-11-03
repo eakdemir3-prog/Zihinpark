@@ -1,0 +1,102 @@
+Mona Lisa'nın ressamı|LEONARDO
+Yıldızlı Gece'nin ressamı|VANGOGH
+Kübizmin öncü ressamı|PİCASSO
+Kaplumbağa Terbiyecisi'nin ressamı|OSMANHAMDİ
+Ressamın resim yaptığı ayaklı tahta|ŞÖVALE
+Ressamın renkleri karıştırdığı tahta|PALET
+Resim yapılan kumaş|TUVAL
+Suyla karıştırılan boya|SULUBOYA
+Taşı yontan sanatçı|HEYKELTRAŞ
+Mermerden yapılmış ünlü Davut heykelinin sanatçısı|MİKELANJ
+Kâğıt üzerinde mürekkeple güzel yazı sanatı|HAT
+Su üzerine boyayla yapılan Türk sanatı|EBRU
+Kitap süslemesinde altın yaldızlı sanat|TEZHİP
+Küçük boyutlu resim sanatı|MİNYATÜR
+Çini sanatıyla ünlü şehir|İZNİK
+Halı dokunan alet|TEZGÂH
+Sahne sanatlarından oyunculuk|TİYATRO
+Gölge oyununun iki kahramanından biri|KARAGÖZ
+Karagöz'ün arkadaşı|HACİVAT
+Meddahın elindeki|MENDİL
+Seyirciyle oynanan geleneksel Türk tiyatrosu|ORTAOYUNU
+Kuklacının oynattığı|KUKLA
+Opera sanatçısı kadın ses|SOPRANO
+Erkek kalın ses|BAS
+Orkestrayı yöneten kişi|ŞEF
+Şefin elindeki ince çubuk|BATON
+Notaların yazıldığı beş çizgi|PORTE
+Do re mi fa sol la si|NOTA
+Müziğin hızı|TEMPO
+Seslerin uyumu|ARMONİ
+Türk müziğinde makam düzeni|MAKAM
+Telli Türk çalgısı|BAĞLAMA
+Ud'a benzeyen telli çalgı|UD
+Dizlere konan telli Türk çalgısı|KANUN
+Üflemeli kamış çalgı|NEY
+Mevlevi ayininin çalgısı|NEY
+Yayla çalınan Karadeniz çalgısı|KEMENÇE
+Davul ile birlikte çalınan üflemeli çalgı|ZURNA
+Tuşları beyaz ve siyah olan çalgı|PİYANO
+Altı telli popüler çalgı|GİTAR
+Yay ile çalınan çene altı çalgısı|KEMAN
+Kemanın büyüğü, yerde çalınan|ÇELLO
+Trompetin pistonlu kardeşi|TROMPET
+Ağızla çalınan küçük çalgı|MIZIKA
+Bateride vurulan büyük çalgı|DAVUL
+İki metal tabakalı vurmalı çalgı|ZİL
+Klasik müziğin ünlü sağır bestecisi|BEETHOVEN
+Küçük yaşta beste yapan Avusturyalı|MOZART
+Türk beşleri bestecisi Saygun'un adı|ADNAN
+Neşet Ertaş'ın çaldığı çalgı|BAĞLAMA
+Sezen Aksu'ya verilen lakap|MİNİKSERÇE
+Barış Manço'nun ünlü şarkısı Domates Biber...|PATLICAN
+Tarkan'ın ünlü şarkısı|ŞIMARIK
+Zeki Müren'in lakabı|PAŞA
+Müzik eserini besteleyen kişi|BESTECİ
+Şarkı sözlerini yazan kişi|SÖZYAZARI
+Birden çok kişinin birlikte söylemesi|KORO
+Tek kişinin söylediği şarkı bölümü|SOLO
+Dans gösterisi yapan|DANSÇI
+Ayak uçlarında yapılan klasik dans|BALE
+Karadeniz'in hareketli dansı|HORON
+Zeybek oyunu yöresi|EGE
+Halk dansları için genel ad|HALKOYUNLARI
+Sinema filmini yöneten|YÖNETMEN
+Filmde rol alan kadın|AKTRİS
+Filmin hikâyesinin yazıldığı metin|SENARYO
+Filmin çekildiği yer|SET
+Sinema ödülü heykelciği|OSCAR
+Antalya'da verilen film ödülü|ALTINPORTAKAL
+Ünlü Türk komedyen Kemal|SUNAL
+Hababam Sınıfı'nın öğrencisi İnek...|ŞABAN
+Yeşilçam'ın sultanı Türkan|ŞORAY
+Çizgi film karakterlerini çizen|ÇİZER
+Hareketli resim tekniği|ANİMASYON
+Fotoğraf çeken kişi|FOTOĞRAFÇI
+Ünlü fotoğrafçı Ara|GÜLER
+Kitap yazan kişi|YAZAR
+Şiir yazan kişi|ŞAİR
+Nazım Hikmet'in yazdığı tür|ŞİİR
+Kuyucaklı Yusuf'un yazarı Sabahattin|ALİ
+İnce Memed'in yazarı|YAŞARKEMAL
+Nobel ödüllü Türk yazar|ORHANPAMUK
+Masalların yazarı Danimarkalı|ANDERSEN
+Don Kişot'un yazarı|CERVANTES
+Romeo ile Juliet'in yazarı|SHAKESPEARE
+Nasreddin Hoca'nın bindiği|EŞEK
+Dede Korkut'un anlattığı|HİKÂYE
+Keloğlan'ın türü|MASAL
+Kısa ve öğütlü halk sözü|ATASÖZÜ
+Şiirde mısraların sonundaki ses benzerliği|KAFİYE
+Şiirin her satırı|DİZE
+Romanın kısa hali|ÖYKÜ
+Bir kişinin hayatını anlatan kitap|BİYOGRAFİ
+Kitapların okunduğu yer|KÜTÜPHANE
+Resimlerin sergilendiği yer|GALERİ
+Sanat eserlerinin sergisi|SERGİ
+Tiyatronun perdesinin açıldığı yer|SAHNE
+Oyunun bölümü|PERDE
+Seyircinin alkışı|ALKIŞ
+Konser verilen büyük salon|KONSERSALONU
+Pikapta dönen eski müzik diski|PLAK
+Eski müzik çalar|GRAMOFON

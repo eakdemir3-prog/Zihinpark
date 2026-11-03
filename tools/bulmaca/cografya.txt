@@ -1,0 +1,119 @@
+Türkiye'nin başkenti|ANKARA
+Türkiye'nin en kalabalık şehri|İSTANBUL
+Türkiye'nin en yüksek dağı|AĞRI
+Türkiye'nin en büyük gölü|VAN
+Türkiye'nin en uzun nehri|KIZILIRMAK
+Peri bacalarıyla ünlü bölge|KAPADOKYA
+Beyaz traverten basamaklarıyla ünlü yer|PAMUKKALE
+İki kıtayı ayıran İstanbul boğazı|BOĞAZİÇİ
+Marmara'yı Ege'ye bağlayan boğaz|ÇANAKKALE
+Türkiye'nin kuzeyindeki deniz|KARADENİZ
+Türkiye'nin güneyindeki deniz|AKDENİZ
+Türkiye'nin batısındaki deniz|EGE
+Dünyanın en uzun nehri|NİL
+Dünyanın en yüksek dağı|EVEREST
+Dünyanın en büyük okyanusu|PASİFİK
+Dünyanın en büyük çölü (sıcak)|SAHRA
+En kalabalık kıta|ASYA
+Kanguruların yaşadığı kıta|AVUSTRALYA
+Buzlarla kaplı güney kıtası|ANTARKTİKA
+Fransa'nın başkenti|PARİS
+İtalya'nın başkenti|ROMA
+İspanya'nın başkenti|MADRİD
+Almanya'nın başkenti|BERLİN
+İngiltere'nin başkenti|LONDRA
+Japonya'nın başkenti|TOKYO
+Rusya'nın başkenti|MOSKOVA
+Mısır'ın başkenti|KAHİRE
+Yunanistan'ın başkenti|ATİNA
+Azerbaycan'ın başkenti|BAKÜ
+Kazakistan'ın en büyük şehri|ALMATI
+Brezilya'nın en ünlü sahil şehri|RİO
+Amazon ormanlarının çoğunun bulunduğu ülke|BREZİLYA
+Kanalları ve gondollarıyla ünlü İtalyan şehri|VENEDİK
+Eyfel Kulesi'nin şehri|PARİS
+Big Ben'in şehri|LONDRA
+Özgürlük Heykeli'nin şehri|NEWYORK
+Lale ve yel değirmenleriyle ünlü ülke|HOLLANDA
+Fiyortlarıyla ünlü ülke|NORVEÇ
+Saat ve çikolatasıyla ünlü ülke|İSVİÇRE
+Bin göller ülkesi|FİNLANDİYA
+Yükselen güneş ülkesi|JAPONYA
+Dünyanın en kalabalık ülkesi|HİNDİSTAN
+Dünyanın yüzölçümü en büyük ülkesi|RUSYA
+Kuzey Amerika'daki en büyük ülke|KANADA
+Tango dansının ülkesi|ARJANTİN
+Kahvesiyle ünlü Güney Amerika ülkesi|KOLOMBİYA
+Avrupa'nın en uzun nehri|VOLGA
+Paris'ten geçen nehir|SEN
+Londra'dan geçen nehir|THAMES
+Mısır'dan geçen nehir|NİL
+Ölü Deniz'in kıyısındaki ülke|ÜRDÜN
+Etna yanardağının adası|SİCİLYA
+Sıcak lav püskürten dağ|YANARDAĞ
+Okyanus ortasındaki kara parçası|ADA
+Üç tarafı denizle çevrili kara|YARIMADA
+Denizin karaya girdiği yer|KÖRFEZ
+Akarsuyun denize döküldüğü yer|AĞIZ
+Dağlar arasındaki çukur alan|VADİ
+Yüksek ve düz alan|PLATO
+Yaz aylarında çıkılan dağ meraları|YAYLA
+Kum tepelerinin olduğu kurak yer|ÇÖL
+Çölde su bulunan yeşil alan|VAHA
+Kutuplarda yaşayan dev beyaz hayvanın evi|ARKTİK
+Haritada kuzeyi gösteren alet|PUSULA
+Dünya'nın yönlerinden biri|KUZEY
+Güneşin doğduğu yön|DOĞU
+Güneşin battığı yön|BATI
+Ekvatorun güneyi|GÜNEY
+Dünyayı ikiye bölen hayali çizgi|EKVATOR
+Haritadaki yatay çizgiler|ENLEM
+Haritadaki dikey çizgiler|BOYLAM
+Dünyanın küçük modeli|KÜRE
+Haritaları toplayan kitap|ATLAS
+Karadeniz'in incisi şehir|TRABZON
+Hamsisiyle ünlü bölge|KARADENİZ
+Uzungöl'ün bulunduğu il|TRABZON
+Sümela Manastırı'nın ili|TRABZON
+Nemrut Dağı'nın ili|ADIYAMAN
+Ani harabelerinin ili|KARS
+Mevlana'nın şehri|KONYA
+Kebabıyla ünlü Güneydoğu şehri|ADANA
+Baklavasıyla ünlü şehir|GAZİANTEP
+Balıklıgöl'ün şehri|ŞANLIURFA
+Efes antik kentine yakın ilçe|SELÇUK
+Bodrum'un ili|MUĞLA
+Ölüdeniz'in bulunduğu ilçe|FETHİYE
+Kaleiçi'nin şehri|ANTALYA
+Türkiye'nin en batı ucundaki il|ÇANAKKALE
+Türkiye'nin en doğusundaki il|IĞDIR
+Tuz Gölü'nün yakınındaki il|AKSARAY
+Rize'nin ünlü ürünü|ÇAY
+Giresun'un ünlü ürünü|FINDIK
+Malatya'nın ünlü ürünü|KAYISI
+Afyon'un ünlü tatlısı|KAYMAK
+Bursa'nın ünlü dağı|ULUDAĞ
+Erciyes Dağı'nın ili|KAYSERİ
+İzmir'in saat kulesinin bulunduğu meydan|KONAK
+Ankara'nın simgesi olan anıt mezar|ANITKABİR
+İstanbul'un simgesi kule|GALATA
+Kız Kulesi'nin bulunduğu semt|ÜSKÜDAR
+İki kıtada toprağı olan şehir|İSTANBUL
+Fırat ile birlikte Mezopotamya'yı sulayan nehir|DİCLE
+Atatürk Barajı'nın kurulu olduğu nehir|FIRAT
+Kızılırmak'ın döküldüğü deniz|KARADENİZ
+Türkiye'nin en derin gölü|SALDA
+Beyaz kumsalıyla ünlü göl|SALDA
+Flamingoların gölü|TUZ
+Avustralya'nın başkenti|KANBERRA
+Kanada'nın başkenti|OTTAVA
+ABD'nin başkenti|WASHİNGTON
+Kuzey ışıklarıyla ünlü ada ülkesi|İZLANDA
+Piramitlerin ülkesi|MISIR
+Taj Mahal'in ülkesi|HİNDİSTAN
+Machu Picchu'nun ülkesi|PERU
+Kilimanjaro'nun kıtası|AFRİKA
+Amazon Nehri'nin kıtası|AMERİKA
+Alp Dağları'nın kıtası|AVRUPA
+Himalayaların kıtası|ASYA
+Penguenlerin kıtası|ANTARKTİKA

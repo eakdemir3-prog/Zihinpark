@@ -1,0 +1,113 @@
+Kıyma ve soğanla yapılan ızgara köfte şehri İnegöl'ün ürünü|KÖFTE
+Döner dilimlenip yoğurt ve tereyağıyla sunulan yemek|İSKENDER
+Yufka arasına cevizle yapılan şerbetli tatlı|BAKLAVA
+Şerbetli, tel tel tatlı|KADAYIF
+Sütlü, fırında üstü kızarmış tatlı|SÜTLAÇ
+Ramazan'da kuyruk olan yuvarlak ekmek|PİDE
+Simidin üstündeki tohum|SUSAM
+Kahvaltının vazgeçilmez beyazı|PEYNİR
+Zeytinden elde edilen yağ|ZEYTİNYAĞI
+Yoğurdun su ve tuzla yapılan içeceği|AYRAN
+Kırmızı mercimekle yapılan çorba|MERCİMEK
+Bulgur ve kıymayla yapılan çiğ köfte malzemesi|BULGUR
+Pirinçle yapılan tane tane yemek|PİLAV
+Patlıcan, kıyma ve beşamelle yapılan Yunan esintili yemek|MUSAKKA
+Etli, sebzeli tencere yemeği|TÜRLÜ
+İnce hamur içinde kıyma, yoğurt ve sarımsaklı yemek|MANTI
+Asma yaprağıyla yapılan yemek|SARMA
+Biberin içine pirinç doldurularak yapılan yemek|DOLMA
+Lahmacunun hamurunun üstündeki|KIYMA
+Ekmekle yapılan, ince yuvarlak fırın yemeği|LAHMACUN
+Pazar yerinde satılan karpuzun kardeşi|KAVUN
+Kırmızı, sulu yaz meyvesi|KARPUZ
+Salatanın kırmızısı|DOMATES
+Salatanın yeşili|MARUL
+Turşusu yapılan yeşil sebze|SALATALIK
+Kızartması yapılan nişastalı sebze|PATATES
+Gözleri yaşartan sebze|SOĞAN
+Kokusu güçlü küçük dişler|SARIMSAK
+Acısı olan kırmızı veya yeşil sebze|BİBER
+Mor kabuklu sebze|PATLICAN
+Tavşanların sevdiği turuncu sebze|HAVUÇ
+Popeye'ın gücünü veren sebze|ISPANAK
+Kuru fasulyenin yanında yenen|PİLAV
+Fasulyenin kuru hali yemeği|KURUFASULYE
+Nohutla yapılan sıcak sokak lezzeti|NOHUT
+Midye dolmasının içi|PİRİNÇ
+Balık ekmeğin balığı|USKUMRU
+Karadeniz'de mısır unu ve tereyağıyla yapılan|MUHLAMA
+Gaziantep'in ünlü fıstığı|ANTEPFISTIĞI
+Kahvaltıda ballı yenen yağlı süt ürünü|KAYMAK
+Arıların ürettiği tatlı|BAL
+Kahvenin köpüklü hali Türk usulü|KÖPÜK
+Türk kahvesinin pişirildiği kap|CEZVE
+İnce belli bardakta içilen|ÇAY
+Çayın demlendiği iki katlı kap|ÇAYDANLIK
+Lokumun tozlu kaplaması|PUDRA
+Bayramlarda ikram edilen şekerli tatlı|LOKUM
+Helvası yapılan susam ezmesi|TAHİN
+Tahinle karıştırılan tatlı|PEKMEZ
+Üzümden yapılan koyu tatlı|PEKMEZ
+Çocukların sevdiği kakaolu yiyecek|ÇİKOLATA
+Fırında kabaran tatlı|KEK
+Kat kat kremalı kutlama tatlısı|PASTA
+İtalyan mutfağının yuvarlak hamuru|PİZZA
+İtalyanların uzun ince hamur işi|SPAGETTİ
+Japonların çiğ balıklı yemeği|SUŞİ
+Meksika'nın dürüm benzeri yemeği|TAKO
+Hamburgerin içindeki et|KÖFTE
+Patates kızartmasının yanında kırmızı sos|KETÇAP
+Sarı, ekşimsi sos|HARDAL
+Yumurta ve yağla yapılan beyaz sos|MAYONEZ
+Hamuru kabartan madde|MAYA
+Ekmek yapan kişi|FIRINCI
+Yemek yapan kişi|AŞÇI
+Yemeklerin piştiği kap|TENCERE
+Yağda kızartma yapılan kap|TAVA
+Çorbanın içildiği alet|KAŞIK
+Eti kesen alet|BIÇAK
+Makarnayı alan uçlu alet|ÇATAL
+Yemeklerin konduğu düz kap|TABAK
+Hamuru açan uzun sopa|OKLAVA
+Mutfakta yiyecekleri soğuk tutan|BUZDOLABI
+Yemeği pişiren kapalı ısıtıcı|FIRIN
+Yemeğe tat veren beyaz taneler|TUZ
+Tatlıların beyaz tatlandırıcısı|ŞEKER
+Kırmızı acı toz baharat|PULBİBER
+Köftenin kokulu yeşil baharatı|KİMYON
+Yaprağıyla kokulu yeşil ot|NANE
+Salatanın kıvırcık yeşil otu|MAYDANOZ
+Limonun tadı|EKŞİ
+Sarı, ekşi narenciye|LİMON
+C vitaminiyle ünlü turuncu meyve|PORTAKAL
+Kışın kabuğu kolay soyulan meyve|MANDALİNA
+Kırmızı, kalp şekilli meyve|ÇİLEK
+Sonbaharın taneli kırmızı meyvesi|NAR
+Maymunların sevdiği sarı meyve|MUZ
+Elma şeklinde, yeşil sulu meyve|ARMUT
+Salkım salkım büyüyen meyve|ÜZÜM
+Çekirdeği zor çıkan sarı yaz meyvesi|ŞEFTALİ
+Haziranda yenen kırmızı küçük meyve|KİRAZ
+Kirazın ekşi kardeşi|VİŞNE
+İncirin kurusu yapılan şehri|AYDIN
+Kahvaltıda yenen siyah veya yeşil|ZEYTİN
+Kahvaltının haşlanmış ya da sahanda pişen yiyeceği|YUMURTA
+Yumurtalı, biberli, domatesli kahvaltı yemeği|MENEMEN
+Sucuklu yumurtanın eti|SUCUK
+Kurutulmuş baharatlı et|PASTIRMA
+Döner kebabın piştiği şiş|DÖNER
+Şişe dizilip közde pişen et|ŞİŞ
+Adana kebabın etine katılan|KUYRUKYAĞI
+Kurban'da yapılan et yemeği|KAVURMA
+Sıcak ve soğuk mezeler sofrası|MEZE
+Yoğurtlu, salatalıklı meze|CACIK
+Közlenmiş patlıcanlı meze|BABAGANNUŞ
+Nohut ezmesi|HUMUS
+Mısırın patlatılmış hali|PATLAMIŞMISIR
+Kurabiyenin hamuruna konan yağ|TEREYAĞI
+Fırında pişen tuzlu çubuk|GALETA
+Çorbanın yanına konan kızarmış ekmek|KRUTON
+Börek yapılan ince hamur|YUFKA
+Tepside pişen katmerli hamur işi|BÖREK
+Kahvaltının susamlı halka ekmeği|SİMİT
+Gözleme gibi sacda pişen ince ekmek|LAVAŞ

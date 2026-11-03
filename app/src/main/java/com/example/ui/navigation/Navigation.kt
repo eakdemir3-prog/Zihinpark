@@ -115,6 +115,9 @@ object Routes {
     const val WEEKLY = "weekly_trends"
     const val LEVELS = "levels/{gameId}"
     const val PLAY = "play/{gameId}/{level}"
+    const val BD = "bulmaca"
+    const val BD_PLAY = "bulmaca/{level}"
+    fun bdPlay(level: Int) = "bulmaca/$level"
     const val LINGO = "lingo"
     const val LINGO_PLAY = "lingo/{level}"
     fun lingoPlay(level: Int) = "lingo/$level"
@@ -131,8 +134,8 @@ private fun AnimatedContentTransitionScope<NavBackStackEntry>.enterFor(): EnterT
     val from = tabIndex(initialState)
     val to = tabIndex(targetState)
     return if (from >= 0 && to >= 0) {
-        val dir = if (to > from) 1 else -1
-        slideInHorizontally(tween(340)) { it * dir / 4 } + fadeIn(tween(300))
+        // Sekme geçişi: hafif, hızlı geçiş (ağır kaydırma yok)
+        fadeIn(tween(200, delayMillis = 60))
     } else if (to < 0) {
         slideInHorizontally(tween(360)) { it / 3 } + fadeIn(tween(300)) + scaleIn(initialScale = 0.96f)
     } else {
@@ -144,8 +147,7 @@ private fun AnimatedContentTransitionScope<NavBackStackEntry>.exitFor(): ExitTra
     val from = tabIndex(initialState)
     val to = tabIndex(targetState)
     return if (from >= 0 && to >= 0) {
-        val dir = if (to > from) 1 else -1
-        slideOutHorizontally(tween(300)) { -it * dir / 4 } + fadeOut(tween(220))
+        fadeOut(tween(120))
     } else if (to < 0) {
         fadeOut(tween(250)) + scaleOut(targetScale = 0.96f)
     } else {
@@ -221,7 +223,8 @@ fun ZihinParkAppNavigation(
                             },
                             onOpenShop = { navController.navigate(Routes.SHOP) },
                             onOpenWow = { navController.navigate(Routes.WOW) },
-                            onOpenLingo = { navController.navigate(Routes.LINGO) }
+                            onOpenLingo = { navController.navigate(Routes.LINGO) },
+                            onOpenBulmaca = { navController.navigate(Routes.BD) }
                         )
                     }
                     composable(MainTab.Games.route) {
@@ -231,7 +234,25 @@ fun ZihinParkAppNavigation(
                             onOpenGame = ::openGame,
                             onOpenShop = { navController.navigate(Routes.SHOP) },
                             onOpenWow = { navController.navigate(Routes.WOW) },
-                            onOpenLingo = { navController.navigate(Routes.LINGO) }
+                            onOpenLingo = { navController.navigate(Routes.LINGO) },
+                            onOpenBulmaca = { navController.navigate(Routes.BD) }
+                        )
+                    }
+                    composable(Routes.BD) {
+                        com.example.ui.bulmaca.BulmacaMapScreen(
+                            repository = repository,
+                            onBack = { navController.popBackStack() },
+                            onPlay = { navController.navigate(Routes.bdPlay(it)) },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
+                        )
+                    }
+                    composable(Routes.BD_PLAY, arguments = listOf(navArgument("level") { type = NavType.IntType })) { entry ->
+                        val level = entry.arguments?.getInt("level") ?: 1
+                        com.example.ui.bulmaca.BulmacaPlayScreen(
+                            level = level, repository = repository, soundManager = soundManager,
+                            onBack = { navController.popBackStack() },
+                            onNext = { next -> navController.navigate(Routes.bdPlay(next)) { popUpTo(Routes.BD_PLAY) { inclusive = true } } },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
                         )
                     }
                     composable(Routes.LINGO) {

@@ -244,7 +244,12 @@ fun AnimatedCounter(
     suffix: String = ""
 ) {
     val anim = remember { Animatable(value.toFloat()) }
-    LaunchedEffect(value) { anim.animateTo(value.toFloat(), tween(600)) }
+    val born = remember { System.currentTimeMillis() }
+    LaunchedEffect(value) {
+        // Ekran açılırken veri yüklenince saymadan doğrudan göster (sekme geçişinde 0'dan sayma/kasma olmasın)
+        if (System.currentTimeMillis() - born < 700) anim.snapTo(value.toFloat())
+        else anim.animateTo(value.toFloat(), tween(600))
+    }
     Text(
         text = "$prefix${anim.value.toInt()}$suffix",
         modifier = modifier,

@@ -1,0 +1,101 @@
+Türk kahvesinin yanında ikram edilen|SU
+Misafire ikram edilen kolonya kokusu çiçeği|LİMON
+Kına gecesi yapılan tören|DÜĞÜN
+Gelin ile damadın töreni|NİKÂH
+Bebek doğunca takılan altın|ÇEYREK
+Ramazan'ın sonundaki bayram|ŞEKER
+Kurban kesilen bayram|KURBAN
+Ramazan'da oruç açılan yemek|İFTAR
+Ramazan'da gece yemeği|SAHUR
+Ramazan'da davul çalan kişi|DAVULCU
+Nevruz'da atlanan|ATEŞ
+Hıdrellez'de dilek asılan ağaç|GÜL
+Kötü gözden koruyan mavi süs|NAZARBONCUĞU
+Çocukların bayramda öptüğü|EL
+Askere gideni uğurlarken çalınan|DAVUL
+Türk hamamında yapılan|KESE
+Hamamda sıcak taş|GÖBEKTAŞI
+Hamamda giyilen tahta terlik|NALIN
+Hamamda kullanılan ince havlu|PEŞTEMAL
+Kapalıçarşı'nın şehri|İSTANBUL
+Geleneksel Türk evinde oturulan alçak sedir|MİNDER
+Halı dokunan geleneksel desen|MOTİF
+Düz dokuma yer örtüsü|KİLİM
+Oyalı başörtüsü süsü|OYA
+Kına gecesinde yakılan|KINA
+Bakır kapları parlatan usta|KALAYCI
+Mahallenin baş sorumlusu|MUHTAR
+Mahalle kahvesinde oynanan taşlı oyun|OKEY
+Tavla zarlarının sayısı|İKİ
+Tavlada altı-altı gelmesi|DÜŞEŞ
+Okey taşlarının konduğu yer|ISTAKA
+Çocukların ip ile oynadığı oyun|İPATLAMA
+Gözü bağlı oynanan oyun|KÖREBE
+Saklanıp aranan oyun|SAKLAMBAÇ
+Topla iki takımla oynanan sokak oyunu|YAKANTOP
+Bilye ile oynanan oyun|MİSKET
+Gökyüzüne uçurulan kâğıt|UÇURTMA
+Çember çevirme oyununun aleti|ÇEMBER
+Taşla kare kutularda seksek|SEKSEK
+Hikâyeyi kahvehanede anlatan|MEDDAH
+Ramazan'da sahne alan gölge oyunu|KARAGÖZ
+Halk ozanlarının çaldığı|SAZ
+Âşıkların atıştığı şiir türü|ATIŞMA
+Ünlü halk ozanı Âşık|VEYSEL
+Mizahıyla ünlü halk bilgesi Nasreddin|HOCA
+Nasreddin Hoca'nın şehri|AKŞEHİR
+Yunus Emre'nin türü|TASAVVUF
+Mevlana'nın ünlü eseri|MESNEVİ
+Mevlevilerin dönerek yaptığı|SEMA
+Dönen dervişlerin başlığı|SİKKE
+Efelerin giydiği yerel kıyafet|ZEYBEK
+Karadeniz kadınlarının başlığı|YAZMA
+Türk usulü silindir şapka değil, kırmızı püsküllü|FES
+Kahveyle ünlü fal|KAHVEFALI
+6 Mayıs'ta kutlanan bahar şenliği|HIDRELLEZ
+Baharın gelişini kutlayan bayram|NEVRUZ
+Cumhuriyet Bayramı'nın ayı|EKİM
+Çocuk Bayramı'nın ayı|NİSAN
+Gençlik ve Spor Bayramı'nın ayı|MAYIS
+Zafer Bayramı'nın ayı|AĞUSTOS
+Öğretmenler Günü'nün ayı|KASIM
+Okulların açıldığı ay|EYLÜL
+Yaz tatilinin başladığı ay|HAZİRAN
+Yılın ilk ayı|OCAK
+Yılın son ayı|ARALIK
+Çocukların karnesini aldığı dönem sonu|KARNE
+Öğrencilerin okulda giydiği|FORMA
+Sınıfta derse giren kişi|ÖĞRETMEN
+Okuldaki en yüksek yönetici|MÜDÜR
+Teneffüste çalan|ZİL
+Okulun kapısındaki görevli|BEKÇİ
+Bayrağımızın renkleri kırmızı ve|BEYAZ
+Bayrağımızdaki gök cisimleri ay ve|YILDIZ
+Milli marşımız|İSTİKLAL
+Pazartesi okullarda söylenen|MARŞ
+Türk lirasının alt birimi|KURUŞ
+Paranın basıldığı kurum|DARPHANE
+Türkiye'nin plaka kodu 06 olan ili|ANKARA
+Plaka kodu 34 olan il|İSTANBUL
+Plaka kodu 35 olan il|İZMİR
+Plaka kodu 01 olan il|ADANA
+Türkiye'nin il sayısı|SEKSENBİR
+Türkiye'nin coğrafi bölge sayısı|YEDİ
+Galata Köprüsü'nde tutulan|BALIK
+Vapurda martılara atılan|SİMİT
+Boğaz'da yolcu taşıyan gemi|VAPUR
+İstanbul'un tarihi tramvay caddesi|İSTİKLAL
+Büyükada'nın bulunduğu adalar|PRENS
+Adalar'da ulaşım için kullanılan|BİSİKLET
+Mahallede bağırarak satış yapan|SEYYAR
+Pazarda tezgâhın sahibi|ESNAF
+Ekmek fırını sahibi|FIRINCI
+Bakkalın modern hali|MARKET
+Ayakkabı tamircisi|KUNDURACI
+Sokaklarda simit satan|SİMİTÇİ
+Mahallenin sabah ekmeğini getiren|EKMEKÇİ
+Yaz akşamı kapı önünde içilen|ÇAY
+Ev sahibinin misafire ikram ettiği şekerleme|LOKUM
+Misafirliğe giderken götürülen|HEDİYE
+Komşuya tabak geri verirken içine konan|TATLI
+Yeni eve taşınana getirilen|EKMEKTUZ

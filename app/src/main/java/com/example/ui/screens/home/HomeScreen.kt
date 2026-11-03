@@ -74,13 +74,14 @@ fun HomeScreen(
     onOpenCategory: (categoryName: String) -> Unit,
     onOpenShop: () -> Unit,
     onOpenWow: () -> Unit = {},
-    onOpenLingo: () -> Unit = {}
+    onOpenLingo: () -> Unit = {},
+    onOpenBulmaca: () -> Unit = {}
 ) {
     val userName by repository.preferences.userName.collectAsState(initial = "Zihin Gezgini")
     val streak by repository.preferences.dailyStreak.collectAsState(initial = 0)
     val diamonds by repository.preferences.diamondBalance.collectAsState(initial = 0)
     val lastGame by repository.preferences.lastPlayedGame.collectAsState(initial = null)
-    val progress by repository.allProgress.collectAsState(initial = emptyMap())
+    val progress by repository.allProgress.collectAsState()
 
     val totalStars = progress.values.sumOf { it.totalStars }
     val cleared = progress.values.sumOf { it.clearedCount }
@@ -124,6 +125,7 @@ fun HomeScreen(
 
         item { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
         item { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
+        item { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
 
         if (continueGame != null) {
             item {

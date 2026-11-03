@@ -62,7 +62,10 @@ class GameRepository(context: Context) {
     val totalDailyGamesCount: Flow<Int?> = activityDao.getTotalGamesPlayedCount()
 
     /** Tüm oyunların seviye ilerlemesi (oyun id -> ilerleme). */
-    val allProgress: Flow<Map<String, GameProgress>> =
+    private val cacheScope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.SupervisorJob() + kotlinx.coroutines.Dispatchers.Default)
+
+    /** Uygulama boyunca bellekte tutulur: sekmeye dönünce anında hazır (boş durumdan yeniden hesaplanmaz). */
+    val allProgress: kotlinx.coroutines.flow.StateFlow<Map<String, GameProgress>> =
         combine(levelDao.getAllLevels(), gameDao.getAllGames()) { levels, games ->
             val byGame = levels.groupBy { it.gameId }
             val endless = games.associate { it.id to it.endlessBest }
@@ -73,7 +76,7 @@ class GameRepository(context: Context) {
                     endlessBest = endless[meta.id] ?: 0
                 )
             }
-        }
+        }.stateIn(cacheScope, kotlinx.coroutines.flow.SharingStarted.Eagerly, emptyMap())
 
     fun progressFor(gameId: String): Flow<GameProgress> =
         combine(levelDao.getLevelsForGame(gameId), gameDao.getGameById(gameId)) { rows, game ->

@@ -1,0 +1,115 @@
+Suyun kimyasal formülündeki element hidrojen ve...|OKSİJEN
+Canlıların solunumda aldığı gaz|OKSİJEN
+Bitkilerin güneşle besin üretmesi|FOTOSENTEZ
+Bitkilere yeşil rengini veren madde|KLOROFİL
+Canlıların en küçük yapı birimi|HÜCRE
+Kalıtım bilgisini taşıyan molekül|DNA
+Kanı pompalayan organ|KALP
+Düşünmeyi sağlayan organ|BEYİN
+Soluk alıp vermeyi sağlayan organ|AKCİĞER
+Kanı temizleyen organ|BÖBREK
+Vücudun en büyük organı|DERİ
+İskeleti oluşturan sert doku|KEMİK
+Kasları kemiklere bağlayan doku|KİRİŞ
+Kandaki kırmızı hücreler|ALYUVAR
+Mikroplarla savaşan kan hücresi|AKYUVAR
+Hastalık yapan küçük canlı|MİKROP
+Bakterileri öldüren ilaç|ANTİBİYOTİK
+Hastalıktan korumak için yapılan iğne|AŞI
+Çiçek aşısını bulan bilim insanı|JENNER
+Penisilini bulan bilim insanı|FLEMİNG
+Görelilik kuramının sahibi|EİNSTEİN
+Yerçekimini elmayla açıklayan bilim insanı|NEWTON
+Ampulü geliştiren mucit|EDİSON
+Telefonu icat eden kişi|BELL
+Radyoaktivite çalışmalarıyla ünlü kadın bilim insanı|CURİE
+Evrim kuramını ortaya koyan|DARWİN
+Dünyanın döndüğünü savunan İtalyan|GALİLEO
+Elementleri sıralayan tablo|PERİYODİK
+Altının sembolü Au olan element grubu|METAL
+Kalemlerin içindeki karbon|GRAFİT
+En sert doğal madde|ELMAS
+Paslanan metal|DEMİR
+Elektrik kablolarının metali|BAKIR
+Termometrelerde kullanılan sıvı metal|CIVA
+Hafif, uçaklarda kullanılan metal|ALÜMİNYUM
+Gaz halindeki su|BUHAR
+Katı haldeki su|BUZ
+Suyun kaynama sıcaklığı derecesi|YÜZ
+Sıcaklığı ölçen alet|TERMOMETRE
+Hava basıncını ölçen alet|BAROMETRE
+Uzaktaki cisimleri gösteren alet|TELESKOP
+Küçük canlıları büyüten alet|MİKROSKOP
+Depremi ölçen alet|SİSMOGRAF
+Elektrik akımının birimi|AMPER
+Gücün birimi|VAT
+Kuvvetin birimi|NEWTON
+Uzunluk birimi|METRE
+Kütle birimi|KİLOGRAM
+Zaman birimi|SANİYE
+Işık hızı saniyede kaç bin kilometre|ÜÇYÜZ
+Işığın renklerine ayrılması|TAYF
+Gökkuşağı renklerini ayıran cam|PRİZMA
+Görüntüyü yansıtan cam|AYNA
+Sesin yansıması|YANKI
+Mıknatısın çektiği metal|DEMİR
+Mıknatısın iki ucu|KUTUP
+Elektriği ileten madde|İLETKEN
+Elektriği iletmeyen madde|YALITKAN
+Pil içindeki enerji türü|KİMYASAL
+Rüzgâr türbininin ürettiği|ELEKTRİK
+Güneşten elektrik üreten levha|PANEL
+Hareket enerjisinin adı|KİNETİK
+Konum enerjisinin adı|POTANSİYEL
+Asitlerin tadı|EKŞİ
+Sabunun tadı gibi olan madde türü|BAZ
+Asit ve bazın tepkimesi sonucu oluşan|TUZ
+Maddenin en küçük yapı taşı|ATOM
+Atom çekirdeğindeki yüksüz parçacık|NÖTRON
+Atom çekirdeğindeki artı yüklü parçacık|PROTON
+Çekirdek etrafında dönen eksi yüklü|ELEKTRON
+Atomların birleşerek oluşturduğu yapı|MOLEKÜL
+Bilgisayarın beyni|İŞLEMCİ
+Bilgisayara komut veren yazılım dili örneği|PYTHON
+Bilgisayarın kalıcı belleği|DİSK
+İnternette sayfaları gösteren program|TARAYICI
+Bilgisayarda yazı yazmaya yarayan|KLAVYE
+Ekrandaki imleci yöneten|FARE
+Kablosuz internet|WİFİ
+Robotlara yön veren yazılım|PROGRAM
+Yapay zekâyla düşünen makine|ROBOT
+Bilgiyi ikili sayılarla saklayan birim|BİT
+Sekiz bitlik birim|BAYT
+Kâğıda baskı yapan cihaz|YAZICI
+Görüntü çeken cihaz|KAMERA
+Dünya'nın etrafındaki gaz tabakası|ATMOSFER
+Güneşin zararlı ışınlarını süzen tabaka|OZON
+Sera etkisini artıran gaz|KARBONDİOKSİT
+Yer kabuğunun ani sarsılması|DEPREM
+Dev deniz dalgası|TSUNAMİ
+Gök gürültüsünden önce görülen ışık|ŞİMŞEK
+Bulutlardan düşen su|YAĞMUR
+Kristal halinde yağan|KAR
+Buz taneleri halinde yağan|DOLU
+Havadaki su buharı|NEM
+Dönen güçlü rüzgâr|HORTUM
+Fosillerle ilgilenen bilim|PALEONTOLOJİ
+Yıldızlarla ilgilenen bilim|ASTRONOMİ
+Canlılarla ilgilenen bilim|BİYOLOJİ
+Maddelerle ilgilenen bilim|KİMYA
+Kuvvet ve hareketle ilgilenen bilim|FİZİK
+Sayılarla ilgilenen bilim|MATEMATİK
+Taşları inceleyen bilim|JEOLOJİ
+Bitkileri inceleyen bilim|BOTANİK
+Pi sayısının ilk rakamı|ÜÇ
+Üç kenarlı şekil|ÜÇGEN
+Dört eşit kenarlı şekil|KARE
+Köşesi olmayan yuvarlak şekil|DAİRE
+Dairenin merkezden kenara uzaklığı|YARIÇAP
+Toplama işleminin sonucu|TOPLAM
+Çarpma işleminin sonucu|ÇARPIM
+Bölme işleminin sonucu|BÖLÜM
+Hiçlik bildiren rakam|SIFIR
+Problem çözmenin adım adım yolu|ALGORİTMA
+Cebiri kuran Müslüman bilgin|HAREZMİ
+İlk Türk astronot|ALPER

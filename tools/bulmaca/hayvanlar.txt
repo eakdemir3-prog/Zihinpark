@@ -1,0 +1,108 @@
+Ormanların kralı|ASLAN
+Boynu en uzun hayvan|ZÜRAFA
+Hortumu olan dev memeli|FİL
+Siyah beyaz çizgili at|ZEBRA
+Karada en hızlı koşan hayvan|ÇİTA
+Bambu yiyen siyah beyaz ayı|PANDA
+Keseli zıplayan hayvan|KANGURU
+Okaliptüs yiyen keseli hayvan|KOALA
+Kutupta yaşayan beyaz ayı|KUTUPAYISI
+Uçamayan smokinli kuş|PENGUEN
+Denizdeki en büyük memeli|BALİNA
+Zeki ve oyuncu deniz memelisi|YUNUS
+Sekiz kollu deniz canlısı|AHTAPOT
+Kabuğunu sırtında taşıyan yavaş hayvan|KAPLUMBAĞA
+Gece avlanan, başını çevirebilen kuş|BAYKUŞ
+Konuşmaları taklit eden renkli kuş|PAPAĞAN
+Bal yapan böcek|ARI
+Renkli kanatlı böcek|KELEBEK
+Çalışkanlığıyla bilinen küçük böcek|KARINCA
+Ağ ören hayvan|ÖRÜMCEK
+Kurnazlığıyla bilinen hayvan|TİLKİ
+Sürü halinde yaşayan, uluyan hayvan|KURT
+Dikenli küçük memeli|KİRPİ
+Ceviz biriktiren ağaç hayvanı|SİNCAP
+Uzun kulaklı havuç sever|TAVŞAN
+Baraj yapan kemirgen|KUNDUZ
+Gece uçan memeli|YARASA
+Çölde hörgücüyle yaşayan hayvan|DEVE
+Rengini değiştiren sürüngen|BUKALEMUN
+Nehirde yaşayan iri sürüngen|TİMSAH
+Zehirli olabilen sürünen hayvan|YILAN
+Kükremesi en güçlü çizgili kedi|KAPLAN
+Benekli büyük kedi|LEOPAR
+Sabah öten kümes hayvanı|HOROZ
+Yumurtlayan kümes hayvanı|TAVUK
+Süt veren çiftlik hayvanı|İNEK
+Yünü için beslenen hayvan|KOYUN
+Sakallı, dağlarda tırmanan hayvan|KEÇİ
+Yük taşıyan inatçı hayvan|EŞEK
+Hızlı koşan binek hayvanı|AT
+Göçmen, bebek getirdiği söylenen kuş|LEYLEK
+Deniz kıyısında gezen beyaz kuş|MARTI
+Boynuzlarıyla ormanların zarif hayvanı|GEYİK
+En büyük kuş|DEVEKUŞU
+Kuşların en hızlısı|DOĞAN
+Yükseklerde süzülen yırtıcı kuş|KARTAL
+Kurbağanın yavrusu|İRİBAŞ
+Göl kenarında vıraklayan hayvan|KURBAĞA
+Burnunda boynuz olan iri hayvan|GERGEDAN
+Suda yaşayan dev "nehir atı"|SUAYGIRI
+İnsana en yakın maymun türü|ŞEMPANZE
+En büyük maymun|GORİL
+Pullu ve yüzgeçli su canlısı|BALIK
+Karadeniz'in ünlü küçük balığı|HAMSİ
+Köpekbalığının yüzgeci|YÜZGEÇ
+Yengeç gibi kabuklu deniz canlısı|KARİDES
+Denizdeki yıldız şekilli canlı|DENİZYILDIZI
+Şeffaf, yakan deniz canlısı|DENİZANASI
+Kediler gibi miyavlayan evcil hayvan|KEDİ
+İnsanın en iyi dostu|KÖPEK
+Peynir seven küçük kemirgen|FARE
+Evde kafeste beslenen küçük kemirgen|HAMSTER
+Ötüşüyle bilinen sarı kuş|KANARYA
+Barış simgesi kuş|GÜVERCİN
+Kışın uykuya yatan dev memeli|AYI
+Kutupta yaşayan dişleri uzun memeli|MORS
+Antarktika'da yaşayan yüzgeçli memeli|FOK
+Ağaçta yavaş hareket eden hayvan|TEMBELHAYVAN
+Avustralya'nın gagalı memelisi|PLATİPUS
+Uzun dilini karıncalara uzatan|KARINCAYİYEN
+Hayvan yavrusu: kuzunun annesi|KOYUN
+Atın yavrusu|TAY
+İneğin yavrusu|BUZAĞI
+Keçinin yavrusu|OĞLAK
+Köpeğin yavrusu|ENİK
+Tavuğun yavrusu|CİVCİV
+Hayvanları inceleyen bilim|ZOOLOJİ
+Hayvan doktoru|VETERİNER
+Hayvanların korunduğu bahçe|HAYVANATBAHÇESİ
+Etle beslenen hayvan|ETÇİL
+Otla beslenen hayvan|OTÇUL
+Kışın sıcak ülkelere giden kuşlar|GÖÇMEN
+Yumurtadan çıkan kuşun yuvası|YUVA
+Arının yaşadığı yer|KOVAN
+Karıncaların yaşadığı yer|YUVA
+Atların barındığı yer|AHIR
+Tavukların barındığı yer|KÜMES
+Kuşların vücudunu örten|TÜY
+Balıkların solunum organı|SOLUNGAÇ
+Aslanın boynundaki uzun tüyler|YELE
+Filin uzun dişleri|FİLDİŞİ
+Tavus kuşunun açtığı|KUYRUK
+Ağaçkakanın vurduğu yer|AĞAÇ
+Gece öten küçük böcek|AĞUSTOSBÖCEĞİ
+Işık saçan gece böceği|ATEŞBÖCEĞİ
+Kanını emerek kaşındıran sinek|SİVRİSİNEK
+Uğur getirdiğine inanılan benekli böcek|UĞURBÖCEĞİ
+Kabuğunda yaşayan yavaş canlı|SALYANGOZ
+Kanatsız, yerde kıvrılan toprak canlısı|SOLUCAN
+Çöl akrebinin zehirli kısmı|KUYRUK
+Zürafanın yaşadığı kıta|AFRİKA
+Pandanın anavatanı|ÇİN
+Kangurunun ülkesi|AVUSTRALYA
+Kel kartalın ülkesi simgesi|AMERİKA
+Ankara'ya adını veren uzun tüylü keçi|ANKARAKEÇİSİ
+Van kedisinin özelliği farklı renk|GÖZ
+Kangal köpeğinin ili|SİVAS
+Yılkı atlarıyla ünlü bölge|KAPADOKYA

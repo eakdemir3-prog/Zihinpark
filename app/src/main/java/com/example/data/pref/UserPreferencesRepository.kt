@@ -59,6 +59,12 @@ class UserPreferencesRepository(private val context: Context) {
         val WELCOME_DONE = booleanPreferencesKey("welcome_done")
         val PRO_PROMPT_DAY = longPreferencesKey("pro_prompt_day")
 
+        // Bulmaca Dünyası
+        val BD_LEVEL = intPreferencesKey("bd_level")
+        val BD_SAVE_LEVEL = intPreferencesKey("bd_save_level")
+        val BD_SAVE_ROWS = stringSetPreferencesKey("bd_save_rows")
+        val BD_SAVE_REVEALED = stringSetPreferencesKey("bd_save_revealed")
+
         // Lingo
         val LINGO_LEVEL = intPreferencesKey("lingo_level")
         val LINGO_DAILY_DAY = longPreferencesKey("lingo_daily_day")
@@ -75,6 +81,24 @@ class UserPreferencesRepository(private val context: Context) {
         val WOW_BONUS = intPreferencesKey("wow_bonus")
         val WOW_BONUS_WORDS = stringSetPreferencesKey("wow_bonus_words")
         val WOW_REVEALED = stringSetPreferencesKey("wow_revealed")
+    }
+
+    // ---- Bulmaca Dünyası ----
+    val bdLevel: Flow<Int> = context.dataStore.data.map { it[Keys.BD_LEVEL] ?: 1 }
+    val bdSave: Flow<Triple<Int, Set<String>, Set<String>>> = context.dataStore.data.map {
+        Triple(it[Keys.BD_SAVE_LEVEL] ?: 0, it[Keys.BD_SAVE_ROWS] ?: emptySet(), it[Keys.BD_SAVE_REVEALED] ?: emptySet())
+    }
+    suspend fun saveBd(level: Int, rows: Set<String>, revealed: Set<String>) {
+        context.dataStore.edit { it[Keys.BD_SAVE_LEVEL] = level; it[Keys.BD_SAVE_ROWS] = rows; it[Keys.BD_SAVE_REVEALED] = revealed }
+    }
+    /** İlk kez bitiyorsa true. */
+    suspend fun completeBd(level: Int): Boolean {
+        var first = false
+        context.dataStore.edit {
+            if (level >= (it[Keys.BD_LEVEL] ?: 1)) { it[Keys.BD_LEVEL] = level + 1; first = true }
+            it[Keys.BD_SAVE_LEVEL] = 0; it[Keys.BD_SAVE_ROWS] = emptySet(); it[Keys.BD_SAVE_REVEALED] = emptySet()
+        }
+        return first
     }
 
     // ---- Lingo ----

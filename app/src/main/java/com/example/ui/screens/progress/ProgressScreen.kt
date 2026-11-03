@@ -101,7 +101,7 @@ fun ProgressScreen(
     onNavigateToGames: () -> Unit,
     onNavigateToWeeklyTrends: () -> Unit = {}
 ) {
-    val progress by repository.allProgress.collectAsState(initial = emptyMap())
+    val progress by repository.allProgress.collectAsState()
     val activity by repository.allDailyActivities.collectAsState(initial = emptyList())
     val totalTime by repository.totalPlayTimeSeconds.collectAsState(initial = 0L)
     val days = remember(activity) { lastSevenDays(activity) }

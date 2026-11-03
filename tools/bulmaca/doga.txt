@@ -1,0 +1,98 @@
+Yaprakları sonbaharda dökülen ağaç türü|YAPRAKDÖKEN
+Kışın da yeşil kalan iğne yapraklı ağaç|ÇAM
+Yılbaşı ağacı olarak süslenen|KÖKNAR
+Meyvesi palamut olan ağaç|MEŞE
+Ince uzun beyaz gövdeli ağaç|HUŞ
+Suya yakın yetişen sarkık dallı ağaç|SÖĞÜT
+Kalın gövdeli uzun ömürlü ağaç|ÇINAR
+Meyvesi yağ yapılan ağaç|ZEYTİN
+Çiçeklerinden bal yapılan ağaç|IHLAMUR
+Bahar müjdecisi pembe çiçekli ağaç|ERGUVAN
+Hollanda'nın simgesi olan çiçek|LALE
+Aşkın simgesi kırmızı çiçek|GÜL
+Güneşe dönen sarı büyük çiçek|AYÇİÇEĞİ
+Beyaz yapraklı "seviyor sevmiyor" çiçeği|PAPATYA
+Çan şeklindeki kokulu bahar çiçeği|SÜMBÜL
+Kar içinden çıkan ilk çiçek|KARDELEN
+Kırmızı, tarlalarda açan|GELİNCİK
+Suda açan beyaz çiçek|NİLÜFER
+Mor, kokulu ve kurutulan çiçek|LAVANTA
+Çölde yetişen dikenli bitki|KAKTÜS
+Ormanda yağmurdan sonra çıkan|MANTAR
+Ağaç kabuğunda yetişen yeşil örtü|YOSUN
+Duvarlara tırmanan bitki|SARMAŞIK
+Bitkinin toprağın altındaki kısmı|KÖK
+Bitkinin yeşil yapraklarını taşıyan|DAL
+Ağacın ana kısmı|GÖVDE
+Ağacın yıllık halkalarının olduğu kısım|GÖVDE
+Çiçeğin renkli yaprakları|TAÇYAPRAK
+Arıların çiçeklerden topladığı toz|POLEN
+Bitkinin yeni filiz verdiği tane|TOHUM
+Toprağı sulayan gökten gelen|YAĞMUR
+Gökkuşağının çıktığı hava|YAĞMURLU
+Dağların zirvesini kaplayan beyaz|KAR
+Dağlardan aşağı akan buz kütlesi|BUZUL
+Ormanın içindeki küçük açıklık|AÇIKLIK
+Kayalardan düşen su|ŞELALE
+Yer altından çıkan su|KAYNAK
+Sıcak su çıkan doğal kaynak|KAPLICA
+Yerden fışkıran sıcak su|GAYZER
+Dağın en yüksek noktası|ZİRVE
+Dağın eteğindeki yamaç|ETEK
+Derin ve dar vadi|KANYON
+Yer altındaki büyük oyuk|MAĞARA
+Mağarada tavandan sarkan|SARKIT
+Mağarada yerden yükselen|DİKİT
+Kumlu deniz kenarı|PLAJ
+Denizin kıyıya vuran hareketi|DALGA
+Denizin çekilmesi ve yükselmesi|GELGİT
+Sabah çimenlerde oluşan su damlaları|ÇİY
+Kışın camlarda oluşan buz deseni|KIRAĞI
+Görüşü azaltan bulut gibi hava|SİS
+Gökte gürleyen ses|GÖKGÜRÜLTÜSÜ
+Yağmurdan sonra görülen yedi renk|GÖKKUŞAĞI
+Kuvvetli rüzgâr ve yağmurlu hava|FIRTINA
+Hafif esen rüzgâr|MELTEM
+Kuzeyden esen soğuk rüzgâr|POYRAZ
+Güneyden esen sıcak rüzgâr|LODOS
+Sıcaklığın çok arttığı yaz dönemi|SICAKHAVADALGASI
+Yılın dört bölümü|MEVSİM
+Ağaçların çiçek açtığı mevsim|İLKBAHAR
+Yaprakların döküldüğü mevsim|SONBAHAR
+Karların yağdığı mevsim|KIŞ
+Tatillerin yapıldığı sıcak mevsim|YAZ
+Ormanları koruyan görevli|ORMANCI
+Ormanların en büyük düşmanı|YANGIN
+Yeni fidan dikme etkinliği|AĞAÇLANDIRMA
+Atıkları yeniden kullanma|GERİDÖNÜŞÜM
+Doğayı koruma bilinci|ÇEVRE
+Havayı kirleten gri duman|EGZOZ
+Rüzgârdan elde edilen enerji|RÜZGÂR
+Güneşten elde edilen enerji|GÜNEŞ
+Barajlardan elde edilen enerji|HİDROELEKTRİK
+Toprağı verimli yapan doğal gübre|KOMPOST
+Toprağı kazan, kuşların sevdiği canlı|SOLUCAN
+Bahçede sebze yetiştirilen yer|BOSTAN
+Meyve ağaçlarının olduğu bahçe|MEYVELİK
+Üzüm yetiştirilen bahçe|BAĞ
+Çay yetiştirilen bölge|KARADENİZ
+Pamuk yetiştirilen ova|ÇUKUROVA
+Türkiye'nin buğday ambarı|KONYA
+Buğday tarlası|EKİN
+Tarlaları süren araç|TRAKTÖR
+Toprağı süren eski alet|SABAN
+Ürünlerin toplandığı zaman|HASAT
+Ekinleri biçen alet|ORAK
+Tarlaları sulayan kanal|ARK
+Bitkilerin büyüdüğü cam ev|SERA
+Bitki yetiştirilen kap|SAKSI
+Bitkiye verilen su|SULAMA
+Bitkilerin yeşil dokusu|YAPRAK
+Kozalak veren ağaç|ÇAM
+Hindistan cevizi veren ağaç|PALMİYE
+Muz yetişen sıcak bölge|TROPİKAL
+Yağmur ormanlarının ünlüsü|AMAZON
+Dünyanın akciğerleri denilen|ORMANLAR
+Doğada yaşayan hayvan topluluğu|FAUNA
+Bir bölgenin bitki örtüsü|FLORA
+Kutuplarda görülen ışık dansı|AURORA

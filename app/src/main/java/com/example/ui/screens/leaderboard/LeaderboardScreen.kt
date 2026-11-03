@@ -59,7 +59,7 @@ private data class Badge(val emoji: String, val title: String, val desc: String,
  */
 @Composable
 fun LeaderboardScreen(repository: GameRepository) {
-    val progress by repository.allProgress.collectAsState(initial = emptyMap())
+    val progress by repository.allProgress.collectAsState()
     val games by repository.allGames.collectAsState(initial = emptyList())
     val streak by repository.preferences.dailyStreak.collectAsState(initial = 0)
     var tab by rememberSaveable { mutableIntStateOf(0) }
