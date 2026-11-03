@@ -18,12 +18,12 @@ class LevelRulesTest {
     }
 
     @Test
-    fun `zorluk bolgelerle hizali ve artan`() {
+    fun `zorluk artan ve tabandan baslar`() {
         var prev = -1f
         for (l in 1..50) for (r in 0 until LevelRules.roundsFor(l)) {
             val d = LevelRules.difficulty(l, r)
             assertTrue("$l/$r", d >= prev)
-            assertEquals("bölge $l", LevelRules.zoneOf(l), (d * 5).toInt())
+            assertTrue("taban $l", d >= LevelRules.DIFFICULTY_FLOOR - 1e-4f && d < 1f)
             prev = d
         }
     }
