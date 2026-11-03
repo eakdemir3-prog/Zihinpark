@@ -27,8 +27,9 @@ import java.util.concurrent.atomic.AtomicBoolean
  * Reklam kuralları (kullanıcıyı boğmamak için):
  *  - Banner YOK.
  *  - Ödüllü reklam: yalnızca kullanıcı isterse (elmas, ipucu, 2× ödül), günde en fazla 10.
- *  - Geçiş reklamı: yalnızca seviye sonu ekranından çıkarken; ilk gün ve ilk 10 seviye yok,
- *    kaybedilen seviyeden sonra yok, en az 3 seviye ve 3 dakika arayla. PRO'da hiç yok.
+ *  - Geçiş reklamı: yalnızca seviye sonu ekranından çıkarken; ilk 3 seviyede yok,
+ *    her 2 seviyede bir ve en az 90 sn arayla; kayıptan sonra iki kayıpta bir.
+ *    Kelime Diyarı'nda her 3 seviyede bir. PRO'da hiç yok.
  */
 object Ads {
     // Google'ın resmi test birimleri. Gerçek kimlikler AdMob hesabı açılınca buraya yazılır.
@@ -40,9 +41,9 @@ object Ads {
     private val rewardedId get() = if (BuildConfig.DEBUG || REAL_REWARDED.isEmpty()) TEST_REWARDED else REAL_REWARDED
     private val interstitialId get() = if (BuildConfig.DEBUG || REAL_INTERSTITIAL.isEmpty()) TEST_INTERSTITIAL else REAL_INTERSTITIAL
 
-    private const val INTERSTITIAL_EVERY_LEVELS = 3
-    private const val INTERSTITIAL_MIN_GAP_MS = 3 * 60_000L
-    private const val INTERSTITIAL_MIN_LEVELS = 10
+    private const val INTERSTITIAL_EVERY_LEVELS = 2
+    private const val INTERSTITIAL_MIN_GAP_MS = 90_000L
+    private const val INTERSTITIAL_MIN_LEVELS = 3
 
     private val started = AtomicBoolean(false)
     private lateinit var appContext: Context
@@ -51,6 +52,7 @@ object Ads {
     private var loadingRewarded = false
     private var loadingInterstitial = false
     private var levelsSinceAd = 0
+    private var failsSinceAd = 0
     private var lastInterstitialAt = 0L
     private var levelsThisInstall = 0
 
@@ -137,17 +139,40 @@ object Ads {
         levelsSinceAd++
         val ad = interstitial
         val now = System.currentTimeMillis()
-        val ok = ad != null && passed &&
+        if (!passed) failsSinceAd++
+        // Kayıptan sonra: iki kayıpta bir
+        val passOk = passed || failsSinceAd >= 2
+        val ok = ad != null && passOk &&
             !prefs.isProMember.first() &&
-            prefs.firstOpenDay() < prefs.today() &&
             totalPlayed(prefs) >= INTERSTITIAL_MIN_LEVELS &&
             levelsSinceAd >= INTERSTITIAL_EVERY_LEVELS &&
             now - lastInterstitialAt >= INTERSTITIAL_MIN_GAP_MS
         if (!ok) { loadInterstitial(); then(); return }
         interstitial = null
         levelsSinceAd = 0
+        failsSinceAd = 0
         lastInterstitialAt = now
         ad!!.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() { loadInterstitial(); then() }
+            override fun onAdFailedToShowFullScreenContent(e: AdError) { loadInterstitial(); then() }
+        }
+        ad.show(activity)
+    }
+
+    private var wowSinceAd = 0
+
+    /** Kelime Diyarı / öne çıkan modlar: her [every] seviyede bir geçiş reklamı. */
+    suspend fun maybeInterstitialEvery(activity: Activity, prefs: UserPreferencesRepository, every: Int = 3, then: () -> Unit) {
+        wowSinceAd++
+        val ad = interstitial
+        val now = System.currentTimeMillis()
+        if (ad == null || prefs.isProMember.first() || wowSinceAd < every || now - lastInterstitialAt < INTERSTITIAL_MIN_GAP_MS) {
+            loadInterstitial(); then(); return
+        }
+        interstitial = null
+        wowSinceAd = 0
+        lastInterstitialAt = now
+        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() { loadInterstitial(); then() }
             override fun onAdFailedToShowFullScreenContent(e: AdError) { loadInterstitial(); then() }
         }

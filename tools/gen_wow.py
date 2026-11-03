@@ -3,7 +3,7 @@ import json, random
 from collections import Counter
 common=json.load(open('common.json'))
 # Kaba/uygunsuz ve çok işlevsel kelimeleri ele
-BAD=set("""sik siki sikim sikik amk amına amcık göt götü orospu piç yarak yarrak taşak meme seks sevişmek kaltak fahişe ibne gavat pezevenk siktir sikmek sikiş dalyarak bok boktan kahpe puşt oç aq salak gerizekalı aptal ahmak geber gebermek öldürmek ölmek ölüm ceset intihar silah tabanca bomba uyuşturucu esrar eroin kokain alkol viski votka bira şarap sarhoş kan kanlı tecavüz kurban hey bay bayan""".split())
+BAD=set("""sik siki sikim sikik amk amına amcık göt götü orospu piç yarak yarrak taşak meme seks sevişmek kaltak fahişe ibne gavat pezevenk siktir sikmek sikiş dalyarak bok boktan kahpe puşt oç aq salak gerizekalı aptal ahmak geber gebermek öldürmek ölmek ölüm ceset intihar silah tabanca bomba uyuşturucu esrar eroin kokain alkol viski votka bira şarap sarhoş kan kanlı tecavüz kurban hey bay bayan zenci kaka çingene gavur kıç osur osuruk sıçmak sıç işemek çiş dangalak enayi hıyar keriz ibneler pezevenk kahpe""".split())
 FUNC=set("""bir ben sen biz siz onlar bunu şunu ona bana sana bize size onu buna şuna ama var yok ile için gibi daha çok hiç her tüm şey kim tek mi mı mu mü evet hayır değil öyle böyle şöyle hadi peki eğer diye yani bile oldu olur olmak burada orada şurada burası orası nerede nereye nereden benden senden ondan bundan şundan onlar onlardan bunlar şunlar benim senin onun bizim sizin onların neden nasıl niye niçin kadar sonra önce şimdi artık belki çünkü sadece lütfen tamam merhaba efendim aslında elbette öyleyse yalnızca herhangi birileri birisi biri birkaç herkes hepsi hiçbir""".split())
 TRU=str.maketrans('iı','İI')
 def up(w): return w.translate(TRU).upper()
@@ -22,7 +22,7 @@ wl=sorted(words, key=lambda w: words[w])
 by_len={}
 for w in wl: by_len.setdefault(len(w),[]).append(w)
 
-def layout(ws, maxdim=9):
+def layout(ws, maxdim=10):
     # ws: uzunluktan kısaya; ilkini yatay koy
     grid={}  # (r,c)->ch
     placed=[]
@@ -73,23 +73,22 @@ def layout(ws, maxdim=9):
 CHAP=[("İstanbul","🕌"),("Kapadokya","🎈"),("Pamukkale","♨️"),("Efes","🏛️"),("Nemrut","🗿"),("Uzungöl","🌲"),("Antalya","🏖️"),
       ("Paris","🗼"),("Roma","🏟️"),("Mısır","🐫"),("Japonya","🗾"),("New York","🗽"),("Rio","🌴"),("İzlanda","🌌"),("Machu Picchu","⛰️")]
 def nletters(L):
-    if L<=6: return 4
-    if L<=40: return 5
-    if L<=120: return 6
-    if L<=230: return 7
+    if L<=25: return 5
+    if L<=80: return 6
+    if L<=190: return 7
     return 7 if L%3 else 8
 def target(L):
-    return min(4+L//25, 12)
+    return min(7+L//30, 15)
 random.seed(42)
 used=set(); levels=[]
 for L in range(1,301):
     n=nletters(L)
     cands=[w for w in by_len.get(n,[])[:900] if ''.join(sorted(w)) not in used]
     best=None
-    for base in cands[:400]:
+    for base in cands[:900]:
         bc=Counter(base)
         subs=[w for w in wl if 3<=len(w)<=n and w!=base and formable(bc,w)]
-        if len(subs)+1 < min(target(L),4): continue
+        if len(subs)+1 < min(target(L),6): continue
         # ağırlık: çeşitlilik için rastgele + sayıca uygun
         score=min(len(subs)+1,target(L)) - words[base]/3000 + random.random()*1.5
         if best is None or score>best[0]: best=(score,base,subs)

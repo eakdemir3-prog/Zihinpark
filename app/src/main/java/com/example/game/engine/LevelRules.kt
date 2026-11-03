@@ -49,6 +49,8 @@ object LevelRules {
      * böylece üreticilerdeki `step(t, a, b, c, d, e)` doğrudan bölgeye karşılık gelir.
      * Bölge içinde seviye ve tur ilerledikçe değer artar; boss seviyeleri bölgenin en zorudur.
      */
+    const val DIFFICULTY_FLOOR = 0.32f
+
     fun difficulty(level: Int, round: Int): Float {
         if (level == ENDLESS_LEVEL) return 0.9999f
         val zone = zoneOf(level)
@@ -56,7 +58,9 @@ object LevelRules {
         val zoneStart = globalRoundIndex(first, 0)
         val zoneRounds = (first until first + ZONE_SIZE).sumOf { roundsFor(it) }
         val within = (globalRoundIndex(level, round) - zoneStart).toFloat() / zoneRounds
-        return ((zone + within) / ZONE_COUNT).coerceIn(0f, 0.9999f)
+        val raw = (zone + within) / ZONE_COUNT
+        // Başlangıç yukarı çekildi: 1. seviye eskinin ~18. seviyesi kadar zor başlar
+        return (DIFFICULTY_FLOOR + raw * (1f - DIFFICULTY_FLOOR)).coerceIn(0f, 0.9999f)
     }
 
     /** Sonsuz modda n. turun zorluğu: 0.75'ten başlayıp yavaşça 1.0'a çıkar. */

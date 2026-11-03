@@ -1,0 +1,19 @@
+name: Gorsel Arac
+on:
+  push:
+    branches: [zihinpark-v2]
+    paths: ['.github/img/**']
+permissions:
+  contents: write
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y imagemagick > /dev/null
+      - run: |
+          python3 .github/img/commons.py
+          cd out && for k in $(ls c | sed 's/_[0-9]*\.jpg//' | sort -u); do montage $(ls c/${k}_*.jpg | sed 's#\(c/\(.*\)\.jpg\)#-label \2 \1#') -tile 6x1 -geometry 300x300+3+3 -pointsize 20 -background '#111' -fill white sheet_$k.jpg; done
+      - run: |
+          cd out && git init -q -b img-out && git add -A && git -c user.name=ci -c user.email=ci@x commit -qm img && git push -fq "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" img-out

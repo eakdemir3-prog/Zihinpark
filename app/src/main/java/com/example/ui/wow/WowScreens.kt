@@ -307,6 +307,12 @@ fun WowPlayScreen(
         scope.launch { delay(650); preview = ""; previewColor = TextPrimary }
     }
 
+    fun afterLevel(action: () -> Unit) {
+        val act = activity
+        if (act == null) action()
+        else scope.launch { com.example.monetize.Ads.maybeInterstitialEvery(act, prefs, 3, action) }
+    }
+
     fun revealLetter() {
         if (complete) return
         val target = lv.words.firstOrNull { it.text !in found } ?: return
@@ -470,10 +476,10 @@ fun WowPlayScreen(
                             Text("${ch.name} durağı bitti! Sıradaki: ${chapters[lv.chapter + 1].emoji} ${chapters[lv.chapter + 1].name}", color = NeonYellow, textAlign = TextAlign.Center)
                         }
                         Spacer(Modifier.height(16.dp))
-                        if (level < WowData.LEVEL_COUNT) NeonButton("Sonraki seviye", { onNext(level + 1) }, Modifier.fillMaxWidth(), color = accent)
+                        if (level < WowData.LEVEL_COUNT) NeonButton("Sonraki seviye", { afterLevel { onNext(level + 1) } }, Modifier.fillMaxWidth(), color = accent)
                         else Text("🎉 Kelime Diyarı'nın tamamını bitirdin!", color = NeonYellow, textAlign = TextAlign.Center)
                         Spacer(Modifier.height(8.dp))
-                        NeonButton("Haritaya dön", onBack, Modifier.fillMaxWidth(), color = accent, outlined = true)
+                        NeonButton("Haritaya dön", { afterLevel(onBack) }, Modifier.fillMaxWidth(), color = accent, outlined = true)
                     }
                 }
             }
