@@ -173,7 +173,7 @@ fun LingoFeatureCard(repository: GameRepository, onClick: () -> Unit, modifier: 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text("Lingo", color = TextPrimary, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.ExtraBold)
-                    Text("5 harfli kelimeyi 6 denemede bul · Seviye $level", color = TextPrimary.copy(alpha = 0.85f), style = MaterialTheme.typography.bodyMedium)
+                    Text("5 harf · 6 deneme · Seviye $level", color = TextPrimary.copy(alpha = 0.85f), style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
                     listOf('L' to 2, 'İ' to 1, 'N' to 0, 'G' to 2, 'O' to 2).forEach { (c, s) -> MiniTile(c, s) }
@@ -209,7 +209,7 @@ fun LingoHubScreen(repository: GameRepository, onBack: () -> Unit, onPlayLevel: 
     val wins by prefs.lingoWins.collectAsState(initial = 0)
     val daily by prefs.lingoDaily.collectAsState(initial = null)
     val diamonds by prefs.diamondBalance.collectAsState(initial = 0)
-    NeonBackground(accent = NeonGreen, accent2 = NeonYellow) {
+    NeonBackground(accent = NeonGreen, accent2 = NeonYellow, pattern = com.example.ui.components.BgPatterns.LETTERS) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             NeonTopBar("Lingo", subtitle = "Kelimeyi bul, seriyi koru", onBack = onBack, trailing = { DiamondPill(diamonds, onOpenShop) })
             LazyColumn(contentPadding = PaddingValues(16.dp, 8.dp, 16.dp, 32.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -383,7 +383,7 @@ fun LingoPlayScreen(
         if (act == null) action() else scope.launch { com.example.monetize.Ads.maybeInterstitialEvery(act, prefs, 3, action) }
     }
 
-    NeonBackground(accent = NeonGreen, accent2 = NeonYellow) {
+    NeonBackground(accent = NeonGreen, accent2 = NeonYellow, pattern = com.example.ui.components.BgPatterns.LETTERS) {
         Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
             NeonTopBar(
                 if (isDaily) "Günün Lingo'su" else "Lingo · Seviye $level",

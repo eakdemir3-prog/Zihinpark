@@ -1,0 +1,189 @@
+Fotoğraf makinesinin merceği|OBJEKTİF
+Kakaodan yapılan tatlı|ÇİKOLATA
+Uzaya giden kişi|ASTRONOT
+Sesi yükselten konuşma aleti|MİKROFON
+İki tekerlekli pedallı taşıt|BİSİKLET
+Yazın sevilen soğuk tatlı|DONDURMA
+Parmak ucunda dans eden sanatçı|BALERİNA
+Okulda ders anlatan kişi|ÖĞRETMEN
+Kitapların dizildiği raf|KİTAPLIK
+Tabbuleye giren yeşillik|MAYDANOZ
+Ayağa giyilen|AYAKKABI
+Piyano çalan sanatçı|PİYANİST
+Yağmurdan korunmak için açılan|ŞEMSİYE
+Kapıyı açan küçük metal|ANAHTAR
+Yağmurdan sonra gökte görülen renkli yay|GÖKKUŞAĞI
+Hastaları tedavi eden kişi|DOKTOR
+Ekmek yapan esnaf|FIRINCI
+Saçı kesen esnaf|BERBER
+Mektup getiren görevli|POSTACI
+Yangını söndüren kişi|İTFAİYECİ
+Uçağı kullanan kişi|PİLOT
+Gemiyi yöneten kişi|KAPTAN
+Davada savunma yapan kişi|AVUKAT
+Bina projesi çizen meslek|MİMAR
+Diş tedavisi yapan hekim|DİŞÇİ
+İlaç satan esnaf|ECZACI
+Gazete için haber yazan|MUHABİR
+Futbolda kaleyi koruyan oyuncu|KALECİ
+Mutfakta yemek yapan usta|AŞÇI
+Tarlada çalışan kişi|ÇİFTÇİ
+Koyun güden kişi|ÇOBAN
+Resim yapan sanatçı|RESSAM
+Heykel yapan sanatçı|HEYKELTRAŞ
+Şiir yazan kişi|ŞAİR
+Roman yazan kişi|ROMANCI
+Kuyumcuda satılan sarı maden|ALTIN
+Saati gösteren alet|SAAT
+Duvara asılan zaman çizelgesi|TAKVİM
+Odayı aydınlatan alet|LAMBA
+Yiyecekleri soğuk tutan beyaz eşya|BUZDOLABI
+Makinede yıkanan kirli giysiler|ÇAMAŞIR
+Yemeği ısıtan dalgalı fırın|MİKRODALGA
+Yazı yazmaya yarayan kalem türü|KURŞUN
+Kalemle kâğıda yazılan|YAZI
+Kâğıt kesmeye yarayan alet|MAKAS
+Kâğıtları tutturan zımba teli aleti|ZIMBA
+Okul çantasına konan ders kitabı türü|DEFTER
+Uzaktakini yakın gösteren alet|DÜRBÜN
+Küçük canlıları büyüten alet|MİKROSKOP
+Gökyüzünü incelemeye yarayan alet|TELESKOP
+Yön bulmaya yarayan alet|PUSULA
+Havanın sıcaklığını ölçen alet|TERMOMETRE
+Ağırlık ölçen alet|TERAZİ
+Uzunluk ölçmeye yarayan cetvel benzeri|METRE
+Ev telefonunun cep hali|CEPTELEFONU
+Bilgisayarda imleci yöneten alet|FARE
+Tuşlarla yazı yazılan araç|KLAVYE
+Görüntüyü gösteren bilgisayar parçası|EKRAN
+Kâğıda baskı yapan cihaz|YAZICI
+Dizüstü bilgisayarın diğer adı|LAPTOP
+Saçı kurutan alet|FÖN
+Dişleri temizleyen fırça|DİŞFIRÇASI
+Yüzü kurulamaya yarayan bez|HAVLU
+Banyoda köpüren temizlik maddesi|SABUN
+Saçı yıkamaya yarayan sıvı|ŞAMPUAN
+Uyurken başın altına konan|YASTIK
+Soğukta üstümüze örttüğümüz|BATTANİYE
+Yatak odasında giysi koyduğumuz dolap|GARDIROP
+Pencereye takılan kumaş|PERDE
+Yere serilen dokuma|HALI
+Oturmak için yapılmış eşya|SANDALYE
+Yemek yenen mobilya|MASA
+Birkaç kişinin oturduğu yumuşak koltuk|KANEPE
+Çiçek dikilen kap|SAKSI
+Su içtiğimiz kap|BARDAK
+Çorba içtiğimiz kaşık türü|KEPÇE
+Çay demlenen kap|DEMLİK
+Yemek pişirilen derin kap|TENCERE
+Yumurta kızartılan kap|TAVA
+Türk kahvesi pişirilen kap|CEZVE
+Ekmek kesilen tahta|NİMETLİK
+Eti kesmeye yarayan alet|BIÇAK
+Yemeği ağıza götüren üç dişli alet|ÇATAL
+Kış mevsiminde yağan beyaz|KAR
+Gök gürültüsünden önce görülen ışık|ŞİMŞEK
+Çok şiddetli rüzgâr|FIRTINA
+Sabahları çimenlerde görülen su damlaları|ÇİY
+Kışın camlarda oluşan buz deseni|KIRAĞI
+Görüşü azaltan bulut tabakası|SİS
+Güneşin doğduğu zaman|ŞAFAK
+Güneşin battığı zaman|AKŞAM
+Gecenin tam ortası|GECEYARISI
+Haftanın ilk iş günü|PAZARTESİ
+Haftanın son günü|PAZAR
+Yılın ilk ayı|OCAK
+Yılın son ayı|ARALIK
+Okulların açıldığı sonbahar ayı|EYLÜL
+Bayram öncesi yapılan temizlik eşyası|SÜPÜRGE
+Toz alan elektrikli alet|ELEKTRİKSÜPÜRGESİ
+Kırmızı ile sarının karışımı renk|TURUNCU
+Mavi ile sarının karışımı renk|YEŞİL
+Kırmızı ile mavinin karışımı renk|MOR
+Siyah ile beyazın karışımı renk|GRİ
+Altın renginin diğer adı|SARI
+Gökyüzünün rengi|MAVİ
+Kanın rengi|KIRMIZI
+Kömürün rengi|SİYAH
+Pembe çiçek açan bahar ağacı|KİRAZ
+Ekşi sarı meyve|LİMON
+Kabuğu soyulan turuncu meyve|PORTAKAL
+Dikenli kabuklu tropik meyve|ANANAS
+Tüylü kabuklu yeşil meyve|KİVİ
+Yazın yenen iri yeşil kabuklu meyve|KARPUZ
+Sarı kabuklu tatlı yaz meyvesi|KAVUN
+Salkım halinde yetişen meyve|ÜZÜM
+Kırmızı küçük taneli bahar meyvesi|ÇİLEK
+Kabuğu tüylü yaz meyvesi|ŞEFTALİ
+İçi taneli kırmızı kış meyvesi|NAR
+Kışın yenen turuncu meyve, mandarin benzeri|MANDALİNA
+Elmaya benzeyen sulu meyve|ARMUT
+Kurusu da yenen mor meyve|ERİK
+Fındık, ceviz gibi yiyecekler|KURUYEMİŞ
+Karadeniz'in meşhur kabuklu yemişi|FINDIK
+Beyin şeklindeki kabuklu yemiş|CEVİZ
+Antep'in meşhur yeşil yemişi|FISTIK
+Salatanın kırmızı sebzesi|DOMATES
+Salatanın yeşil uzun sebzesi|SALATALIK
+Ağlatan sebze|SOĞAN
+Kokusu keskin beyaz diş|SARIMSAK
+Turuncu kök sebze|HAVUÇ
+Mor kabuklu sebze|PATLICAN
+Kızartması sevilen yumru sebze|PATATES
+Dolması yapılan yeşil sebze|BİBER
+Yaprakları sarılan sebze|LAHANA
+Popeye'in sevdiği sebze|ISPANAK
+Yeşil taneli baklagil|BEZELYE
+Kuru fasulyenin pişen tanesi|FASULYE
+Pilavı yapılan tahıl|PİRİNÇ
+Bulgurun elde edildiği tahıl|BUĞDAY
+Patlamış mısırın tahılı|MISIR
+Kahvaltıda yenen siyah veya yeşil|ZEYTİN
+Kahvaltıda yenen beyaz süt ürünü|PEYNİR
+Arıların yaptığı tatlı|BAL
+Meyveden yapılan tatlı ezme|REÇEL
+Sütten yapılan ekşimsi yiyecek|YOĞURT
+Yoğurt ve sudan yapılan içecek|AYRAN
+İneğin verdiği beyaz içecek|SÜT
+Yumurtlayan kümes hayvanı|TAVUK
+Sabah öten kümes hayvanı|HOROZ
+Göletlerde yüzen kümes hayvanı|ÖRDEK
+Yılbaşı sofralarının iri kuşu|HİNDİ
+Miyavlayan ev hayvanı|KEDİ
+Havlayan ev hayvanı|KÖPEK
+Kafeste beslenen konuşan kuş|PAPAĞAN
+Akvaryumda beslenen balık|JAPONBALIĞI
+Kafeste beslenen kemirgen|HAMSTER
+Uzun kulaklı zıplayan hayvan|TAVŞAN
+Kabuğunu sırtında taşıyan yavaş hayvan|KAPLUMBAĞA
+Ormanlar kralı|ASLAN
+Boynu çok uzun hayvan|ZÜRAFA
+Hortumu olan iri hayvan|FİL
+Çizgili at|ZEBRA
+Sırtında hörgücü olan hayvan|DEVE
+Ağaçtan ağaca atlayan hayvan|MAYMUN
+Bal seven iri orman hayvanı|AYI
+Kurnazlığıyla bilinen hayvan|TİLKİ
+Ulumasıyla bilinen yabani hayvan|KURT
+Fındık toplayan kuyruklu hayvan|SİNCAP
+Dikenli küçük hayvan|KİRPİ
+Geceleri uçan memeli|YARASA
+Gece öten iri gözlü kuş|BAYKUŞ
+Yükseklerde uçan avcı kuş|KARTAL
+Barışın sembolü kuş|GÜVERCİN
+Kuyruğunu açan gösterişli kuş|TAVUSKUŞU
+Uçamayan kutup kuşu|PENGUEN
+Denizde yaşayan zeki memeli|YUNUS
+Denizlerin en büyük memelisi|BALİNA
+Sekiz kollu deniz hayvanı|AHTAPOT
+Yan yürüyen deniz hayvanı|YENGEÇ
+Bal yapan böcek|ARI
+Renkli kanatlı böcek|KELEBEK
+Çalışkanlığıyla bilinen böcek|KARINCA
+Kan emen uçan böcek|SİVRİSİNEK
+Ağ ören hayvan|ÖRÜMCEK
+Zehirli kuyruklu hayvan|AKREP
+Sürünen bacaksız hayvan|YILAN
+Renk değiştiren sürüngen|BUKALEMUN
+Vıraklayan hayvan|KURBAĞA
+Dişleri sivri iri nehir sürüngeni|TİMSAH

@@ -1,0 +1,220 @@
+Raylar üzerinde şehir içinde giden taşıt|TRAMVAY
+Küçük yolcu otobüsü|MİNİBÜS
+Kendi yolunda giden hızlı otobüs|METROBÜS
+Rüzgârla ilerleyen tekne|YELKENLİ
+Hasta taşıyan acil araç|AMBULANS
+Tarlayı süren iş makinesi|TRAKTÖR
+Küçük yük kamyonu|KAMYONET
+Belirli hatta çalışan paylaşımlı taksi|DOLMUŞ
+Halatla dağa çıkan kabin|TELEFERİK
+İçinde yaşanabilen tekerlekli ev|KARAVAN
+Karda kayan oyuncak araç|KIZAK
+Atla çekilen eski araba|FAYTON
+Dört tekerlekli binek aracı|OTOMOBİL
+Hastalara bakan sağlık çalışanı|HEMŞİRE
+Köprü ve yol tasarlayan meslek|MÜHENDİS
+Ahşap mobilya yapan usta|MARANGOZ
+Bahçeyle ilgilenen kişi|BAHÇIVAN
+Lokantada servis yapan|GARSON
+Kasada para alan çalışan|KASİYER
+Bir dilden diğerine çeviren kişi|TERCÜMAN
+Turistlere yol gösteren kişi|REHBER
+Haberleri okuyan kişi|SPİKER
+Gizemleri çözen araştırmacı|DEDEKTİF
+Sirkte güldüren kişi|PALYAÇO
+Şapkadan tavşan çıkaran kişi|SİHİRBAZ
+Denizin dibine dalan kişi|DALGIÇ
+Kilit açan usta|ÇİLİNGİR
+Saç kesip şekil veren kişi|KUAFÖR
+Altın takı satan esnaf|KUYUMCU
+Trende bilet kontrol eden görevli|KONDÜKTÖR
+Uçakta yolculara hizmet eden|HOSTES
+Treni süren kişi|MAKİNİST
+Mahallenin küçük dükkânı|BAKKAL
+Elbise diken usta|TERZİ
+Kat değiştiren elektrikli kabin|ASANSÖR
+Odalar arasındaki uzun geçit|KORİDOR
+Evin yemek pişirilen bölümü|MUTFAK
+Evin en alt katı|BODRUM
+Arabanın park edildiği yer|GARAJ
+Evin dışarıya açılan çıkıntısı|BALKON
+Evin içine ışık giren açıklığı|PENCERE
+Yukarı çıkmaya yarayan basamaklar|MERDİVEN
+Çivi çakan alet|ÇEKİÇ
+Vida sıkan alet|TORNAVİDA
+Odun kesen dişli alet|TESTERE
+Toprağı kazan alet|KÜREK
+Halkalardan oluşan metal bağ|ZİNCİR
+Kapıyı kilitleyen düzenek|KİLİT
+Kalın sağlam ip|HALAT
+Duvara delik açan alet|MATKAP
+Saçı düzelten dişli alet|TARAK
+Yüzümüzü gördüğümüz cam|AYNA
+Yere serilen küçük kilim|PASPAS
+Yatakta üstümüze örttüğümüz|YORGAN
+Yatağa serilen ince örtü|ÇARŞAF
+Yere konan oturma yastığı|MİNDER
+Önüne çay konan küçük masa|SEHPA
+Arkalıksız küçük oturak|TABURE
+Masadaki sürgülü göz|ÇEKMECE
+Para taşıdığımız küçük çanta|CÜZDAN
+Görmemizi kolaylaştıran camlar|GÖZLÜK
+Bileğe takılan takı|BİLEZİK
+Parmağa takılan takı|YÜZÜK
+Boyna takılan takı|KOLYE
+Kışın ellere giyilen|ELDİVEN
+Yünden örülen kalın üst giysi|KAZAK
+Düğmeli yakalı üst giysi|GÖMLEK
+İki paçalı alt giysi|PANTOLON
+Uyurken giyilen kıyafet|PİJAMA
+Evde giyilen ayakkabı|TERLİK
+Yağmurda giyilen uzun konçlu ayakkabı|ÇİZME
+Yazın giyilen açık ayakkabı|SANDALET
+Takım elbiseyle boyna bağlanan|KRAVAT
+Pantolonu beline tutturan|KEMER
+Giysiyi kapatan dişli kayar şerit|FERMUAR
+İğneye geçirilen ince tel|İPLİK
+Kışın boyna sarılan|ATKI
+Başa takılan giysi|ŞAPKA
+Uzun kış paltosu|PALTO
+Çantanın sırta takılan türü|SIRTÇANTASI
+Sesi dışarı veren cihaz|HOPARLÖR
+Kulağa takılan ses cihazı|KULAKLIK
+Televizyonu uzaktan yöneten|KUMANDA
+Dokunmatik büyük ekranlı cihaz|TABLET
+Görüntü kaydeden cihaz|KAMERA
+Cihazlara enerji veren pil|BATARYA
+Telefona yüklenen program|UYGULAMA
+Dünyayı birbirine bağlayan ağ|İNTERNET
+Bilgisayara komut veren programlar|YAZILIM
+Bilgisayarın fiziksel parçaları|DONANIM
+Hesabı koruyan gizli sözcük|ŞİFRE
+Telefonla gönderilen yazı|MESAJ
+Uzakla konuşmayı sağlayan cihaz|TELEFON
+Müzik ve haber yayınlayan cihaz|RADYO
+Yayın sinyalini alan çubuk|ANTEN
+Kıyafetleri düzelten sıcak alet|ÜTÜ
+Hamur çırpan elektrikli alet|MİKSER
+Meyveleri öğüten elektrikli alet|BLENDER
+Çay için su kaynatan kap|ÇAYDANLIK
+Rus usulü çay kazanı|SEMAVER
+Havayı soğutan cihaz|KLİMA
+Petekli ısıtma sistemi|KALORİFER
+Odunla yanan ısıtıcı|SOBA
+Duvardaki ateş yeri|ŞÖMİNE
+Pervaneli serinletici|VANTİLATÖR
+Şerbetli cevizli tatlı|BAKLAVA
+Peynirli tel tel Hatay tatlısı|KÜNEFE
+Fırında pişen sütlü tatlı|SÜTLAÇ
+Bayramda yapılan irmikli tatlı|HELVA
+Şekerli jöleli Türk tatlısı|LOKUM
+Tel tel hamurdan şerbetli tatlı|KADAYIF
+İrmikli şerbetli kek tatlısı|REVANİ
+Çay yanında yenen tatlı küçük kek|KURABİYE
+Paketli kuru tatlı|BİSKÜVİ
+Gevrek katlı Fransız çöreği|KRUVASAN
+Kahvaltının yumuşak hamur işi|POĞAÇA
+Susamlı halka ekmek|SİMİT
+Sacda pişen ince börek|GÖZLEME
+Kıymalı ince hamur|LAHMACUN
+Tereyağlı yoğurtlu döner yemeği|İSKENDER
+Yumurtalı domatesli kahvaltılık|MENEMEN
+Baharatlı kuru et|PASTIRMA
+Etli ekmek arası|HAMBURGER
+İtalyan hamur yemeği|MAKARNA
+Ev yapımı kurutulmuş makarna|ERİŞTE
+Çorbası yapılan kırmızı baklagil|MERCİMEK
+Humusu yapılan baklagil|NOHUT
+Domatesli kırmızı sos|KETÇAP
+Yumurtalı beyaz sos|MAYONEZ
+Sarı acı sos|HARDAL
+Sütlaca serpilen baharat|TARÇIN
+Köfteye konan baharat|KİMYON
+Kokulu yeşil baharat|KEKİK
+Yaprakları çaya konan ferah bitki|NANE
+Pizzaya konan yeşil bitki|FESLEĞEN
+Acımsı köklü baharat|ZENCEFİL
+Sütten yapılan sarı yağ|TEREYAĞI
+Kahvaltıda balla yenen|KAYMAK
+Limondan yapılan içecek|LİMONATA
+Meyveli tatlı içecek|ŞERBET
+Haşlanmış meyve içeceği|KOMPOSTO
+Kışın içilen tarçınlı sıcak içecek|SAHLEP
+Kurutulmuş yoğurtlu çorba|TARHANA
+Yoğurtlu salatalık|CACIK
+Patlıcanlı kıymalı yemek|KARNIYARIK
+İçi doldurulmuş patates|KUMPİR
+Bağırsaktan yapılan sokak lezzeti|KOKOREÇ
+Avustralya'nın keseli hayvanı|KANGURU
+Siyah beyaz bambu yiyen ayı|PANDA
+Okaliptüs yiyen keseli hayvan|KOALA
+Benekli büyük kedi|LEOPAR
+Siyah büyük kedi|PANTER
+Burnunda boynuzu olan hayvan|GERGEDAN
+Nehirde yaşayan iri hayvan|SUAYGIRI
+En büyük maymun türü|GORİL
+İnsana en yakın maymun|ŞEMPANZE
+Pembe uzun bacaklı kuş|FLAMİNGO
+Gagası keseli kuş|PELİKAN
+Deniz kenarında uçan kuş|MARTI
+Küçük kahverengi kuş|SERÇE
+Güzel öten küçük kuş|BÜLBÜL
+Sarı renkli kafes kuşu|KANARYA
+Bebek getirdiği söylenen kuş|LEYLEK
+Leş yiyen iri kuş|AKBABA
+Uçamayan en büyük kuş|DEVEKUŞU
+Beyaz zarif göl kuşu|KUĞU
+Dik yüzen küçük deniz canlısı|DENİZATI
+Renkli deniz kayalığı canlısı|MERCAN
+Kıskaçlı iri deniz canlısı|İSTAKOZ
+Küçük kabuklu deniz ürünü|KARİDES
+Karadeniz'in meşhur küçük balığı|HAMSİ
+Akarsuların benekli balığı|ALABALIK
+Konservesi yapılan küçük balık|SARDALYA
+Pembe etli soğuk deniz balığı|SOMON
+Sıçrayan yeşil böcek|ÇEKİRGE
+Kelebeğin yavrusu|TIRTIL
+Kabuklu yavaş hayvan|SALYANGOZ
+Toprakta yaşayan uzun hayvan|SOLUCAN
+Kuyruğunu bırakıp kaçan sürüngen|KERTENKELE
+Gülen sesli yabani hayvan|SIRTLAN
+Baraj yapan hayvan|KUNDUZ
+Boynuzlu orman hayvanı|GEYİK
+Hızlı koşan zarif hayvan|CEYLAN
+Yünü kırkılan hayvan|KOYUN
+Süt veren hayvan|İNEK
+Küçük boylu at|MİDİLLİ
+Kanatlı efsanevi ateş canlısı|EJDERHA
+Masallardaki kralın kızı|PRENSES
+Kralın eşi|KRALİÇE
+Zırhlı atlı savaşçı|ŞÖVALYE
+Gemileri soyan deniz haydudu|KORSAN
+Gömülü değerli eşyalar|HAZİNE
+Masallarda süpürgeyle uçan|CADI
+Kralın yaşadığı yer|SARAY
+Bir şeyi elde etme|BAŞARI
+Savaşı kazanma|ZAFER
+Korkmama hali|CESARET
+Beklemeye dayanma gücü|SABIR
+İleriye dair beklenti|UMUT
+Bir şeyi öğrenme isteği|MERAK
+Coşkulu duygu|HEYECAN
+Tehlike karşısında duyulan|KORKU
+Birini görememenin verdiği duygu|ÖZLEM
+Dost, yakın kişi|ARKADAŞ
+Yan evde oturan|KOMŞU
+Aynı aileden kişi|AKRABA
+Aynı anne babanın çocuğu|KARDEŞ
+Çocuğun çocuğu|TORUN
+Babanın annesi|BABAANNE
+Annenin annesi|ANNEANNE
+Annenin kız kardeşi|TEYZE
+Kardeşin çocuğu|YEĞEN
+Teyze ya da amcanın çocuğu|KUZEN
+Doğulan günün kutlaması|DOĞUMGÜNÜ
+Yeni yılın ilk gecesi|YILBAŞI
+Sevdiklerimize verdiğimiz|HEDİYE
+Partilerde saçılan renkli kâğıtlar|KONFETİ
+Düğüne çağırma kartı|DAVETİYE
+Sevinç hali|MUTLULUK
+İki kişinin evlenme töreni|DÜĞÜN

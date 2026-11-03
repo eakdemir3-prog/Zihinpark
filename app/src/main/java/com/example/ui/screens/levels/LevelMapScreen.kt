@@ -101,7 +101,7 @@ fun LevelMapScreen(
         }
     }
 
-    NeonBackground(accent = accent) {
+    NeonBackground(accent = accent, pattern = com.example.ui.components.BgPatterns.forGame(gameId)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             NeonTopBar(
                 title = meta.name,

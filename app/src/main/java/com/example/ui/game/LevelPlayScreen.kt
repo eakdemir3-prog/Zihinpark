@@ -234,7 +234,7 @@ fun LevelPlayScreen(
 
     BackHandler(enabled = phase == Phase.Playing || phase == Phase.RoundEnd) { showPause = true }
 
-    NeonBackground(accent = accent, accent2 = NeonCyan) {
+    NeonBackground(accent = accent, accent2 = NeonCyan, pattern = com.example.ui.components.BgPatterns.forGame(gameId)) {
         Column(
             Modifier
                 .fillMaxSize()

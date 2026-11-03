@@ -1,0 +1,214 @@
+Doğum günü pastasına dikilen|MUM
+Çocukların bindiği ileri geri giden oyuncak|SALINCAK
+Parkta kayılan oyuncak|KAYDIRAK
+Atlı karıncanın diğer adı|DÖNENCE
+Lunaparkta dönen dev çark|DÖNMEDOLAP
+Sirkte ip üstünde yürüyen|CAMBAZ
+Kâğıt katlama sanatı|ORİGAMİ
+Ebru yapılan su üstü boyama sanatı|EBRU
+Güzel yazı sanatı|HAT
+Toprağı şekillendirme sanatı|SERAMİK
+Kumaş üstüne iğneyle süsleme|NAKIŞ
+Şişle yapılan el işi|ÖRGÜ
+Kil kaplardan yapılan su testisi|TESTİ
+Toprak çömleği yapan usta|ÇÖMLEKÇİ
+Tahta üstüne oyma sanatı|AHŞAPOYMA
+Fotoğraf albümü|ALBÜM
+Duvara asılan çerçeveli resim|TABLO
+Resmi çevreleyen kenarlık|ÇERÇEVE
+Sahne arkasındaki perde|KULİS
+Oyunda bir bölüm|PERDE
+Seyircilerin oturduğu yer|TRİBÜN
+Maçın oynandığı büyük alan|STADYUM
+Kapalı spor salonu|SALON
+Golcü oyuncu|FORVET
+Savunma oyuncusu|DEFANS
+Maçın ilk yarısından sonraki ara|DEVREARASI
+Basketbolda topun atıldığı çember|POTA
+Voleybolda ortadaki ağ|FİLE
+Teniste oyuna başlama vuruşu|SERVİS
+Yüzmede bir stil|KELEBEK
+Okla atış sporu|OKÇULUK
+Silahla hedefe atış sporu|ATICILIK
+Kılıçla yapılan spor|ESKRİM
+Ağırlık kaldıran sporcu|HALTERCİ
+Dengeli hareketler yapılan spor|JİMNASTİK
+Dalgalarda kayılan tahta|SÖRF
+Kürekle çekilen dar tekne|KANO
+Kayakla dağdan inen yarış|SLALOM
+Uzun atlama yapılan kum havuzu|KUMHAVUZU
+Yükseğe sırıkla atlama|SIRIK
+Koşuda bayrak yarışında verilen çubuk|BAYRAK
+Tekvando benzeri Japon dövüş sporu|KARATE
+Japon güreşi|SUMO
+Belden yukarı tutuşlu Japon sporu|JUDO
+Kale önündeki çizgili alan|CEZASAHASI
+Maçta sarı veya kırmızı|KART
+Oyuncu değiştirme yapan kişi|TEKNİKDİREKTÖR
+Taraftarların söylediği şarkı|TEZAHÜRAT
+Takımı destekleyen kişi|TARAFTAR
+Karşılaşma|MAÇ
+Köyün en büyüğü|MUHTAR
+Belediyenin başkanı|BELEDİYEBAŞKANI
+Şehri yöneten kurum|BELEDİYE
+Oy kullanma günü|SEÇİM
+Ülkeyi yöneten meclis üyesi|MİLLETVEKİLİ
+Haberlerin yayınlandığı TV saati|BÜLTEN
+Hava durumunu bildiren|METEOROLOJİ
+Gökte yay şeklinde renkler|GÖKKUŞAĞI
+Kar tanelerinden yapılan adam|KARDANADAM
+Kartopu oynanan mevsim|KIŞ
+Denize girilen sıcak mevsim|YAZ
+Yağmurda oluşan su birikintisi|GÖLCÜK
+Yağmur damlalarının sesi|ŞIPIRTI
+Güneşten korunmak için sürülen|GÜNEŞKREMİ
+Plajda yatılan uzun sandalye|ŞEZLONG
+Kumdan yapılan kale|KUMDANKALE
+Plajda gölge yapan büyük şemsiye|ŞEMSİYE
+Denizde şişirilip yüzülen halka|SİMİT
+Göz koruyan güneş camı|GÜNEŞGÖZLÜĞÜ
+Denizin tuzlu suyu|TUZ
+Deniz kenarında yürünen yol|SAHİL
+Deniz feneri|FENER
+Gemiyi sabitleyen demir|ÇAPA
+Geminin dümenini kullanan|DÜMENCİ
+Gemi personeli|MÜRETTEBAT
+Gemideki kişi|DENİZCİ
+Balık tutan kişi|BALIKÇI
+Balık tutmaya yarayan alet|OLTA
+Balık yakalamaya yarayan ağ|AĞ
+Deniz kabuğu içindeki inci|İNCİ
+İnci çıkan kabuklu deniz canlısı|İSTİRİDYE
+Güneşin batışı|GÜNBATIMI
+Güneşin doğuşu|GÜNDOĞUMU
+Saatin uzun kolu|YELKOVAN
+Saatin kısa kolu|AKREP
+Zamanı ölçen kum dolu cam|KUMSAATİ
+Uyanmak için kurulan saat|ÇALARSAAT
+Kola takılan saat|KOLSAATİ
+Bir saatin altmışta biri|DAKİKA
+Bir dakikanın altmışta biri|SANİYE
+Yüz yıllık süre|ASIR
+On yıllık süre|ONYIL
+Yedi günlük süre|HAFTA
+Gün içinde yenen ilk öğün|KAHVALTI
+Öğlen yenen yemek|ÖĞLEYEMEĞİ
+Akşam yenen yemek|AKŞAMYEMEĞİ
+Yemek sonrası yenen tatlı|TATLI
+Yemekten önce yenen hafif yemek|MEZE
+Yemekle birlikte gelen garnitür|GARNİTÜR
+Lokantada yemek listesi|MENÜ
+Yemek sonrası verilen ücret|HESAP
+Garsona bırakılan para|BAHŞİŞ
+Pastanede satılan tatlı türü|PASTA
+Dondurma konan çıtır külah|KÜLAH
+Tatlı yiyen kişi|TATLICI
+Şekerden yapılan çubuklu tatlı|LOLİPOP
+Pamuk gibi şeker|PAMUKŞEKER
+Kahve çekirdeğinden yapılan içecek|KAHVE
+Köpüklü sütlü kahve|KAPUÇİNO
+Sıcak kakaolu süt|SICAKÇİKOLATA
+Gazlı tatlı içecek|GAZOZ
+Doğal kaynak suyu|MADENSUYU
+Kahvaltının vazgeçilmez içeceği|ÇAY
+Rize'nin meşhur ürünü|ÇAY
+Kuru üzüm, incir gibi kurutulmuş|KURUMEYVE
+Bayramlarda dağıtılan|ŞEKER
+Ramazanda iftar sonrası tatlı|GÜLLAÇ
+Ramazan'da yenen yuvarlak ekmek|PİDE
+Sahurda kalkılan vakit|SAHUR
+Kurban Bayramı'nda kesilen|KURBAN
+Bayramda büyüklerin eli öpülünce verilen|HARÇLIK
+Nazara karşı takılan mavi boncuk|NAZARBONCUĞU
+Kına gecesinde yakılan bitki|KINA
+Düğünde gelinin giydiği|GELİNLİK
+Damadın giydiği takım|DAMATLIK
+Düğünde takılan altın|TAKI
+Mahalle düğününün eğlencesi|HALAY
+Karadeniz'in hızlı oyunu|HORON
+Ege'nin ağır oyunu|ZEYBEK
+Kemençe çalınan bölge oyunu|HORON
+Gölge oyunu karakteri|HACİVAT
+Hacivat'ın arkadaşı|KARAGÖZ
+Meddahın anlattığı|HİKÂYE
+Halk ozanı|AŞIK
+Masal anlatıcısının ilk sözü|BİRVARMIŞ
+Keloğlan'ın çıktığı anlatı türü|MASAL
+Ağızdan ağıza söylenen öğüt sözü|ATASÖZÜ
+Anlamı mecazlı söz kalıbı|DEYİM
+Cevabı aranan eğlenceli soru|BİLMECE
+Hızlı söylenmesi zor söz|TEKERLEME
+Dili sürçmesi zor cümle|TEKERLEME
+Bebekleri uyutan şarkı|NİNNİ
+Halk arasında söylenen şarkı|TÜRKÜ
+Okulda söylenen millî şarkı|MARŞ
+Türk bayrağındaki gök cismi|AY
+Türk bayrağının rengi|KIRMIZI
+Okul törenlerinde okunan şiir|ANT
+İstiklal Marşı'nın şairi|AKİF
+Okuma yazma bilmeyen|CAHİL
+Çok kitap okuyan kişi|KİTAPKURDU
+Kitabın yazarını yayınlayan kurum|YAYINEVİ
+Kitabın her yaprağı|SAYFA
+Kitabın bölümü|BÖLÜM
+Sözlükte anlamı verilen|KELİME
+Kelimelerin anlamını veren kitap|SÖZLÜK
+Bilgilerin toplandığı büyük kitap|ANSİKLOPEDİ
+Yazı yazılan beyaz yaprak|KÂĞIT
+Dolma kalemin mavi sıvısı|MÜREKKEP
+Kalemin ucunu açan alet|KALEMTIRAŞ
+Kurşun kalem izini çıkaran|SİLGİ
+Çizgi çekmeye yarayan alet|CETVEL
+Daire çizmeye yarayan alet|PERGEL
+Açı ölçmeye yarayan alet|İLETKİ
+Kâğıtları yapıştıran madde|YAPIŞTIRICI
+Renkli kalemlerin kutusu|KALEMLİK
+Okul çantası|ÇANTA
+Okula gidilen araç|SERVİS
+Okulun yöneticisi|MÜDÜR
+Sınıfın temsilcisi|BAŞKAN
+Yoklamada söylenen söz|BURADA
+Sınavda alınan puan|NOT
+Okul yılı sonundaki tatil|YAZTATİLİ
+Yarıyıl tatili|SÖMESTR
+Ödev yapılan çalışma masası|ÇALIŞMAMASASI
+Üniversitede okuyan kişi|ÖĞRENCİ
+Üniversitede ders veren|PROFESÖR
+Laboratuvarda kullanılan cam tüp|DENEYTÜPÜ
+Bilimsel deney yapılan yer|LABORATUVAR
+Deney yapan bilim insanı|ARAŞTIRMACI
+Yeni şey bulan kişi|MUCİT
+Bilgisayar programı yazan|PROGRAMCI
+Robotları tasarlayan bilim|ROBOTİK
+Elektriği taşıyan tel|KABLO
+Elektrik akımını açıp kapayan|ŞALTER
+Işık veren cam ampul|AMPUL
+Cep fenerinin diğer adı|ELFENERİ
+Gece karanlıkta görmeyi sağlayan|FENER
+Mıknatısın çektiği metal|DEMİR
+Paslanmayan parlak metal|ÇELİK
+Kabloların yapıldığı kızıl metal|BAKIR
+Hafif uçak metali|ALÜMİNYUM
+Değerli beyaz metal|GÜMÜŞ
+En sert değerli taş|ELMAS
+Kırmızı değerli taş|YAKUT
+Yeşil değerli taş|ZÜMRÜT
+Mavi değerli taş|SAFİR
+Mor değerli taş|AMETİST
+Turkuaz renkli taş|FİRUZE
+Ağaç reçinesinden oluşan sarı taş|KEHRİBAR
+Kalemlerin içindeki siyah madde|GRAFİT
+Yakıt olarak kullanılan siyah taş|KÖMÜR
+Arabaların yakıtı|BENZİN
+Kara altın denen yakıt|PETROL
+Evlerde kullanılan yakıt gazı|DOĞALGAZ
+Rüzgârdan elektrik üreten|RÜZGÂRGÜLÜ
+Güneşten elektrik üreten|GÜNEŞPANELİ
+Suyu biriktiren büyük set|BARAJ
+Atıkları yeniden kullanma|GERİDÖNÜŞÜM
+Çöplerin atıldığı kap|ÇÖPKUTUSU
+Doğayı koruma bilinci|ÇEVRECİLİK
+Havayı kirleten duman|EGZOZ
+Dünyanın ısınması|KÜRESELISINMA
+Ağaç dikme kampanyası|FİDAN
+Ormandaki çıkan büyük yangın|ORMANYANGINI

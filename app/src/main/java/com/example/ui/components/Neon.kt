@@ -68,6 +68,7 @@ import com.example.ui.theme.NeonBorder
 import com.example.ui.theme.NeonCard
 import com.example.ui.theme.NeonCyan
 import com.example.ui.theme.NeonPurple
+import com.example.ui.theme.NeonPink
 import com.example.ui.theme.NeonYellow
 import com.example.ui.theme.OnNeon
 import com.example.ui.theme.TextMuted
@@ -376,6 +377,8 @@ fun NeonBackground(
     accent: Color = NeonPurple,
     accent2: Color = NeonCyan,
     showGrid: Boolean = true,
+    /** Arka plana serpiştirilen soluk desen sembolleri (bkz. [BgPatterns]); null ise desen yok. */
+    pattern: String? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     val t = rememberInfiniteTransition(label = "bg")
@@ -406,7 +409,7 @@ fun NeonBackground(
                     radius = w * 0.8f,
                     center = Offset(w * (0.9f - 0.2f * drift), h * 0.85f)
                 )
-                if (showGrid) {
+                if (showGrid && pattern == null) {
                     val step = 42.dp.toPx()
                     val off = shift * step
                     val lineColor = accent2.copy(alpha = 0.045f)
@@ -422,7 +425,10 @@ fun NeonBackground(
                     }
                 }
             },
-        content = content
+        content = {
+            if (pattern != null) PatternLayer(pattern, listOf(accent, accent2, NeonPink))
+            content()
+        }
     )
 }
 

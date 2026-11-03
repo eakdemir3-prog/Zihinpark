@@ -560,53 +560,7 @@ fun WowFeatureCard(repository: GameRepository, onClick: () -> Unit, modifier: Mo
 /** Durak sırası ile aynı: İstanbul, Kapadokya, Pamukkale, Efes, Nemrut, Uzungöl, Antalya, Paris, Roma, Mısır, Japonya, New York, Rio, İzlanda, Machu Picchu. */
 private val CHAPTER_BG = listOf("istanbul", "kapadokya", "pamukkale", "efes", "nemrut", "uzungol", "antalya", "paris", "roma", "misir", "japonya", "newyork", "rio", "izlanda", "machu")
 
-/** Fotoğraf atıfları (Wikimedia Commons). */
-private val CHAPTER_CREDIT = mapOf(
-    "istanbul" to "Gryffindor · Kamu malı",
-    "kapadokya" to "MusikAnimal · CC BY-SA 4.0",
-    "pamukkale" to "Slyronit · CC BY-SA 4.0",
-    "efes" to "Benh LIEU SONG · CC BY-SA 3.0",
-    "nemrut" to "Mkrc85 · CC BY-SA 4.0",
-    "uzungol" to "Muhammed Raşit Kızılkaya · CC BY-SA 4.0",
-    "antalya" to "REHBER0770 · CC BY-SA 4.0",
-    "paris" to "Getfunky Paris · CC BY 2.0",
-    "roma" to "Diliff · CC BY-SA 2.5",
-    "misir" to "Ricardo Liberato · CC BY-SA 2.0",
-    "japonya" to "Dang Son · CC0",
-    "newyork" to "Rhododendrites · CC BY-SA 4.0",
-    "rio" to "Donatas Dabravolskas · CC BY-SA 4.0",
-    "izlanda" to "AstroAnthony · CC BY 4.0",
-    "machu" to "Martin St-Amant · CC BY-SA 3.0"
-)
-
 /** Durağın gerçek fotoğrafı + okunabilirlik için tema renginde perde. */
 @Composable
-fun ChapterBackground(chapter: Int, content: @Composable androidx.compose.foundation.layout.BoxScope.() -> Unit) {
-    val context = LocalContext.current
-    val key = CHAPTER_BG.getOrNull(chapter)
-    val res = remember(key) { if (key == null) 0 else context.resources.getIdentifier("wow_bg_$key", "drawable", context.packageName) }
-    Box(Modifier.fillMaxSize().background(NeonBg)) {
-        if (res != 0) {
-            androidx.compose.foundation.Image(
-                androidx.compose.ui.res.painterResource(res), null,
-                Modifier.fillMaxSize(), contentScale = androidx.compose.ui.layout.ContentScale.Crop
-            )
-        }
-        val light = com.example.ui.theme.ZpColors.palette.isLight
-        Box(
-            Modifier.fillMaxSize().background(
-                Brush.verticalGradient(
-                    if (light) listOf(Color.White.copy(alpha = 0.55f), NeonBg.copy(alpha = 0.78f), NeonBg.copy(alpha = 0.93f))
-                    else listOf(Color.Black.copy(alpha = 0.45f), NeonBg.copy(alpha = 0.75f), NeonBg.copy(alpha = 0.93f))
-                )
-            )
-        )
-        content()
-        CHAPTER_CREDIT[key]?.let {
-            Text(
-                "📷 $it · Wikimedia Commons", color = TextMuted.copy(alpha = 0.7f), fontSize = 8.sp,
-                modifier = Modifier.align(Alignment.BottomEnd).navigationBarsPadding().padding(end = 8.dp, bottom = 2.dp)
-            )
-        }
-    }
-}
+fun ChapterBackground(chapter: Int, content: @Composable androidx.compose.foundation.layout.BoxScope.() -> Unit) =
+    com.example.ui.components.PhotoBackground(CHAPTER_BG.getOrNull(chapter)?.let { "wow_bg_$it" }, content)

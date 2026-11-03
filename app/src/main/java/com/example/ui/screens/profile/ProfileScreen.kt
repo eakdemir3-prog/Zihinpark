@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -152,6 +154,7 @@ fun ProfileScreen(
     var editName by remember { mutableStateOf(false) }
     var editTime by remember { mutableStateOf(false) }
     var confirmReset by remember { mutableStateOf(false) }
+    var showLicenses by remember { mutableStateOf(false) }
 
     var hasPermission by remember {
         mutableStateOf(
@@ -269,7 +272,19 @@ fun ProfileScreen(
                 Text("ZihinPark v2.0", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
                 Text("EA Vision Labs · 30 oyun, 1500 seviye + Kelime Diyarı", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
                 Spacer(Modifier.height(12.dp))
+                NeonButton("Fotoğraflar ve lisanslar", { showLicenses = true }, color = NeonCyan, outlined = true, height = 42.dp, modifier = Modifier.fillMaxWidth())
+                Spacer(Modifier.height(8.dp))
                 NeonButton("Tüm ilerlemeyi sıfırla", { confirmReset = true }, color = NeonRed, outlined = true, height = 42.dp, modifier = Modifier.fillMaxWidth())
+            }
+        }
+    }
+
+    if (showLicenses) {
+        val text = remember { runCatching { context.assets.open("licenses.txt").bufferedReader(Charsets.UTF_8).use { it.readText() } }.getOrDefault("") }
+        NeonDialog(title = "Fotoğraflar ve lisanslar", onDismiss = { showLicenses = false }, confirm = "Kapat", onConfirm = { showLicenses = false }) {
+            androidx.compose.foundation.layout.Box(Modifier.heightIn(max = 420.dp)) {
+                Text(text, color = TextSecondary, fontSize = 11.sp, lineHeight = 15.sp,
+                    modifier = Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()))
             }
         }
     }

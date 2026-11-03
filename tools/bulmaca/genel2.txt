@@ -1,0 +1,156 @@
+Hastaların yattığı sağlık kurumu|HASTANE
+Kitap ödünç alınan yer|KÜTÜPHANE
+Filmlerin gösterildiği salon|SİNEMA
+Oyunların sahnelendiği yer|TİYATRO
+Eski eserlerin sergilendiği yer|MÜZE
+Uçakların indiği yer|HAVALİMANI
+Trenlerin durduğu yer|İSTASYON
+Gemilerin yanaştığı yer|LİMAN
+Para yatırılan kurum|BANKA
+Mektup gönderilen kurum|POSTANE
+Ekmek satılan dükkân|FIRIN
+İlaç alınan yer|ECZANE
+Sebze meyve satılan açık pazar|MANAV
+Et satılan dükkân|KASAP
+Büyük alışveriş mağazası|MARKET
+Hayvanların sergilendiği bahçe|HAYVANATBAHÇESİ
+Çocukların kaydıraklı oyun yeri|PARK
+İbadet edilen kubbeli yapı|CAMİ
+Kayakla kayılan beyaz tepe|PİST
+Yüzme yapılan havuz|HAVUZ
+Denizin kıyısındaki kumluk|PLAJ
+Yaz tatilinde kalınan otel türü|PANSİYON
+Tatilde kurulan bez ev|ÇADIR
+Kamp ateşinde pişirilen tatlı köpük|MARŞMELOV
+Bavulun diğer adı|VALİZ
+Yolculukta kullanılan kimlik belgesi|PASAPORT
+Uçağa binmek için alınan belge|BİLET
+Haritayı gösteren küre|DÜNYA
+Ülkelerin çizildiği kâğıt|HARİTA
+Okulda ders gören kişi|ÖĞRENCİ
+Sınıfta yazı yazılan pano|TAHTA
+Tebeşirle yazılan yazı tahtası rengi|YEŞİL
+Okul sonunda verilen belge|DİPLOMA
+Yılsonu verilen not belgesi|KARNE
+Ders arasında verilen dinlenme|TENEFÜS
+Ödevlerin yazıldığı kitapçık|DEFTER
+Sayılarla yapılan ders|MATEMATİK
+Canlıları inceleyen ders|BİYOLOJİ
+Maddeyi ve enerjiyi inceleyen bilim|FİZİK
+Elementleri inceleyen bilim|KİMYA
+Geçmişi inceleyen ders|TARİH
+Ülkeleri ve yer şekillerini inceleyen ders|COĞRAFYA
+Resim dersinde kullanılan boya türü|SULUBOYA
+Boyama için kullanılan renkli kalem|PASTEL
+Resim yapılan ayaklı tahta|ŞÖVALE
+Müzikte notaların yazıldığı beş çizgi|PORTE
+Telli Türk çalgısı|BAĞLAMA
+Siyah beyaz tuşlu çalgı|PİYANO
+Yayla çalınan telli çalgı|KEMAN
+Üflenerek çalınan ney benzeri çalgı|FLÜT
+Tokmakla vurularak çalınan çalgı|DAVUL
+Altı telli çalgı|GİTAR
+Hep birlikte söylenen şarkı topluluğu|KORO
+Orkestrayı yöneten kişi|ŞEF
+Şarkı söyleyen sanatçı|ŞARKICI
+Sahnede rol yapan sanatçı|OYUNCU
+Filmi yöneten kişi|YÖNETMEN
+Çizgi film kahramanlarının çizildiği sanat|ANİMASYON
+Fotoğraf çeken kişi|FOTOĞRAFÇI
+Yazılı haber kâğıdı|GAZETE
+Haftalık resimli yayın|DERGİ
+Uzun anlatı türü|ROMAN
+Kısa anlatı türü|HİKÂYE
+Dizelerden oluşan edebî tür|ŞİİR
+Bilmeceye benzeyen kelime oyunu|BULMACA
+Satrançta düz giden taş|KALE
+Satrançta en önemli taş|ŞAH
+Satrançta çapraz giden taş|FİL
+Siyah beyaz karelerde oynanan oyun|SATRANÇ
+Taşlarla oynanan Türk oyunu|OKEY
+Zarla oynanan masa oyunu|TAVLA
+Elle oynanan kâğıt oyunu|İSKAMBİL
+Parçaları birleştirilen resim oyunu|YAPBOZ
+Saklanıp aranan çocuk oyunu|SAKLAMBAÇ
+İp atlanan çocuk oyunu|İPATLAMA
+Rüzgârda uçurulan oyuncak|UÇURTMA
+Dönen tahta oyuncak|TOPAÇ
+Bebek şeklinde oyuncak|BEBEK
+Futbolda on bir metreden atış|PENALTI
+Pota ve topla oynanan spor|BASKETBOL
+Fileyle oynanan takım sporu|VOLEYBOL
+Raketle oynanan kort sporu|TENİS
+Masa üstünde raketle oynanan spor|PİNPON
+Sopa ile topa vurulan çim sporu|GOLF
+Eldivenle yapılan dövüş sporu|BOKS
+Minderde yapılan ata sporu|GÜREŞ
+Yağlı yapılan geleneksel spor|YAĞLIGÜREŞ
+Atla yapılan yarış|BİNİCİLİK
+Suda yapılan spor|YÜZME
+Uzun mesafe koşu yarışı|MARATON
+Futbolda kaleye girilen sayı|GOL
+Maçı yöneten kişi|HAKEM
+Takıma yön veren kişi|ANTRENÖR
+Takımın lideri oyuncu|KAPTAN
+Yarışmada birinci olana verilen|KUPA
+Altın, gümüş veya bronz ödül|MADALYA
+Dört yılda bir yapılan büyük spor oyunları|OLİMPİYAT
+Hızla kayılan buz sporu|PATEN
+Kar üstünde kayılan spor aracı|KAYAK
+Dağa tırmanan sporcu|DAĞCI
+Pedal çevrilen yarış|BİSİKLET
+Gökyüzünde parlayan gece cismi|YILDIZ
+Dünyanın uydusu|AY
+Bize ısı ve ışık veren yıldız|GÜNEŞ
+Güneşe en yakın gezegen|MERKÜR
+Kızıl gezegen|MARS
+Halkalarıyla bilinen gezegen|SATÜRN
+En büyük gezegen|JÜPİTER
+Sabah yıldızı da denen gezegen|VENÜS
+Uzay aracını fırlatan araç|ROKET
+Dünyanın çevresinde dönen yapay araç|UYDU
+Kuyruklu yıldız|KOMET
+Gökten düşen taş|GÖKTAŞI
+Yıldız kümelerinden oluşan dev sistem|GALAKSİ
+Işığı bile yutan uzay bölgesi|KARADELİK
+Uzay yürüyüşünde giyilen kıyafet|SKAFANDR
+Uzayı araştıran ABD kurumu|NASA
+Dağların en yüksek noktası|ZİRVE
+İki dağ arasındaki çukur|VADİ
+Yüksekten dökülen su|ŞELALE
+Akarsuyun denize döküldüğü yer|DELTA
+Etrafı denizle çevrili kara|ADA
+Üç tarafı denizle çevrili kara|YARIMADA
+Kum tepeleriyle kaplı sıcak bölge|ÇÖL
+Çölde su bulunan yeşil alan|VAHA
+Ağaçlarla kaplı geniş alan|ORMAN
+Ateş püskürten dağ|YANARDAĞ
+Yerin sarsılması|DEPREM
+Dev deniz dalgası|TSUNAMİ
+Dönen hortum rüzgârı|KASIRGA
+Kutuplarda yüzen dev buz|BUZDAĞI
+Yağmur getiren gri gök kütlesi|BULUT
+Toprağın altındaki su kaynağı|KUYU
+Dağlardan akan küçük su|DERE
+Büyük akarsu|NEHİR
+Etrafı karayla çevrili su|GÖL
+Çiçeklerin güzel kokan kısmı|TAÇYAPRAK
+Ağacın toprak altındaki kısmı|KÖK
+Ağacın gövdesini saran kabuk|KABUK
+Ağacın dalında açan|ÇİÇEK
+Dikenli güzel kokulu çiçek|GÜL
+İstanbul'un simgesi bahar çiçeği|LALE
+Beyaz yapraklı sarı göbekli çiçek|PAPATYA
+Güneşe dönen iri sarı çiçek|AYÇİÇEĞİ
+Kış ortasında açan beyaz çiçek|KARDELEN
+Mor salkımlı kokulu çiçek|LEYLAK
+Dikenli çöl bitkisi|KAKTÜS
+İğne yapraklı yaprak dökmeyen ağaç|ÇAM
+Uzun boylu ince ağaç|KAVAK
+Suya eğilen ağlayan ağaç|SÖĞÜT
+Meyvesinden yağ yapılan ağaç|ZEYTİNAĞACI
+Sonbaharda yaprak döken büyük ağaç|ÇINAR
+Yaprakların döküldüğü mevsim|SONBAHAR
+Çiçeklerin açtığı mevsim|İLKBAHAR
+En sıcak mevsim|YAZ
+En soğuk mevsim|KIŞ
