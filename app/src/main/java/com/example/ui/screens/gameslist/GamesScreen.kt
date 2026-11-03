@@ -73,7 +73,8 @@ fun GamesScreen(
     initialCategory: String?,
     onOpenGame: (gameId: String) -> Unit,
     onOpenShop: () -> Unit,
-    onOpenWow: () -> Unit = {}
+    onOpenWow: () -> Unit = {},
+    onOpenLingo: () -> Unit = {}
 ) {
     val progress by repository.allProgress.collectAsState(initial = emptyMap())
     val diamonds by repository.preferences.diamondBalance.collectAsState(initial = 0)
@@ -111,6 +112,7 @@ fun GamesScreen(
         }
         if (query.isBlank() && category == null) {
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
+            item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
         }
         item(span = { GridItemSpan(maxLineSpan) }) { SearchBox(query) { query = it } }
         item(span = { GridItemSpan(maxLineSpan) }) {

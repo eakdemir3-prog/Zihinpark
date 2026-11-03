@@ -73,7 +73,8 @@ fun HomeScreen(
     onPlayLevel: (gameId: String, level: Int) -> Unit,
     onOpenCategory: (categoryName: String) -> Unit,
     onOpenShop: () -> Unit,
-    onOpenWow: () -> Unit = {}
+    onOpenWow: () -> Unit = {},
+    onOpenLingo: () -> Unit = {}
 ) {
     val userName by repository.preferences.userName.collectAsState(initial = "Zihin Gezgini")
     val streak by repository.preferences.dailyStreak.collectAsState(initial = 0)
@@ -122,6 +123,7 @@ fun HomeScreen(
         }
 
         item { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
+        item { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
 
         if (continueGame != null) {
             item {

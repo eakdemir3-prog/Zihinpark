@@ -115,6 +115,9 @@ object Routes {
     const val WEEKLY = "weekly_trends"
     const val LEVELS = "levels/{gameId}"
     const val PLAY = "play/{gameId}/{level}"
+    const val LINGO = "lingo"
+    const val LINGO_PLAY = "lingo/{level}"
+    fun lingoPlay(level: Int) = "lingo/$level"
     const val WOW = "wow"
     const val WOW_PLAY = "wow/{level}"
     fun wowPlay(level: Int) = "wow/$level"
@@ -217,7 +220,8 @@ fun ZihinParkAppNavigation(
                                 goTab(MainTab.Games)
                             },
                             onOpenShop = { navController.navigate(Routes.SHOP) },
-                            onOpenWow = { navController.navigate(Routes.WOW) }
+                            onOpenWow = { navController.navigate(Routes.WOW) },
+                            onOpenLingo = { navController.navigate(Routes.LINGO) }
                         )
                     }
                     composable(MainTab.Games.route) {
@@ -226,7 +230,31 @@ fun ZihinParkAppNavigation(
                             initialCategory = gamesCategory,
                             onOpenGame = ::openGame,
                             onOpenShop = { navController.navigate(Routes.SHOP) },
-                            onOpenWow = { navController.navigate(Routes.WOW) }
+                            onOpenWow = { navController.navigate(Routes.WOW) },
+                            onOpenLingo = { navController.navigate(Routes.LINGO) }
+                        )
+                    }
+                    composable(Routes.LINGO) {
+                        com.example.ui.lingo.LingoHubScreen(
+                            repository = repository,
+                            onBack = { navController.popBackStack() },
+                            onPlayLevel = { navController.navigate(Routes.lingoPlay(it)) },
+                            onPlayDaily = { navController.navigate(Routes.lingoPlay(0)) },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
+                        )
+                    }
+                    composable(
+                        Routes.LINGO_PLAY,
+                        arguments = listOf(navArgument("level") { type = NavType.IntType })
+                    ) { entry ->
+                        val level = entry.arguments?.getInt("level") ?: 1
+                        com.example.ui.lingo.LingoPlayScreen(
+                            level = level,
+                            repository = repository,
+                            soundManager = soundManager,
+                            onBack = { navController.popBackStack() },
+                            onNext = { next -> navController.navigate(Routes.lingoPlay(next)) { popUpTo(Routes.LINGO_PLAY) { inclusive = true } } },
+                            onOpenShop = { navController.navigate(Routes.SHOP) }
                         )
                     }
                     composable(Routes.WOW) {

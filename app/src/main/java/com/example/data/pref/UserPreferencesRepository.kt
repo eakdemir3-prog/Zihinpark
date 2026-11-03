@@ -59,6 +59,15 @@ class UserPreferencesRepository(private val context: Context) {
         val WELCOME_DONE = booleanPreferencesKey("welcome_done")
         val PRO_PROMPT_DAY = longPreferencesKey("pro_prompt_day")
 
+        // Lingo
+        val LINGO_LEVEL = intPreferencesKey("lingo_level")
+        val LINGO_DAILY_DAY = longPreferencesKey("lingo_daily_day")
+        val LINGO_DAILY_WON = booleanPreferencesKey("lingo_daily_won")
+        val LINGO_DAILY_TRIES = intPreferencesKey("lingo_daily_tries")
+        val LINGO_STREAK = intPreferencesKey("lingo_streak")
+        val LINGO_STREAK_DAY = longPreferencesKey("lingo_streak_day")
+        val LINGO_WINS = intPreferencesKey("lingo_wins")
+
         // Kelime Diyarı
         val WOW_LEVEL = intPreferencesKey("wow_level")
         val WOW_FOUND = stringSetPreferencesKey("wow_found")
@@ -67,6 +76,48 @@ class UserPreferencesRepository(private val context: Context) {
         val WOW_BONUS_WORDS = stringSetPreferencesKey("wow_bonus_words")
         val WOW_REVEALED = stringSetPreferencesKey("wow_revealed")
     }
+
+    // ---- Lingo ----
+    val lingoLevel: Flow<Int> = context.dataStore.data.map { it[Keys.LINGO_LEVEL] ?: 1 }
+    val lingoWins: Flow<Int> = context.dataStore.data.map { it[Keys.LINGO_WINS] ?: 0 }
+
+    data class LingoDaily(val playedToday: Boolean, val won: Boolean, val tries: Int, val streak: Int)
+
+    val lingoDaily: Flow<LingoDaily> = context.dataStore.data.map {
+        val today = epochDay(System.currentTimeMillis())
+        val played = (it[Keys.LINGO_DAILY_DAY] ?: -1L) == today
+        val sDay = it[Keys.LINGO_STREAK_DAY] ?: -10L
+        val streak = if (today - sDay <= 1) it[Keys.LINGO_STREAK] ?: 0 else 0
+        LingoDaily(played, played && (it[Keys.LINGO_DAILY_WON] ?: false), if (played) it[Keys.LINGO_DAILY_TRIES] ?: 0 else 0, streak)
+    }
+
+    /** Seviye kelimesi bitti; kazanıldıysa bir sonraki seviye açılır. */
+    suspend fun completeLingoLevel(level: Int, won: Boolean) {
+        context.dataStore.edit {
+            if (won) {
+                it[Keys.LINGO_WINS] = (it[Keys.LINGO_WINS] ?: 0) + 1
+                if (level >= (it[Keys.LINGO_LEVEL] ?: 1)) it[Keys.LINGO_LEVEL] = level + 1
+            }
+        }
+    }
+
+    /** Günün Lingo'su sonucu (günde bir kez). Seriyi günceller. */
+    suspend fun recordLingoDaily(won: Boolean, tries: Int) {
+        val today = epochDay(System.currentTimeMillis())
+        context.dataStore.edit {
+            if ((it[Keys.LINGO_DAILY_DAY] ?: -1L) == today) return@edit
+            it[Keys.LINGO_DAILY_DAY] = today
+            it[Keys.LINGO_DAILY_WON] = won
+            it[Keys.LINGO_DAILY_TRIES] = tries
+            if (won) {
+                val sDay = it[Keys.LINGO_STREAK_DAY] ?: -10L
+                it[Keys.LINGO_STREAK] = if (today - sDay == 1L) (it[Keys.LINGO_STREAK] ?: 0) + 1 else 1
+                it[Keys.LINGO_STREAK_DAY] = today
+            } else it[Keys.LINGO_STREAK] = 0
+        }
+    }
+
+    fun epochDayNow(): Long = epochDay(System.currentTimeMillis())
 
     // ---- Kelime Diyarı ----
     /** Oynanacak (açık olan en yüksek) seviye, 1..300; 301 = hepsi bitti. */
