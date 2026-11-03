@@ -1,15 +1,13 @@
 import json, sys, urllib.request, urllib.parse, os, re
-Q=[("istanbul","Galata Tower Bosphorus Istanbul"),("kapadokya","Cappadocia hot air balloons Goreme"),("pamukkale","Pamukkale travertines"),
-("efes","Ephesus Library of Celsus"),("nemrut","Mount Nemrut statues"),("uzungol","Uzungöl Trabzon"),("antalya","Antalya Kaleiçi harbour"),
-("paris","Eiffel Tower Paris"),("roma","Colosseum Rome"),("misir","Giza pyramids"),("japonya","Mount Fuji Chureito Pagoda"),
-("newyork","Manhattan skyline New York"),("rio","Christ the Redeemer Rio de Janeiro"),("izlanda","Aurora borealis Iceland"),("machu","Machu Picchu")]
+Q=[("japonya","Chureito Pagoda Fuji"),("japonya2","Fushimi Inari torii"),("newyork","Lower Manhattan skyline"),("newyork2","Brooklyn Bridge Manhattan"),
+("rio","Cristo Redentor Rio"),("rio2","Sugarloaf Mountain Rio de Janeiro"),("izlanda","Aurora borealis Iceland"),("izlanda2","Kirkjufell"),("machu","Machu Picchu"),("machu2","Machu Picchu panorama")]
 UA={'User-Agent':'ZihinParkBuild/1.0 (CI)'}
 os.makedirs('out/c',exist_ok=True)
 meta={}
 for key,q in Q:
-    url='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode({'action':'query','format':'json','generator':'search','gsrsearch':q+' filetype:bitmap','gsrnamespace':6,'gsrlimit':14,'prop':'imageinfo','iiprop':'url|extmetadata|size','iiurlwidth':1080})
+    url='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode({'action':'query','format':'json','generator':'search','gsrsearch':q+' filetype:bitmap','gsrnamespace':6,'gsrlimit':30,'prop':'imageinfo','iiprop':'url|extmetadata|size','iiurlwidth':1080})
     try: d=json.load(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=60))
-    except Exception as e: print('fail',key,e); continue
+    except Exception as e: print('fail',key,e); import time; time.sleep(3); continue
     pages=sorted(d.get('query',{}).get('pages',{}).values(),key=lambda p:p.get('index',99))
     n=0
     for p in pages:
@@ -27,5 +25,5 @@ for key,q in Q:
         meta[f'{key}_{n}']={'title':p['title'],'artist':art.strip(),'license':lic,'page':ii.get('descriptionurl','')}
         n+=1
         if n>=6: break
-    print(key,n)
+    print(key,n); import time; time.sleep(2)
 json.dump(meta,open('out/meta.json','w'),ensure_ascii=False,indent=1)
