@@ -51,6 +51,9 @@ store() {
 }
 # Isınma: ilk açılış yavaş
 $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
+store 0_bulmaca bulmaca/1 12
+store 0_lingo lingo/1 10
+store 0_bdmap bulmaca 10
 store 1_home tab_home 12
 store 2_games tab_games 10
 store 3_wow wow/1 12
