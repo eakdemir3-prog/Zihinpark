@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# ===== ZihinPark R8 kuralları =====
+# Hata raporlarında satır numaraları
+-keepattributes SourceFile,LineNumberTable,*Annotation*,Signature,InnerClasses,EnclosingMethod
+-renamesourcefileattribute SourceFile
+# Enum adları kalıcı veride / rotalarda kullanılıyor
+-keepclassmembers enum * { *; }
+# Credential Manager (Google ile giriş) – Play Services sağlayıcısı yansıma ile yüklenir
+-if class androidx.credentials.CredentialManager
+-keep class androidx.credentials.playservices.** { *; }
+-keep class com.google.android.libraries.identity.googleid.** { *; }
+# Firestore'a giden veri sınıfları (alan adları korunur)
+-keepclassmembers class com.example.cloud.** { <fields>; <init>(...); }
+# Room
+-keep class * extends androidx.room.RoomDatabase { <init>(); }
+-dontwarn org.slf4j.**

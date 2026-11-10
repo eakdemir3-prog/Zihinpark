@@ -16,7 +16,7 @@ android {
     applicationId = "com.eavisionlabs.zihinpark"
     minSdk = 24
     targetSdk = 36
-    versionCode = 14
+    versionCode = 15
     versionName = "1.0.11"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -43,13 +43,19 @@ android {
   buildTypes {
     release {
       isCrunchPngs = false
-      isMinifyEnabled = false
+      isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
       // AI Studio.
       // Anahtar yoksa (CI) imzasız paket üretilir; yükleme anahtarıyla sonradan imzalanır.
       val rel = signingConfigs.getByName("release")
       signingConfig = if (rel.storeFile?.exists() == true && rel.storePassword != null) rel else null
+    }
+    // Telefonda denemek için: release ile aynı R8 küçültmesi, debug anahtarıyla imzalı
+    create("qa") {
+      initWith(getByName("release"))
+      signingConfig = signingConfigs.getByName("debugConfig")
+      matchingFallbacks += listOf("release")
     }
     debug {
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in

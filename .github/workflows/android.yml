@@ -39,7 +39,7 @@ jobs:
       - name: Play paketi (AAB, imzasiz)
         run: |
           set -o pipefail
-          gradle --no-configuration-cache :app:bundleRelease --no-daemon 2>&1 | tee -a build.log
+          gradle --no-configuration-cache :app:bundleRelease :app:assembleQa --no-daemon 2>&1 | tee -a build.log
 
       - name: Birim testleri
         run: |
@@ -82,6 +82,8 @@ jobs:
           mkdir -p out
           cp app/build/outputs/apk/debug/app-debug.apk out/ZihinPark-test.apk
           cp app/build/outputs/bundle/release/app-release.aab out/ZihinPark-unsigned.aab
+          cp app/build/outputs/apk/qa/app-qa.apk out/ZihinPark-test-r8.apk || true
+          cp app/build/outputs/mapping/release/mapping.txt out/mapping.txt || true
           TAG="build-${{ github.run_number }}"
           gh release create "$TAG" out/* \
             --target "${{ github.sha }}" --prerelease \
