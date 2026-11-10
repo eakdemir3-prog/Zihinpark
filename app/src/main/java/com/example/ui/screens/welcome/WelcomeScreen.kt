@@ -71,10 +71,8 @@ fun WelcomeScreen(onDone: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Image(
-                painterResource(R.drawable.ic_launcher_fg), null,
-                Modifier.size(150.dp).graphicsLayer { translationY = float }
-            )
+            com.example.ui.components.Mascot(com.example.ui.components.MascotMood.Cheer, 150.dp)
+            Text("Merhaba, ben Bilge! 🦉", color = TextSecondary, style = MaterialTheme.typography.bodyMedium)
             Spacer(Modifier.height(8.dp))
             Text("ZihinPark", color = TextPrimary, fontSize = 40.sp, fontWeight = FontWeight.ExtraBold)
             Text("Düşün. Oyna. Kazan.", color = TextSecondary, style = MaterialTheme.typography.titleMedium)

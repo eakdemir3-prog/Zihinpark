@@ -78,6 +78,10 @@ import com.example.ui.theme.NeonPink
 import com.example.ui.theme.TextMuted
 import com.example.ui.theme.TextPrimary
 import com.example.ui.theme.TextSecondary
+import androidx.compose.ui.graphics.lerp
+import androidx.compose.foundation.shape.RoundedCornerShape
+import com.example.ui.theme.NeonPurple
+import com.example.ui.theme.NeonYellow
 import kotlin.math.roundToInt
 
 @Composable
@@ -197,17 +201,27 @@ private fun ZoneSection(zone: Int, progress: GameProgress, accent: Color, next: 
     val unlocked = progress.isZoneUnlocked(zone)
     val first = LevelRules.zoneFirstLevel(zone)
     val zoneStars = progress.zoneStars(zone)
+    val W = Color.White
     Column {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(LevelRules.ZONE_EMOJI[zone], fontSize = 18.sp)
-            Spacer(Modifier.width(8.dp))
-            Text(
-                "${LevelRules.ZONE_NAMES[zone]}  ·  $first–${first + 9}",
-                style = MaterialTheme.typography.titleMedium,
-                color = if (unlocked) TextPrimary else TextMuted,
-                modifier = Modifier.weight(1f)
-            )
-            Text("⭐ $zoneStars/30", color = if (unlocked) com.example.ui.theme.NeonYellow else TextMuted, style = MaterialTheme.typography.labelLarge)
+        val shape = RoundedCornerShape(22.dp)
+        Box(
+            Modifier.fillMaxWidth().clip(shape)
+                .background(if (unlocked) Brush.linearGradient(listOf(accent, NeonPurple, NeonCyan)) else Brush.linearGradient(listOf(NeonBorder, NeonBorder.copy(alpha = 0.6f))))
+                .padding(horizontal = 16.dp, vertical = 14.dp)
+        ) {
+            Column(Modifier.padding(end = 56.dp)) {
+                Text("BÖLGE ${zone + 1} · ${LevelRules.ZONE_NAMES[zone].uppercase()}", color = if (unlocked) W.copy(alpha = 0.9f) else TextSecondary, fontSize = 11.sp, fontWeight = FontWeight.ExtraBold, maxLines = 1)
+                Text("Seviye $first–${first + 9}", color = if (unlocked) W else TextSecondary, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.ExtraBold)
+                Spacer(Modifier.height(8.dp))
+                Box(Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)).background(W.copy(alpha = 0.3f))) {
+                    Box(Modifier.fillMaxWidth((zoneStars / 30f).coerceIn(0.02f, 1f)).height(6.dp).clip(RoundedCornerShape(3.dp)).background(W))
+                }
+                Text("⭐ $zoneStars / 30 · Boss: Seviye ${first + 9}", color = if (unlocked) W.copy(alpha = 0.9f) else TextSecondary, fontSize = 11.sp, modifier = Modifier.padding(top = 4.dp), maxLines = 1)
+            }
+            Box(
+                Modifier.align(Alignment.CenterEnd).size(48.dp).clip(RoundedCornerShape(14.dp)).background(W.copy(alpha = 0.22f)),
+                contentAlignment = Alignment.Center
+            ) { Text(if (unlocked) LevelRules.ZONE_EMOJI[zone] else "🔒", fontSize = 24.sp) }
         }
         Spacer(Modifier.height(10.dp))
         if (!unlocked && zone > 0) {
@@ -225,102 +239,97 @@ private fun ZoneSection(zone: Int, progress: GameProgress, accent: Color, next: 
     }
 }
 
-/**
- * 10 seviyeyi kıvrımlı bir yol üzerinde (5'li iki sıra, yılan düzeni) gösterir.
- */
+private val PATH_X = floatArrayOf(0.5f, 0.72f, 0.8f, 0.64f, 0.4f, 0.22f, 0.2f, 0.36f, 0.6f, 0.76f)
+
+/** 10 seviyeyi yukarıdan aşağı zikzak bir yol üzerinde gösterir. */
 @Composable
 private fun LevelPath(first: Int, progress: GameProgress, accent: Color, next: Int, onPlay: (Int) -> Unit) {
     val appear = remember { Animatable(0f) }
     LaunchedEffect(Unit) { appear.animateTo(1f, tween(700)) }
-    BoxWithConstraints(Modifier.fillMaxWidth().height(210.dp)) {
+    val rowH = 86.dp
+    BoxWithConstraints(Modifier.fillMaxWidth().height(rowH * 10 + 24.dp)) {
         val w = constraints.maxWidth.toFloat()
-        val h = constraints.maxHeight.toFloat()
-        val cols = 5
-        val node = 58.dp
         val density = androidx.compose.ui.platform.LocalDensity.current
-        val nodePx = with(density) { node.toPx() }
-        fun center(i: Int): Offset {
-            val row = i / cols
-            val colRaw = i % cols
-            val col = if (row % 2 == 0) colRaw else cols - 1 - colRaw
-            val x = nodePx / 2 + col * (w - nodePx) / (cols - 1)
-            val y = if (row == 0) h * 0.25f else h * 0.72f
-            val wobble = if (col % 2 == 0) -8f else 8f
-            return Offset(x, y + wobble * density.density)
-        }
+        val rowPx = with(density) { rowH.toPx() }
+        val top = with(density) { 24.dp.toPx() }
+        fun center(i: Int) = Offset(w * PATH_X[i], top + rowPx * i + rowPx / 2)
+        val dotColor = NeonBorder
         Canvas(Modifier.fillMaxSize()) {
-            for (i in 0 until 9) {
-                val a = center(i)
-                val b = center(i + 1)
-                val done = progress.stars(first + i) > 0
-                drawLine(
-                    color = if (done) accent.copy(alpha = 0.8f) else NeonBorder,
-                    start = a, end = b,
-                    strokeWidth = if (done) 5f else 3f,
-                    pathEffect = if (done) null else PathEffect.dashPathEffect(floatArrayOf(14f, 12f))
-                )
+            val p = androidx.compose.ui.graphics.Path()
+            p.moveTo(center(0).x, center(0).y)
+            for (i in 1 until 10) {
+                val a = center(i - 1); val b = center(i)
+                p.cubicTo(a.x, (a.y + b.y) / 2, b.x, (a.y + b.y) / 2, b.x, b.y)
             }
+            drawPath(p, dotColor, style = androidx.compose.ui.graphics.drawscope.Stroke(9.dp.toPx(), cap = androidx.compose.ui.graphics.StrokeCap.Round,
+                pathEffect = PathEffect.dashPathEffect(floatArrayOf(1f, 18.dp.toPx()))))
         }
         for (i in 0 until 10) {
             val level = first + i
             val c = center(i)
-            val delayFrac = i / 12f
-            val local = ((appear.value - delayFrac) / 0.3f).coerceIn(0f, 1f)
+            val current = level == next && progress.isUnlocked(level)
+            val node = if (current) 78.dp else 62.dp
+            val nodePx = with(density) { node.toPx() }
+            val local = ((appear.value - i / 12f) / 0.3f).coerceIn(0f, 1f)
             Box(
-                Modifier
-                    .offset { IntOffset((c.x - nodePx / 2).roundToInt(), (c.y - nodePx / 2).roundToInt()) }
+                Modifier.offset { IntOffset((c.x - nodePx / 2).roundToInt(), (c.y - nodePx / 2).roundToInt()) }
                     .graphicsLayer { scaleX = local; scaleY = local; alpha = local }
-            ) {
-                LevelNode(level, progress, accent, isCurrent = level == next, size = node) { onPlay(level) }
+            ) { PathNode(level, progress, accent, current, node) { onPlay(level) } }
+            if (current) {
+                val bubbleW = with(density) { 84.dp.toPx() }
+                Text(
+                    "BAŞLA ▾", color = Color(0xFF5A3A00), fontWeight = FontWeight.ExtraBold, fontSize = 13.sp, maxLines = 1,
+                    modifier = Modifier.offset { IntOffset((c.x - bubbleW / 2).roundToInt(), (c.y - nodePx / 2 - with(density) { 34.dp.toPx() }).roundToInt()) }
+                        .width(84.dp).clip(RoundedCornerShape(12.dp)).background(NeonYellow).padding(vertical = 5.dp),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                )
+                val mPx = with(density) { 86.dp.toPx() }
+                val mx = if (PATH_X[i] > 0.5f) c.x - nodePx / 2 - mPx - with(density) { 8.dp.toPx() } else c.x + nodePx / 2 + with(density) { 8.dp.toPx() }
+                com.example.ui.components.Mascot(
+                    com.example.ui.components.MascotMood.Happy, 86.dp,
+                    Modifier.offset { IntOffset(mx.roundToInt(), (c.y - mPx / 2).roundToInt()) }
+                )
             }
         }
     }
 }
 
 @Composable
-private fun LevelNode(level: Int, progress: GameProgress, accent: Color, isCurrent: Boolean, size: androidx.compose.ui.unit.Dp, onClick: () -> Unit) {
+private fun PathNode(level: Int, progress: GameProgress, accent: Color, isCurrent: Boolean, size: androidx.compose.ui.unit.Dp, onClick: () -> Unit) {
     val unlocked = progress.isUnlocked(level)
     val stars = progress.stars(level)
     val boss = LevelRules.isBoss(level)
-    val pulse = if (isCurrent && unlocked) {
+    val pulse = if (isCurrent) {
         val t = rememberInfiniteTransition(label = "pulse$level")
-        t.animateFloat(1f, 1.12f, infiniteRepeatable(tween(800), RepeatMode.Reverse), label = "p").value
+        t.animateFloat(1f, 1.07f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "p").value
     } else 1f
-    val ringColor = when {
-        !unlocked -> NeonBorder
-        boss -> NeonPink
-        stars > 0 -> accent
-        else -> NeonCyan
+    val (top, bottom) = when {
+        !unlocked && boss -> Color(0xFFFFB3C6) to Color(0xFFE88AA6)
+        !unlocked -> NeonBorder.copy(alpha = 0.55f) to NeonBorder
+        boss -> Color(0xFFFF8AA8) to Color(0xFFE0406A)
+        isCurrent -> accent to NeonPurple
+        stars > 0 -> Color(0xFF5FD98A) to Color(0xFF2FAE5F)
+        else -> accent.copy(alpha = 0.7f) to accent
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(
-            Modifier
-                .size(size)
-                .graphicsLayer { scaleX = pulse; scaleY = pulse }
-                .then(if (unlocked) Modifier.neonGlow(ringColor, 12.dp, size, if (isCurrent) 0.9f else 0.45f) else Modifier)
-                .clip(CircleShape)
-                .background(
-                    if (stars > 0) Brush.radialGradient(listOf(ringColor.copy(alpha = 0.55f), NeonCard))
-                    else Brush.radialGradient(listOf(NeonCard, NeonCard))
-                )
-                .border(if (isCurrent) 3.dp else 2.dp, ringColor, CircleShape)
-                .then(if (unlocked) Modifier.bounceClick(onClick = onClick) else Modifier),
-            contentAlignment = Alignment.Center
-        ) {
-            when {
-                !unlocked -> Text("🔒", fontSize = 18.sp)
-                else -> Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    if (boss) Text("👑", fontSize = 12.sp, lineHeight = 12.sp)
-                    Text(
-                        "$level",
-                        color = if (stars > 0) TextPrimary else NeonCyan,
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = if (boss) 16.sp else 19.sp
-                    )
+        Box(Modifier.size(size).graphicsLayer { scaleX = pulse; scaleY = pulse }) {
+            // 3B gölge
+            Box(Modifier.matchParentSize().offset(y = 5.dp).clip(CircleShape).background(lerp(bottom, Color.Black, 0.25f)))
+            Box(
+                Modifier.matchParentSize().clip(CircleShape)
+                    .background(Brush.verticalGradient(listOf(top, bottom)))
+                    .then(if (isCurrent) Modifier.border(4.dp, Color.White.copy(alpha = 0.7f), CircleShape) else Modifier)
+                    .then(if (unlocked) Modifier.bounceClick(onClick = onClick) else Modifier),
+                contentAlignment = Alignment.Center
+            ) {
+                when {
+                    boss -> Text(if (unlocked) "👑" else "🔒", fontSize = if (isCurrent) 28.sp else 24.sp)
+                    !unlocked -> Text("🔒", fontSize = 18.sp)
+                    else -> Text("$level", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = if (isCurrent) 26.sp else 21.sp)
                 }
             }
         }
-        Spacer(Modifier.height(2.dp))
-        if (unlocked) StarRow(stars, size = 11.dp) else Spacer(Modifier.height(13.dp))
+        Spacer(Modifier.height(7.dp))
+        if (unlocked && stars > 0) StarRow(stars, size = 11.dp)
     }
 }

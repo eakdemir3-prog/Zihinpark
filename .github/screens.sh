@@ -52,6 +52,11 @@ store() {
 # Isınma: ilk açılış yavaş
 $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 store 0_bulmaca bulmaca/1 12
+$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true > /dev/null
+sleep 12
+$T adb exec-out screencap -p > "shots/store_0_gift.png"
+store 0_path levels/sudoku 10
+store 0_profile tab_profile 10
 store 0_lingo lingo/1 10
 store 0_bdmap bulmaca 10
 store 1_home tab_home 12

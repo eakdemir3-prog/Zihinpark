@@ -627,6 +627,19 @@ private fun LevelResultCard(
     val passed = outcome.stars > 0
     GlassCard(accent = if (passed) accent else NeonRed, glow = true, modifier = Modifier.padding(20.dp)) {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            com.example.ui.components.Mascot(
+                when { !passed -> com.example.ui.components.MascotMood.Sad; outcome.stars == 3 -> com.example.ui.components.MascotMood.Cheer; else -> com.example.ui.components.MascotMood.Happy },
+                92.dp
+            )
+            Text(
+                when {
+                    !passed -> "Olsun, bir daha deneyelim!"
+                    outcome.stars == 3 -> "Mükemmel! Tam puan!"
+                    else -> "Aferin, harika gidiyorsun!"
+                },
+                color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center
+            )
+            Spacer(Modifier.height(4.dp))
             Text(
                 if (passed) (if (LevelRules.isBoss(level)) "BOSS YENİLDİ!" else "SEVİYE $level TAMAM") else "SEVİYE GEÇİLEMEDİ",
                 style = MaterialTheme.typography.headlineSmall,

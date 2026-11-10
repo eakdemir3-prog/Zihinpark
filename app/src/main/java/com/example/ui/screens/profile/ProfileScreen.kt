@@ -74,6 +74,7 @@ import com.example.ui.components.SectionTitle
 import com.example.ui.components.bounceClick
 import com.example.ui.components.neonGlow
 import com.example.ui.theme.NeonBorder
+import com.example.ui.theme.NeonOrange
 import com.example.ui.theme.NeonCard
 import com.example.ui.theme.NeonCardHigh
 import com.example.ui.theme.NeonCyan
@@ -171,31 +172,103 @@ fun ProfileScreen(
     }
 
     val stars = totalStars ?: 0
+    val listState = androidx.compose.foundation.lazy.rememberLazyListState()
     LazyColumn(
         Modifier.fillMaxSize(),
+        state = listState,
         contentPadding = PaddingValues(16.dp, 8.dp, 16.dp, 32.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         item {
-            GlassCard(accent = NeonPurple, glow = true) {
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    ProfileAvatar(avatarId, frameId, 96.dp)
-                    Spacer(Modifier.height(10.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.bounceClick { editName = true }) {
-                        Text(userName, style = MaterialTheme.typography.headlineSmall, color = TextPrimary)
-                        Spacer(Modifier.width(6.dp))
-                        Icon(Icons.Default.Edit, contentDescription = "İsmi düzenle", tint = NeonCyan, modifier = Modifier.size(18.dp))
+            Column(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                val zLevel = 1 + stars / 50
+                val inLevel = stars % 50
+                Box(contentAlignment = Alignment.Center) {
+                    androidx.compose.foundation.Canvas(Modifier.size(116.dp)) {
+                        val sw = 6.dp.toPx()
+                        val st = androidx.compose.ui.graphics.drawscope.Stroke(sw, cap = androidx.compose.ui.graphics.StrokeCap.Round)
+                        val tl = androidx.compose.ui.geometry.Offset(sw / 2, sw / 2)
+                        val sz = androidx.compose.ui.geometry.Size(size.width - sw, size.height - sw)
+                        drawArc(NeonBorder.copy(alpha = 0.5f), 0f, 360f, false, tl, sz, style = st)
+                        drawArc(Brush.sweepGradient(listOf(NeonPurple, NeonCyan, NeonPurple)), -90f, 360f * inLevel / 50f, false, tl, sz, style = st)
                     }
-                    Spacer(Modifier.height(4.dp))
-                    NeonChip(rankTitle(stars), NeonYellow)
-                    Spacer(Modifier.height(14.dp))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                        MiniStat("⭐", "$stars", "Yıldız")
-                        MiniStat("🏁", "$cleared", "Seviye")
-                        MiniStat("🔥", "$streak", "Seri")
-                        MiniStat("💎", "$diamonds", "Elmas")
+                    ProfileAvatar(avatarId, frameId, 96.dp)
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.bounceClick { editName = true }) {
+                    Text(userName, style = MaterialTheme.typography.headlineSmall, color = TextPrimary, fontWeight = FontWeight.ExtraBold)
+                    Spacer(Modifier.width(6.dp))
+                    Icon(Icons.Default.Edit, contentDescription = "İsmi düzenle", tint = NeonCyan, modifier = Modifier.size(18.dp))
+                }
+                Spacer(Modifier.height(4.dp))
+                NeonChip(rankTitle(stars), NeonYellow)
+                Spacer(Modifier.height(12.dp))
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    BigStat("$streak", "GÜN SERİ", NeonOrange)
+                    BigStat("$stars", "YILDIZ", NeonPurple)
+                    BigStat("$cleared", "SEVİYE", NeonCyan)
+                    BigStat("$diamonds", "ELMAS", NeonPink)
+                }
+                Spacer(Modifier.height(12.dp))
+                GlassCard(accent = NeonPurple, contentPadding = PaddingValues(14.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Zihin seviyesi $zLevel", color = TextPrimary, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        Text("$inLevel / 50 ⭐", color = TextSecondary, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    com.example.ui.components.NeonProgressBar(inLevel / 50f, NeonPurple, Modifier.fillMaxWidth(), height = 8.dp)
+                    Text("Seviye ${zLevel + 1} için ${50 - inLevel} yıldız kaldı", color = TextSecondary, style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(top = 6.dp))
+                }
+            }
+        }
+
+        item {
+            val share = {
+                val i = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(android.content.Intent.EXTRA_TEXT, "ZihinPark'ta zekâmı çalıştırıyorum! 30 oyun, 1500 seviye, Lingo ve Bulmaca Dünyası. Sen de dene: https://play.google.com/store/apps/details?id=${context.packageName}")
+                }
+                runCatching { context.startActivity(android.content.Intent.createChooser(i, "Davet et")) }
+                Unit
+            }
+            val open = { url: String -> runCatching { context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))) }; Unit }
+            val tiles = listOf(
+                MenuTile("🛍️", "Mağaza", "Avatar · güç", NeonPink, onOpenShop),
+                MenuTile("🎁", "Davet et", "Arkadaşını çağır", NeonOrange, share),
+                MenuTile("⚙️", "Ayarlar", "Tema · ses", NeonCyan) { scope.launch { listState.animateScrollToItem(5) } },
+                MenuTile("🔒", "Gizlilik", "Politika", NeonPurple) { open("https://eakdemir3-prog.github.io/fitnex-legal/zihinpark/gizlilik.html") },
+                MenuTile("📜", "Lisanslar", "Fotoğraflar", NeonGreen) { showLicenses = true },
+                MenuTile("✉️", "Destek", "Bize yaz", NeonYellow) { open("mailto:eakdemir3@gmail.com?subject=ZihinPark") }
+            )
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                tiles.chunked(3).forEach { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        row.forEach { t -> MenuTileView(t, Modifier.weight(1f)) }
                     }
                 }
+            }
+        }
+
+        item {
+            val shape = RoundedCornerShape(20.dp)
+            Row(
+                Modifier.fillMaxWidth().clip(shape)
+                    .background(Brush.linearGradient(listOf(NeonYellow.copy(alpha = 0.22f), NeonPink.copy(alpha = 0.16f))))
+                    .border(1.dp, NeonYellow.copy(alpha = 0.7f), shape)
+                    .bounceClick {
+                        runCatching { context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=${context.packageName}"))) }
+                            .onFailure { runCatching { context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://play.google.com/store/apps/details?id=${context.packageName}"))) } }
+                    }
+                    .padding(14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                com.example.ui.components.Mascot(com.example.ui.components.MascotMood.Wink, 56.dp, animate = false)
+                Spacer(Modifier.width(10.dp))
+                Column(Modifier.weight(1f)) {
+                    Text("ZihinPark'ı beğendin mi?", color = TextPrimary, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Text("Play Store'da puan ver, bize çok destek olur", color = TextSecondary, style = MaterialTheme.typography.labelSmall)
+                }
+                Text("★★★★★", color = NeonYellow, fontSize = 14.sp)
             }
         }
 
@@ -362,6 +435,29 @@ fun ProfileScreen(
                 color = TextSecondary, style = MaterialTheme.typography.bodyMedium
             )
         }
+    }
+}
+
+private class MenuTile(val emoji: String, val title: String, val sub: String, val color: androidx.compose.ui.graphics.Color, val onClick: () -> Unit)
+
+@Composable
+private fun MenuTileView(t: MenuTile, modifier: Modifier) {
+    val shape = RoundedCornerShape(18.dp)
+    Column(
+        modifier.clip(shape).background(NeonCard).border(1.dp, NeonBorder, shape).bounceClick(onClick = t.onClick).padding(12.dp)
+    ) {
+        Box(Modifier.size(36.dp).clip(RoundedCornerShape(11.dp)).background(t.color.copy(alpha = 0.16f)), contentAlignment = Alignment.Center) { Text(t.emoji, fontSize = 18.sp) }
+        Spacer(Modifier.height(8.dp))
+        Text(t.title, color = TextPrimary, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, maxLines = 1)
+        Text(t.sub, color = TextSecondary, style = MaterialTheme.typography.labelSmall, maxLines = 1)
+    }
+}
+
+@Composable
+private fun BigStat(value: String, label: String, color: androidx.compose.ui.graphics.Color) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(value, color = color, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.ExtraBold, maxLines = 1)
+        Text(label, color = TextSecondary, fontSize = 10.sp, fontWeight = FontWeight.Bold, maxLines = 1)
     }
 }
 

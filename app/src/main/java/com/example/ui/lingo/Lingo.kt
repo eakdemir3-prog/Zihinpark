@@ -425,7 +425,7 @@ fun LingoPlayScreen(
                                     if (ch != null) Text(
                                         ch.toString(),
                                         color = if (shown >= 0) Color.White else if (ghost) TextMuted else TextPrimary,
-                                        fontSize = (cell.value * 0.5f).sp, fontWeight = FontWeight.ExtraBold
+                                        fontSize = with(androidx.compose.ui.platform.LocalDensity.current) { (cell * 0.5f).toSp() }, fontWeight = FontWeight.ExtraBold
                                     )
                                 }
                             }
@@ -438,6 +438,7 @@ fun LingoPlayScreen(
             if (d != null) {
                 GlassCard(accent = if (d) NeonGreen else NeonRed, glow = true, modifier = Modifier.padding(16.dp)) {
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                        com.example.ui.components.Mascot(if (d) com.example.ui.components.MascotMood.Cheer else com.example.ui.components.MascotMood.Sad, 72.dp)
                         Text(if (d) "Harika! 🎉" else "Kelime: $answer", color = TextPrimary, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.ExtraBold)
                         Text(if (d) "${guesses.size}. denemede buldun" + if (reward > 0) " · +$reward 💎" else "" else "Bu sefer olmadı, sıradakinde!", color = TextSecondary, textAlign = TextAlign.Center)
                         Spacer(Modifier.height(12.dp))

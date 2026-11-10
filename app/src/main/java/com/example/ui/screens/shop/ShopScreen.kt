@@ -210,7 +210,7 @@ fun ShopScreen(
                                     Column(Modifier.weight(1f)) {
                                         Text("Günlük Hediye", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
                                         Text(
-                                            if (giftClaimed) "Bugünkü hediyeni aldın. Yarın yine gel!" else "Her gün ücretsiz elmas. Serin uzadıkça hediye büyür (en fazla 30 💎).",
+                                            if (giftClaimed) "Bugünkü hediyeni aldın. Yarın yine gel!" else "Her gün gel, hediye büyüsün. 7. günde büyük sandık: 100 💎",
                                             color = TextSecondary, style = MaterialTheme.typography.bodySmall
                                         )
                                     }
@@ -220,8 +220,8 @@ fun ShopScreen(
                                     if (giftClaimed) "Yarın tekrar" else "Hediyeyi Al",
                                     onClick = {
                                         scope.launch {
-                                            val got = prefs.claimDailyGift()
-                                            if (got > 0) toast("+$got 💎 hediye hesabına eklendi!", true)
+                                            val step = prefs.claimDailyGift()
+                                            if (step > 0) toast("${step}. gün hediyesi: ${prefs.giftRewards[step - 1].label} eklendi!", true)
                                         }
                                     },
                                     color = NeonYellow, enabled = !giftClaimed, modifier = Modifier.fillMaxWidth()

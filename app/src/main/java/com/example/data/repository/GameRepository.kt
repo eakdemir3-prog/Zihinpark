@@ -124,6 +124,7 @@ class GameRepository(context: Context) {
     ): LevelOutcome {
         val meta = GameRegistry.getGameById(gameId)
         val stars = LevelRules.starsFor(results)
+        if (stars > 0) preferences.bumpLevelsToday()
         val score = results.sumOf { it.points }
         val before = currentProgress(gameId)
         val existing = levelDao.getLevel(gameId, level)

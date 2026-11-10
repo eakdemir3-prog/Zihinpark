@@ -567,7 +567,7 @@ fun BulmacaPlayScreen(level: Int, repository: GameRepository, soundManager: Soun
             Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.45f)).bounceClick(pressedScale = 1f) {}, contentAlignment = Alignment.Center) {
                 GlassCard(accent = NeonPink, glow = true, modifier = Modifier.padding(24.dp)) {
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(world.emoji, fontSize = 40.sp)
+                        com.example.ui.components.Mascot(com.example.ui.components.MascotMood.Cheer, 100.dp)
                         Text("Gizli kelime", color = TextSecondary)
                         Text(pz.secret, color = NeonPink, fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, maxLines = 1)
                         Text(pz.secretClue, color = TextPrimary, textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyMedium)

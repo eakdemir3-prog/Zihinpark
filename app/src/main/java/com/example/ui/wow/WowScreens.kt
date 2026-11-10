@@ -464,7 +464,7 @@ fun WowPlayScreen(
             Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.55f)), contentAlignment = Alignment.Center) {
                 GlassCard(accent = accent, glow = true, modifier = Modifier.padding(28.dp)) {
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(ch.emoji, fontSize = 52.sp)
+                        com.example.ui.components.Mascot(com.example.ui.components.MascotMood.Cheer, 96.dp)
                         Text("Harika!", color = TextPrimary, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.ExtraBold)
                         Text("Seviye $level tamamlandı", color = TextSecondary)
                         if (reward > 0) {

@@ -90,6 +90,10 @@ fun GamesScreen(
         }
     }
     val totalStars = progress.values.sumOf { it.totalStars }
+    val dailyGame = remember {
+        val c = java.util.Calendar.getInstance()
+        GameRegistry.ALL_GAMES[(c.get(java.util.Calendar.DAY_OF_YEAR) + c.get(java.util.Calendar.YEAR) * 7) % GameRegistry.ALL_GAMES.size]
+    }
     val maxStars = GameRegistry.ALL_GAMES.size * LevelRules.LEVEL_COUNT * 3
 
     LazyVerticalGrid(
@@ -111,7 +115,12 @@ fun GamesScreen(
                 DiamondPill(diamonds, onOpenShop)
             }
         }
-        if (query.isBlank() && category == null) {
+        val browse = query.isBlank() && category == null
+        if (browse) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                val p = progress[dailyGame.id] ?: GameProgress(emptyMap())
+                DailyBigCard(dailyGame, p) { onOpenGame(dailyGame.id) }
+            }
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
@@ -130,7 +139,24 @@ fun GamesScreen(
                 Text("Aramana uyan oyun yok.", color = TextMuted, modifier = Modifier.padding(24.dp))
             }
         }
-        itemsIndexed(games, key = { _, g -> g.id }) { index, g ->
+        if (browse) {
+            GameCategory.entries.forEach { cat ->
+                val list = GameRegistry.ALL_GAMES.filter { it.category == cat }
+                if (list.isEmpty()) return@forEach
+                item(span = { GridItemSpan(maxLineSpan) }, key = "h_${cat.name}") {
+                    Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("${cat.emoji} ${cat.title}", style = MaterialTheme.typography.titleMedium, color = TextPrimary, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, modifier = Modifier.weight(1f), maxLines = 1)
+                        Text("${list.size} oyun ›", color = cat.color, style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                            modifier = Modifier.bounceClick { category = cat.name })
+                    }
+                }
+                item(span = { GridItemSpan(maxLineSpan) }, key = "r_${cat.name}") {
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        items(list, key = { it.id }) { g -> StripCard(g, progress[g.id] ?: GameProgress(emptyMap())) { onOpenGame(g.id) } }
+                    }
+                }
+            }
+        } else itemsIndexed(games, key = { _, g -> g.id }) { index, g ->
             GameCard(g, progress[g.id] ?: GameProgress(emptyMap()), index) { onOpenGame(g.id) }
         }
     }
@@ -219,5 +245,58 @@ private fun GameCard(g: GameMeta, p: GameProgress, index: Int, onClick: () -> Un
             Spacer(Modifier.weight(1f))
             Text("★ ${p.totalStars}", color = NeonYellow, style = MaterialTheme.typography.labelSmall)
         }
+    }
+}
+
+private fun darker(c: androidx.compose.ui.graphics.Color) = androidx.compose.ui.graphics.lerp(c, androidx.compose.ui.graphics.Color.Black, 0.22f)
+
+@Composable
+private fun DailyBigCard(g: GameMeta, p: GameProgress, onClick: () -> Unit) {
+    val W = androidx.compose.ui.graphics.Color.White
+    val c = g.category.color
+    val shape = RoundedCornerShape(26.dp)
+    Box(
+        Modifier.fillMaxWidth().clip(shape)
+            .background(androidx.compose.ui.graphics.Brush.linearGradient(listOf(c, darker(c))))
+            .bounceClick(pressedScale = 0.98f, onClick = onClick)
+    ) {
+        com.example.ui.components.Mascot(com.example.ui.components.MascotMood.Happy, 128.dp, Modifier.align(Alignment.BottomEnd).padding(end = 4.dp, bottom = 4.dp))
+        Column(Modifier.padding(18.dp)) {
+            Text("GÜNÜN OYUNU", color = W, fontSize = 11.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+                modifier = Modifier.clip(RoundedCornerShape(9.dp)).background(W.copy(alpha = 0.22f)).border(1.dp, W.copy(alpha = 0.6f), RoundedCornerShape(9.dp)).padding(horizontal = 8.dp, vertical = 3.dp))
+            Spacer(Modifier.height(10.dp))
+            Text("${g.iconEmoji} ${g.name}", color = W, style = MaterialTheme.typography.headlineSmall, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.fillMaxWidth(0.72f))
+            Text(g.description, color = W.copy(alpha = 0.92f), style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.fillMaxWidth(0.62f))
+            Spacer(Modifier.height(12.dp))
+            Box(Modifier.fillMaxWidth(0.55f).height(6.dp).clip(RoundedCornerShape(3.dp)).background(W.copy(alpha = 0.3f))) {
+                Box(Modifier.fillMaxWidth((p.clearedCount / LevelRules.LEVEL_COUNT.toFloat()).coerceIn(0.02f, 1f)).height(6.dp).clip(RoundedCornerShape(3.dp)).background(W))
+            }
+            Text("Seviye ${p.nextPlayableLevel} / ${LevelRules.LEVEL_COUNT} · ⭐ ${p.totalStars}", color = W.copy(alpha = 0.92f), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(top = 4.dp))
+            Spacer(Modifier.height(12.dp))
+            Text("Oyna", color = darker(c), fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.clip(RoundedCornerShape(14.dp)).background(W).padding(horizontal = 26.dp, vertical = 10.dp))
+        }
+    }
+}
+
+@Composable
+private fun StripCard(g: GameMeta, p: GameProgress, onClick: () -> Unit) {
+    val W = androidx.compose.ui.graphics.Color.White
+    val c = g.category.color
+    val shape = RoundedCornerShape(20.dp)
+    Box(
+        Modifier.width(150.dp).height(160.dp).clip(shape)
+            .background(androidx.compose.ui.graphics.Brush.linearGradient(listOf(c, darker(c))))
+            .bounceClick(onClick = onClick).padding(12.dp)
+    ) {
+        Text(g.iconEmoji, fontSize = 30.sp)
+        if (g.isNew) Text("YENİ", color = W, fontSize = 10.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+            modifier = Modifier.align(Alignment.TopEnd).clip(RoundedCornerShape(7.dp)).background(NeonPink).padding(horizontal = 6.dp, vertical = 2.dp))
+        Column(Modifier.align(Alignment.BottomStart).padding(bottom = 34.dp)) {
+            Text(g.name, color = W, style = MaterialTheme.typography.titleSmall, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Text(if (p.clearedCount == 0) "Yeni" else "${p.clearedCount}/${LevelRules.LEVEL_COUNT} · ★${p.totalStars}", color = W.copy(alpha = 0.9f), style = MaterialTheme.typography.labelSmall, maxLines = 1)
+        }
+        Text("Oyna", color = darker(c), fontSize = 12.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+            modifier = Modifier.align(Alignment.BottomEnd).clip(RoundedCornerShape(11.dp)).background(W).padding(horizontal = 10.dp, vertical = 5.dp))
     }
 }

@@ -54,6 +54,13 @@ class UserPreferencesRepository(private val context: Context) {
         val LAST_PLAYED_GAME = stringPreferencesKey("last_played_game")
         val LAST_STREAK_DAY = longPreferencesKey("last_streak_day")
         val LAST_GIFT_DAY = longPreferencesKey("last_gift_day")
+        val GIFT_STEP = intPreferencesKey("gift_step")
+        val PLAY_DAYS = stringSetPreferencesKey("play_days")
+        val GOAL_DAY = longPreferencesKey("goal_day")
+        val GOAL_COUNT = intPreferencesKey("goal_count")
+        val BD_TODAY_DAY = longPreferencesKey("bd_today_day")
+        val TASK_DAY = longPreferencesKey("task_day")
+        val TASK_CLAIMED = stringSetPreferencesKey("task_claimed")
         val FIRST_OPEN_DAY = longPreferencesKey("first_open_day")
         val LIGHT_THEME = booleanPreferencesKey("light_theme")
         val WELCOME_DONE = booleanPreferencesKey("welcome_done")
@@ -98,6 +105,7 @@ class UserPreferencesRepository(private val context: Context) {
             if (level >= (it[Keys.BD_LEVEL] ?: 1)) { it[Keys.BD_LEVEL] = level + 1; first = true }
             it[Keys.BD_SAVE_LEVEL] = 0; it[Keys.BD_SAVE_ROWS] = emptySet(); it[Keys.BD_SAVE_REVEALED] = emptySet()
         }
+        bumpLevelsToday(bulmaca = true)
         return first
     }
 
@@ -117,6 +125,7 @@ class UserPreferencesRepository(private val context: Context) {
 
     /** Seviye kelimesi bitti; kazanıldıysa bir sonraki seviye açılır. */
     suspend fun completeLingoLevel(level: Int, won: Boolean) {
+        if (won) bumpLevelsToday()
         context.dataStore.edit {
             if (won) {
                 it[Keys.LINGO_WINS] = (it[Keys.LINGO_WINS] ?: 0) + 1
@@ -177,6 +186,7 @@ class UserPreferencesRepository(private val context: Context) {
 
     /** Seviye bitti: bir sonrakini aç, yarım kayıtları temizle. İlk kez bitiyorsa true. */
     suspend fun completeWowLevel(level: Int): Boolean {
+        bumpLevelsToday()
         var first = false
         context.dataStore.edit {
             val cur = it[Keys.WOW_LEVEL] ?: 1
@@ -194,19 +204,84 @@ class UserPreferencesRepository(private val context: Context) {
     /** Bugünkü hediye alındı mı. */
     val dailyGiftClaimed: Flow<Boolean> = context.dataStore.data.map { (it[Keys.LAST_GIFT_DAY] ?: -1L) == epochDay(System.currentTimeMillis()) }
 
-    /** Günde bir kez ücretsiz elmas: seriye göre 10..30. Alındıysa 0 döner. */
+    /** 7 günlük giriş hediyesi takvimi: adım -> (ikon, açıklama, elmas, güçlendirici). */
+    data class GiftReward(val emoji: String, val label: String, val gems: Int, val booster: String? = null)
+    val giftRewards = listOf(
+        GiftReward("💎", "10💎", 10), GiftReward("💎", "15💎", 15), GiftReward("💎", "20💎", 20),
+        GiftReward("💡", "1 ipucu", 0, "hint"), GiftReward("💎", "30💎", 30), GiftReward("⏱️", "+10 sn", 0, "time"),
+        GiftReward("🧰", "Büyük sandık · 100💎", 100)
+    )
+
+    /** Bugün alınacak (ya da alınmış) hediye adımı, 1..7. Bir gün atlanırsa 1'e döner. */
+    val giftStep: Flow<Int> = context.dataStore.data.map { giftStepOf(it) }
+    private fun giftStepOf(p: Preferences): Int {
+        val today = epochDay(System.currentTimeMillis())
+        val last = p[Keys.LAST_GIFT_DAY] ?: -10L
+        val step = p[Keys.GIFT_STEP] ?: 0
+        return when (today - last) { 0L -> step.coerceAtLeast(1); 1L -> step % 7 + 1; else -> 1 }
+    }
+
+    /** Günlük giriş hediyesini alır. Alındıysa 0 döner, aksi halde alınan adımı (1..7). */
     suspend fun claimDailyGift(): Int {
-        var amount = 0
+        var claimed = 0
         val today = epochDay(System.currentTimeMillis())
         context.dataStore.edit { prefs ->
             if ((prefs[Keys.LAST_GIFT_DAY] ?: -1L) == today) return@edit
-            val streak = prefs[Keys.DAILY_STREAK] ?: 0
-            amount = (10 + streak * 2).coerceAtMost(30) * (if (prefs[Keys.IS_PRO_MEMBER] == true) 2 else 1)
+            val step = giftStepOf(prefs)
+            val r = giftRewards[step - 1]
+            val gems = r.gems * (if (prefs[Keys.IS_PRO_MEMBER] == true && r.gems > 0) 2 else 1)
+            if (gems > 0) {
+                prefs[Keys.DIAMOND_BALANCE] = (prefs[Keys.DIAMOND_BALANCE] ?: 50) + gems
+                prefs[Keys.TOTAL_EARNED_DIAMONDS] = (prefs[Keys.TOTAL_EARNED_DIAMONDS] ?: 50) + gems
+            }
+            when (r.booster) {
+                "hint" -> prefs[Keys.HINTS_COUNT] = (prefs[Keys.HINTS_COUNT] ?: 3) + 1
+                "time" -> prefs[Keys.EXTRA_TIME_COUNT] = (prefs[Keys.EXTRA_TIME_COUNT] ?: 2) + 1
+            }
             prefs[Keys.LAST_GIFT_DAY] = today
-            prefs[Keys.DIAMOND_BALANCE] = (prefs[Keys.DIAMOND_BALANCE] ?: 50) + amount
-            prefs[Keys.TOTAL_EARNED_DIAMONDS] = (prefs[Keys.TOTAL_EARNED_DIAMONDS] ?: 50) + amount
+            prefs[Keys.GIFT_STEP] = step
+            claimed = step
         }
-        return amount
+        return claimed
+    }
+
+    // ---- Günlük hedef ve görevler ----
+    data class TodayInfo(val levels: Int, val bdSolved: Boolean, val claimed: Set<String>)
+    val todayInfo: Flow<TodayInfo> = context.dataStore.data.map {
+        val today = epochDay(System.currentTimeMillis())
+        TodayInfo(
+            levels = if (it[Keys.GOAL_DAY] == today) it[Keys.GOAL_COUNT] ?: 0 else 0,
+            bdSolved = it[Keys.BD_TODAY_DAY] == today,
+            claimed = if (it[Keys.TASK_DAY] == today) it[Keys.TASK_CLAIMED] ?: emptySet() else emptySet()
+        )
+    }
+    /** Son günlerde oynanan günler (haftalık seri noktaları için). */
+    val playDays: Flow<Set<Long>> = context.dataStore.data.map { p -> p[Keys.PLAY_DAYS].orEmpty().mapNotNull { it.toLongOrNull() }.toSet() }
+
+    /** Bir seviye/bulmaca geçildiğinde günlük hedef sayacını artırır. */
+    suspend fun bumpLevelsToday(bulmaca: Boolean = false) {
+        val today = epochDay(System.currentTimeMillis())
+        context.dataStore.edit { p ->
+            p[Keys.GOAL_COUNT] = if (p[Keys.GOAL_DAY] == today) (p[Keys.GOAL_COUNT] ?: 0) + 1 else 1
+            p[Keys.GOAL_DAY] = today
+            if (bulmaca) p[Keys.BD_TODAY_DAY] = today
+            p[Keys.PLAY_DAYS] = (p[Keys.PLAY_DAYS].orEmpty().filter { (it.toLongOrNull() ?: 0) > today - 14 } + today.toString()).toSet()
+        }
+    }
+
+    /** Günlük görev ödülünü bir kez verir. */
+    suspend fun claimTask(id: String, gems: Int): Boolean {
+        var ok = false
+        val today = epochDay(System.currentTimeMillis())
+        context.dataStore.edit { p ->
+            val set = if (p[Keys.TASK_DAY] == today) p[Keys.TASK_CLAIMED].orEmpty() else emptySet()
+            if (id in set) return@edit
+            p[Keys.TASK_DAY] = today; p[Keys.TASK_CLAIMED] = set + id
+            p[Keys.DIAMOND_BALANCE] = (p[Keys.DIAMOND_BALANCE] ?: 50) + gems
+            p[Keys.TOTAL_EARNED_DIAMONDS] = (p[Keys.TOTAL_EARNED_DIAMONDS] ?: 50) + gems
+            ok = true
+        }
+        return ok
     }
 
     /** Bulut yedeğinden geri yükleme (yalnızca gelen değerler yazılır). */

@@ -53,6 +53,7 @@ class MainActivity : ComponentActivity() {
         // Yalnızca test derlemesinde: otomatik ekran görüntüsü için doğrudan bir ekranı açar
         val debugRoute = if (BuildConfig.DEBUG) intent?.getStringExtra("zp_route") else null
         val skipTutorials = BuildConfig.DEBUG && intent?.getBooleanExtra("zp_skip_tutorial", false) == true
+        com.example.ui.screens.home.HomeDebug.noGift = skipTutorials && intent?.getBooleanExtra("zp_gift", false) != true
 
         // Tema tercihi ilk karede doğru olsun diye açılışta okunur
         val startPrefs = com.example.data.pref.UserPreferencesRepository(applicationContext)
