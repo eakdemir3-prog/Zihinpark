@@ -117,7 +117,7 @@ fun HomeScreen(
     val goal = DAILY_GOAL
     val hour = remember { Calendar.getInstance().get(Calendar.HOUR_OF_DAY) }
     val hello = when (hour) { in 5..11 -> "Günaydın"; in 12..17 -> "İyi günler"; in 18..22 -> "İyi akşamlar"; else -> "İyi geceler" }
-    val firstName = userName.substringBefore(' ').ifBlank { userName }
+    val firstName = if (userName == "Zihin Gezgini") userName else userName.substringBefore(' ').ifBlank { userName }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize().statusBarsPadding(),

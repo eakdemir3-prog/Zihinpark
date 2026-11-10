@@ -85,31 +85,3 @@ lstore 4_sudoku play/sudoku/45 14
 lstore 5_profile tab_profile 10
 lstore 6_arrow play/arrow_escape/45 12
 ls -la shots
-# Büyük yazı boyutu (kayma kontrolü)
-$T adb shell settings put system font_scale 1.3
-fstore() {
-  $T adb shell am start -S -n $ACT --es zp_route "$2" --ez zp_skip_tutorial true --ez zp_light true > /dev/null
-  sleep ${3:-10}
-  $T adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null
-  sleep 1
-  $T adb exec-out screencap -p > "shots/F_$1.png"
-}
-fstore 1_home tab_home 12
-fstore 2_games tab_games 10
-fstore 3_profile tab_profile 10
-fstore 4_records tab_records 10
-fstore 5_shop shop 10
-fstore 6_lingohub lingo 10
-fstore 7_lingo lingo/1 10
-fstore 8_bdmap bulmaca 10
-fstore 9_bulmaca bulmaca/1 12
-fstore 10_wowmap wow 10
-fstore 11_wow wow/1 12
-fstore 12_levels levels/sudoku 10
-fstore 13_sudoku play/sudoku/45 14
-fstore 14_scramble play/word_scramble/45 10
-fstore 15_arrow play/arrow_escape/45 12
-fstore 16_memory play/memory_cards/20 10
-fstore 17_math play/math_engineer/20 10
-fstore 18_detective play/logic_detective/20 10
-$T adb shell settings put system font_scale 1.0
