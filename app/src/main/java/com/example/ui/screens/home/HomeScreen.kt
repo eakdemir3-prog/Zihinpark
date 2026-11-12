@@ -65,6 +65,8 @@ import com.example.ui.theme.NeonYellow
 import com.example.ui.theme.TextPrimary
 import com.example.ui.theme.TextSecondary
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.LaunchedEffect
@@ -342,46 +344,58 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
     LaunchedEffect(Unit) { delay(250); fx.confetti() }
     androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss, properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false)) {
         Box(Modifier.fillMaxSize().bounceClick(pressedScale = 1f, onClick = onDismiss), contentAlignment = Alignment.BottomCenter) {
+            val density = androidx.compose.ui.platform.LocalDensity.current
+            val small = with(density) { 11.dp.toSp() }
+            val tiny = with(density) { 10.dp.toSp() }
+            val icon = with(density) { 20.dp.toSp() }
+            val maxH = (androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp * 0.88f).dp
             Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)).background(NeonCard)
-                    .bounceClick(pressedScale = 1f) {}.navigationBarsPadding().padding(horizontal = 20.dp, vertical = 14.dp),
+                Modifier.fillMaxWidth().heightIn(max = maxH).clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)).background(NeonCard)
+                    .bounceClick(pressedScale = 1f) {}.navigationBarsPadding().padding(horizontal = 18.dp, vertical = 12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(Modifier.width(44.dp).height(5.dp).clip(RoundedCornerShape(3.dp)).background(NeonBorder))
-                Spacer(Modifier.height(6.dp))
-                Mascot(MascotMood.Cheer, 120.dp)
-                Text("$step. gün hediyen!", color = TextPrimary, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.ExtraBold)
-                Text("Her gün gel, hediye büyüsün. 7. günde sandık seni bekliyor.", color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
-                Spacer(Modifier.height(12.dp))
-                for (rowIdx in 0..1) {
-                    Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        val range = if (rowIdx == 0) 0..3 else 4..6
-                        for (i in range) {
-                            val d = i + 1
-                            val r = rewards[i]
-                            val isNow = d == step
-                            val past = d < step || (isNow && claimed)
-                            val shape = RoundedCornerShape(14.dp)
-                            val bg = when {
-                                past -> NeonGreen.copy(alpha = 0.18f)
-                                isNow -> NeonPurple
-                                d == 7 -> NeonYellow.copy(alpha = 0.22f)
-                                else -> NeonBorder.copy(alpha = 0.22f)
-                            }
-                            Column(
-                                Modifier.weight(if (d == 7) 2f else 1f).clip(shape).background(bg)
-                                    .border(1.dp, if (past) NeonGreen else if (isNow) NeonPurple else NeonBorder, shape).padding(vertical = 8.dp, horizontal = 2.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                val c = if (isNow && !past) Color.White else TextSecondary
-                                Text("$d. gün", color = c, style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, maxLines = 1)
-                                Text(if (past) "✓" else r.emoji, fontSize = 20.sp, color = if (past) NeonGreen else Color.Unspecified)
-                                Text(r.label, color = c, fontSize = 10.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                // İçerik kayar, buton her zaman altta görünür kalır
+                Column(
+                    Modifier.weight(1f, fill = false).verticalScroll(androidx.compose.foundation.rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(Modifier.height(4.dp))
+                    Mascot(MascotMood.Cheer, 92.dp)
+                    Text("$step. gün hediyen!", color = TextPrimary, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.ExtraBold, maxLines = 1)
+                    Text("Her gün gel, hediye büyüsün. 7. günde sandık seni bekliyor.", color = TextSecondary, style = MaterialTheme.typography.bodySmall, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+                    Spacer(Modifier.height(10.dp))
+                    for (rowIdx in 0..1) {
+                        Row(Modifier.fillMaxWidth().padding(bottom = 7.dp), horizontalArrangement = Arrangement.spacedBy(7.dp)) {
+                            val range = if (rowIdx == 0) 0..3 else 4..6
+                            for (i in range) {
+                                val d = i + 1
+                                val r = rewards[i]
+                                val isNow = d == step
+                                val past = d < step || (isNow && claimed)
+                                val shape = RoundedCornerShape(14.dp)
+                                val bg = when {
+                                    past -> NeonGreen.copy(alpha = 0.18f)
+                                    isNow -> NeonPurple
+                                    d == 7 -> NeonYellow.copy(alpha = 0.22f)
+                                    else -> NeonBorder.copy(alpha = 0.22f)
+                                }
+                                Column(
+                                    Modifier.weight(if (d == 7) 2f else 1f).height(76.dp).clip(shape).background(bg)
+                                        .border(1.dp, if (past) NeonGreen else if (isNow) NeonPurple else NeonBorder, shape).padding(vertical = 6.dp, horizontal = 2.dp),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    val c = if (isNow && !past) Color.White else TextSecondary
+                                    Text("$d. gün", color = c, fontSize = small, fontWeight = FontWeight.Bold, maxLines = 1)
+                                    Text(if (past) "✓" else r.emoji, fontSize = icon, color = if (past) NeonGreen else Color.Unspecified, maxLines = 1)
+                                    Text(r.label, color = c, fontSize = tiny, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                }
                             }
                         }
                     }
                 }
-                Spacer(Modifier.height(6.dp))
+                Spacer(Modifier.height(8.dp))
                 val label = rewards.getOrNull(step - 1)?.label ?: ""
                 NeonButton(
                     if (claimed) "Eklendi! 🎉" else "Harika, al! $label",
