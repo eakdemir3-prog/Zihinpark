@@ -163,6 +163,11 @@ object CloudSync {
             val uid = u.uid
             // Son haftaların lig kayıtları + kullanıcı belgesi
             for (w in 0 downTo -12) runCatching { scores(weekId(w)).document(uid).delete().await() }
+            // Haftalık ödül kayıtları
+            runCatching {
+                val claims = db.collection("zp_users").document(uid).collection("claims").get().await()
+                for (d in claims.documents) runCatching { d.reference.delete().await() }
+            }
             runCatching { db.collection("zp_users").document(uid).delete().await() }
             try {
                 u.delete().await()
@@ -353,7 +358,7 @@ object CloudSync {
         val prefs = UserPreferencesRepository(appContext)
         val ref = scores(weekId()).document(u.uid)
         val data = mapOf(
-            "name" to prefs.userName.first(),
+            "name" to com.example.util.NameFilter.safe(prefs.userName.first()).take(24),
             "avatar" to prefs.avatarId.first(),
             "frame" to prefs.equippedFrame.first(),
             "updatedAt" to FieldValue.serverTimestamp()
@@ -370,7 +375,7 @@ object CloudSync {
                 val prefs = UserPreferencesRepository(appContext)
                 scores(weekId()).document(u.uid).set(
                     mapOf(
-                        "name" to prefs.userName.first(),
+                        "name" to com.example.util.NameFilter.safe(prefs.userName.first()).take(24),
                         "avatar" to prefs.avatarId.first(),
                         "frame" to prefs.equippedFrame.first(),
                         "score" to FieldValue.increment(points.coerceAtMost(1500).toLong()),
@@ -393,7 +398,7 @@ object CloudSync {
             val top = snap.documents.map { d ->
                 LeagueEntry(
                     uid = d.id,
-                    name = d.getString("name") ?: "Oyuncu",
+                    name = com.example.util.NameFilter.safe(d.getString("name") ?: "Oyuncu", "Oyuncu"),
                     avatar = d.getLong("avatar")?.toInt() ?: 0,
                     frame = d.getString("frame") ?: "none",
                     score = d.getLong("score") ?: 0L

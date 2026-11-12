@@ -841,7 +841,7 @@ private fun ResultExtras(
     var showPro by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         // PRO önerisi: yalnızca geçilen seviyede, 6. seviyeden sonra, birkaç seviyede bir ve 2 günde en fazla bir kez
-        if (passed && level >= 6 && level % 4 == 0 && !repository.preferences.isProMember.first() && repository.preferences.tryProPrompt()) showPro = true
+        if (passed && level >= 6 && level % 4 == 0 && com.example.monetize.Billing.prices.value.containsKey(com.example.monetize.Product.PRO.id) && !repository.preferences.isProMember.first() && repository.preferences.tryProPrompt()) showPro = true
     }
     if (passed && o.diamonds > 0 && !doubled && left > 0 && activity != null) {
         Spacer(Modifier.height(10.dp))

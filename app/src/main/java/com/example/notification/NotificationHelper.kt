@@ -83,32 +83,11 @@ object NotificationHelper {
         )
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarmManager.canScheduleExactAlarms()) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        nextTriggerMillis,
-                        pendingIntent
-                    )
-                } else {
-                    alarmManager.setAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        nextTriggerMillis,
-                        pendingIntent
-                    )
-                }
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP,
-                    nextTriggerMillis,
-                    pendingIntent
-                )
+            // Tam zamanlı alarm izni kullanılmaz (Play politikası); hatırlatma birkaç dakika kayabilir.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, nextTriggerMillis, pendingIntent)
             } else {
-                alarmManager.set(
-                    AlarmManager.RTC_WAKEUP,
-                    nextTriggerMillis,
-                    pendingIntent
-                )
+                alarmManager.set(AlarmManager.RTC_WAKEUP, nextTriggerMillis, pendingIntent)
             }
         } catch (_: SecurityException) {
             // Fallback to inexact alarm if exact permission was revoked

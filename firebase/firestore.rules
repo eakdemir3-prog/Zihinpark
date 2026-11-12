@@ -12,7 +12,8 @@ service cloud.firestore {
         allow read: if request.auth != null && request.auth.uid == uid;
         allow create: if request.auth != null && request.auth.uid == uid
           && request.resource.data.diamonds is int && request.resource.data.diamonds <= 500;
-        allow update, delete: if false;
+        allow update: if false;
+        allow delete: if request.auth != null && request.auth.uid == uid;
       }
     }
     match /zp_leagues/{weekId}/scores/{uid} {

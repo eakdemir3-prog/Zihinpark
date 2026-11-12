@@ -56,6 +56,8 @@ fun StoreSection(repository: GameRepository) {
     val left by prefs.rewardedLeftToday.collectAsState(initial = 0)
     val isPro by prefs.isProMember.collectAsState(initial = false)
     val prices by Billing.prices.collectAsState()
+    // Ürünler Play Console'da açılana kadar satın alma gösterilmez
+    val storeReady = prices.isNotEmpty()
     var note by remember { mutableStateOf<String?>(null) }
 
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -99,7 +101,11 @@ fun StoreSection(repository: GameRepository) {
             listOf("🚫 Seviye arası reklamlar tamamen kalkar", "💎 Hemen +500 elmas", "🎁 Günlük hediye 2 katı", "❤️ Geliştiriciye destek").forEach {
                 Text(it, color = TextSecondary, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 2.dp))
             }
-            if (!isPro) {
+            if (!isPro && !storeReady) {
+                Spacer(Modifier.height(10.dp))
+                NeonChip("Çok yakında", NeonYellow)
+            }
+            if (!isPro && storeReady) {
                 Spacer(Modifier.height(10.dp))
                 NeonButton(
                     prices[Product.PRO.id]?.let { "PRO'ya geç · $it" } ?: "PRO'ya geç",
@@ -113,7 +119,8 @@ fun StoreSection(repository: GameRepository) {
         GlassCard(accent = NeonCyan) {
             Text("💎 Elmas paketleri", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
             Spacer(Modifier.height(8.dp))
-            listOf(Product.GEMS_S to "🪙", Product.GEMS_M to "💰", Product.GEMS_L to "🧰").forEach { (p, e) ->
+            if (!storeReady) Text("Elmas paketleri çok yakında burada! Şimdilik reklam izleyerek ve günlük hediyeyle elmas kazanabilirsin.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+            if (storeReady) listOf(Product.GEMS_S to "🪙", Product.GEMS_M to "💰", Product.GEMS_L to "🧰").forEach { (p, e) ->
                 Row(
                     Modifier
                         .fillMaxWidth()
@@ -134,10 +141,7 @@ fun StoreSection(repository: GameRepository) {
                     Text(prices[p.id] ?: "—", color = NeonYellow, fontWeight = FontWeight.Bold)
                 }
             }
-            if (prices.isEmpty()) {
-                Spacer(Modifier.height(6.dp))
-                Text("Fiyatlar Google Play'den yükleniyor…", color = TextMuted, style = MaterialTheme.typography.bodySmall)
-            }
+
             Spacer(Modifier.height(6.dp))
             Text("Satın alımları geri yükle", color = NeonPurple, style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.bounceClick { Billing.restore(); note = "Satın alımlar kontrol ediliyor…" }.padding(4.dp))

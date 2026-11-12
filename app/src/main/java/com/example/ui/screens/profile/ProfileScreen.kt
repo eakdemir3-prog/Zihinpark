@@ -364,16 +364,21 @@ fun ProfileScreen(
 
     if (editName) {
         var temp by remember { mutableStateOf(userName) }
+        var nameErr by remember { mutableStateOf(false) }
         NeonDialog(
             title = "Kullanıcı adı",
             onDismiss = { editName = false },
             confirm = "Kaydet",
             onConfirm = {
                 val t = temp.trim().take(20)
-                if (t.isNotEmpty()) scope.launch { prefs.setUserName(t) }
-                editName = false
+                if (com.example.util.NameFilter.isBad(t)) nameErr = true
+                else {
+                    if (t.isNotEmpty()) scope.launch { prefs.setUserName(t) }
+                    editName = false
+                }
             }
         ) {
+            if (nameErr) Text("Bu ad ligde herkese görünür, lütfen başka bir ad seç.", color = NeonRed, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(bottom = 8.dp))
             val shape = RoundedCornerShape(12.dp)
             BasicTextField(
                 value = temp, onValueChange = { if (it.length <= 20) temp = it }, singleLine = true,
