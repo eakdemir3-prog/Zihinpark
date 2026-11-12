@@ -143,6 +143,14 @@ object CloudSync {
             } ?: return "Sunucuya bağlanılamadı (zaman aşımı). İnternetini kontrol edip tekrar dene."
             val u = res.user ?: return "Giriş yapılamadı."
             _user.value = CloudUser(u.uid, u.displayName ?: "Oyuncu", u.email, u.photoUrl?.toString())
+            // Kullanıcı adı hâlâ varsayılansa Google hesabındaki adı kullan (sonradan Profil'den değiştirilebilir)
+            u.displayName?.trim()?.takeIf { it.isNotEmpty() }?.let { g ->
+                val prefs = UserPreferencesRepository(appContext)
+                if (prefs.userName.first() == "Zihin Gezgini") {
+                    val nice = com.example.util.NameFilter.safe(g.split(Regex("\\s+")).take(2).joinToString(" "), "").take(20)
+                    if (nice.isNotBlank()) prefs.setUserName(nice)
+                }
+            }
             // Eşitleme arka planda: giriş ekranı beklemez
             scope.launch { afterSignIn() }
             null
@@ -305,7 +313,7 @@ object CloudSync {
         for ((g, best) in endless) dbLocal.gameDao().updateEndlessBest(g, best.toInt())
         val prefs = UserPreferencesRepository(appContext)
         prefs.restoreFromCloud(
-            name = doc.getString("name"),
+            name = doc.getString("name")?.takeIf { it.isNotBlank() && it != "Zihin Gezgini" },
             avatar = doc.getLong("avatar")?.toInt(),
             frame = doc.getString("frame"),
             diamonds = doc.getLong("diamonds")?.toInt(),

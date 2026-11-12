@@ -210,26 +210,40 @@ fun NeonButton(
 /** Elmas sayacı (dokununca mağaza açılır). */
 @Composable
 fun DiamondPill(count: Int, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
+    StatPill("💎", count, NeonCyan, onClick, modifier)
+}
+
+/**
+ * Üst çubuktaki küçük değer hapı (elmas, seri). Yazı boyutu sistem yazı ölçeğinden etkilenmez,
+ * böylece büyük yazı ayarında taşmaz; "+" işareti çizimle yapılır.
+ */
+@Composable
+fun StatPill(emoji: String, value: Int, color: Color, onClick: (() -> Unit)? = null, modifier: Modifier = Modifier) {
     val shape = RoundedCornerShape(50)
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val fs = with(density) { 15.dp.toSp() }
+    val es = with(density) { 15.dp.toSp() }
     Row(
         modifier = modifier
-            .neonGlow(NeonCyan, radius = 10.dp, cornerRadius = 50.dp, alpha = 0.35f)
+            .height(34.dp)
             .clip(shape)
-            .background(NeonCard)
-            .border(1.dp, NeonCyan.copy(alpha = 0.6f), shape)
+            .background(color.copy(alpha = 0.13f))
             .then(if (onClick != null) Modifier.bounceClick(onClick = onClick) else Modifier)
-            .padding(horizontal = 12.dp, vertical = 6.dp),
+            .padding(start = 10.dp, end = if (onClick != null) 5.dp else 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("💎", fontSize = 15.sp)
+        Text(emoji, fontSize = es, maxLines = 1)
         Spacer(Modifier.width(5.dp))
-        AnimatedCounter(value = count, style = MaterialTheme.typography.labelLarge, color = NeonCyan)
+        AnimatedCounter(value = value, style = MaterialTheme.typography.labelLarge.copy(fontSize = fs, fontWeight = FontWeight.ExtraBold), color = color)
         if (onClick != null) {
-            Spacer(Modifier.width(6.dp))
-            Box(
-                Modifier.size(18.dp).clip(CircleShape).background(NeonCyan),
-                contentAlignment = Alignment.Center
-            ) { Text("+", color = OnNeon, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp) }
+            Spacer(Modifier.width(7.dp))
+            androidx.compose.foundation.Canvas(Modifier.size(24.dp)) {
+                drawCircle(color)
+                val l = size.minDimension * 0.22f
+                val w = size.minDimension * 0.11f
+                drawLine(Color.White, Offset(center.x - l, center.y), Offset(center.x + l, center.y), w, cap = androidx.compose.ui.graphics.StrokeCap.Round)
+                drawLine(Color.White, Offset(center.x, center.y - l), Offset(center.x, center.y + l), w, cap = androidx.compose.ui.graphics.StrokeCap.Round)
+            }
         }
     }
 }

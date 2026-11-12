@@ -396,19 +396,7 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
 
 @Composable
 private fun StreakPill(streak: Int) {
-    val shape = RoundedCornerShape(50)
-    Row(
-        Modifier
-            .clip(shape)
-            .background(NeonCard)
-            .border(1.dp, NeonOrange.copy(alpha = 0.6f), shape)
-            .padding(horizontal = 10.dp, vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text("🔥", fontSize = 14.sp)
-        Spacer(Modifier.width(4.dp))
-        Text("$streak", color = NeonOrange, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelLarge)
-    }
+    com.example.ui.components.StatPill("🔥", streak, NeonOrange)
 }
 
 @Composable
