@@ -109,13 +109,13 @@ fun StoreSection(repository: GameRepository) {
             }
             if (!isPro && storeReady && fullPrices[Product.PRO.id] != null) {
                 Spacer(Modifier.height(8.dp))
+                NeonChip("🎉 Lansmana özel fiyat", NeonPink, filled = true)
+                Spacer(Modifier.height(6.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    NeonChip("🎉 Lansmana özel fiyat", NeonPink, filled = true)
-                    Spacer(Modifier.width(8.dp))
-                    Text(fullPrices[Product.PRO.id]!!, color = TextMuted, style = MaterialTheme.typography.bodyMedium,
+                    Text(fullPrices[Product.PRO.id]!!, color = TextMuted, style = MaterialTheme.typography.bodyMedium, maxLines = 1,
                         textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough)
-                    Spacer(Modifier.width(6.dp))
-                    Text(prices[Product.PRO.id] ?: "", color = NeonYellow, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
+                    Spacer(Modifier.width(8.dp))
+                    Text(prices[Product.PRO.id] ?: "", color = NeonYellow, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium, maxLines = 1)
                 }
             }
             if (!isPro && storeReady) {
