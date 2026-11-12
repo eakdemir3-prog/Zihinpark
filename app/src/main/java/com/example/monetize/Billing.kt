@@ -101,7 +101,7 @@ object Billing {
                 val base = offers.maxByOrNull { it.priceAmountMicros }
                 if (best != null) {
                     map[pd.productId] = best.formattedPrice
-                    offerTokens[pd.productId] = best.offerToken
+                    best.offerToken?.let { offerTokens[pd.productId] = it }
                     if (base != null && base.priceAmountMicros > best.priceAmountMicros) full[pd.productId] = base.formattedPrice
                 }
             }
