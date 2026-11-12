@@ -865,7 +865,10 @@ private fun ResultExtras(
             Spacer(Modifier.width(10.dp))
             Column(Modifier.weight(1f)) {
                 Text("PRO ile reklamsız oyna", color = TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
-                Text("+500 💎 · günlük hediye 2×", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+                Text(
+                    if (com.example.monetize.Billing.fullPrices.value.containsKey(com.example.monetize.Product.PRO.id)) "🎉 Lansmana özel fiyat · +500 💎" else "+500 💎 · günlük hediye 2×",
+                    color = TextSecondary, style = MaterialTheme.typography.bodySmall
+                )
             }
             Text("✕", color = TextMuted, modifier = Modifier.padding(start = 8.dp).bounceClick { showPro = false })
         }

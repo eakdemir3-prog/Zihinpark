@@ -58,6 +58,7 @@ fun StoreSection(repository: GameRepository) {
     val prices by Billing.prices.collectAsState()
     // Ürünler Play Console'da açılana kadar satın alma gösterilmez
     val storeReady = prices.isNotEmpty()
+    val fullPrices by Billing.fullPrices.collectAsState()
     var note by remember { mutableStateOf<String?>(null) }
 
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -105,6 +106,17 @@ fun StoreSection(repository: GameRepository) {
                 Spacer(Modifier.height(10.dp))
                 NeonChip("Çok yakında", NeonYellow)
             }
+            if (!isPro && storeReady && fullPrices[Product.PRO.id] != null) {
+                Spacer(Modifier.height(8.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    NeonChip("🎉 Lansmana özel fiyat", NeonPink, filled = true)
+                    Spacer(Modifier.width(8.dp))
+                    Text(fullPrices[Product.PRO.id]!!, color = TextMuted, style = MaterialTheme.typography.bodyMedium,
+                        textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough)
+                    Spacer(Modifier.width(6.dp))
+                    Text(prices[Product.PRO.id] ?: "", color = NeonYellow, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
+                }
+            }
             if (!isPro && storeReady) {
                 Spacer(Modifier.height(10.dp))
                 NeonButton(
@@ -138,7 +150,13 @@ fun StoreSection(repository: GameRepository) {
                         Text(p.title, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                         Text("${p.gems} 💎", color = NeonCyan, style = MaterialTheme.typography.bodySmall)
                     }
-                    Text(prices[p.id] ?: "—", color = NeonYellow, fontWeight = FontWeight.Bold)
+                    Column(horizontalAlignment = Alignment.End) {
+                        fullPrices[p.id]?.let {
+                            Text(it, color = TextMuted, style = MaterialTheme.typography.labelSmall,
+                                textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough)
+                        }
+                        Text(prices[p.id] ?: "—", color = NeonYellow, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
 

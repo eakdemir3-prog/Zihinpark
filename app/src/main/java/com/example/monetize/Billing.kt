@@ -38,10 +38,15 @@ object Billing {
     private var client: BillingClient? = null
     private lateinit var prefs: UserPreferencesRepository
     private val details = HashMap<String, ProductDetails>()
+    private val offerTokens = HashMap<String, String>()
 
     private val _prices = MutableStateFlow<Map<String, String>>(emptyMap())
     /** Ürün kimliği -> Play'den gelen yerel fiyat ("₺149,99"). Boşsa mağaza henüz hazır değil. */
     val prices: StateFlow<Map<String, String>> = _prices
+
+    private val _fullPrices = MutableStateFlow<Map<String, String>>(emptyMap())
+    /** İndirimli teklif varsa ürünün normal (üstü çizili gösterilecek) fiyatı. */
+    val fullPrices: StateFlow<Map<String, String>> = _fullPrices
 
     private val _message = MutableStateFlow<String?>(null)
     val message: StateFlow<String?> = _message
@@ -87,10 +92,20 @@ object Billing {
         c.queryProductDetailsAsync(params) { result, res ->
             if (result.responseCode != BillingClient.BillingResponseCode.OK) return@queryProductDetailsAsync
             val map = HashMap<String, String>()
+            val full = HashMap<String, String>()
             res.productDetailsList.forEach { pd ->
                 details[pd.productId] = pd
-                pd.oneTimePurchaseOfferDetails?.formattedPrice?.let { map[pd.productId] = it }
+                // Birden fazla teklif olabilir (normal + kampanya): en ucuzu satılır, en pahalısı üstü çizili gösterilir
+                val offers = pd.oneTimePurchaseOfferDetailsList ?: listOfNotNull(pd.oneTimePurchaseOfferDetails)
+                val best = offers.minByOrNull { it.priceAmountMicros }
+                val base = offers.maxByOrNull { it.priceAmountMicros }
+                if (best != null) {
+                    map[pd.productId] = best.formattedPrice
+                    offerTokens[pd.productId] = best.offerToken
+                    if (base != null && base.priceAmountMicros > best.priceAmountMicros) full[pd.productId] = base.formattedPrice
+                }
             }
+            _fullPrices.value = full
             _prices.value = map
         }
     }
@@ -112,7 +127,11 @@ object Billing {
             return
         }
         val flow = BillingFlowParams.newBuilder()
-            .setProductDetailsParamsList(listOf(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(pd).build()))
+            .setProductDetailsParamsList(listOf(
+                BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(pd)
+                    .apply { offerTokens[product.id]?.let { setOfferToken(it) } }
+                    .build()
+            ))
             .build()
         c.launchBillingFlow(activity, flow)
     }
