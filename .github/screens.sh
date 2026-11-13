@@ -60,8 +60,6 @@ $T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial tr
 sleep 12
 $T adb exec-out screencap -p > "shots/en_00_gift.png"
 en() { store "$1" "$2" "$3"; mv "shots/store_$1.png" "shots/en_$1.png"; }
-en 16_code play/cipher_breaker/20 25
-en 22_memory play/memory_cards/5 10
 en 14_reverse play/reverse_thinking/12 10
 en 17_river play/river_crossing/5 10
 en 19_chain play/number_chain/20 10
@@ -76,4 +74,5 @@ en 25_reflex play/target_tap/10 8
 en 15_hunt play/word_hunt/20 10
 en 26_grid play/pattern_master/10 10
 en 27_detail play/detail_hunter/5 10
+en 22_memory play/memory_cards/5 10
 ls -la shots
