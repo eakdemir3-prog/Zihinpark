@@ -8,7 +8,7 @@ ACT=$PKG/com.example.MainActivity
 T="timeout 25"
 shot() {
   name="$(echo "$1" | tr '/' '_')"
-  adb logcat -c
+  $T adb logcat -c
   $T adb shell am start -S -n $ACT --es zp_route "$1" --ez zp_skip_tutorial true > /dev/null
   sleep ${2:-6}
   $T adb exec-out screencap -p > "shots/$name.png"
@@ -43,7 +43,7 @@ $T adb shell am broadcast -a com.android.systemui.demo -e command network -e wif
 $T adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false >/dev/null
 store() {
   name="$1"
-  adb logcat -c
+  $T adb logcat -c
   $T adb shell am start -S -n $ACT --es zp_route "$2" --ez zp_skip_tutorial true > /dev/null
   sleep ${3:-10}
   $T adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null
