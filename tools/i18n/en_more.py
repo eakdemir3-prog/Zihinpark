@@ -78,4 +78,8 @@ EN = {
 "{0} {1} · Bulmaca {2}": "{0} {1} · Puzzle {2}", "{0} · Bulmaca {1}": "{0} · Puzzle {1}", "{0}. soru · {1} harf": "Clue {0} · {1} letters",
 "Fark 0/{0}": "Diff 0/{0}", "Fark {0}/{1}": "Diff {0}/{1}",
 "{0}/{1} ok": "{0}/{1} arrows",
+"Uygulama simgesi": "App icon",
+"Gündüz Sabah Bilgesi, akşam Gece Bilgesi": "Morning owl by day, night owl in the evening",
+"Uygulamadan çıkınca değişir": "Changes when you leave the app",
+"Sabah": "Morning", "Gece": "Night",
 }

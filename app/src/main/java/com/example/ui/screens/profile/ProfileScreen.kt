@@ -308,6 +308,7 @@ fun ProfileScreen(
             Spacer(Modifier.height(10.dp))
             GlassCard(accent = NeonCyan, contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)) {
                 LanguageRow()
+                IconRow()
                 SettingRow("☀️", "Açık tema", if (lightTheme) "Lavanta açık tema" else "Neon koyu tema", lightTheme) {
                     com.example.ui.theme.ZpColors.palette = if (it) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
                     scope.launch { prefs.setLightTheme(it) }
@@ -497,6 +498,35 @@ private fun LanguageRow() {
                 Modifier.weight(1f).clip(shape).background(if (on) NeonPurple else NeonCardHigh)
                     .border(1.dp, if (on) NeonPurple else NeonBorder, shape)
                     .bounceClick { com.example.i18n.I18n.setPreference(context, k) }.padding(vertical = 9.dp),
+                contentAlignment = Alignment.Center
+            ) { Text(label, color = if (on) Color.White else TextPrimary, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, maxLines = 1) }
+        }
+    }
+}
+
+@Composable
+private fun IconRow() {
+    val context = LocalContext.current
+    val mode = com.example.util.IconSwitcher.mode
+    Row(Modifier.fillMaxWidth().padding(vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(if (mode == "night") "🌙" else "☀️", fontSize = 22.sp)
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text("Uygulama simgesi", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
+            Text(
+                if (mode == "auto") "Gündüz Sabah Bilgesi, akşam Gece Bilgesi" else "Uygulamadan çıkınca değişir",
+                color = TextSecondary, style = MaterialTheme.typography.bodySmall
+            )
+        }
+    }
+    Row(Modifier.fillMaxWidth().padding(bottom = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        listOf("auto" to "Otomatik", "day" to "Sabah", "night" to "Gece").forEach { (k, label) ->
+            val on = mode == k
+            val shape = RoundedCornerShape(12.dp)
+            Box(
+                Modifier.weight(1f).clip(shape).background(if (on) NeonPurple else NeonCardHigh)
+                    .border(1.dp, if (on) NeonPurple else NeonBorder, shape)
+                    .bounceClick { com.example.util.IconSwitcher.setMode(context, k) }.padding(vertical = 9.dp),
                 contentAlignment = Alignment.Center
             ) { Text(label, color = if (on) Color.White else TextPrimary, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, maxLines = 1) }
         }

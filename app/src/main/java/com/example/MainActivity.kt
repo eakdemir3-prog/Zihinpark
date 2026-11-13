@@ -22,11 +22,14 @@ class MainActivity : ComponentActivity() {
     override fun onStop() {
         super.onStop()
         com.example.cloud.CloudSync.flush()
+        // Simge yalnızca uygulama gerçekten arka plana geçerken değişir (ekran döndürme vb. hariç)
+        if (!isChangingConfigurations) com.example.util.IconSwitcher.apply(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         com.example.i18n.I18n.init(this)
+        com.example.util.IconSwitcher.init(this)
         if (BuildConfig.DEBUG) intent?.getStringExtra("zp_lang")?.let { com.example.i18n.I18n.setPreference(this, it) }
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(AndroidColor.TRANSPARENT),
