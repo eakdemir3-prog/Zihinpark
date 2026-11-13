@@ -55,24 +55,19 @@ $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 $T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang tr > /dev/null
 sleep 12
 $T adb exec-out screencap -p > "shots/store_0_gift.png"
-# ---- İngilizce ----
-$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang en > /dev/null
-sleep 12
-$T adb exec-out screencap -p > "shots/en_00_gift.png"
-en() { store "$1" "$2" "$3"; mv "shots/store_$1.png" "shots/en_$1.png"; }
-en 14_reverse play/reverse_thinking/12 10
-en 17_river play/river_crossing/5 10
-en 19_chain play/number_chain/20 10
-en 08_lingomap lingo 10
-en 05_records tab_records 10
-en 04_shop shop 10
-en 02_games tab_games 10
-en 12_scramble play/word_scramble/45 10
-en 23_spatial play/spatial_rotation/10 10
-en 24_hidden play/hidden_object/5 10
-en 25_reflex play/target_tap/10 8
-en 15_hunt play/word_hunt/20 10
-en 26_grid play/pattern_master/10 10
-en 27_detail play/detail_hunter/5 10
-en 22_memory play/memory_cards/5 10
+# ---- Simge değişimi ----
+PKG=com.eavisionlabs.zihinpark
+$T adb shell am start -S -n $ACT --es zp_route tab_profile --ez zp_skip_tutorial true --es zp_lang tr --es zp_icon day > /dev/null
+sleep 10
+$T adb exec-out screencap -p > "shots/icon_0_profile.png"
+$T adb shell input keyevent HOME; sleep 5
+$T adb shell dumpsys package $PKG | grep -A4 -i "enabledComponents\|disabledComponents" > shots/icon_day.txt || true
+$T adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER $PKG >> shots/icon_day.txt || true
+$T adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1; sleep 10
+$T adb exec-out screencap -p > "shots/icon_1_relaunch.png"
+$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --es zp_icon night > /dev/null
+sleep 8
+$T adb shell input keyevent HOME; sleep 5
+$T adb shell dumpsys package $PKG | grep -A4 -i "enabledComponents\|disabledComponents" > shots/icon_night.txt || true
+$T adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER $PKG >> shots/icon_night.txt || true
 ls -la shots
