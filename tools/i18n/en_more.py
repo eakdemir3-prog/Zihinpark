@@ -76,4 +76,6 @@ EN = {
 "seri": "streak", "Not": "Notes",
 "Buluttan geri yüklendi": "Restored from the cloud",
 "{0} {1} · Bulmaca {2}": "{0} {1} · Puzzle {2}", "{0} · Bulmaca {1}": "{0} · Puzzle {1}", "{0}. soru · {1} harf": "Clue {0} · {1} letters",
+"Fark 0/{0}": "Diff 0/{0}", "Fark {0}/{1}": "Diff {0}/{1}",
+"{0}/{1} ok": "{0}/{1} arrows",
 }
