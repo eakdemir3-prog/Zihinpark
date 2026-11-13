@@ -5,6 +5,12 @@
 "CloudSync.kt"
 ]
 },
+" and each wearing a different color.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 " gün": {
 "n": 0,
 "files": [
@@ -33,6 +39,12 @@
 "n": 0,
 "files": [
 "ReflexPuzzles.kt"
+]
+},
+" · BOSS": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
 ]
 },
 " · {0} oyun · ⭐ {1}": {
@@ -71,6 +83,18 @@
 "HomeScreen.kt"
 ]
 },
+"+10 Saniye": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"+20 💎 eklendi!": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
 "+500 💎 · günlük hediye 2×": {
 "n": 0,
 "files": [
@@ -89,7 +113,25 @@
 "HomeScreen.kt"
 ]
 },
+", wearing {0}": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+", {0} giyiyordu": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 ". Sonuç {0}. Tuttuğum sayı kaç?": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+". The result is {0}. What was my number?": {
 "n": 1,
 "files": [
 "ReversePuzzles.kt"
@@ -111,6 +153,12 @@
 "n": 0,
 "files": [
 "HomeScreen.kt"
+]
+},
+"1 ipucu": {
+"n": 0,
+"files": [
+"UserPreferencesRepository.kt"
 ]
 },
 "1 km uzunluğundaki bir tren, 1 km'lik tünele saatte 60 km hızla giriyor. Trenin tünelden tamamen çıkması kaç dakika sürer?": {
@@ -135,6 +183,24 @@
 "n": 0,
 "files": [
 "NumberChainGame.kt"
+]
+},
+"1-6, 2-5, 3-4: hep 7.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"10 bonus! +10 💎": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"10 boss seviyesini yen": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
 ]
 },
 "10 farklı oyunda seviye geç": {
@@ -189,6 +255,12 @@
 "n": 0,
 "files": [
 "HomeScreen.kt"
+]
+},
+"20 kez": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "25 seviyeyi 3 yıldızla bitir": {
@@ -281,6 +353,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"4 kedi her 4 dakikada 4 fare, 100 dakikada 100 fare yakalar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "4 saniye doğru hedefler parlıyor": {
 "n": 0,
 "files": [
@@ -293,16 +371,46 @@
 "ShopScreen.kt"
 ]
 },
+"5 geri alma, %20 indirimli.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
 "5 harf · 6 deneme · Seviye {0}": {
 "n": 1,
 "files": [
 "Lingo.kt"
 ]
 },
+"5 harfli kelimeler · 6 deneme": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"5 ipucu, %20 indirimli.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"5 kez": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "5 makine 5 dakikada 5 parça üretiyor. 100 makine 100 parçayı kaç dakikada üretir?": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"50 boss seviyesini yen": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
 ]
 },
 "50. seviyeyi geçince açılır": {
@@ -389,6 +497,24 @@
 "GridPuzzles.kt"
 ]
 },
+"A bag in the first-class compartment was opened.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"A rare orchid was stolen from the greenhouse.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"A valuable painting was swapped for a fake.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "ABCÇDEFGĞHIİKLMNOÖPRSŞTUÜVYZ": {
 "n": 0,
 "files": [
@@ -401,11 +527,35 @@
 "StoreSection.kt"
 ]
 },
+"ALTER TABLE games ADD COLUMN endlessBest INTEGER NOT NULL DEFAULT 0": {
+"n": 0,
+"files": [
+"RoomDatabaseModule.kt"
+]
+},
+"ASDFGHJKL": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
 "ASDFGHJKLŞİ": {
 "n": 0,
 "files": [
 "Bulmaca.kt",
 "Lingo.kt"
+]
+},
+"Accountant": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Adam": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Adana'da kebap ye": {
@@ -418,6 +568,18 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Aferin, harika gidiyorsun!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Ahmet": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Ahmet'in 3 kalemi var, Mehmet'in Ahmet'ten 2 fazla. İkisinin toplam kaç kalemi var?": {
@@ -439,6 +601,12 @@
 ]
 },
 "Aldığın elmalar senindir: 2.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ali": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -480,6 +648,18 @@
 "Cosmetics.kt"
 ]
 },
+"Amcam": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Amy": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Ana Sayfa": {
 "n": 0,
 "files": [
@@ -516,10 +696,46 @@
 "GamesScreen.kt"
 ]
 },
+"Araya 6 harfli kelimeler giriyor": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Arda": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Arkadaşını çağır": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Art Gallery": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Artist": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Aslan": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"At the time of the crime, the culprit was in the {0}.": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Atölye": {
@@ -534,6 +750,12 @@
 "ProfileScreen.kt"
 ]
 },
+"Avatarlar": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
 "Avatarım": {
 "n": 0,
 "files": [
@@ -544,6 +766,12 @@
 "n": 0,
 "files": [
 "Billing.kt"
+]
+},
+"Ayak sesi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Ayakkabı": {
@@ -574,6 +802,12 @@
 "n": 0,
 "files": [
 "GridGames.kt"
+]
+},
+"Ayna saat": {
+"n": 0,
+"files": [
+"WordGames.kt"
 ]
 },
 "Ayna sorularında görüntüyü zihninde çevir.": {
@@ -685,6 +919,12 @@
 "LevelMapScreen.kt"
 ]
 },
+"BOMBA!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
 "BOSS YENİLDİ!": {
 "n": 0,
 "files": [
@@ -727,6 +967,24 @@
 "ReversePuzzles.kt"
 ]
 },
+"Bal": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Balon": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bardak": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Barış": {
 "n": 0,
 "files": [
@@ -752,9 +1010,34 @@
 "LevelMapScreen.kt"
 ]
 },
+"Bebek": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Bebekken emekler, büyüyünce yürür, yaşlanınca bastonla yürür.": {
 "n": 0,
 "files": [
+"ReversePuzzles.kt"
+]
+},
+"Bekle!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Bekle...": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Ben": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
 "ReversePuzzles.kt"
 ]
 },
@@ -776,6 +1059,18 @@
 "WordPuzzles.kt"
 ]
 },
+"Beyin": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Bildirim izni verilmedi": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
 "Bildirimler kapalı": {
 "n": 0,
 "files": [
@@ -788,10 +1083,22 @@
 "Cosmetics.kt"
 ]
 },
+"Bilinemez": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Bilinmeyen oyun: {0}": {
 "n": 1,
 "files": [
 "GameCatalog.kt"
+]
+},
+"Bilmece": {
+"n": 0,
+"files": [
+"WordGames.kt"
 ]
 },
 "Bilmeceler, ayna saatleri ve tersten işlemlerle kalıpların dışına çık.": {
@@ -878,6 +1185,12 @@
 "GameModels.kt"
 ]
 },
+"Bir kez": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Bir kitapta sayfa numaraları 1'den başlıyor. 9. sayfa ile 12. sayfa arasında (ikisi dahil) kaç sayfa var?": {
 "n": 0,
 "files": [
@@ -894,6 +1207,12 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Bir kutu dolduruldu: {0}": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
 ]
 },
 "Bir kutuda 10 kırmızı ve 10 mavi bilye var. Bakmadan en az kaç bilye çekersen aynı renkten 2 tane garanti olur?": {
@@ -1136,6 +1455,18 @@
 "ReversePuzzles.kt"
 ]
 },
+"Biri gelmedi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Birinci": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Birinci sınıf kompartımandaki çanta açıldı.": {
 "n": 0,
 "files": [
@@ -1152,6 +1483,12 @@
 "n": 0,
 "files": [
 "ReflexGames.kt"
+]
+},
+"Bize yaz": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Blok Patlat": {
@@ -1172,6 +1509,12 @@
 "WowScreens.kt"
 ]
 },
+"Bonus zaten bulundu": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
 "Borç": {
 "n": 0,
 "files": [
@@ -1182,6 +1525,24 @@
 "n": 0,
 "files": [
 "LeaderboardScreen.kt"
+]
+},
+"Boss Efsanesi": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Boss seviyesini yen: 10 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Botanical Garden": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Botanik Bahçesi": {
@@ -1224,6 +1585,13 @@
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Bu hafta": {
+"n": 0,
+"files": [
+"LeagueUi.kt",
+"ProgressScreen.kt"
 ]
 },
 "Bu hafta henüz kimse puan almadı. İlk sen ol!": {
@@ -1359,6 +1727,12 @@
 "Bulmaca.kt"
 ]
 },
+"Bulut": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Bulut bağlantısı henüz kurulmadı.": {
 "n": 0,
 "files": [
@@ -1393,6 +1767,18 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Burak": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Buse": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "BÖLGE {0} · {1}": {
@@ -1431,16 +1817,137 @@
 "Cosmetics.kt"
 ]
 },
+"Can": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReversePuzzles.kt"
+]
+},
+"Can: ": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Cancel": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Carnation Manor": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Cem": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Ceren": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Cevap {0} idi, otomatik geçildi": {
 "n": 1,
 "files": [
 "ReflexGames.kt"
 ]
 },
+"Cevap: {0}": {
+"n": 1,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Ceviz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Chloe": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"City Museum": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Cleaner": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Cmt": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Cook": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Cruise Ship": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Cum": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Cuma": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "D-Ü-N-Y-A kelimesinin ortasında N vardır.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"DEVAM ET  ›": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"DOKUN!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Daniel": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Davet et": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Dayısı": {
@@ -1461,6 +1968,30 @@
 "ReversePuzzles.kt"
 ]
 },
+"Dedektif": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Dedem": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dedesi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Demir": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Dene": {
 "n": 0,
 "files": [
@@ -1473,10 +2004,36 @@
 "ReflexGames.kt"
 ]
 },
+"Deniz": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"GridPuzzles.kt",
+"JigsawPhotos.kt"
+]
+},
+"Denklemler tuttu!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Derya": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Desen Ustası": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Destek": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Detay Avcısı": {
@@ -1495,6 +2052,12 @@
 "n": 1,
 "files": [
 "LevelMapScreen.kt"
+]
+},
+"Developer console": {
+"n": 0,
+"files": [
+"CloudSync.kt"
 ]
 },
 "Değerli tablo sahtesiyle değiştirildi.": {
@@ -1539,6 +2102,18 @@
 "ReversePuzzles.kt"
 ]
 },
+"Doctor": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Doktor": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Doktor sana 3 hap verip her yarım saatte bir içmeni söyledi. Haplar kaç dakikada biter?": {
 "n": 0,
 "files": [
@@ -1555,6 +2130,12 @@
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Doluluk: %{0}": {
+"n": 1,
+"files": [
+"NewGames.kt"
 ]
 },
 "Doğa Harikaları": {
@@ -1626,6 +2207,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"Duraklat": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
 "Duraklatıldı": {
 "n": 0,
 "files": [
@@ -1662,10 +2249,34 @@
 "ProfileScreen.kt"
 ]
 },
+"ELMAS": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
 "ERTYUIOPĞÜ": {
 "n": 0,
 "files": [
 "Lingo.kt"
+]
+},
+"Ece": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Either {0} or {1} was in the {2}.": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Eklendi! 🎉": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
 ]
 },
 "Ekran yeşil olduğunda olabildiğince hızlı dokun.": {
@@ -1680,6 +2291,18 @@
 "GridGames.kt"
 ]
 },
+"Ekvator": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Eldiven": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Elektrikli bir tren kuzeye gidiyor, rüzgâr güneye esiyor. Trenin dumanı hangi yöne gider?": {
 "n": 0,
 "files": [
@@ -1690,6 +2313,19 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Elif": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReversePuzzles.kt"
+]
+},
+"Ella": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Elleri var ama alkışlayamaz. Nedir?": {
@@ -1735,6 +2371,18 @@
 "GameModels.kt"
 ]
 },
+"Emma": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Emre": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "En Yüksek Skor": {
 "n": 0,
 "files": [
@@ -1759,10 +2407,28 @@
 "GameModels.kt"
 ]
 },
+"Engineer": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"English": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
 "Erken dokunursan ya da sahte renge (sarı/mor) dokunursan hata olur.": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Erken!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
 ]
 },
 "Ey Edip, Adana'da pide ye": {
@@ -1781,6 +2447,24 @@
 "n": 0,
 "files": [
 "MemoryCardsGame.kt"
+]
+},
+"FARKLARI BURADA BUL": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Fare": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Farklar": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
 ]
 },
 "Farklar her adımda {0} artıyor (+{1}, +{2}, ...)": {
@@ -1807,6 +2491,24 @@
 "GameModels.kt"
 ]
 },
+"Fermuar": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Fikir": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Film Studio": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Film Stüdyosu": {
 "n": 0,
 "files": [
@@ -1814,6 +2516,12 @@
 ]
 },
 "Final sınavının soruları dolaptan alındı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Finn": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
@@ -1837,10 +2545,34 @@
 "DetectivePuzzles.kt"
 ]
 },
+"Galata": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gardener": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Gaz lambasını": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Gazeteci": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Gece Treni": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Gemi de suyla birlikte yükselir.": {
@@ -1961,6 +2693,18 @@
 "HomeScreen.kt"
 ]
 },
+"Gitar": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gizem": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Gizli\nkelime": {
 "n": 0,
 "files": [
@@ -1973,10 +2717,22 @@
 "GameModels.kt"
 ]
 },
+"Gizli Resim": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
 "Gizli kelime": {
 "n": 0,
 "files": [
 "Bulmaca.kt"
+]
+},
+"Gizlilik": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Google erişimi alınamadı.": {
@@ -2021,6 +2777,30 @@
 "files": [
 "LeagueUi.kt",
 "WelcomeScreen.kt"
+]
+},
+"Grace": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Grand Hotel": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Grand Otel": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Guide": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "GÜN SERİ": {
@@ -2241,6 +3021,12 @@
 "ShopScreen.kt"
 ]
 },
+"HEDEFE DOKUN!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
 "Haftalık Lig": {
 "n": 0,
 "files": [
@@ -2381,6 +3167,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"Hannah": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Harf ızgarasında saklanan Türkçe kelimeleri parmağınla çiz.": {
 "n": 0,
 "files": [
@@ -2443,11 +3235,23 @@
 "HomeScreen.kt"
 ]
 },
+"Harita": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
 "Haritaya dön": {
 "n": 0,
 "files": [
 "Bulmaca.kt",
 "WowScreens.kt"
+]
+},
+"Hasta": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Hata": {
@@ -2468,6 +3272,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"Havlu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Havlu seni kuruladıkça kendisi ıslanır.": {
 "n": 0,
 "files": [
@@ -2475,6 +3285,18 @@
 ]
 },
 "Havuç": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hayvanlar": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Haziran": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -2540,6 +3362,18 @@
 "StrategyGames.kt"
 ]
 },
+"Hedefe Dokun": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hedefler tamam!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
 "Hediyeyi Al": {
 "n": 0,
 "files": [
@@ -2550,6 +3384,12 @@
 "n": 0,
 "files": [
 "HomeScreen.kt"
+]
+},
+"Henry": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Hepsi aynı anda haşlanır.": {
@@ -2568,6 +3408,12 @@
 "n": 0,
 "files": [
 "ArrowWordGames.kt"
+]
+},
+"Hepsini bitirdin! 🎉": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
 ]
 },
 "Her adımda": {
@@ -2780,6 +3626,12 @@
 "CloudSync.kt"
 ]
 },
+"High School Campus": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Hiç": {
 "n": 0,
 "files": [
@@ -2798,10 +3650,34 @@
 "ReversePuzzles.kt"
 ]
 },
+"Horoz yumurtlamaz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Hızlı ve hatasız cevap daha çok puan getirir.": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"I picked a number, ": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Intern": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Isla": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Izgarada olmayan kelimeler bonus sayılır": {
@@ -2834,7 +3710,37 @@
 "GameModels.kt"
 ]
 },
+"Jack": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Journalist": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "K-A-Y-A-K iki yönden de aynı okunur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"KALEM": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"KAYAK": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"KAYIK": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -2852,6 +3758,18 @@
 "ReflexGames.kt"
 ]
 },
+"KIRMIZI": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Kaan": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Kalabalık sahnede aranan nesneleri gözden kaçırmadan bul.": {
 "n": 0,
 "files": [
@@ -2864,6 +3782,12 @@
 "HomeScreen.kt"
 ]
 },
+"Kalem": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Kalkış ülkesine": {
 "n": 0,
 "files": [
@@ -2874,6 +3798,12 @@
 "n": 0,
 "files": [
 "LeagueUi.kt"
+]
+},
+"Kamera": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Kapalı": {
@@ -3009,6 +3939,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"Kayak Oteli": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Kaydet": {
 "n": 0,
 "files": [
@@ -3099,6 +4035,19 @@
 "StrategyGames.kt"
 ]
 },
+"Kedi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt",
+"StrategyPuzzles.kt"
+]
+},
+"Keldi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Kelime Avı": {
 "n": 0,
 "files": [
@@ -3135,6 +4084,18 @@
 "Lingo.kt"
 ]
 },
+"Kendisi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kerem": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Kesişen denklemlerdeki boşlukları her satır ve sütunu doğrulayacak şekilde doldur.": {
 "n": 0,
 "files": [
@@ -3145,6 +4106,18 @@
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Kibriti": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kilit": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Kolay": {
@@ -3166,6 +4139,12 @@
 "GameModels.kt"
 ]
 },
+"Konu: {0}": {
+"n": 1,
+"files": [
+"WordGames.kt"
+]
+},
 "Kozmik Akıl": {
 "n": 0,
 "files": [
@@ -3184,10 +4163,22 @@
 "Cosmetics.kt"
 ]
 },
+"Kruvaziyer Gemi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Kullanıcı adı": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Kural ipucu: {0} · ": {
+"n": 1,
+"files": [
+"NumberChainGame.kt"
 ]
 },
 "Kural üst seviyelerde tur içinde değişebilir.": {
@@ -3196,10 +4187,34 @@
 "GameModels.kt"
 ]
 },
+"Kural → {0}": {
+"n": 1,
+"files": [
+"GridGames.kt"
+]
+},
+"Kural: {0}": {
+"n": 1,
+"files": [
+"NumberChainGame.kt"
+]
+},
 "Kuralı bul ve sağ alttaki boşluğa uyan deseni seç.": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Kurnaz Tilki": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Kurt": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
 ]
 },
 "Kurulandıkça ıslanan şey nedir?": {
@@ -3208,10 +4223,46 @@
 "ReversePuzzles.kt"
 ]
 },
+"Kusursuz": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Kusursuz!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
 "Kutup Işığı": {
 "n": 0,
 "files": [
 "Cosmetics.kt"
+]
+},
+"Kuzeni": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kuzenim": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kuzeye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kuzu": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
 ]
 },
 "Kuğu": {
@@ -3298,6 +4349,25 @@
 "ProfileScreen.kt"
 ]
 },
+"Leo": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Lezzetler": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Liderlik": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt",
+"Navigation.kt"
+]
+},
 "Lig": {
 "n": 0,
 "files": [
@@ -3310,6 +4380,19 @@
 "LeagueUi.kt"
 ]
 },
+"Lily": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Lingo": {
+"n": 0,
+"files": [
+"HomeScreen.kt",
+"Lingo.kt"
+]
+},
 "Lingo · Seviye {0}": {
 "n": 1,
 "files": [
@@ -3320,6 +4403,12 @@
 "n": 0,
 "files": [
 "Lingo.kt"
+]
+},
+"Lisanslar": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Lise Kampüsü": {
@@ -3340,10 +4429,40 @@
 "GameModels.kt"
 ]
 },
+"Lucy": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Luke": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "MAVİ": {
 "n": 0,
 "files": [
 "ReflexPuzzles.kt"
+]
+},
+"MOR": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Magma": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Manager": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Mantık & Çıkarım": {
@@ -3364,6 +4483,24 @@
 "GameModels.kt"
 ]
 },
+"Market": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"Mart": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Masa": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Masa ayakları üzerinde durur.": {
 "n": 0,
 "files": [
@@ -3374,6 +4511,18 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Masum!": {
+"n": 0,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"Max": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Mağaza": {
@@ -3408,16 +4557,76 @@
 "LevelPlayScreen.kt"
 ]
 },
+"Mehmet": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Melis": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Merhaba, ben Bilge! 🦉": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"Mia": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Mimari": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
 "Misafir olarak devam et": {
 "n": 0,
 "files": [
 "WelcomeScreen.kt"
 ]
 },
+"Muhasebeci": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Mum": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Mumu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Murat": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Musa gemisine her hayvandan kaç tane aldı?": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Mutfak": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
 ]
 },
 "Müdür": {
@@ -3448,6 +4657,12 @@
 "n": 0,
 "files": [
 "StrategyPuzzles.kt"
+]
+},
+"N harfi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Nadir orkide serasından çalındı.": {
@@ -3504,10 +4719,22 @@
 "DetectivePuzzles.kt"
 ]
 },
+"Nehir": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Nehrin aktığı yere nehir yatağı denir.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Neither {0} nor {1} was in the {2}.": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Neon Bağla": {
@@ -3540,10 +4767,46 @@
 "GameModels.kt"
 ]
 },
+"Night Train": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Noah": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Nora": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Nostalji": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
 "ORİJİNAL": {
 "n": 0,
 "files": [
 "GridGames.kt"
+]
+},
+"OYNA": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Odan": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Ok Bulmacası": {
@@ -3576,11 +4839,23 @@
 "GameModels.kt"
 ]
 },
+"Olivia": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Olmadı": {
 "n": 0,
 "files": [
 "ArrowWordGames.kt",
 "LevelPlayScreen.kt"
+]
+},
+"Olmaz!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
 ]
 },
 "Olsun, bir daha deneyelim!": {
@@ -3589,11 +4864,36 @@
 "LevelPlayScreen.kt"
 ]
 },
+"Onur": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Orman": {
+"n": 0,
+"files": [
+"GridPuzzles.kt",
+"JigsawPhotos.kt"
+]
+},
 "Orta": {
 "n": 0,
 "files": [
 "GameModels.kt",
 "LevelRules.kt"
+]
+},
+"Ortalama: {0} ms": {
+"n": 1,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Oscar": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Otobüsü sen kullanıyorsun, şoför sensin.": {
@@ -3606,6 +4906,18 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Otomatik": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Owen": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Oyna": {
@@ -3635,6 +4947,12 @@
 "GamesScreen.kt"
 ]
 },
+"Oyuncu": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
 "Oyunlar": {
 "n": 0,
 "files": [
@@ -3642,6 +4960,18 @@
 "LeaderboardScreen.kt",
 "Navigation.kt",
 "ProgressScreen.kt"
+]
+},
+"Oyunlara git": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Ozan": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "PRO ile reklamsız oyna": {
@@ -3660,6 +4990,12 @@
 "n": 1,
 "files": [
 "StoreSection.kt"
+]
+},
+"Pamuk": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Parlayan iki taşı yer değiştir": {
@@ -3681,6 +5017,12 @@
 ]
 },
 "Parlayan yol hedefe götürür": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Parlayan yolu takip et": {
 "n": 0,
 "files": [
 "StrategyGames.kt"
@@ -3722,6 +5064,12 @@
 "NewGames.kt"
 ]
 },
+"Patates": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Patladı!": {
 "n": 0,
 "files": [
@@ -3732,6 +5080,12 @@
 "n": 0,
 "files": [
 "Lingo.kt"
+]
+},
+"Paz": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
 ]
 },
 "Pembe Neon": {
@@ -3747,7 +5101,31 @@
 "WelcomeScreen.kt"
 ]
 },
+"Per": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
 "Perşembe": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Peynir": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Photographer": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Pide ye Edip": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -3759,7 +5137,19 @@
 "Cosmetics.kt"
 ]
 },
+"Pilot": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Play Store'da puan ver, bize çok destek olur": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Politika": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
@@ -3785,6 +5175,12 @@
 "ProgressScreen.kt"
 ]
 },
+"Pzt": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
 "Pınar": {
 "n": 0,
 "files": [
@@ -3797,16 +5193,34 @@
 "ReversePuzzles.kt"
 ]
 },
+"QWERTYUIOP": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
 "QWERTYUIOPĞÜ": {
 "n": 0,
 "files": [
 "Bulmaca.kt"
 ]
 },
+"Read the reversed word forwards:  {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Refleks Arenası": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Rehber": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Reklam hazırlanıyor, birazdan tekrar dene": {
@@ -3845,16 +5259,46 @@
 "GameModels.kt"
 ]
 },
+"Resim tamam!": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
 "Resmi aklında tut...": {
 "n": 0,
 "files": [
 "StrategyGames.kt"
 ]
 },
+"Robot": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Roket": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
 "Rozet": {
 "n": 0,
 "files": [
 "LeaderboardScreen.kt"
+]
+},
+"Ruby": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Ryan": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Rüya": {
@@ -3875,6 +5319,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"SARI": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
 "SEVİYE": {
 "n": 0,
 "files": [
@@ -3893,6 +5343,18 @@
 "LevelPlayScreen.kt"
 ]
 },
+"Saat": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Saat 11'den 2 saat sonra saat 1 olur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Saat 6:00'da akrep ile yelkovan arasındaki açı kaç derecedir?": {
 "n": 0,
 "files": [
@@ -3905,7 +5367,19 @@
 "ReversePuzzles.kt"
 ]
 },
+"Saat: {0}": {
+"n": 1,
+"files": [
+"ProfileScreen.kt"
+]
+},
 "Saatin akrep ve yelkovanına el denir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Saatte": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -3923,10 +5397,40 @@
 "GameModels.kt"
 ]
 },
+"Sadece {0} dokun": {
+"n": 1,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Sadece {0} hedeflere dokun": {
+"n": 1,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Sadece {0} {1}": {
+"n": 2,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
 "Sahnede onlara dokun; yanlış dokunuş hata sayılır.": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Sahte sinyal!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Sal": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
 ]
 },
 "Salı": {
@@ -3935,10 +5439,22 @@
 "ReversePuzzles.kt"
 ]
 },
+"Sam": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Sana ait olduğu hâlde başkalarının senden daha çok kullandığı şey nedir?": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Sanat Galerisi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Sanatçı": {
@@ -4056,6 +5572,18 @@
 "ReversePuzzles.kt"
 ]
 },
+"Security Guard": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Selin": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Senaryonun son sahnesi internete sızdırıldı.": {
 "n": 0,
 "files": [
@@ -4074,10 +5602,34 @@
 "LeagueUi.kt"
 ]
 },
+"Sergideki tarihi saat yerinden kayboldu.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Seri x{0}": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"Serkan": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Ses efektleri": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Sessizlik": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Seviye 1-10: 3 tur · 11-30: 4 tur · 31-50: 5 tur. Her 10. seviye boss! Yeni bölge için önceki bölgede {0}⭐ gerekir.": {
@@ -4158,6 +5710,18 @@
 "WowScreens.kt"
 ]
 },
+"Seviyede {0}": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Seviyeler": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
 "Seviyelere Dön": {
 "n": 0,
 "files": [
@@ -4176,10 +5740,28 @@
 "GameModels.kt"
 ]
 },
+"Siber Zihin": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
 "Silah sesine diğerleri uçup gider.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Silinemedi: {0}": {
+"n": 1,
+"files": [
+"CloudSync.kt"
+]
+},
+"Siluet tamam!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
 ]
 },
 "Siluetin tamamını parçalarla doldur": {
@@ -4188,13 +5770,37 @@
 "StrategyGames.kt"
 ]
 },
+"Sis perdesi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Sis var! Yolu hatırla": {
 "n": 0,
 "files": [
 "StrategyGames.kt"
 ]
 },
+"Ski Lodge": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Skorlar": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
 "Sobayı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sola": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -4230,10 +5836,22 @@
 "ReversePuzzles.kt"
 ]
 },
+"Sondan ikinci": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Sonraki Seviye": {
 "n": 0,
 "files": [
 "LevelPlayScreen.kt"
+]
+},
+"Sonraki bulmaca": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
 ]
 },
 "Sonraki bölge için bu bölgede {0} ⭐ topla.": {
@@ -4266,10 +5884,22 @@
 "LevelPlayScreen.kt"
 ]
 },
+"Sonsuzluk": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
 "Sonucu paylaş": {
 "n": 0,
 "files": [
 "Lingo.kt"
+]
+},
+"Sonuncu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Sonuncu sepetle birlikte aldı": {
@@ -4279,6 +5909,18 @@
 ]
 },
 "Sonuncunun arkasında kimse yoktur, onu geçemezsin.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sophie": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Soru Ali'nin annesinden bahsediyor.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -4302,10 +5944,34 @@
 "GameModels.kt"
 ]
 },
+"Space Station": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Stajyer": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Strateji & Hız": {
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Sudoku": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sudoku tamam!": {
+"n": 0,
+"files": [
+"NewGames.kt"
 ]
 },
 "Sunucuya bağlanılamadı (zaman aşımı). İnternetini kontrol edip tekrar dene.": {
@@ -4460,6 +6126,24 @@
 "StrategyGames.kt"
 ]
 },
+"TUR {0}": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"TURUNCU": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Tablo tamam!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
 "Tahminler gerçek Türkçe kelime olmalı.": {
 "n": 0,
 "files": [
@@ -4470,6 +6154,18 @@
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Tak": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Takvimde": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Takılı": {
@@ -4490,6 +6186,12 @@
 "LeaderboardScreen.kt"
 ]
 },
+"Tam isabet!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
 "Tamam": {
 "n": 0,
 "files": [
@@ -4508,10 +6210,40 @@
 "DetectivePuzzles.kt"
 ]
 },
+"Tarak": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Tarağın dişleri saçı tarar.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Tavuk": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Tech Office": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Technician": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Tek Boynuz": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
 ]
 },
 "Tek bir erkek kardeş, dört kızın hepsinin kardeşidir.": {
@@ -4532,11 +6264,35 @@
 "StoreSection.kt"
 ]
 },
+"Teknisyen": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Teknoloji Ofisi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Tekrar": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
 "Tekrar dene": {
 "n": 0,
 "files": [
 "LeagueUi.kt",
 "Lingo.kt"
+]
+},
+"Telefonun": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Telefonun diline göre": {
@@ -4551,16 +6307,35 @@
 "ProfileScreen.kt"
 ]
 },
+"Temizle": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt",
+"GamesScreen.kt"
+]
+},
 "Temizlik Görevlisi": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
 ]
 },
+"Temmuz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Ters kelime": {
 "n": 0,
 "files": [
 "WordGames.kt"
+]
+},
+"Tersine": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Tersine Düşün": {
@@ -4587,10 +6362,112 @@
 "ReversePuzzles.kt"
 ]
 },
+"Testere": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"The antique clock vanished from the exhibit.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The captain's compass vanished from his cabin.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The championship trophy vanished from its case.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The diamond necklace was stolen from the safe.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The final exam questions were taken from a locker.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The mission logs were deleted.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The old will disappeared from the library.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The person in {0} was in the {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The person in {0} was not in the {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The prototype phone's drawings were leaked.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"The script's final scene was leaked online.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"This is how the clock looks in a MIRROR. What is the real time?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Tilki": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
 "Titreşim": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Tolga": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Tom": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Top 5 TL, sopa 105 TL olur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Top yalnızca boş tüpe ya da aynı renkli topun üstüne dökülür.": {
@@ -4627,6 +6504,12 @@
 "n": 2,
 "files": [
 "LevelPlayScreen.kt"
+]
+},
+"Tuzak!": {
+"n": 0,
+"files": [
+"WordGames.kt"
 ]
 },
 "Tüm dolu kareleri bul; yanlış boyama hata sayılır.": {
@@ -4701,6 +6584,12 @@
 "ProfileScreen.kt"
 ]
 },
+"Undo the steps from the end: the answer is {0}.": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Usta": {
 "n": 0,
 "files": [
@@ -4725,16 +6614,40 @@
 "ReversePuzzles.kt"
 ]
 },
+"Uyuyor musun?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "Uzamsal Zekâ": {
 "n": 0,
 "files": [
 "GameModels.kt"
 ]
 },
+"Uzay": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
 "Uzay Üssü": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
+]
+},
+"Uzman": {
+"n": 0,
+"files": [
+"LevelRules.kt"
+]
+},
+"Vali": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "Varış ülkesine": {
@@ -4747,6 +6660,24 @@
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Veli": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Witnesses say the culprit was wearing {0}.": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"YAKINDA": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
 ]
 },
 "YAZININ RENGİ": {
@@ -4778,6 +6709,12 @@
 "n": 0,
 "files": [
 "ReflexPuzzles.kt"
+]
+},
+"YILDIZ": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "Yakalandı!": {
@@ -4835,6 +6772,12 @@
 "ShopScreen.kt"
 ]
 },
+"Yapboz": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
 "Yaralılar gömülmez": {
 "n": 0,
 "files": [
@@ -4877,6 +6820,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"Yasemin": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "Yatağı var ama hiç uyumaz. Nedir?": {
 "n": 0,
 "files": [
@@ -4905,6 +6854,24 @@
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"Yedeklendi": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Yedeklendi ☁️": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Yedeklenemedi, internetini kontrol et": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
 ]
 },
 "Yeni": {
@@ -4943,7 +6910,33 @@
 "ShopScreen.kt"
 ]
 },
+"Yetersiz 💎": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Yetersiz 💎 · {0}": {
+"n": 1,
+"files": [
+"Bulmaca.kt",
+"Lingo.kt",
+"WowScreens.kt"
+]
+},
+"Yolun Sonu": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
 "Yukarı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yumurta": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -4956,6 +6949,12 @@
 ]
 },
 "Yumurtayı kullanmak için önce kırarsın.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yumurtlayan tavuktur.": {
 "n": 0,
 "files": [
 "ReversePuzzles.kt"
@@ -4997,6 +6996,18 @@
 "Lingo.kt"
 ]
 },
+"ZP-Cloud": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"ZXCVBNM": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
 "ZXCVBNMÖÇ": {
 "n": 0,
 "files": [
@@ -5007,6 +7018,18 @@
 "n": 0,
 "files": [
 "GameModels.kt"
+]
+},
+"Zaten bulundu": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Zebra": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
 ]
 },
 "Zehirli Yeşil": {
@@ -5025,6 +7048,13 @@
 "n": 0,
 "files": [
 "ProgressScreen.kt"
+]
+},
+"Zeynep": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReversePuzzles.kt"
 ]
 },
 "Zeynep > Ayşe > Elif.": {
@@ -5057,16 +7087,57 @@
 "GameModels.kt"
 ]
 },
+"Zihin Efsanesi": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt",
+"ProfileScreen.kt"
+]
+},
+"Zihin Gezgini": {
+"n": 0,
+"files": [
+"CloudSync.kt",
+"HomeScreen.kt",
+"ProfileScreen.kt",
+"UserPreferencesRepository.kt"
+]
+},
 "Zihin Kaşifi": {
 "n": 0,
 "files": [
 "ProfileScreen.kt"
 ]
 },
+"Zihin seviyesi {0}": {
+"n": 1,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"ZihinPark Lingo {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"ZihinPark PRO": {
+"n": 0,
+"files": [
+"Billing.kt",
+"StoreSection.kt"
+]
+},
 "ZihinPark günlük zeka, mantık ve hafıza antrenmanı hatırlatıcıları": {
 "n": 0,
 "files": [
 "NotificationHelper.kt"
+]
+},
+"ZihinPark v2.0": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
 ]
 },
 "ZihinPark'ta zekâmı çalıştırıyorum! 30 oyun, 1500 seviye, Lingo ve Bulmaca Dünyası. Sen de dene: https://play.google.com/store/apps/details?id={0}": {
@@ -5079,6 +7150,18 @@
 "n": 0,
 "files": [
 "ProfileScreen.kt"
+]
+},
+"Zincir x{0}": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"Zoe": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "Zor": {
@@ -5094,10 +7177,40 @@
 "Lingo.kt"
 ]
 },
+"Zorluk Derecesi": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"added {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "adım adım artıyor": {
 "n": 0,
 "files": [
 "GridPuzzles.kt"
+]
+},
+"alt{0},{1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"ana salon": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"aradaki farka bak": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
 ]
 },
 "arşiv": {
@@ -5124,7 +7237,79 @@
 "StrategyGames.kt"
 ]
 },
+"bagaj vagonu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"baggage car": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "bahçe": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"cable car": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"café": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"café car": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"control room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"costume store": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"dining car": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"divided by {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"editing room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"engine room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"entrance hall": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
@@ -5136,10 +7321,34 @@
 "NumberChainGame.kt"
 ]
 },
+"fib{0},{1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
 "fidanlık": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
+]
+},
+"fireplace lounge": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"generator room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"geo{0}": {
+"n": 1,
+"files": [
+"NumberChainPuzzles.kt"
 ]
 },
 "giriş": {
@@ -5184,7 +7393,19 @@
 "NumberChainGame.kt"
 ]
 },
+"index {0}": {
+"n": 1,
+"files": [
+"PuzzleBank.kt"
+]
+},
 "jeneratör odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kafe vagonu": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
@@ -5244,10 +7465,82 @@
 "DetectivePuzzles.kt"
 ]
 },
+"level {0}": {
+"n": 1,
+"files": [
+"LevelRules.kt"
+]
+},
+"living room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"main hall": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"makeup room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"makine dairesi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "makyaj odası": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
+]
+},
+"meeting room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"mess hall": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"multiplied by {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"observation tower": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"parking lot": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"pulse{0}": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"round {0}": {
+"n": 1,
+"files": [
+"LevelRules.kt"
 ]
 },
 "sarı": {
@@ -5281,10 +7574,58 @@
 "StrategyGames.kt"
 ]
 },
+"sergi salonu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"server room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "ses kabini": {
 "n": 0,
 "files": [
 "DetectivePuzzles.kt"
+]
+},
+"ski room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"sola ←": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"sound booth": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"spor salonu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"staff room": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"subtracted {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "sunucu odası": {
@@ -5305,6 +7646,18 @@
 "DetectivePuzzles.kt"
 ]
 },
+"tri{0},{1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"yemekli vagon": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "yeşil": {
 "n": 0,
 "files": [
@@ -5318,6 +7671,14 @@
 "StrategyGames.kt"
 ]
 },
+"yyyy-MM-dd": {
+"n": 0,
+"files": [
+"DailyReminderReceiver.kt",
+"GameRepository.kt",
+"ProgressScreen.kt"
+]
+},
 "yıldız": {
 "n": 0,
 "files": [
@@ -5328,6 +7689,12 @@
 "n": 0,
 "files": [
 "ReflexPuzzles.kt"
+]
+},
+"zone{0}": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
 ]
 },
 "{0}  Nasıl Oynanır?": {
@@ -5390,6 +7757,12 @@
 "WowScreens.kt"
 ]
 },
+"{0} ekledim": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
 "{0} giyen kişi {1} değildi.": {
 "n": 2,
 "files": [
@@ -5408,6 +7781,12 @@
 "LeagueUi.kt"
 ]
 },
+"{0} harf": {
+"n": 1,
+"files": [
+"ArrowWordGames.kt"
+]
+},
 "{0} harf · {1} deneme kaldı": {
 "n": 2,
 "files": [
@@ -5424,6 +7803,24 @@
 "n": 1,
 "files": [
 "ReversePuzzles.kt"
+]
+},
+"{0} masum, elendi": {
+"n": 1,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"{0} olan YA DA {1} olan": {
+"n": 2,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"{0} olmaz": {
+"n": 1,
+"files": [
+"NewGames.kt"
 ]
 },
 "{0} oyun": {
@@ -5462,10 +7859,22 @@
 "LeaderboardScreen.kt"
 ]
 },
+"{0} parlayan yerde": {
+"n": 1,
+"files": [
+"GridGames.kt"
+]
+},
 "{0} parça": {
 "n": 1,
 "files": [
 "StrategyGames.kt"
+]
+},
+"{0} read backwards is {1}.": {
+"n": 2,
+"files": [
+"ReversePuzzles.kt"
 ]
 },
 "{0} seviye kaldı": {
@@ -5478,6 +7887,36 @@
 "n": 1,
 "files": [
 "ShopScreen.kt"
+]
+},
+"{0} tersten okununca {1} olur.": {
+"n": 2,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"{0} was in the {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} was not in the {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} was not wearing {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} was wearing {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
 ]
 },
 "{0} yanlış şık elendi": {
@@ -5498,16 +7937,46 @@
 "DetectivePuzzles.kt"
 ]
 },
+"{0} {1} giyiyordu.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} {1} giymiyordu.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "{0} {1} kalmadı": {
 "n": 2,
 "files": [
 "LevelPlayScreen.kt"
 ]
 },
+"{0} {1} · Bulmaca {2}": {
+"n": 3,
+"files": [
+"Bulmaca.kt"
+]
+},
 "{0} {1} · Seviye {2}": {
 "n": 3,
 "files": [
 "WowScreens.kt"
+]
+},
+"{0} {1}, {2} {3} yedi!": {
+"n": 4,
+"files": [
+"StrategyGames.kt"
+]
+},
+"{0} · Bulmaca {1}": {
+"n": 2,
+"files": [
+"Bulmaca.kt"
 ]
 },
 "{0} · Seviye {1}": {
@@ -5540,6 +8009,12 @@
 "ReversePuzzles.kt"
 ]
 },
+"{0}. denemede buldun": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
 "{0}. gün": {
 "n": 1,
 "files": [
@@ -5556,6 +8031,12 @@
 "n": 2,
 "files": [
 "ShopScreen.kt"
+]
+},
+"{0}. harf: {1}": {
+"n": 2,
+"files": [
+"ArrowWordGames.kt"
 ]
 },
 "{0}. kapı güvenli değil.": {
@@ -5588,6 +8069,12 @@
 "GridGames.kt"
 ]
 },
+"{0}. soru · {1} harf": {
+"n": 2,
+"files": [
+"Bulmaca.kt"
+]
+},
 "{0}. tüpü {1}. tüpe dök": {
 "n": 2,
 "files": [
@@ -5612,6 +8099,12 @@
 "WordGames.kt"
 ]
 },
+"{0}: in the {1}": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
 "{0}: {1} O sırada {2} kişi binadaydı; her biri farklı bir yerdeydi": {
 "n": 3,
 "files": [
@@ -5622,6 +8115,18 @@
 "n": 2,
 "files": [
 "PuzzleBank.kt"
+]
+},
+"{0}: {1} {2} people were in the building, each in a different place": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0}x KOMBO!": {
+"n": 1,
+"files": [
+"NewGames.kt"
 ]
 },
 "Ça": {
@@ -6342,6 +8847,12 @@
 "DetectivePuzzles.kt"
 ]
 },
+"← sola": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
 "↑ yukarı": {
 "n": 0,
 "files": [
@@ -6364,6 +8875,30 @@
 "n": 0,
 "files": [
 "NewGames.kt"
+]
+},
+"⏱️ +10 saniye": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"⏳ Bitime: {0}": {
+"n": 1,
+"files": [
+"LeagueUi.kt"
+]
+},
+"■ Doldur": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"▶ Reklam izle, 1 {0} al": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
 ]
 },
 "▶ Reklam izle, ödülü 2× yap (+{0} 💎)": {
@@ -6400,6 +8935,12 @@
 "n": 1,
 "files": [
 "Lingo.kt"
+]
+},
+"✏️ Not": {
+"n": 0,
+"files": [
+"NewGames.kt"
 ]
 },
 "✏️ Not: AÇIK": {
@@ -6442,6 +8983,12 @@
 "n": 0,
 "files": [
 "StrategyGames.kt"
+]
+},
+"⭐ Bonus: {0}": {
+"n": 1,
+"files": [
+"WowScreens.kt"
 ]
 },
 "⭐ {0} / 30 · Boss: Seviye {1}": {
@@ -6534,6 +9081,12 @@
 "Bulmaca.kt"
 ]
 },
+"💡 {0}. harf: {1}": {
+"n": 2,
+"files": [
+"Lingo.kt"
+]
+},
 "💡 Öneri": {
 "n": 0,
 "files": [
@@ -6556,6 +9109,12 @@
 "n": 0,
 "files": [
 "Bulmaca.kt"
+]
+},
+"🔑 Anahtar!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
 ]
 },
 "🔑 alındı": {
@@ -6600,6 +9159,12 @@
 "StoreSection.kt"
 ]
 },
+"🛡️ Kalkan korudu": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
 "🛡️ Kalkan: bir erken dokunuş affedilir": {
 "n": 0,
 "files": [
@@ -6616,6 +9181,12 @@
 "n": 0,
 "files": [
 "DailyReminderReceiver.kt"
+]
+},
+"🧠 ZihinPark Test Bildirimi": {
+"n": 0,
+"files": [
+"NotificationHelper.kt"
 ]
 }
 }

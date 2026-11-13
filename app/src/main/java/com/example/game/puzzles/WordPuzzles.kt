@@ -45,7 +45,7 @@ object CipherGenerator : PuzzleGenerator<CipherPuzzle> {
             }
         }
         val maxShift = step(difficulty, 3, 5, 9, 14, 28)
-        val shift = 1 + rng.nextInt(maxShift)
+        val shift = 1 + rng.nextInt(minOf(maxShift, WordData.ALPHABET.length - 1))
         val cipher = shiftText(plain, shift)
         val decoys = step(difficulty, 2, 3, 3, 4, 4)
         val letters = plain.filter { it != ' ' }.toMutableList()

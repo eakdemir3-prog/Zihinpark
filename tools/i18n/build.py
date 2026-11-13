@@ -5,6 +5,10 @@ EN = {}
 for f in sorted(glob.glob(os.path.join(H, 'en_*.py'))):
     spec = importlib.util.spec_from_file_location(os.path.basename(f)[:-3], f); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
     EN.update(m.EN)
+# Parça eşleşmeleri için kırpılmış varyantlar
+for k, v in list(EN.items()):
+    for a, b in ((k.strip(), v.strip()), (k.rstrip(': ').strip(), v.rstrip(': ').strip())):
+        if a and a not in EN: EN[a] = b
 exact, tpl = {}, []
 for k, v in EN.items():
     if re.search(r'\{\d+\}', k): tpl.append([k, v])

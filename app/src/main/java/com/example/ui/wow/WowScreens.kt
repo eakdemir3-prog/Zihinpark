@@ -542,7 +542,7 @@ fun WowFeatureCard(repository: GameRepository, onClick: () -> Unit, modifier: Mo
                 }
                 // Mini harf çarkı
                 Box(Modifier.size(64.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.1f)).border(1.dp, a, CircleShape)) {
-                    val letters = "KELİME"
+                    val letters = if (com.example.i18n.I18n.isEn) "WORDS" else "KELİME"
                     letters.forEachIndexed { i, c ->
                         val ang = -Math.PI / 2 + i * 2 * Math.PI / letters.length
                         Text(c.toString(), color = TextPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold,

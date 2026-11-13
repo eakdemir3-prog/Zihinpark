@@ -106,6 +106,15 @@ object I18n {
             m.groupValues.drop(1).forEachIndexed { i, g -> o = o.replace("{$i}", inner(g, depth)) }
             return o
         }
+        // "• 🟩 Metin" gibi: baştaki sembol + boşluk atılıp kalan birebir aranır
+        if (!s[0].isLetterOrDigit()) {
+            val sp = s.indexOf(' ')
+            if (sp in 1..3 && sp < s.length - 1) {
+                val rest = s.substring(sp + 1)
+                val tr = translate(rest, depth + 1)
+                if (tr != rest) return s.substring(0, sp + 1) + tr
+            }
+        }
         for (sep in SEPARATORS) {
             if (s.contains(sep)) {
                 val parts = s.split(sep)

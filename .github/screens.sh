@@ -43,11 +43,13 @@ $T adb shell am broadcast -a com.android.systemui.demo -e command network -e wif
 $T adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false >/dev/null
 store() {
   name="$1"
+  adb logcat -c
   $T adb shell am start -S -n $ACT --es zp_route "$2" --ez zp_skip_tutorial true > /dev/null
   sleep ${3:-10}
   $T adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null
   sleep 1
   $T adb exec-out screencap -p > "shots/store_$name.png"
+  $T adb logcat -d -s ZP:D AndroidRuntime:E > "shots/store_$name.log" || true
 }
 # Isınma: ilk açılış yavaş
 $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
@@ -76,11 +78,14 @@ en 12_scramble play/word_scramble/45 10
 en 13_detective play/logic_detective/45 10
 en 14_reverse play/reverse_thinking/12 10
 en 15_hunt play/word_hunt/20 10
-en 16_code play/cipher_breaker/20 10
+en 16_code play/cipher_breaker/20 25
 en 17_river play/river_crossing/5 10
 en 18_stroop play/color_stroop/10 10
 en 19_chain play/number_chain/20 10
 en 20_doors play/logic_doors/20 10
 en 21_sudoku play/sudoku/45 12
 en 22_memory play/memory_cards/5 10
+en 23_spatial play/spatial_rotation/10 10
+en 24_hidden play/hidden_object/5 10
+en 25_reflex play/target_tap/10 8
 ls -la shots

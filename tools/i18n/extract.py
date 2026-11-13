@@ -2,7 +2,7 @@
 Şablon değişkenleri ($x, ${...}) {0},{1}... yer tutucularına çevrilir."""
 import re, os, json, sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'app', 'src', 'main', 'java', 'com', 'example')
-SKIP_FILES = {'WordData.kt', 'Turkish.kt', 'NameFilter.kt', 'I18n.kt', 'I18nText.kt'}
+SKIP_FILES = {'WordDataEn.kt', 'RiddlesEn.kt', 'WordData.kt', 'Turkish.kt', 'NameFilter.kt', 'I18n.kt', 'I18nText.kt'}
 lit = re.compile(r'(?<![\w$])"((?:[^"\\]|\\.)*)"')
 
 def to_template(s):
@@ -35,8 +35,14 @@ def wanted(t):
     if not re.search(r'[A-Za-zÇĞİÖŞÜçğıöşü]', t): return False
     if re.fullmatch(r'[a-z0-9_./:%-]+', t): return False          # anahtar / rota
     if t.startswith(('http', 'zp_', 'android.', 'com.', 'market:', 'mailto:', 'ca-app-pub')): return False
-    if re.fullmatch(r'[A-Za-z0-9_]+', t) and not TRW.search(t) and not TRCH.search(t): return False
-    return bool(TRCH.search(t) or TRW.search(t))
+    if re.fullmatch(r'[A-Za-z0-9_]+', t) and not TRW.search(t) and not TRCH.search(t) and not re.fullmatch(r'[A-Z][a-z]{2,}|[A-Z]{3,}', t): return False
+    if TRCH.search(t) or TRW.search(t): return True
+    # Türkçe karakter içermeyen düz metinler ("Temizle", "Not", "5 harf")
+    if re.search(r'[<>=;()\[\]|@#/\\]', t) or '_' in t: return False
+    core = re.sub(r'\{\d+\}', '', t).strip()
+    if not re.search(r'[A-Za-z]{3,}', core): return False
+    if re.fullmatch(r'[a-z]+[A-Z]\w*', core) or (re.fullmatch(r'[a-z0-9.\-]+', core) and '{' not in t): return False
+    return True
 
 keys = {}
 for dp, _, fs in os.walk(ROOT):
