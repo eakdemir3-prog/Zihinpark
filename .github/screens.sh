@@ -33,7 +33,6 @@ PY
 }
 $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 adb exec-out screencap -p > shots/00_home.png
-for r in tab_games tab_records tab_profile shop; do shot "$r" 12; done
 # ---- Mağaza görselleri: temiz durum çubuğu, sistem pencereleri kapalı ----
 $T adb shell settings put global sysui_demo_allowed 1
 $T adb shell am broadcast -a com.android.systemui.demo -e command enter >/dev/null
@@ -56,36 +55,25 @@ $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 $T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang tr > /dev/null
 sleep 12
 $T adb exec-out screencap -p > "shots/store_0_gift.png"
-store 1_home tab_home 12
-store 0_lingo lingo/1 10
 # ---- İngilizce ----
 $T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang en > /dev/null
 sleep 12
 $T adb exec-out screencap -p > "shots/en_00_gift.png"
 en() { store "$1" "$2" "$3"; mv "shots/store_$1.png" "shots/en_$1.png"; }
-en 01_home tab_home 12
-en 02_games tab_games 10
-en 03_profile tab_profile 10
-en 04_shop shop 10
-en 05_records tab_records 10
-en 06_path levels/sudoku 10
-en 07_lingo lingo/1 10
-en 08_lingomap lingo 10
-en 09_wow wow/1 12
-en 10_wowmap wow 10
-en 11_bulmaca bulmaca 8
-en 12_scramble play/word_scramble/45 10
-en 13_detective play/logic_detective/45 10
-en 14_reverse play/reverse_thinking/12 10
-en 15_hunt play/word_hunt/20 10
 en 16_code play/cipher_breaker/20 25
-en 17_river play/river_crossing/5 10
-en 18_stroop play/color_stroop/10 10
-en 19_chain play/number_chain/20 10
-en 20_doors play/logic_doors/20 10
-en 21_sudoku play/sudoku/45 12
 en 22_memory play/memory_cards/5 10
+en 14_reverse play/reverse_thinking/12 10
+en 17_river play/river_crossing/5 10
+en 19_chain play/number_chain/20 10
+en 08_lingomap lingo 10
+en 05_records tab_records 10
+en 04_shop shop 10
+en 02_games tab_games 10
+en 12_scramble play/word_scramble/45 10
 en 23_spatial play/spatial_rotation/10 10
 en 24_hidden play/hidden_object/5 10
 en 25_reflex play/target_tap/10 8
+en 15_hunt play/word_hunt/20 10
+en 26_grid play/pattern_master/10 10
+en 27_detail play/detail_hunter/5 10
 ls -la shots
