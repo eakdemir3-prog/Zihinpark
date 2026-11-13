@@ -115,7 +115,8 @@ data class ScramblePuzzle(
 object ScrambleGenerator : PuzzleGenerator<ScramblePuzzle> {
     override val gameId = "word_scramble"
 
-    private val POOL: List<Pair<String, String>> by lazy {
+    private val pools = HashMap<String, List<Pair<String, String>>>()
+    private val POOL: List<Pair<String, String>> get() = pools.getOrPut(WordData.ALPHABET) {
         WordData.CATEGORIES.flatMap { (cat, ws) -> ws.map { it to cat } }
             .filter { (w, _) -> w.length in 3..10 && w.all { ch -> ch in WordData.ALPHABET } }
             .distinctBy { it.first }

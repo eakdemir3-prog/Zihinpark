@@ -34,8 +34,8 @@ object NotificationHelper {
     fun createNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
-                description = CHANNEL_DESC
+            val channel = NotificationChannel(CHANNEL_ID, com.example.i18n.I18n.t(CHANNEL_NAME), importance).apply {
+                description = com.example.i18n.I18n.t(CHANNEL_DESC)
                 enableVibration(true)
                 setShowBadge(true)
             }
@@ -66,6 +66,7 @@ object NotificationHelper {
      * Schedules the daily alarm to trigger DailyReminderReceiver at the chosen hour:minute.
      */
     fun scheduleDailyReminder(context: Context, hour: Int, minute: Int) {
+        com.example.i18n.I18n.init(context)
         createNotificationChannel(context)
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
@@ -128,6 +129,7 @@ object NotificationHelper {
         message: String,
         notificationId: Int = NOTIFICATION_ID
     ): Boolean {
+        com.example.i18n.I18n.init(context)
         createNotificationChannel(context)
 
         val notificationManager = NotificationManagerCompat.from(context)
@@ -149,9 +151,9 @@ object NotificationHelper {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notif)
             .setColor(0xFF7B5CFF.toInt())
-            .setContentTitle(title)
-            .setContentText(message)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setContentTitle(com.example.i18n.I18n.t(title))
+            .setContentText(com.example.i18n.I18n.t(message))
+            .setStyle(NotificationCompat.BigTextStyle().bigText(com.example.i18n.I18n.t(message)))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setAutoCancel(true)

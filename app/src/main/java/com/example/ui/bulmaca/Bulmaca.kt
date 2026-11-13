@@ -31,7 +31,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -198,6 +198,18 @@ fun BulmacaMapScreen(repository: GameRepository, onBack: () -> Unit, onPlay: (In
     val listState = rememberLazyListState()
     LaunchedEffect(curWorld) { if (curWorld > 0) listState.scrollToItem(curWorld) }
 
+    if (com.example.i18n.I18n.isEn) {
+        // İngilizce bulmacalar 2. aşamada geliyor
+        NeonBackground(accent = NeonPurple, accent2 = NeonCyan, pattern = com.example.ui.components.BgPatterns.LETTERS) {
+            Column(Modifier.fillMaxSize().statusBarsPadding()) {
+                NeonTopBar("Bulmaca Dünyası", onBack = onBack)
+                Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
+                    com.example.ui.components.MascotSays("Bulmaca Dünyası İngilizce olarak çok yakında!", title = "Çok yakında", mood = com.example.ui.components.MascotMood.Think)
+                }
+            }
+        }
+        return
+    }
     NeonBackground(accent = NeonPurple, accent2 = NeonCyan, pattern = com.example.ui.components.BgPatterns.LETTERS) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             NeonTopBar("Bulmaca Dünyası", subtitle = "$total bulmaca · ${worlds.size} dünya", onBack = onBack, trailing = { DiamondPill(diamonds, onOpenShop) })

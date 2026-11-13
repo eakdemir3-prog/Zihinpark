@@ -67,16 +67,19 @@ object PuzzleBank {
     /** Turları gerektiği kadar (sırayla) üretir; önceki tüm turlarla çakışmayan [index]. turu döner. */
     private val independentCache = HashMap<String, HashMap<Int, Any>>()
 
+    /** Dil değişince farklı bankalar kullanılır (İngilizce turlar ayrı üretilir). */
+    private fun bankKey(gen: PuzzleGenerator<*>) = if (com.example.i18n.I18n.isEn) gen.gameId + "#en" else gen.gameId
+
     @Suppress("UNCHECKED_CAST")
     fun <P : Any> get(gen: PuzzleGenerator<P>, index: Int): P {
         require(index in 0 until LevelRules.TOTAL_ROUNDS) { "index $index" }
         if (gen.independent) {
             synchronized(independentCache) {
-                independentCache[gen.gameId]?.get(index)?.let { return it as P }
+                independentCache[bankKey(gen)]?.get(index)?.let { return it as P }
             }
             val (level, round) = levelRoundOf(index)
             val p = produce(gen, index, LevelRules.difficulty(level, round), HashSet())
-            synchronized(independentCache) { independentCache.getOrPut(gen.gameId) { HashMap() }[index] = p }
+            synchronized(independentCache) { independentCache.getOrPut(bankKey(gen)) { HashMap() }[index] = p }
             return p
         }
         return sequential(gen, index)
@@ -85,7 +88,7 @@ object PuzzleBank {
     @Suppress("UNCHECKED_CAST")
     @Synchronized
     private fun <P : Any> sequential(gen: PuzzleGenerator<P>, index: Int): P {
-        val bank = banks.getOrPut(gen.gameId) { Bank() }
+        val bank = banks.getOrPut(bankKey(gen)) { Bank() }
         while (bank.items.size <= index) {
             val i = bank.items.size
             val (level, round) = levelRoundOf(i)
@@ -110,7 +113,7 @@ object PuzzleBank {
     fun <P : Any> endless(gen: PuzzleGenerator<P>, n: Int, difficulty: Float): P {
         if (gen.independent) return produce(gen, 100_000 + n, difficulty, HashSet())
         sequential(gen, LevelRules.TOTAL_ROUNDS - 1)
-        val seen = synchronized(this) { HashSet<String>(banks.getValue(gen.gameId).seen) }
+        val seen = synchronized(this) { HashSet<String>(banks.getValue(bankKey(gen)).seen) }
         return produce(gen, 100_000 + n, difficulty, seen)
     }
 

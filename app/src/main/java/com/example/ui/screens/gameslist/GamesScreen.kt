@@ -29,7 +29,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -123,7 +123,7 @@ fun GamesScreen(
             }
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
             item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
-            item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
+            if (!com.example.i18n.I18n.isEn) item(span = { GridItemSpan(maxLineSpan) }) { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
         }
         item(span = { GridItemSpan(maxLineSpan) }) { SearchBox(query) { query = it } }
         item(span = { GridItemSpan(maxLineSpan) }) {

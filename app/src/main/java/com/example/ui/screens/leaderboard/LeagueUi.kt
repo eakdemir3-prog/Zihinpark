@@ -19,7 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -75,7 +75,7 @@ fun AccountCard() {
     val user by CloudSync.user.collectAsState()
     val sync by CloudSync.syncState.collectAsState()
     val phase by CloudSync.phase.collectAsState()
-    val g = com.example.cloud.rememberGoogleSignIn(onSuccess = { Toast.makeText(context, "Giriş yapıldı ✓", Toast.LENGTH_SHORT).show() })
+    val g = com.example.cloud.rememberGoogleSignIn(onSuccess = { Toast.makeText(context, com.example.i18n.I18n.t("Giriş yapıldı ✓"), Toast.LENGTH_SHORT).show() })
     GlassCard(accent = if (user != null) NeonGreen else NeonCyan, glow = user == null) {
         val u = user
         if (!CloudSync.isConfigured) {
@@ -110,7 +110,7 @@ fun AccountCard() {
                 Text("✅", fontSize = 26.sp)
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {
-                    Text(u.name, color = TextPrimary, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    Text(com.example.i18n.I18n.raw(u.name), color = TextPrimary, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     Text((u.email ?: "") + if (sync.isNotEmpty()) " · $sync" else "", color = TextSecondary, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
             }
@@ -119,8 +119,8 @@ fun AccountCard() {
                 NeonButton("Şimdi yedekle", onClick = {
                     scope.launch {
                         runCatching { CloudSync.backupNow() }
-                            .onSuccess { Toast.makeText(context, "Yedeklendi ☁️", Toast.LENGTH_SHORT).show() }
-                            .onFailure { Toast.makeText(context, "Yedeklenemedi, internetini kontrol et", Toast.LENGTH_SHORT).show() }
+                            .onSuccess { Toast.makeText(context, com.example.i18n.I18n.t("Yedeklendi ☁️"), Toast.LENGTH_SHORT).show() }
+                            .onFailure { Toast.makeText(context, com.example.i18n.I18n.t("Yedeklenemedi, internetini kontrol et"), Toast.LENGTH_SHORT).show() }
                     }
                 }, color = NeonGreen, outlined = true, height = 42.dp, modifier = Modifier.weight(1f))
                 NeonButton("Çıkış", onClick = { CloudSync.signOut() }, color = NeonPink, outlined = true, height = 42.dp)
@@ -142,7 +142,7 @@ fun AccountCard() {
                         val act = context as? Activity ?: return@NeonDialog
                         scope.launch {
                             val err = CloudSync.deleteAccount(act)
-                            Toast.makeText(context, err ?: "Hesabın ve bulut verilerin silindi", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, com.example.i18n.I18n.t(err ?: "Hesabın ve bulut verilerin silindi"), Toast.LENGTH_LONG).show()
                         }
                     }
                 ) {
@@ -264,7 +264,7 @@ private fun Podium(top: List<LeagueEntry>, me: String?) {
                 if (e != null) {
                     ProfileAvatar(e.avatar, e.frame, if (idx == 0) 64.dp else 52.dp)
                     Spacer(Modifier.height(4.dp))
-                    Text(e.name, color = if (e.uid == me) NeonCyan else TextPrimary, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
+                    Text(com.example.i18n.I18n.raw(e.name), color = if (e.uid == me) NeonCyan else TextPrimary, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
                     Text("${e.score}", color = PODIUM[idx], fontWeight = FontWeight.ExtraBold)
                     Spacer(Modifier.height(4.dp))
                 }
@@ -291,7 +291,7 @@ private fun LeagueRow(rank: Int, e: LeagueEntry, isMe: Boolean) {
             Text("$rank", color = TextSecondary, fontWeight = FontWeight.Bold, modifier = Modifier.width(30.dp))
             ProfileAvatar(e.avatar, e.frame, 38.dp)
             Spacer(Modifier.width(10.dp))
-            Text(e.name + if (isMe) " (sen)" else "", color = TextPrimary, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(com.example.i18n.I18n.raw(e.name) + if (isMe) com.example.i18n.I18n.t(" (sen)") else "", color = TextPrimary, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f), maxLines = 1, overflow = TextOverflow.Ellipsis)
             if (rank <= 10) Text("💎${CloudSync.REWARDS[rank]}", color = NeonCyan, style = MaterialTheme.typography.labelSmall)
             Spacer(Modifier.width(8.dp))
             Text("${e.score}", color = NeonYellow, fontWeight = FontWeight.ExtraBold)

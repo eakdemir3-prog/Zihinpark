@@ -26,7 +26,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -87,16 +87,18 @@ import org.json.JSONObject
 
 object LingoData {
     @Volatile private var cache: Triple<List<String>, List<String>, Set<String>>? = null
+    @Volatile private var cacheLang: String = ""
 
     fun load(context: Context): Triple<List<String>, List<String>, Set<String>> {
-        cache?.let { return it }
+        val lang = if (com.example.i18n.I18n.isEn) "en" else "tr"
+        if (cacheLang == lang) cache?.let { return it }
         synchronized(this) {
-            cache?.let { return it }
-            val o = JSONObject(context.assets.open("lingo.json").bufferedReader(Charsets.UTF_8).use { it.readText() })
+            if (cacheLang == lang) cache?.let { return it }
+            val o = JSONObject(context.assets.open(if (lang == "en") "lingo_en.json" else "lingo.json").bufferedReader(Charsets.UTF_8).use { it.readText() })
             fun arr(k: String) = o.getJSONArray(k).let { a -> (0 until a.length()).map { a.getString(it) } }
             val a5 = arr("a5"); val a6 = arr("a6")
             val valid = (arr("valid") + a5 + a6).toHashSet()
-            return Triple(a5, a6, valid).also { cache = it }
+            return Triple(a5, a6, valid).also { cache = it; cacheLang = lang }
         }
     }
 
@@ -137,7 +139,9 @@ object LingoData {
     }
 }
 
-private val ROWS = listOf("ERTYUIOPĞÜ", "ASDFGHJKLŞİ", "ZCVBNMÖÇ")
+private val ROWS_TR = listOf("ERTYUIOPĞÜ", "ASDFGHJKLŞİ", "ZCVBNMÖÇ")
+private val ROWS_EN = listOf("QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM")
+private val ROWS get() = if (com.example.i18n.I18n.isEn) ROWS_EN else ROWS_TR
 
 // =====================================================================
 // Ana sayfa / Oyunlar sayfasındaki öne çıkan kart

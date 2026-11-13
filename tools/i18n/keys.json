@@ -1,0 +1,6621 @@
+{
+"\n        }\n    }\n\n    private val _signedOut = MutableStateFlow(0)\n    /** Kullanıcı çıkış yaptığında (ya da hesabını sildiğinde) artar; uygulama giriş ekranına döner. */\n    val signedOut: StateFlow<Int> = _signedOut.asStateFlow()\n\n    fun signOut() {\n        if (!isConfigured) return\n        _signedOut.value++\n        auth.signOut()\n        _user.value = null\n        _syncState.value = ": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+" gün": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+" kaydır": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+" tur": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+" ve herkes farklı renkte giyinmişti.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+" }\n}\n\n// =====================================================================\n// Hedefe Dokun\n// =====================================================================\n\n/** Şekil: 0 daire, 1 kare, 2 üçgen, 3 yıldız. Renk: 0 mavi, 1 pembe, 2 yeşil, 3 sarı, 4 mor. */\nval TARGET_SHAPES = listOf(": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+" · {0} oyun · ⭐ {1}": {
+"n": 2,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"\"9'u hariç\" kaçtıysa 9 koyun kalır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"\"Sessizlik\" dediğin an sessizlik bozulur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"\"Yanlış\" kelimesi hep yanlış diye yazılır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"#en": {
+"n": 0,
+"files": [
+"PuzzleBank.kt"
+]
+},
+"%{0} tamamlandı": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"+500 💎 · günlük hediye 2×": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"+{0} 💎 hesabına eklendi. Teşekkürler!": {
+"n": 1,
+"files": [
+"Billing.kt"
+]
+},
+"+{0}💎 Al": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+". Sonuç {0}. Tuttuğum sayı kaç?": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"/{0} seviye": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"0/{0} bağlı": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"1 bulmaca çöz": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"1 km uzunluğundaki bir tren, 1 km'lik tünele saatte 60 km hızla giriyor. Trenin tünelden tamamen çıkması kaç dakika sürer?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"1'den 10'a kadar olan sayıların toplamı kaçtır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"1'den 100'e kadar sayılar yazılırsa kaç tane 9 rakamı kullanılır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"1, 3, 6, 10... üçgen sayılar": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"10 farklı oyunda seviye geç": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"100 = 14 hafta + 2 gün; salıdan 2 gün sonrası perşembe.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"100 yıldız topla": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"100'den kaç kez 5 çıkarabilirsin?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"1000 yıldız topla": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"11 + 2 = 1 nerede doğrudur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"12 saatte 11 kez, 24 saatte 22 kez çakışırlar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"1→5 arası 4 adım; 1→9 arası 8 adım.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"2 görev · 💎 20": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"25 seviyeyi 3 yıldızla bitir": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"3 aynı taş patlar; 4'lü çizgi, 5'li renk bombası yapar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"3 erkek, 2 kız: her erkeğin 2 erkek, 2 kız kardeşi olur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"3 görev · 💎 35": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"3 seviye geç": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"3 yıldız bonusu +1 💎": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"3/4'ü 30 ise tamamı 40.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"30 kişi 12 aya dağılınca bir ayda en az 3 kişi olur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"30 kişilik bir sınıfta en az kaç kişinin doğum günü kesinlikle aynı aydadır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"30 zekâ oyunu, 1.500+ seviye": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"300 seviye · 15 durak": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"300 seviyelik Kelime Diyarı": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"32 takımlı bir eleme turnuvasında şampiyon belli olana kadar kaç maç oynanır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"4 farklı renk çekebilirsin; 5. çorap mutlaka birine eşlenir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"4 kedi 4 fareyi 4 dakikada yakalıyor. 100 fareyi 100 dakikada yakalamak için kaç kedi gerekir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"4 saniye doğru hedefler parlıyor": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"5 adet ek süre, %20 indirimli.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"5 harf · 6 deneme · Seviye {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"5 makine 5 dakikada 5 parça üretiyor. 100 makine 100 parçayı kaç dakikada üretir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"50. seviyeyi geçince açılır": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"6 aralık × 30° = 180°.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"6 elmanın 2/3'ünü yersen kaç elma kalır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"6 takımlı bir ligde her takım diğerleriyle bir kez oynarsa toplam kaç maç oynanır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"6 ters çevrilince 9 olur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"6'nın 2/3'ü 4; geriye 2 kalır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"60 / 3 = 20 kez geri kalır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"7 gün üst üste oyna": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"7 günün sonunda 7 m'dedir; 8. gün 3 m tırmanıp çıkar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"7 yumurta vardı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"8 her iki yönde de aynı görünür.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"8 kişi bir odada herkes herkesle bir kez tokalaşırsa toplam kaç tokalaşma olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"90° saat yönünde": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"90° saat yönünün tersine": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"ABCÇDEFGĞHIİKLMNOÖPRSŞTUÜVYZ": {
+"n": 0,
+"files": [
+"Backgrounds.kt"
+]
+},
+"AKTİF": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"ASDFGHJKLŞİ": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"Lingo.kt"
+]
+},
+"Adana'da kebap ye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Adı söylendiği anda bozulan şey nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ahmet'in 3 kalemi var, Mehmet'in Ahmet'ten 2 fazla. İkisinin toplam kaç kalemi var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Akrep ile yelkovan bir günde (24 saat) kaç kez üst üste gelir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Aktif gün": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Aldığın elmalar senindir: 2.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ali Veli'den uzun, Veli de Can'dan uzun. En kısa kim?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ali'nin annesinin üç çocuğu var: Nisan, Mayıs ve ...?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Alttaki listede aranan nesneler var.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Alttaki parçalardan birini tahtaya sürükle.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Alttan bir parça seç, gerekirse döndür.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Altın Taç": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Ana Sayfa": {
+"n": 0,
+"files": [
+"Navigation.kt"
+]
+},
+"Ankara'da pide ye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Annemin babasının tek kızının oğlu (soran bir erkekse) kimdir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Annesinin babasının tek kızı annesidir; onun oğlu kendisi.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Arabanın": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Aramana uyan oyun yok.": {
+"n": 0,
+"files": [
+"GamesScreen.kt"
+]
+},
+"Arkadaşını çağır": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Atölye": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"Avatar · güç": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Avatarım": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Avuç dolusu elmas": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Ayakkabı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ayakları var ama yürüyemez. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ayarlar": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Ayağı yok yürür, gözü yok ağlar. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ayna görüntülerine dikkat!": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Ayna sorularında görüntüyü zihninde çevir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Ayna tuzağı!": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Aynadaki saat {0} gibi görünür; gerçek saat 12:00 − {1} = {2}.": {
+"n": 3,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Aynı renkleri bağla, çizgiler kesişmesin, tüm kareler dolsun": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Aynı renkli noktaları kesişmeyen çizgilerle bağla, tüm ızgarayı doldur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Aynı renkten üç taşı yan yana getir, hedefleri hamle bitmeden topla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Aynı sayıları kaydırarak birleştir, hedef sayıya hamle bitmeden ulaş.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Aynı sırayla dokun": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Ayrıntı ›": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Ayı": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Ayşe": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReversePuzzles.kt"
+]
+},
+"Ayşe Elif'ten büyük, Zeynep de Ayşe'den büyük. En küçük kim?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Aç mısın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Açık tema": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Ağaç": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ağaçta 10 kuş vardı; avcı birini vurdu. Ağaçta kaç kuş kaldı?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Aşçı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"BAŞLA ▾": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"BOSS YENİLDİ!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"BUGÜNKÜ HEDEF": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Baba hem baba hem oğuldur: toplam 3 kişi.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Babamın kardeşim olmayan oğlu benim.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Babamın oğlu ama benim kardeşim değil. Kim?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bahçıvan": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Bakteriler her dakika ikiye bölünüyor; tek bakteriyle şişe 60 dakikada doluyor. İki bakteriyle kaç dakikada dolar?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Barış": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Baykuş": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Bağlanıyor...": {
+"n": 0,
+"files": [
+"LeagueUi.kt",
+"WelcomeScreen.kt"
+]
+},
+"Başla · Seviye 1": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Bebekken emekler, büyüyünce yürür, yaşlanınca bastonla yürür.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ben giderim o gider, arkamdan tıpış tıpış eder. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ben güvenli değilim.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Ben güvenliyim.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Bildirimler kapalı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Bilim İnsanı": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Bilinmeyen oyun: {0}": {
+"n": 1,
+"files": [
+"GameCatalog.kt"
+]
+},
+"Bilmeceler, ayna saatleri ve tersten işlemlerle kalıpların dışına çık.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir adam yağmurda şapkasız ve şemsiyesiz yürüdü ama saçının tek teli ıslanmadı. Neden?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir ailede 5 kardeş var; her erkek kardeşin kız kardeş sayısı erkek kardeş sayısına eşit. Kaç kız var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir anne ve kızı, bir anne ve kızı, bir büyükanne ve torunu yürüyüşe çıktı. En az kaç kişiydiler?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir babanın 4 kızı var ve her kızın 1 erkek kardeşi var. Bu ailede kaç çocuk var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir balık bölündü": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir bölgenin tüm 30 yıldızını al": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Bir dikdörtgenin kaç köşegeni vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir fark işaretlendi": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Bir geminin yanında 5 basamaklı bir merdiven sarkıyor. Su her saat 1 basamak yükselirse 3 saat sonra kaç basamak suyun üstünde kalır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir günde kaç saniye vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir haftada kaç saat vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir horoz çatının tepesinde yumurtlarsa yumurta hangi tarafa düşer?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir kareye dokun, alttan rakam seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir kitapta sayfa numaraları 1'den başlıyor. 9. sayfa ile 12. sayfa arasında (ikisi dahil) kaç sayfa var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir koşuda 6. sıradasın. 2 kişiyi geçtin, sonra 1 kişi seni geçti. Kaçıncısın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir kurbağa 10 m'lik kuyudan çıkmak için gündüz 3 m tırmanıp gece 2 m kayıyor. Kaçıncı gün çıkar?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir kutuda 10 kırmızı ve 10 mavi bilye var. Bakmadan en az kaç bilye çekersen aynı renkten 2 tane garanti olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir kuyruğun tam ortasındasın ve önünde 7 kişi var. Kuyrukta kaç kişi var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir kâğıdı ikiye katlarsan 2 kat olur. 3 kez ikiye katlarsan kaç kat olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir küpün kaç kenarı vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir merdivenin 1. basamağından 5. basamağına çıkmak 4 saniye sürüyor. 1. basamaktan 9. basamağa kaç saniyede çıkılır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir noktadan başlayıp parmağınla aynı renkteki eşine çiz.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir odada 4 köşe var, her köşede bir kedi, her kedinin karşısında 3 kedi var. Odada kaç kedi var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir oka dokununca gösterdiği yöne kayarak tahtadan çıkar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir oyunda Sonsuz Mod'u aç": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Bir parça doğru yerine kondu": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Bir parça yerine oturdu": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Bir parçaya, sonra yer değiştirmek istediğin parçaya dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir renk doğru yoluyla bağlandı": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Bir saat 3 dakikada bir 1 dakika geri kalıyorsa, 1 saat sonra kaç dakika geri kalmış olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir saat her saat başında saat kaçsa o kadar çalar. Bir günde (24 saat) kaç kez çalar?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir satır ya da sütun tamamen dolunca patlar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir sayı tuttum: ": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir sayının yarısının yarısı 5 ise o sayı kaçtır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir sepette 6 yumurta var. 6 kişi birer yumurta alıyor ama sepette 1 yumurta kalıyor. Nasıl?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir seviyeyi ilk kez 3 yıldızla bitir: +1 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Bir seviyeyi ilk kez geç: 2–3 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Bir sopa ve bir top toplam 110 TL. Sopa toptan 100 TL pahalı. Top kaç TL?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir sınıfın önünde 3, arkasında 3 sıra var ve sen ortadasın. Sınıfta kaç sıra var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir trende 25 vagon var; tren 5 durakta durdu. Kaç vagonu var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir tuğla 1 kilo artı yarım tuğla ağırlığındadır. Tuğla kaç kilodur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir tüpe dokun, sonra dökmek istediğin tüpe dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bir uçak iki ülkenin sınırına düştü. Yaralılar nereye gömülür?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir uçtan yakılınca 60 dakikada yanan ip iki ucundan birden yakılırsa kaç dakikada biter?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir yarışta ikinciyi geçtin. Şimdi kaçıncısın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir yarışta sonuncuyu geçtin. Kaçıncı oldun?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir yumurta 4 dakikada haşlanıyorsa 3 yumurta aynı tencerede kaç dakikada haşlanır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir yılda kaç ayda 28 gün vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir zarın karşılıklı yüzlerindeki sayıların toplamı kaçtır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir zeytin ağacında 3 kiraz vardı, 1'ini yedim. Kaç kiraz kaldı?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir çiftlikte 10 tavuk ve 4 inek var. Toplam kaç ayak vardır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir çobanın 17 koyunu var. 9'u hariç hepsi kaçtı. Kaç koyunu kaldı?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir üçgenin iç açılarının toplamı kaç derecedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bir şeyin yarısı ile çeyreğinin toplamı 30 ise tamamı kaçtır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Biri almadı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Biri balık yemedi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Birinci sınıf kompartımandaki çanta açıldı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Birler basamağında 10, onlar basamağında 10 tane 9 vardır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bitti!": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Blok Patlat": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Blokları tahtaya yerleştir, dolan satır ve sütunları patlat.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Bonus kelime: {0} · her 10 bonusa 10 💎": {
+"n": 1,
+"files": [
+"WowScreens.kt"
+]
+},
+"Borç": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Boss Avcısı": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Botanik Bahçesi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Boynu var ama başı yok. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Boğaz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Boş kutuya dokun, sonra alttaki tuşlardan sayı seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Boş yere dokunmak hata sayılır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Boşlukları doldur": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Bu ad ligde herkese görünür, lütfen başka bir ad seç.": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Bu hafta henüz kimse puan almadı. İlk sen ol!": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Bu hafta henüz oynamadın. Günde 10 dakika ile başlamak harika bir hedef.": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Bu hafta henüz puanın yok. Bir seviye oyna!": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Bu hafta kazandığın puanla yarış. Pazartesi 00:00'da sıfırlanır.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Bu hafta {0} gün oynadın. Seriyi korumak için her gün kısa bir seviye dene.": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Bu imkânsız": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bu saat AYNADA böyle görünüyor. Gerçek saat kaç?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bu sefer olmadı, sıradakinde!": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Bugün": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Bugün bulamadın. Yarın yeni kelime!": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Bugün için": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Bugün kalan: {0} / 10": {
+"n": 1,
+"files": [
+"StoreSection.kt"
+]
+},
+"Bugün salıysa 100 gün sonra hangi gün olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bugün {0} oyun tamamladın ({1} dk). Zihnini daha da keskinleştirmek ve yeni bir rekor kırmak ister misin?": {
+"n": 2,
+"files": [
+"DailyReminderReceiver.kt"
+]
+},
+"Bugün {0}. denemede buldun! Yarın yine gel.": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"Bugün: {0}": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Bugünkü beyin antrenmanını henüz tamamlamadın. 5 dakikanı ayırarak hafıza ve mantık egzersizlerini yap, zihnini zinde tut!": {
+"n": 0,
+"files": [
+"DailyReminderReceiver.kt"
+]
+},
+"Bugünkü hediyeni aldın. Yarın yine gel!": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Bugünlük reklam hakkın bitti": {
+"n": 0,
+"files": [
+"Ads.kt"
+]
+},
+"Bugünlük reklam hakkın bitti, yarın yine gel": {
+"n": 0,
+"files": [
+"Ads.kt"
+]
+},
+"Bulmaca Dünyası": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"HomeScreen.kt"
+]
+},
+"Bulmaca Dünyası İngilizce olarak çok yakında!": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Bulut bağlantısı henüz kurulmadı.": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Bulut gökyüzünde gezer ve yağmur yağdırır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Bulut hesabı yok": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Bulut yedek ve haftalık lig çok yakında açılıyor.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Bulut yedeğin, lig kayıtların ve Google bağlantılı hesabın kalıcı olarak silinir. Telefondaki ilerlemen kalır.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Burada mısın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"BÖLGE {0} · {1}": {
+"n": 2,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Bölge Ustası": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Büyük Usta": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Büyük sandık · 100💎": {
+"n": 0,
+"files": [
+"UserPreferencesRepository.kt"
+]
+},
+"Büyükanne, anne ve kız: hepsi bu ilişkileri sağlar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Camgöbeği Işık": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Cevap {0} idi, otomatik geçildi": {
+"n": 1,
+"files": [
+"ReflexGames.kt"
+]
+},
+"D-Ü-N-Y-A kelimesinin ortasında N vardır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dayısı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dağlar": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Dede, baba ve torundular": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dene": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Deneme {0}/{1} · hedef < {2} ms": {
+"n": 3,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Desen Ustası": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Detay Avcısı": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Devam Et": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Devam · Seviye {0}": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Değerli tablo sahtesiyle değiştirildi.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Değişir": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dikkat & Gözlem": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Dikkat: {0} fazla harf var": {
+"n": 1,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Dizideki ? yerine hangi sayı gelir?": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"Dizinin gizli kuralını keşfet ve eksik halkayı bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Dişleri var ama ısırmaz. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Doktor sana 3 hap verip her yarım saatte bir içmeni söyledi. Haplar kaç dakikada biter?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dokunuş ve başarı titreşimi": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Doldur kipinde kareleri boya, ✕ kipinde boş olduğundan emin olduklarını işaretle.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Doğa Harikaları": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Doğru": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Doğru Kapıyı Seç": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Doğru cevap parlıyor": {
+"n": 0,
+"files": [
+"GameKit.kt"
+]
+},
+"Doğru döndürülmüş hâle dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Doğru yerine oturan parça kilitlenir ve parlar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Doğru!": {
+"n": 0,
+"files": [
+"GridGames.kt",
+"NumberChainGame.kt",
+"WordGames.kt"
+]
+},
+"Doğru, yanlış ve buton sesleri": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Doğru: {0}": {
+"n": 1,
+"files": [
+"ArrowWordGames.kt",
+"ReflexGames.kt"
+]
+},
+"Dumanı olmaz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Durak sayısı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Duraklatıldı": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Durmak vagon sayısını değiştirmez.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Dünyanın tam ortasında ne var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Düzenli oynuyorsun! Günlük ortalaman {0}; 10 dakikaya çıkarmayı dene.": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Düşün. Oyna. Kazan.": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"EA Vision Labs · 30 oyun, 1500 seviye + Kelime Diyarı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"ERTYUIOPĞÜ": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Ekran yeşil olduğunda olabildiğince hızlı dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Eksik deseni bul": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Elektrikli bir tren kuzeye gidiyor, rüzgâr güneye esiyor. Trenin dumanı hangi yöne gider?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Elektrikli trenin dumanı yoktur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Elleri var ama alkışlayamaz. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Elmas": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt",
+"ShopScreen.kt"
+]
+},
+"Elmas kesesi": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Elmas paketleri çok yakında burada! Şimdilik reklam izleyerek ve günlük hediyeyle elmas kazanabilirsin.": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Elmas sandığı": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Elmas yalnızca ilk geçişte verilir.": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Emin değilsen Not kipiyle aday rakamları yaz. 3 yanlışta tur biter.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"En Yüksek Skor": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"En iyi hamle: ": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"En iyi seviye skoru: {0}": {
+"n": 1,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"En Çok Oynanan": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Erken dokunursan ya da sahte renge (sarı/mor) dokunursan hata olur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Ey Edip, Adana'da pide ye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Eşitleme hatası": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Eşleşti!": {
+"n": 0,
+"files": [
+"MemoryCardsGame.kt"
+]
+},
+"Farklar her adımda {0} artıyor (+{1}, +{2}, ...)": {
+"n": 3,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Farklar ×{0} büyüyor (+{1}, +{2}, ...)": {
+"n": 3,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Farklı olan kareye alt tabloda dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Farklıysa kapanırlar; yerlerini aklında tut.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Film Stüdyosu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Final sınavının soruları dolaptan alındı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Fotoğraflar": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Fotoğraflar ve lisanslar": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Fotoğrafçı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Gaz lambasını": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gemi de suyla birlikte yükselir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Geri": {
+"n": 0,
+"files": [
+"Neon.kt"
+]
+},
+"Geri Al": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt",
+"ShopScreen.kt"
+]
+},
+"Geri Al Paketi ×5": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Geri alınacak hamle yok": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Geçen hafta": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Geçen hafta ligi {0}. sırada bitirdin. +{1} 💎 hesabına eklendi!": {
+"n": 2,
+"files": [
+"Navigation.kt"
+]
+},
+"Geçen hafta puan alan olmadı.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Geçiş {0} · en iyi {1}": {
+"n": 2,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Geçmek için en az {0} turu başarmalısın.": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Giriş iptal edildi.": {
+"n": 0,
+"files": [
+"CloudSync.kt",
+"GoogleSignInUi.kt"
+]
+},
+"Giriş yapmadan da tüm oyunlar açık. İstediğin zaman Profil'den giriş yapabilirsin.": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"Giriş yapılamadı (kod {0}).": {
+"n": 1,
+"files": [
+"GoogleSignInUi.kt"
+]
+},
+"Giriş yapılamadı.": {
+"n": 0,
+"files": [
+"CloudSync.kt",
+"GoogleSignInUi.kt"
+]
+},
+"Giriş yapılamadı: {0}": {
+"n": 1,
+"files": [
+"CloudSync.kt",
+"GoogleSignInUi.kt"
+]
+},
+"Giriş yapılamadı: {0} {1}": {
+"n": 2,
+"files": [
+"CloudSync.kt"
+]
+},
+"Giriş yapıldı ✓": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Giriş yapılmamış": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Git ›": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Gizli\nkelime": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Gizli Nesneyi Bul": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Gizli kelime": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Google erişimi alınamadı.": {
+"n": 0,
+"files": [
+"GoogleSignInUi.kt"
+]
+},
+"Google girişi bu sürümde henüz etkin değil (kod: {0}). Biraz sonra tekrar dene.": {
+"n": 1,
+"files": [
+"CloudSync.kt"
+]
+},
+"Google girişi yapılandırılmamış.": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Google hesabı alınamadı.": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Google hesabı seçiliyor...": {
+"n": 0,
+"files": [
+"CloudSync.kt",
+"GoogleSignInUi.kt"
+]
+},
+"Google ile giriş": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Google ile giriş yap": {
+"n": 0,
+"files": [
+"LeagueUi.kt",
+"WelcomeScreen.kt"
+]
+},
+"GÜN SERİ": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"GÜNLÜK SERİ": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"GÜNÜN OYUNU": {
+"n": 0,
+"files": [
+"GamesScreen.kt",
+"HomeScreen.kt"
+]
+},
+"GÜNÜN OYUNUYLA BAŞLA": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Göldeki nilüferler her gün iki katına çıkıyor ve gölü 48 günde tamamen kaplıyor. Gölün yarısını kaç günde kaplar?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gölge": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gölge peşinden hiç ayrılmaz.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gölgedeydi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gömlek": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Görev kayıtları silindi.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Görev tamam!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Görünüm": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Görünümler ve güçler": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Gözlük": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Gözü var ama göremez. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Günaydın": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Güneye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Günlük Hediye": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Günlük Zihin Egzersizi": {
+"n": 0,
+"files": [
+"NotificationHelper.kt"
+]
+},
+"Günlük hatırlatıcı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Günlük hatırlatıcı açıldı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Günün Lingo'su": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Günün kelimesini çöz": {
+"n": 0,
+"files": [
+"HomeScreen.kt",
+"Lingo.kt"
+]
+},
+"Güvenli kapı benim hemen yanımda.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapı benim sağımda.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapı benim solumda.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapı en uçtakilerden biri.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapı ne {0}. ne de {1}. kapı.": {
+"n": 2,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapı {0}. ya da {1}. kapı.": {
+"n": 2,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapının numarası tek.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapının numarası çift.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapının yazısı DOĞRU, diğerlerininki YANLIŞ.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli kapının yazısı YANLIŞ, diğerlerininki DOĞRU.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Güvenli!": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Güvenlik Görevlisi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Güçler": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Haftalık Lig": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Haftalık lig çok yakında açılıyor. Şimdiden seviyeleri geçip puan biriktir!": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Haftalık ligde ilk 3'e gir: 150–500 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Haftalık ligde yarış, elmas kazan": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"Haftalık Özet": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Hafıza Işıkları": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hamle 0": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Hamle 0 · en az {0}": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hamle 0 · en iyi {0}": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hamle bitti": {
+"n": 0,
+"files": [
+"NewGames.kt",
+"StrategyGames.kt"
+]
+},
+"Hamle kalmadı": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hamle {0}": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"Hamle {0} · en az {1}": {
+"n": 2,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hamle {0} · en iyi {1}": {
+"n": 2,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hamle: 0": {
+"n": 0,
+"files": [
+"MemoryCardsGame.kt"
+]
+},
+"Hamle: {0}": {
+"n": 1,
+"files": [
+"MemoryCardsGame.kt",
+"NewGames.kt"
+]
+},
+"Hangi cümle tersten okunduğunda da aynıdır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangi kelime her zaman YANLIŞ yazılır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangi rakam 180° ters çevrilince değeri artar?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangi rakam 180° ters çevrilince yine kendisi olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangi soruya hiçbir zaman dürüstçe \"evet\" diyemezsin?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangisi daha ağırdır: 1 kilo pamuk mu, 1 kilo demir mi?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hangisi tersten okununca da aynı kalır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Harf ızgarasında saklanan Türkçe kelimeleri parmağınla çiz.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Harfler bilinmeyen bir miktarda kaydırılmış.": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Harflere sırayla dokunarak kelimeyi kur; yanlış harfe dokunup geri alabilirsin.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Harfleri doğru sıraya diz": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Harfleri sondan başa okuyunca aynı cümle çıkar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Harika bir hafta! Ortalama {0} ile zihnin formda.": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Harika!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt",
+"Navigation.kt",
+"WowScreens.kt"
+]
+},
+"Harika! Bildirimler sorunsuz çalışıyor. Her gün belirlediğin saatte zihin egzersizi hatırlatıcın burada belirecek.": {
+"n": 0,
+"files": [
+"NotificationHelper.kt"
+]
+},
+"Harika! 🎉": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Harika, al! {0}": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Haritaya dön": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"WowScreens.kt"
+]
+},
+"Hata": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hatırlatma saati": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Hava durumuna bağlı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Havlu seni kuruladıkça kendisi ıslanır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Havuç": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hazır mısın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hazır ol...": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Hedef": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hedef sayıda satırı, parça koyacak yer kalmadan patlat.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hedef sayıyı hamle sınırı dolmadan oluştur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hedef süre seviyeye göre kısalır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hedef tamam!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Hedef {0} · hamle 0/{1}": {
+"n": 2,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hedef {0} · hamle {1}/{2}": {
+"n": 3,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hedef!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Hediyeyi Al": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Hemen Oyna": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Hepsi aynı anda haşlanır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hepsi bağlandı!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Hepsi çıktı!": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Her adımda": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"Her adımda {0}": {
+"n": 1,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Her adımda ×": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"Her adımda ×{0}": {
+"n": 1,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Her ayda en az 28 gün vardır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her gün gel, hediye büyüsün. 7. günde büyük sandık: 100 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Her gün gel, hediye büyüsün. 7. günde sandık seni bekliyor.": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Her gün hediye kutusunu aç: 10–30 💎": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Her gün {0}": {
+"n": 1,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Her hamleden sonra yeni bir taş gelir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her harf {0} adım ileri kaydırılmış.": {
+"n": 1,
+"files": [
+"WordGames.kt"
+]
+},
+"Her ipucu kesin doğrudur; birlikte tek bir kişiyi işaret ederler.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her kedi diğer 3 kediyi görür; toplam 4.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her makine 5 dakikada 1 parça üretir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her maç bir takımı eler; 31 takım elenmelidir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her merkezden geçen kesim 2 dilim sınırı oluşturur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her olasılığı dene, kuralla çelişmeyen tek kapıyı seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her saat aralığı 30°, 3 aralık = 90°.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her satır soldan sağa, her sütun yukarıdan aşağıya bir işlemdir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her satır, sütun ve kutuya rakamları birer kez yerleştir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her satırda şekil, renk ve adet belli bir kurala uyar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her satırda, sütunda ve kalın çizgili kutuda her rakam bir kez olur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her terim önceki iki terimin toplamı": {
+"n": 0,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Her terim: önceki × {0} {1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Her tüp tek renk olunca tur biter. Takılırsan Geri Al'ı kullan.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Her üçgende iç açılar toplamı 180°.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Her şeyi sıfırla?": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Herkes için aynı kelime · +10 💎": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Herkes karşı kıyıya geçince tur biter. Az hamle = çok yıldız.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Herkesi karşı kıyıya geçir": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Herkesi karşı kıyıya geçir; kimse kimseyi yemesin.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Hesabı sil?": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Hesabımı sil": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Hesabın ve bulut verilerin silindi": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Hesap doğrulanıyor...": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Hiç": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hiç, gemiyi yapan Nuh'tu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hiçbir yerde": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Hızlı ve hatasız cevap daha çok puan getirir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Izgarada olmayan kelimeler bonus sayılır": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Işık": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Işık yeşile döndüğü an dokun; sahte sinyallere kanma.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Işıkların sırasını aklında tut": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Işıkların yanma sırasını izle.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"K-A-Y-A-K iki yönden de aynı okunur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"KELİME": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"KELİMENİN ANLAMI": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Kalabalık sahnede aranan nesneleri gözden kaçırmadan bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kaldığın yerden devam": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Kalkış ülkesine": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kalıcı olarak sil": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Kapalı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Kapat": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt",
+"ProfileScreen.kt"
+]
+},
+"Kaplumbağa": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kaptanın pusulası kamarasından kayboldu.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Kapı açıldı": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kapı yazılarından hangilerinin doğru olduğunu çöz, güvenli kapıyı aç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kapıdan geçmek için aynı renkteki anahtarı önce topla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Karanfil Malikânesi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Karanlık": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Karanlık arttıkça görüş azalır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Karanlık bir odada mum, gaz lambası ve soba var; elinde tek bir kibrit var. İlk neyi yakarsın?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kararlı": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Kartları çevir, neon eşleri hatırla ve tüm çiftleri en az hamleyle bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Karışmış neon tablonun parçalarını yer değiştirerek birleştir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Karıştır": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Karıştırıldı": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Karışık Kelime": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Karışık harflerden ipucuna uyan doğru kelimeyi kur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Karşılıklı köşeleri birleştiren 2 doğru.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Karşıya Geç": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kasadaki elmas kolye çalındı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Kasırga": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kaydet": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Kaydır ya da iki taşa sırayla dokun · 4'lü = çizgi, 5'li = bomba": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Kaydırarak oyna": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kaydırarak ya da yön tuşlarıyla ilerle.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kaydırma {0}, sıradaki harf: {1}": {
+"n": 2,
+"files": [
+"WordGames.kt"
+]
+},
+"Kayık dolu": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kayık: {0} yük · en iyi {1} geçiş": {
+"n": 2,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kayıkçı tek başına geçmeli": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kayıkçı tek başına geçsin": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kayıkçı yanında değilken yan yana kalamayacak olanlara dikkat et.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kayıkçı yokken yan yana kalamayanlar: ": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kayığa binecekleri seç, sonra kayığa dokunup karşıya geç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kayığa koy: ": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kaç tane 2 dakikalık şarkı 1 saati doldurur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kaçtın!": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Kelime Avı": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kelime Diyarı": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Kelime {0} harfli olmalı": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"Kelime: {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"Kelimenin anlamı ile rengi çatışınca odağını koru.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kelimeyi bul, seriyi koru": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Kesişen denklemlerdeki boşlukları her satır ve sütunu doğrulayacak şekilde doldur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Keskin Zekâ": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Kolay": {
+"n": 0,
+"files": [
+"GameModels.kt",
+"LevelRules.kt"
+]
+},
+"Komuta uyan hedeflere dokun, tuzaklardan kaç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Komşu iki taşı kaydırarak yer değiştir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kozmik Akıl": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Koşuyordu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kral Zekâ": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Kullanıcı adı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Kural üst seviyelerde tur içinde değişebilir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kuralı bul ve sağ alttaki boşluğa uyan deseni seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Kurulandıkça ıslanan şey nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kutup Işığı": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Kuğu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kâşif": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Kök": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kökleri sakala benzeyen pırasadır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Köpek": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Küpün 6 yüzü, 8 köşesi, 12 kenarı vardır.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kütüphanedeki eski vasiyet ortadan kayboldu.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"KİTAP": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kırılmadan kullanılamayan şey nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Kısa bir reklam izleyerek 1 {0} kazanabilirsin. (Bugün kalan: {1})": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Kısa reklam izle: 20 💎 (günde en fazla 10)": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Labirent, nehir, yapboz gibi oyunlarda son hamleyi geri alır.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Labirentten Kaçış": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Lavanta açık tema": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Lig": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Ligde yer almak için Profil sekmesinden Google ile giriş yap.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Lingo · Seviye {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"Lingo'ya dön": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Lise Kampüsü": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Liste yüklenemedi. İnternet bağlantını kontrol et.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Listedeki kelimeleri ızgarada bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"MAVİ": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Mantık & Çıkarım": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Mantık Avcısı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Mantık Dedektifi": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Masa ayakları üzerinde durur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Masada 4 kalem ve 3 elma var. Bir kalem ve iki elma aldın. Kaç elman olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Mağaza": {
+"n": 0,
+"files": [
+"Navigation.kt",
+"ProfileScreen.kt",
+"ShopScreen.kt"
+]
+},
+"Mağaza şu an hazır değil. İnternetini kontrol edip tekrar dene.": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Mağaza ›": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Mağazaya git": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Mağazaya göz at →": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Misafir olarak devam et": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"Musa gemisine her hayvandan kaç tane aldı?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Müdür": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Mühendis": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Mükemmel! Tam puan!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Müzik": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"Mısır": {
+"n": 0,
+"files": [
+"StrategyPuzzles.kt"
+]
+},
+"Nadir orkide serasından çalındı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Nasıl Oynanır?": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Nasıl oynanır": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Nasıl oynanır?": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Nasıl?": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Nazlı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Ne kadar çok alırsan o kadar büyüyen şey nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ne kadar çok olursa o kadar az görürsün. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Ne {0} ne de {1} {2}.": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Nehrin aktığı yere nehir yatağı denir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Neon Bağla": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Neon Ejder": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Neon Hafıza Kartları": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Neon koyu tema": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Neon Üçlü": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"ORİJİNAL": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Ok Bulmacası": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Oka dokun, gösterdiği yöne kayıp çıksın": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Okları doğru sırayla tahtadan çıkar; önü kapalı olan ok çıkamaz.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Olay anında suçlu {0}.": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Olayı ve ipuçlarını oku.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Olmadı": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt",
+"LevelPlayScreen.kt"
+]
+},
+"Olsun, bir daha deneyelim!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Orta": {
+"n": 0,
+"files": [
+"GameModels.kt",
+"LevelRules.kt"
+]
+},
+"Otobüsü sen kullanıyorsun, şoför sensin.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Otobüsü sen kullanıyorsun. İlk durakta 4 kişi indi, 3 kişi bindi. Sonraki durakta 5 kişi indi. Şoförün adı ne?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Oyna": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"GamesScreen.kt",
+"Lingo.kt",
+"WowScreens.kt"
+]
+},
+"Oyun": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Oyun Odası": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"Oyun ara...": {
+"n": 0,
+"files": [
+"GamesScreen.kt"
+]
+},
+"Oyunlar": {
+"n": 0,
+"files": [
+"GamesScreen.kt",
+"LeaderboardScreen.kt",
+"Navigation.kt",
+"ProgressScreen.kt"
+]
+},
+"PRO ile reklamsız oyna": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"PRO'ya geç": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"PRO'ya geç · {0}": {
+"n": 1,
+"files": [
+"StoreSection.kt"
+]
+},
+"Parlayan iki taşı yer değiştir": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Parlayan ok çıkabilir": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Parlayan parçayı işaretli yere koy": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Parlayan yol hedefe götürür": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Parçaları Birleştir": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Parçaları döndür, yerleştir ve hedef silueti boşluksuz tamamla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Parçaların yerini değiştir · dönük parçaya iki kez dokun": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Parçanın sol üst karesini koymak istediğin hücreye dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Parçayı seç, döndür, sol üst karesini koyacağın yere dokun": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Parçayı tahtaya sürükle": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Patladı!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Paylaş": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Pembe Neon": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Pencere açılmadı mı? Başka yöntemle dene →": {
+"n": 0,
+"files": [
+"LeagueUi.kt",
+"WelcomeScreen.kt"
+]
+},
+"Perşembe": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Piksel Uzaylı": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Play Store'da puan ver, bize çok destek olur": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Profil": {
+"n": 0,
+"files": [
+"Navigation.kt",
+"ProfileHubScreen.kt"
+]
+},
+"Prototip telefonun çizimleri sızdırıldı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Puan": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt",
+"ProgressScreen.kt"
+]
+},
+"Pınar": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Pırasa": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"QWERTYUIOPĞÜ": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Refleks Arenası": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Reklam hazırlanıyor, birazdan tekrar dene": {
+"n": 0,
+"files": [
+"Ads.kt"
+]
+},
+"Reklam izle, 20 💎 kazan": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Rekorun: {0} tur · Her tur yeni, hiç tekrar yok": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Renk Kaçışı": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Renk Sıralama": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Renkli anahtarları topla, kapıları aç ve en kısa rotayla hedefe ulaş.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Resmi aklında tut...": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Rozet": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Rüya": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Rüzgâr": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Rüzgârın yönüne": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"SEVİYE": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"SEVİYE GEÇİLEMEDİ": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"SEVİYE {0} TAMAM": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Saat 6:00'da akrep ile yelkovan arasındaki açı kaç derecedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Saat tam 3:00'te akrep ile yelkovan arasındaki açı kaç derecedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Saatin akrep ve yelkovanına el denir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sabah dört, öğlen iki, akşam üç ayakla yürüyen nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sadece bir kapı güvenlidir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sahnede onlara dokun; yanlış dokunuş hata sayılır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Salı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sana ait olduğu hâlde başkalarının senden daha çok kullandığı şey nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sanatçı": {
+"n": 0,
+"files": [
+"Cosmetics.kt",
+"DetectivePuzzles.kt"
+]
+},
+"Satın alma tamamlanamadı ({0})": {
+"n": 1,
+"files": [
+"Billing.kt"
+]
+},
+"Satın alımlar kontrol ediliyor…": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Satın alımları geri yükle": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Satır 0/{0}": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"Satır ve sütun ipuçlarıyla ızgarayı doldur, gizli deseni ortaya çıkar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Satır {0}/{1}": {
+"n": 2,
+"files": [
+"NewGames.kt"
+]
+},
+"Satırlar soldan sağa, sütunlar yukarıdan aşağıya · sayılar 0–{0}": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Satırlardaki kuralı çöz": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"Satırlardaki şekil, sayı ve renk kurallarını çöz; eksik deseni seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayı 8'dir, iki katı 16.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sayı Mühendisi": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayı Patlatma": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayı Zinciri": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayılar arasındaki ilişkiyi bul: fark, çarpan, kare, iç içe diziler...": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayılar o satırda/sütunda art arda kaç kare dolu olduğunu gösterir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sayısal & Analitik": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Saçı olmayanın saçı ıslanmaz.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sağa": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Senaryonun son sahnesi internete sızdırıldı.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Senin adın": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Senin sıran: {0} · {1} puan": {
+"n": 2,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Ses efektleri": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Seviye 1-10: 3 tur · 11-30: 4 tur · 31-50: 5 tur. Her 10. seviye boss! Yeni bölge için önceki bölgede {0}⭐ gerekir.": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Seviye arttıkça ışık sayısı ve hız artar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Seviye {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"Seviye {0} / {1} · ⭐ {2}": {
+"n": 3,
+"files": [
+"GamesScreen.kt"
+]
+},
+"Seviye {0} boss'unu geç ve {1} bölgesinde {2}⭐ topla (şu an {3}⭐).": {
+"n": 4,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Seviye {0} için {1} yıldız kaldı": {
+"n": 2,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Seviye {0} tamamlandı": {
+"n": 1,
+"files": [
+"WowScreens.kt"
+]
+},
+"Seviye {0} · {1}": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Seviye {0} · {1}/{2} kelime": {
+"n": 3,
+"files": [
+"WowScreens.kt"
+]
+},
+"Seviye {0} · ⭐ {1}": {
+"n": 2,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Seviye {0}'i Oyna": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Seviye {0}–{1}": {
+"n": 2,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Seviye {0}–{1} · {2}/{3}": {
+"n": 4,
+"files": [
+"WowScreens.kt"
+]
+},
+"Seviyelere Dön": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Sezar çarkını çevir, kaydırılmış harflerin ardındaki kelimeyi çöz.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Seçeneklerden bazıları ayna görüntüsüdür; dikkat et.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Silah sesine diğerleri uçup gider.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Siluetin tamamını parçalarla doldur": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Sis var! Yolu hatırla": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Sobayı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Son 7 gün": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Son gün iki katına çıktığına göre bir gün önce yarısı doluydu.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Son kişi yumurtayı sepetin içinde aldı.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Son seviyeyi tekrar oyna": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Sondan başa ters işlemleri uygula: cevap {0}.": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sonraki Seviye": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Sonraki bölge için bu bölgede {0} ⭐ topla.": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Sonraki kelime": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Sonraki seviye": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Sonsuz Mod": {
+"n": 0,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Sonsuz Mod · {0} tur": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Sonucu paylaş": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Sonuncu sepetle birlikte aldı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sonuncunun arkasında kimse yoktur, onu geçemezsin.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Soru işaretinin yerine gelecek sayıyı seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Soruları çöz, pembe kutulardaki gizli kelimeyi bul.": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Soruyu dikkatle oku; ilk akla gelen cevap çoğu zaman tuzaktır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Strateji & Hız": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sunucuya bağlanılamadı (zaman aşımı). İnternetini kontrol edip tekrar dene.": {
+"n": 0,
+"files": [
+"CloudSync.kt"
+]
+},
+"Suçlu kim?": {
+"n": 0,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"Suçlu olduğunu düşündüğün şüpheliye dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Söz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sözlükte yok": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Sünger": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Süre": {
+"n": 0,
+"files": [
+"ProgressScreen.kt",
+"ShopScreen.kt"
+]
+},
+"Süre Paketi ×5": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Süre bitti": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt",
+"GridGames.kt",
+"MemoryCardsGame.kt",
+"NewGames.kt",
+"NumberChainGame.kt",
+"ReflexGames.kt",
+"StrategyGames.kt",
+"WordGames.kt"
+]
+},
+"Süre dolmadan gereken sayıda isabet yap.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Süre dolmadan hedef sayıda doğru cevap ver.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Süreli turlarda saati 10 saniye uzatır.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Sıfırla": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Sınıra": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sır": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Sıra sana gelince aynı sırayla dokun.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Sıra sende · 0/{0}": {
+"n": 1,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Sıra sende · {0}/{1}": {
+"n": 2,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Sıradaki ışık yanıp sönüyor": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Sıralandı!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Sırayla": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"Sırayla +{0} ve −{1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Sırayla ×{0} ve −{1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"Sığmıyor": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Tahminler gerçek Türkçe kelime olmalı.": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Tahtayı dört yöne kaydır; aynı sayılar çarpışınca birleşir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Takılı": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Takımyıldız": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Tam Tur": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Tamam": {
+"n": 0,
+"files": [
+"Navigation.kt"
+]
+},
+"Tamamlandı 🎉": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Tanıklara göre suçlu {0} giyiyordu.": {
+"n": 1,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Tarağın dişleri saçı tarar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Tek bir erkek kardeş, dört kızın hepsinin kardeşidir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Tek kapı güvenli": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Tek seferlik · ömür boyu": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Tekrar dene": {
+"n": 0,
+"files": [
+"LeagueUi.kt",
+"Lingo.kt"
+]
+},
+"Telefonun diline göre": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Tema · ses": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Temizlik Görevlisi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Ters kelime": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Tersine Düşün": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Tersten işlem": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Tersten işlemlerde sondan başa doğru geri git.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Tersten yazılmış kelimeyi düz oku:  {0}": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Titreşim": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Top yalnızca boş tüpe ya da aynı renkli topun üstüne dökülür.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Toplam süre": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Trenin 2 km yol alması gerekir; dakikada 1 km gider.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Tufan hikâyesindeki gemi Nuh'un gemisidir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Tur {0}": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Tur {0} / {1}": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Tüm dolu kareleri bul; yanlış boyama hata sayılır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Tüm duraklar bitti!": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"Tüm ilerlemeyi sıfırla": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Tüm kareleri doldur!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Tüm renkler bağlanıp tüm kareler dolunca tur biter.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Tüm seviyeler, yıldızlar, elmaslar, görünümler ve ayarlar silinir. Bu işlem geri alınamaz.": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Tüm {0} seviyeyi geç": {
+"n": 1,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"Tüm çiftleri süre dolmadan, az hamleyle bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Tümü": {
+"n": 0,
+"files": [
+"GamesScreen.kt"
+]
+},
+"Tüp tamam!": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Tüplerdeki karışık topları dök, her tüpte tek renk kalsın.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Türkçe": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Usta": {
+"n": 0,
+"files": [
+"LevelRules.kt"
+]
+},
+"Usta Stratejist": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Uygulama içi ürün": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Uyuyan kişi cevap veremez.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Uzamsal Zekâ": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Uzay Üssü": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Varış ülkesine": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Vazgeç": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"YAZININ RENGİ": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"YENİ": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"GamesScreen.kt"
+]
+},
+"YENİ REKOR": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"YENİ REKOR!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"YEŞİL": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"Yakalandı!": {
+"n": 0,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"Yalnızca BİR kapının arkası güvenli.": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Yanan ışıkların sırasını aklında tut ve hatasız tekrarla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Yanlış": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt",
+"WordGames.kt"
+]
+},
+"Yanlış hedef": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Yanlış hedefe dokunmak hata sayılır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Yanlış parçalar kaldırıldı, bir parça yerleşti": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Yanlış sıra": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"Yanlış şıkları eler, yolu gösterir, parçayı yerine koyar.": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Yaralılar gömülmez": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yaralılar yaşıyor!": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yarım tuğla 1 kilo ise tam tuğla 2 kilodur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yarın tekrar": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Yarın yeni kelime": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"Yarın yine gel": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"Yarısı 4 olan sayının iki katı kaçtır?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yatağı var ama hiç uyumaz. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yazılardan tam olarak {0} tanesi DOĞRU.": {
+"n": 1,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Yazıların HİÇBİRİ doğru değil.": {
+"n": 0,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"Yağmur durdu": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yağmurluk": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yeni": {
+"n": 0,
+"files": [
+"GamesScreen.kt"
+]
+},
+"Yeniden Başlat": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Yer altında sakallı dede. Nedir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yer kalmadı": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"Yerleşmiş parçaya dokunursan geri alınır. Silueti tamamen doldur.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Yetersiz elmas: {0} 💎 daha lazım": {
+"n": 1,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Yukarı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yumurta kırıldı": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yumurtayı kullanmak için önce kırarsın.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yuvarlak bir pastayı 8 eşit dilime ayırmak için merkezden geçen en az kaç düz kesim gerekir?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Yön tuşlarıyla ya da kaydırarak hareket et.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Yükleniyor...": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Yıldız": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Yıldız Toplayıcı": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"ZCVBNMÖÇ": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"ZXCVBNMÖÇ": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"Zaman dolmadan labirentin çıkışını bul; sis yükseldikçe yolunu hatırla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Zehirli Yeşil": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Zekâ Alanları": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Zekâ alanları": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Zeynep > Ayşe > Elif.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Zeytin ağacında kiraz olmaz": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Zeytin ağacında kiraz yetişmez.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Zihin Büyücüsü": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Zihin Döndürme": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Zihin Kaşifi": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"ZihinPark günlük zeka, mantık ve hafıza antrenmanı hatırlatıcıları": {
+"n": 0,
+"files": [
+"NotificationHelper.kt"
+]
+},
+"ZihinPark'ta zekâmı çalıştırıyorum! 30 oyun, 1500 seviye, Lingo ve Bulmaca Dünyası. Sen de dene: https://play.google.com/store/apps/details?id={0}": {
+"n": 1,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"ZihinPark'ı beğendin mi?": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Zor": {
+"n": 0,
+"files": [
+"GameModels.kt",
+"LevelRules.kt"
+]
+},
+"Zor mod · 5 deneme": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"adım adım artıyor": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"arşiv": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"atölye": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"açı": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"aşağı ↓": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"bahçe": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"farkların kendisi de değişiyor": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"fidanlık": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"giriş": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"giriş holü": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"göl kenarı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"gözlem kulesi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"güverte": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"her satırda üç farklı değer": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"iki işlem sırayla tekrar ediyor": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"jeneratör odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kare sayılarla ilgili": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"kayak odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kompartıman": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kontrol odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kostüm deposu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kurgu odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"küp sayılarla ilgili": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"kütüphane": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"kırmızı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"makyaj odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"sarı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReflexPuzzles.kt"
+]
+},
+"satırda sabit": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"sayılar arasındaki ilişkiye bak": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"sayılar çarpılarak büyüyor": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"sağa →": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"ses kabini": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"sunucu odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"tek ve çift sıraları ayrı incele": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"toplantı odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"yeşil": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt",
+"ReflexPuzzles.kt"
+]
+},
+"yukarı ↑": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"yıldız": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"yıldızlar": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"{0}  Nasıl Oynanır?": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"{0} / {1} tur başarılı": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"{0} OLMAYAN her şeye dokun": {
+"n": 1,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"{0} adım": {
+"n": 1,
+"files": [
+"ReflexGames.kt"
+]
+},
+"{0} alındı ve takıldı!": {
+"n": 1,
+"files": [
+"ShopScreen.kt"
+]
+},
+"{0} avatarın oldu": {
+"n": 1,
+"files": [
+"ShopScreen.kt"
+]
+},
+"{0} boşluk": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
+]
+},
+"{0} bulmaca · {1} dünya": {
+"n": 2,
+"files": [
+"Bulmaca.kt"
+]
+},
+"{0} bölgesinde {1}⭐ topla (şu an {2}⭐). Eski seviyeleri tekrar oynayıp yıldızlarını artır.": {
+"n": 3,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"{0} durağı bitti! Sıradaki: {1} {2}": {
+"n": 3,
+"files": [
+"WowScreens.kt"
+]
+},
+"{0} giyen kişi {1} değildi.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} giyen kişi {1}.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} gün {1} sa": {
+"n": 2,
+"files": [
+"LeagueUi.kt"
+]
+},
+"{0} harf · {1} deneme kaldı": {
+"n": 2,
+"files": [
+"Lingo.kt"
+]
+},
+"{0} ile {1} biri {2}.": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} ile çarptım": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"{0} oyun": {
+"n": 1,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"{0} oyun · {1} seviye geçildi": {
+"n": 2,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"{0} oyun · {1} seviye · ⭐ {2}/{3}": {
+"n": 4,
+"files": [
+"GamesScreen.kt"
+]
+},
+"{0} oyun · ★ {1}": {
+"n": 2,
+"files": [
+"HomeScreen.kt"
+]
+},
+"{0} oyun ›": {
+"n": 1,
+"files": [
+"GamesScreen.kt"
+]
+},
+"{0} oyunun hepsinde seviye geç": {
+"n": 1,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"{0} parça": {
+"n": 1,
+"files": [
+"StrategyGames.kt"
+]
+},
+"{0} seviye kaldı": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"{0} takıldı": {
+"n": 1,
+"files": [
+"ShopScreen.kt"
+]
+},
+"{0} yanlış şık elendi": {
+"n": 1,
+"files": [
+"GameKit.kt"
+]
+},
+"{0} {1} bölgesi açıldı!": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"{0} {1} değildi.": {
+"n": 2,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0} {1} kalmadı": {
+"n": 2,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"{0} {1} · Seviye {2}": {
+"n": 3,
+"files": [
+"WowScreens.kt"
+]
+},
+"{0} · Seviye {1}": {
+"n": 2,
+"files": [
+"WowScreens.kt"
+]
+},
+"{0} × n(n+1)/2 (üçgen sayılar)": {
+"n": 1,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"{0} çifti eşleşti": {
+"n": 1,
+"files": [
+"MemoryCardsGame.kt"
+]
+},
+"{0} çıkardım": {
+"n": 1,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"{0}'{1} böldüm": {
+"n": 2,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"{0}. gün": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"{0}. gün hediyen!": {
+"n": 1,
+"files": [
+"HomeScreen.kt"
+]
+},
+"{0}. gün hediyesi: {1} eklendi!": {
+"n": 2,
+"files": [
+"ShopScreen.kt"
+]
+},
+"{0}. kapı güvenli değil.": {
+"n": 1,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"{0}. kapı güvenli.": {
+"n": 1,
+"files": [
+"WordPuzzles.kt"
+]
+},
+"{0}. kapı tuzak, elendi": {
+"n": 1,
+"files": [
+"WordGames.kt"
+]
+},
+"{0}. satır {1}. sütun: {2}": {
+"n": 3,
+"files": [
+"NewGames.kt"
+]
+},
+"{0}. satırda {1} kare boyandı": {
+"n": 2,
+"files": [
+"GridGames.kt"
+]
+},
+"{0}. tüpü {1}. tüpe dök": {
+"n": 2,
+"files": [
+"NewGames.kt"
+]
+},
+"{0}/{1} bağlı": {
+"n": 2,
+"files": [
+"NewGames.kt"
+]
+},
+"{0}/{1} kelime · {2} harf": {
+"n": 3,
+"files": [
+"Bulmaca.kt"
+]
+},
+"{0}: ilk harfi parlıyor": {
+"n": 1,
+"files": [
+"WordGames.kt"
+]
+},
+"{0}: {1} O sırada {2} kişi binadaydı; her biri farklı bir yerdeydi": {
+"n": 3,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"{0}: {1} için bulmaca üretilemedi": {
+"n": 2,
+"files": [
+"PuzzleBank.kt"
+]
+},
+"Ça": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"Çar": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"Çarkı çevir, kelimeyi çöz · Konu: {0}": {
+"n": 1,
+"files": [
+"WordGames.kt"
+]
+},
+"Çarkı çevirerek kaydırmayı geri al; anlamlı kelime belirince Çöz'e bas.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Çarşamba": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Çaylak": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"Çekirdek": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Çekmecede 4 farklı renkte karışık çorap var. Karanlıkta en az kaç çorap çekersen aynı renkten bir çift garanti olur?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Çerçeveler": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Çerçevesiz": {
+"n": 0,
+"files": [
+"Cosmetics.kt"
+]
+},
+"Çizgiler birbirini kesemez; başka çizginin üstünden geçersen onu kesersin.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Çiçekler": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Çok yakında": {
+"n": 0,
+"files": [
+"Bulmaca.kt",
+"StoreSection.kt"
+]
+},
+"Çukur": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Çukurdan toprak aldıkça çukur büyür.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Çözüm: {0}": {
+"n": 1,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"Çık": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Çıkış": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Çıkışa süre bitmeden ulaş.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Çıkışı bul": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"ÖNE ÇIKAN": {
+"n": 0,
+"files": [
+"Lingo.kt",
+"WowScreens.kt"
+]
+},
+"Ödemen onay bekliyor; onaylanınca hesabına eklenecek.": {
+"n": 0,
+"files": [
+"Billing.kt"
+]
+},
+"Önce kibriti yakmalısın.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Önce parlayan yoldan anahtara git": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Önce {0} bölgesini aç.": {
+"n": 1,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"Önce önü açık okları çıkar; bütün oklar çıkınca tur biter.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Önizleme": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"Önizleme:": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"Önü kapalı oka dokunursan can gider": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Önü kapalı!": {
+"n": 0,
+"files": [
+"ArrowWordGames.kt"
+]
+},
+"Önünde 7, arkanda 7, bir de sen: 15.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Önünde başka bir ok varsa çarpar ve bir can gider.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üst seviyelerde birden fazla kural aynı anda değişir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üst seviyelerde kelimeler çapraz ve ters de yazılır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üst seviyelerde nesneler küçülür ve benzerleri artar.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üst seviyelerde parçalar dönük gelir; çift dokunuşla çevir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üst seviyelerde sis yalnızca çevreni gösterir.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki hedef renkleri hamle bitmeden topla.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki ipucu kelimenin konusunu söyler.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki komut hangi hedeflere dokunacağını söyler.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki kural kaç yazının doğru olduğunu söyler.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki kural ne istiyorsa onu seç: yazının RENGİ ya da kelimenin ANLAMI.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki orijinal tabloyu alttakiyle karşılaştır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üstteki şekli istenen açıyla zihninde döndür.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Üçüncü": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"çatı katı": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"önce çarp, sonra ekle/çıkar": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"önceki iki": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"önceki terimleri topla": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"önceki ×": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"öğretmenler odası": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"üçgen": {
+"n": 0,
+"files": [
+"NumberChainGame.kt",
+"ReflexPuzzles.kt"
+]
+},
+"üçgenler": {
+"n": 0,
+"files": [
+"ReflexPuzzles.kt"
+]
+},
+"İ harfi": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İSTANBUL kelimesi İ ile başlar.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İki alev aynı anda yanarak süreyi yarıya indirir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İki baba ve iki oğul balığa çıktı, 3 balık tuttular ve herkese birer balık düştü. Nasıl?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İki bakteriyle başlamak bir dakika önden gitmek demektir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İki farklı renk çekebilirsin; üçüncüsü eşleşir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İki kart çevir; aynıysa açık kalır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İki parçaya dokunarak yerlerini değiştir": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"İki tablo arasındaki farkları süre dolmadan yakala.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İkilik sistemde": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İkinci": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İkinciyi geçen onun yerine geçer.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İkisi de 1 kilodur.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İkisi eşit": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İleri seviyelerde fazladan tuzak harfler var. 3 yanlışta tur biter.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İlerleme": {
+"n": 0,
+"files": [
+"ProfileHubScreen.kt"
+]
+},
+"İlerleme sıfırlandı": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"İlerlemen buluta yedeklenir": {
+"n": 0,
+"files": [
+"WelcomeScreen.kt"
+]
+},
+"İlerlemen buluta yedeklenir, haftalık ligde yarışırsın.": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"İlk Adım": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"İlk harf verilir; kelimeyi tahmin edip Gir'e bas.": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"İlk harften son harfe kadar parmağını sürükle.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İlk seviyeni geç": {
+"n": 0,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"İlk çıkarmadan sonra artık 95'ten çıkarırsın.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İlki hemen, ikincisi 30. dakikada, üçüncüsü 60. dakikada içilir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İmkânsız Görevler": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İnsan": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İpliğin geçtiği deliğe iğnenin gözü denir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İpucu": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt",
+"ShopScreen.kt"
+]
+},
+"İpucu Paketi ×5": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"İpucu kelimenin konusunu söyler.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İpucu: ": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"İpuçlarını birleştir, çelişkileri yakala ve suçluyu mantıkla bul.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İrem": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"İsabet 0/{0}": {
+"n": 1,
+"files": [
+"ReflexGames.kt"
+]
+},
+"İsabet {0}/{1}": {
+"n": 2,
+"files": [
+"ReflexGames.kt"
+]
+},
+"İsim (A-Z)": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"İsmi düzenle": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"İsmin": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İsmini en çok başkaları söyler.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İstanbul'un başında ne var?": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İyi akşamlar": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"İyi geceler": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"İyi günler": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"İzle...": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"İç içe": {
+"n": 0,
+"files": [
+"NumberChainGame.kt"
+]
+},
+"İç içe iki dizi: tek sıralar +{0}, çift sıralar {1}": {
+"n": 2,
+"files": [
+"NumberChainPuzzles.kt"
+]
+},
+"İğne": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"İşlemler sırayla, soldan sağa hesaplanır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Şampiyonluk kupası vitrininden kayboldu.": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Şehir Müzesi": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"Şehirler": {
+"n": 0,
+"files": [
+"JigsawPhotos.kt"
+]
+},
+"Şekil Mimarı": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Şekli zihninde döndür, ayna görüntüsü tuzağına düşmeden doğru hâli seç.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Şekli {0} döndürünce hangisi olur?": {
+"n": 1,
+"files": [
+"GridGames.kt"
+]
+},
+"Şemsiye": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Şifre Kırıcı": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Şifre çözüldü!": {
+"n": 0,
+"files": [
+"WordGames.kt"
+]
+},
+"Şifreli kelimedeki her harf alfabede aynı miktarda kaydırılmıştır.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"Şimdi yedekle": {
+"n": 0,
+"files": [
+"LeagueUi.kt"
+]
+},
+"Şişe": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Şişenin ince kısmına boyun denir.": {
+"n": 0,
+"files": [
+"ReversePuzzles.kt"
+]
+},
+"Şu an ipucu gerekmiyor": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"Şüpheliler": {
+"n": 0,
+"files": [
+"DetectiveGame.kt"
+]
+},
+"şekil": {
+"n": 0,
+"files": [
+"GridPuzzles.kt"
+]
+},
+"şömine salonu": {
+"n": 0,
+"files": [
+"DetectivePuzzles.kt"
+]
+},
+"↑ yukarı": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"→ sağa": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"↓ aşağı": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"⌫ Sil": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"▶ Reklam izle, ödülü 2× yap (+{0} 💎)": {
+"n": 1,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"▶ İzle": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"♾️ Sonsuz Mod Bitti": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"♾️ Sonsuz Mod açıldı!": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"♾️ {0} tur": {
+"n": 1,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"✅ Günün kelimesi bulundu · 🔥 {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"✏️ Not: AÇIK": {
+"n": 0,
+"files": [
+"NewGames.kt"
+]
+},
+"✓ Alındı": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"✓ {0} · {1} harf açıldı": {
+"n": 2,
+"files": [
+"Bulmaca.kt"
+]
+},
+"✕ İşaretle": {
+"n": 0,
+"files": [
+"GridGames.kt"
+]
+},
+"✦ ZİHİNPARK": {
+"n": 0,
+"files": [
+"HomeScreen.kt"
+]
+},
+"❤️ Geliştiriciye destek": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"⟳ Seçili parçayı döndür": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"⭐ {0} / 30 · Boss: Seviye {1}": {
+"n": 2,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"⭐ {0} / {1}  ·  {2}/{3} seviye": {
+"n": 4,
+"files": [
+"LevelMapScreen.kt"
+]
+},
+"⭐ {0} · {1} seviye · {2}/{3} rozet": {
+"n": 4,
+"files": [
+"LeaderboardScreen.kt"
+]
+},
+"🎁 Günlük hediye 2 katı": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"🎉 Kelime Diyarı'nın tamamını bitirdin!": {
+"n": 0,
+"files": [
+"WowScreens.kt"
+]
+},
+"🎉 Lansmana özel fiyat": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"🎉 Lansmana özel fiyat · +500 💎": {
+"n": 0,
+"files": [
+"LevelPlayScreen.kt"
+]
+},
+"🎯 {0} hamle": {
+"n": 1,
+"files": [
+"NewGames.kt"
+]
+},
+"🏁 hedefine ulaş. En kısa yola yakın bitirirsen 3 yıldız.": {
+"n": 0,
+"files": [
+"GameModels.kt"
+]
+},
+"🏆 Haftalık lig ödülü!": {
+"n": 0,
+"files": [
+"Navigation.kt"
+]
+},
+"👑 PRO'ya hoş geldin! Reklamsız oyun + {0} 💎": {
+"n": 1,
+"files": [
+"Billing.kt"
+]
+},
+"💎 Elmas nasıl kazanılır?": {
+"n": 0,
+"files": [
+"ShopScreen.kt"
+]
+},
+"💎 Elmas paketleri": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"💎 Hemen +500 elmas": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"💡 Harf aç {0}": {
+"n": 1,
+"files": [
+"Bulmaca.kt"
+]
+},
+"💡 Öneri": {
+"n": 0,
+"files": [
+"ProgressScreen.kt"
+]
+},
+"💡 İpucu bir harfin yerini gösterir.": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"💡 İpucu {0}": {
+"n": 1,
+"files": [
+"Lingo.kt"
+]
+},
+"🔎 Kelimeyi aç · 40💎": {
+"n": 0,
+"files": [
+"Bulmaca.kt"
+]
+},
+"🔑 alındı": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"🔑 aranıyor": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"🔒 Önce anahtar": {
+"n": 0,
+"files": [
+"StrategyGames.kt"
+]
+},
+"🔔 Test bildirimi gönderildi": {
+"n": 0,
+"files": [
+"ProfileScreen.kt"
+]
+},
+"🔥 Günlük Antrenmanın Harika Gidiyor!": {
+"n": 0,
+"files": [
+"DailyReminderReceiver.kt"
+]
+},
+"🗓️ Günün kelimesi seni bekliyor": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"🚫 Seviye arası reklamlar tamamen kalkar": {
+"n": 0,
+"files": [
+"StoreSection.kt"
+]
+},
+"🛡️ Kalkan: bir erken dokunuş affedilir": {
+"n": 0,
+"files": [
+"ReflexGames.kt"
+]
+},
+"🟩 Harf doğru yerde · 🟨 Kelimede var ama yeri yanlış · ⬛ Kelimede yok": {
+"n": 0,
+"files": [
+"Lingo.kt"
+]
+},
+"🧠 Günlük Zihin Egzersizi Vakti!": {
+"n": 0,
+"files": [
+"DailyReminderReceiver.kt"
+]
+}
+}

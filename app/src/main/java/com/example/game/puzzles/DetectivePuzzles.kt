@@ -42,6 +42,38 @@ private val SETTINGS = listOf(
     Setting("Uzay Üssü", "Görev kayıtları silindi.", listOf("kontrol odası", "laboratuvar", "hangar", "yemekhane", "gözlem kulesi", "jeneratör odası"))
 )
 
+private val SETTINGS_EN = listOf(
+    Setting("City Museum", "The antique clock vanished from the exhibit.", listOf("entrance hall", "gallery", "archive", "cafeteria", "garden", "storeroom")),
+    Setting("Grand Hotel", "The diamond necklace was stolen from the safe.", listOf("lobby", "restaurant", "pool", "gym", "terrace", "kitchen")),
+    Setting("Carnation Manor", "The old will disappeared from the library.", listOf("library", "living room", "pantry", "attic", "greenhouse", "basement")),
+    Setting("Night Train", "A bag in the first-class compartment was opened.", listOf("dining car", "compartment", "corridor", "baggage car", "engine", "café car")),
+    Setting("Tech Office", "The prototype phone's drawings were leaked.", listOf("meeting room", "lab", "kitchen", "server room", "reception", "parking lot")),
+    Setting("High School Campus", "The final exam questions were taken from a locker.", listOf("staff room", "canteen", "gym", "library", "lab", "schoolyard")),
+    Setting("Cruise Ship", "The captain's compass vanished from his cabin.", listOf("deck", "cabin", "restaurant", "engine room", "pool", "theater")),
+    Setting("Art Gallery", "A valuable painting was swapped for a fake.", listOf("main hall", "studio", "storeroom", "office", "café", "terrace")),
+    Setting("Ski Lodge", "The championship trophy vanished from its case.", listOf("fireplace lounge", "ski room", "restaurant", "sauna", "lobby", "cable car")),
+    Setting("Film Studio", "The script's final scene was leaked online.", listOf("set", "makeup room", "editing room", "costume store", "canteen", "sound booth")),
+    Setting("Botanical Garden", "A rare orchid was stolen from the greenhouse.", listOf("greenhouse", "lakeside", "café", "lab", "nursery", "entrance")),
+    Setting("Space Station", "The mission logs were deleted.", listOf("control room", "lab", "hangar", "mess hall", "observation tower", "generator room"))
+)
+
+private val NAMES_EN = listOf(
+    "Adam", "Amy", "Ben", "Chloe", "Daniel", "Ella", "Finn", "Grace", "Henry", "Isla", "Jack", "Lily",
+    "Leo", "Mia", "Noah", "Olivia", "Oscar", "Ruby", "Sam", "Sophie", "Tom", "Zoe", "Max", "Emma",
+    "Luke", "Nora", "Ryan", "Hannah", "Owen", "Lucy"
+)
+
+private val ROLES_EN = listOf(
+    "Security Guard" to "👮", "Guide" to "🧑‍🏫", "Cleaner" to "🧹", "Cook" to "🧑‍🍳",
+    "Accountant" to "🧑‍💼", "Technician" to "🧑‍🔧", "Photographer" to "📸", "Doctor" to "🧑‍⚕️",
+    "Gardener" to "🧑‍🌾", "Artist" to "🧑‍🎨", "Manager" to "🤵", "Intern" to "🧑‍🎓", "Pilot" to "🧑‍✈️",
+    "Journalist" to "🗞️", "Engineer" to "🧑‍💻"
+)
+
+private val COLORS_EN = listOf("red", "blue", "green", "yellow", "purple", "black", "white", "orange")
+
+private val en get() = com.example.i18n.I18n.isEn
+
 private val NAMES = listOf(
     "Ahmet", "Ayşe", "Mehmet", "Zeynep", "Can", "Elif", "Burak", "Selin", "Emre", "Deniz", "Kerem", "Ece",
     "Murat", "Derya", "Ozan", "Pınar", "Tolga", "İrem", "Serkan", "Gizem", "Barış", "Nazlı", "Onur", "Ceren",
@@ -67,25 +99,25 @@ private sealed class Clue {
     class PlaceIs(val s: Int, val p: Int) : Clue() {
         override fun holds(a: Assignment) = a.place[s] == p
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "${names[s]} ${Turkish.locativePast(places[p])}."
+            if (en) "${names[s]} was in the ${places[p]}." else "${names[s]} ${Turkish.locativePast(places[p])}."
     }
 
     class PlaceNot(val s: Int, val p: Int) : Clue() {
         override fun holds(a: Assignment) = a.place[s] != p
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "${names[s]} ${Turkish.locative(places[p])} değildi."
+            if (en) "${names[s]} was not in the ${places[p]}." else "${names[s]} ${Turkish.locative(places[p])} değildi."
     }
 
     class ColorIs(val s: Int, val c: Int) : Clue() {
         override fun holds(a: Assignment) = a.color!![s] == c
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "${names[s]} ${colors[c]} giyiyordu."
+            if (en) "${names[s]} was wearing ${colors[c]}." else "${names[s]} ${colors[c]} giyiyordu."
     }
 
     class ColorNot(val s: Int, val c: Int) : Clue() {
         override fun holds(a: Assignment) = a.color!![s] != c
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "${names[s]} ${colors[c]} giymiyordu."
+            if (en) "${names[s]} was not wearing ${colors[c]}." else "${names[s]} ${colors[c]} giymiyordu."
     }
 
     class ColorAtPlace(val c: Int, val p: Int, val positive: Boolean) : Clue() {
@@ -95,20 +127,21 @@ private sealed class Clue {
         }
 
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            if (positive) "${Turkish.capitalize(colors[c])} giyen kişi ${Turkish.locativePast(places[p])}."
+            if (en) (if (positive) "The person in ${colors[c]} was in the ${places[p]}." else "The person in ${colors[c]} was not in the ${places[p]}.")
+            else if (positive) "${Turkish.capitalize(colors[c])} giyen kişi ${Turkish.locativePast(places[p])}."
             else "${Turkish.capitalize(colors[c])} giyen kişi ${Turkish.locative(places[p])} değildi."
     }
 
     class EitherAt(val s1: Int, val s2: Int, val p: Int) : Clue() {
         override fun holds(a: Assignment) = a.place[s1] == p || a.place[s2] == p
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "${names[s1]} ile ${Turkish.ablativeName(names[s2])} biri ${Turkish.locativePast(places[p])}."
+            if (en) "Either ${names[s1]} or ${names[s2]} was in the ${places[p]}." else "${names[s1]} ile ${Turkish.ablativeName(names[s2])} biri ${Turkish.locativePast(places[p])}."
     }
 
     class NeitherAt(val s1: Int, val s2: Int, val p: Int) : Clue() {
         override fun holds(a: Assignment) = a.place[s1] != p && a.place[s2] != p
         override fun text(names: List<String>, places: List<String>, colors: List<String>) =
-            "Ne ${names[s1]} ne de ${names[s2]} ${Turkish.locativePast(places[p])}."
+            if (en) "Neither ${names[s1]} nor ${names[s2]} was in the ${places[p]}." else "Ne ${names[s1]} ne de ${names[s2]} ${Turkish.locativePast(places[p])}."
     }
 }
 
@@ -137,11 +170,11 @@ object DetectiveGenerator : PuzzleGenerator<DetectivePuzzle> {
         val byColor = useColor && rng.nextFloat() < 0.4f // suçlu rengiyle mi tarif ediliyor
         val minimize = difficulty >= 0.15f
 
-        val setting = SETTINGS.pick(rng)
+        val setting = (if (en) SETTINGS_EN else SETTINGS).pick(rng)
         val places = setting.places.pickN(n, rng)
-        val colors = COLORS.pickN(n, rng)
-        val names = NAMES.pickN(n, rng)
-        val roles = ROLES.pickN(n, rng)
+        val colors = (if (en) COLORS_EN else COLORS).pickN(n, rng)
+        val names = (if (en) NAMES_EN else NAMES).pickN(n, rng)
+        val roles = (if (en) ROLES_EN else ROLES).pickN(n, rng)
 
         val solPlace = perms(n).pick(rng)
         val solColor = if (useColor) perms(n).pick(rng) else null
@@ -219,11 +252,19 @@ object DetectiveGenerator : PuzzleGenerator<DetectivePuzzle> {
         if (chosen.size < 2) return null
 
         val clueTexts = chosen.shuffled(rng).map { it.text(names, places, colors) }
-        val fact = if (byColor) "Tanıklara göre suçlu ${colors[targetColor!!]} giyiyordu."
+        val fact = if (en) (if (byColor) "Witnesses say the culprit was wearing ${colors[targetColor!!]}."
+            else "At the time of the crime, the culprit was in the ${places[targetPlace]}.")
+        else if (byColor) "Tanıklara göre suçlu ${colors[targetColor!!]} giyiyordu."
         else "Olay anında suçlu ${Turkish.locativePast(places[targetPlace])}."
-        val story = "${setting.place}: ${setting.crime} O sırada ${n} kişi binadaydı; her biri farklı bir yerdeydi" +
+        val story = if (en) "${setting.place}: ${setting.crime} ${n} people were in the building, each in a different place" +
+            (if (useColor) " and each wearing a different color." else ".")
+        else "${setting.place}: ${setting.crime} O sırada ${n} kişi binadaydı; her biri farklı bir yerdeydi" +
             (if (useColor) " ve herkes farklı renkte giyinmişti." else ".")
-        val explanation = buildString {
+        val explanation = if (en) buildString {
+            append("${names[culprit]}: in the ${places[solPlace[culprit]]}")
+            if (solColor != null) append(", wearing ${colors[solColor[culprit]]}")
+            append(".")
+        } else buildString {
             append("${names[culprit]}: ${Turkish.locative(places[solPlace[culprit]])}")
             if (solColor != null) append(", ${colors[solColor[culprit]]} giyiyordu")
             append(".")

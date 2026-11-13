@@ -26,7 +26,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -119,7 +119,8 @@ fun HomeScreen(
     val goal = DAILY_GOAL
     val hour = remember { Calendar.getInstance().get(Calendar.HOUR_OF_DAY) }
     val hello = when (hour) { in 5..11 -> "Günaydın"; in 12..17 -> "İyi günler"; in 18..22 -> "İyi akşamlar"; else -> "İyi geceler" }
-    val firstName = if (userName == "Zihin Gezgini") userName else userName.substringBefore(' ').ifBlank { userName }
+    val firstName = (if (userName == "Zihin Gezgini") userName else userName.substringBefore(' ').ifBlank { userName })
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(java.util.Locale.forLanguageTag("tr")) else it.toString() }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize().statusBarsPadding(),
@@ -137,7 +138,7 @@ fun HomeScreen(
         item {
             val done = today.levels >= goal
             MascotSays(
-                title = "$hello $firstName! 👋",
+                title = com.example.i18n.I18n.RAW + "${com.example.i18n.I18n.t(hello)} ${if (userName == "Zihin Gezgini") com.example.i18n.I18n.t(firstName) else firstName}! 👋",
                 text = if (done) "Bugünkü hedefini tamamladın, harikasın! 🎉" else "Bugün ${goal - today.levels} seviye daha. Hadi ısınalım!",
                 mood = if (done) MascotMood.Cheer else MascotMood.Wink
             )
@@ -158,15 +159,15 @@ fun HomeScreen(
         item {
             Row(Modifier.fillMaxWidth().padding(top = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text("Bugün için", style = MaterialTheme.typography.titleMedium, color = TextPrimary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("3 görev · 💎 35", color = NeonCyan, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                Text(if (com.example.i18n.I18n.isEn) "2 görev · 💎 20" else "3 görev · 💎 35", color = NeonCyan, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
             }
         }
         item {
             GlassCard(accent = NeonPurple, contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)) {
-                val tasks = listOf(
+                val tasks = listOfNotNull(
                     DailyTask("lingo", "🟩", NeonGreen, "Günün kelimesini çöz", "Lingo", lingo?.playedToday == true, 10, onOpenLingo),
                     DailyTask("levels", "🏁", NeonOrange, "3 seviye geç", "${today.levels.coerceAtMost(3)}/3", today.levels >= 3, 10) { onPlayLevel(mainGame.id, (progress[mainGame.id] ?: GameProgress(emptyMap())).nextPlayableLevel) },
-                    DailyTask("bulmaca", "🧩", NeonPurple, "1 bulmaca çöz", "Bulmaca Dünyası", today.bdSolved, 15, onOpenBulmaca)
+                    if (com.example.i18n.I18n.isEn) null else DailyTask("bulmaca", "🧩", NeonPurple, "1 bulmaca çöz", "Bulmaca Dünyası", today.bdSolved, 15, onOpenBulmaca)
                 )
                 tasks.forEachIndexed { i, t ->
                     TaskRow(t, claimed = t.id in today.claimed) { scope.launch { prefs.claimTask(t.id, t.gems) } }
@@ -177,7 +178,7 @@ fun HomeScreen(
 
         item { com.example.ui.wow.WowFeatureCard(repository, onOpenWow) }
         item { com.example.ui.lingo.LingoFeatureCard(repository, onOpenLingo) }
-        item { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
+        if (!com.example.i18n.I18n.isEn) item { com.example.ui.bulmaca.BulmacaFeatureCard(repository, onOpenBulmaca) }
 
         item {
             DailyCard(dailyGame.name, dailyGame.description, dailyGame.iconEmoji) {
@@ -342,7 +343,7 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
     val fx = com.example.ui.game.rememberGameFx()
     var claimed by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { delay(250); fx.confetti() }
-    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss, properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false)) {
+    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss, properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
         Box(Modifier.fillMaxSize().bounceClick(pressedScale = 1f, onClick = onDismiss), contentAlignment = Alignment.BottomCenter) {
             val density = androidx.compose.ui.platform.LocalDensity.current
             val small = with(density) { 11.dp.toSp() }
@@ -351,7 +352,7 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
             val maxH = (androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp * 0.88f).dp
             Column(
                 Modifier.fillMaxWidth().heightIn(max = maxH).clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)).background(NeonCard)
-                    .bounceClick(pressedScale = 1f) {}.navigationBarsPadding().padding(horizontal = 18.dp, vertical = 12.dp),
+                    .bounceClick(pressedScale = 1f) {}.navigationBarsPadding().padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(Modifier.width(44.dp).height(5.dp).clip(RoundedCornerShape(3.dp)).background(NeonBorder))
@@ -381,15 +382,15 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
                                     else -> NeonBorder.copy(alpha = 0.22f)
                                 }
                                 Column(
-                                    Modifier.weight(if (d == 7) 2f else 1f).height(76.dp).clip(shape).background(bg)
+                                    Modifier.weight(if (d == 7) 2f else 1f).height(80.dp).clip(shape).background(bg)
                                         .border(1.dp, if (past) NeonGreen else if (isNow) NeonPurple else NeonBorder, shape).padding(vertical = 6.dp, horizontal = 2.dp),
                                     horizontalAlignment = Alignment.CenterHorizontally,
                                     verticalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     val c = if (isNow && !past) Color.White else TextSecondary
-                                    Text("$d. gün", color = c, fontSize = small, fontWeight = FontWeight.Bold, maxLines = 1)
-                                    Text(if (past) "✓" else r.emoji, fontSize = icon, color = if (past) NeonGreen else Color.Unspecified, maxLines = 1)
-                                    Text(r.label, color = c, fontSize = tiny, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("$d. gün", color = c, fontSize = small, lineHeight = small * 1.15f, fontWeight = FontWeight.Bold, maxLines = 1)
+                                    Text(if (past) "✓" else r.emoji, fontSize = icon, lineHeight = icon * 1.1f, color = if (past) NeonGreen else Color.Unspecified, maxLines = 1)
+                                    Text(r.label, color = c, fontSize = tiny, lineHeight = tiny * 1.15f, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 }
                             }
                         }

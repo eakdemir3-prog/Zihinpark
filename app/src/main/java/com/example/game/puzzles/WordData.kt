@@ -2,9 +2,18 @@ package com.example.game.puzzles
 
 /** Kategorili Türkçe kelime havuzu (Şifre Kırıcı, Kelime Avı ve Tersine Düşün kullanır). */
 object WordData {
-    const val ALPHABET = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"
+    private val en get() = com.example.i18n.I18n.isEn
+    val ALPHABET: String get() = if (en) "ABCDEFGHIJKLMNOPQRSTUVWXYZ" else TR_ALPHABET
+    val CATEGORIES: Map<String, List<String>> get() = if (en) WordDataEn.CATEGORIES else TR_CATEGORIES
+    /** (kelime, kategori) çiftleri. */
+    val ALL: List<Pair<String, String>> get() = if (en) EN_ALL else TR_ALL
+    val FILLER: String get() = if (en) WordDataEn.FILLER else TR_FILLER
 
-    val CATEGORIES: Map<String, List<String>> = linkedMapOf(
+    private const val TR_ALPHABET = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"
+    private val TR_ALL by lazy { TR_CATEGORIES.flatMap { (cat, words) -> words.map { it to cat } } }
+    private val EN_ALL by lazy { WordDataEn.CATEGORIES.flatMap { (cat, words) -> words.map { it to cat } } }
+
+    private val TR_CATEGORIES: Map<String, List<String>> = linkedMapOf(
         "Hayvan" to listOf(
             "KEDİ", "KÖPEK", "ASLAN", "KAPLAN", "ZÜRAFA", "FİL", "TAVŞAN", "KARTAL", "BAYKUŞ", "YUNUS",
             "BALİNA", "PENGUEN", "KANGURU", "TİLKİ", "KURT", "AYI", "SİNCAP", "KAPLUMBAĞA", "KELEBEK", "ARI",
@@ -63,9 +72,6 @@ object WordData {
         )
     )
 
-    /** (kelime, kategori) çiftleri. */
-    val ALL: List<Pair<String, String>> = CATEGORIES.flatMap { (cat, words) -> words.map { it to cat } }
-
     /** Türkçe harf sıklığına yakın dolgu harfleri. */
-    const val FILLER = "AAAAEEEEİİİIIKKLLMMNNRRRSSTTUUYYDDBBOOÜÜŞŞÇÇGĞHPZCVFÖJ"
+    private const val TR_FILLER = "AAAAEEEEİİİIIKKLLMMNNRRRSSTTUUYYDDBBOOÜÜŞŞÇÇGĞHPZCVFÖJ"
 }

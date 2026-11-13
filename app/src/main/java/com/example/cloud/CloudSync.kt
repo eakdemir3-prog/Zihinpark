@@ -147,7 +147,7 @@ object CloudSync {
             u.displayName?.trim()?.takeIf { it.isNotEmpty() }?.let { g ->
                 val prefs = UserPreferencesRepository(appContext)
                 if (prefs.userName.first() == "Zihin Gezgini") {
-                    val nice = com.example.util.NameFilter.safe(g.split(Regex("\\s+")).take(2).joinToString(" "), "").take(20)
+                    val nice = com.example.util.NameFilter.safe(g.split(Regex("\\s+")).take(2).joinToString(" ") { w -> w.replaceFirstChar { c -> c.titlecase(java.util.Locale.forLanguageTag("tr")) } }, "").take(20)
                     if (nice.isNotBlank()) prefs.setUserName(nice)
                 }
             }

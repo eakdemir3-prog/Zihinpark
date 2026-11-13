@@ -53,12 +53,14 @@ object WowData {
     const val PER_CHAPTER = 20
 
     @Volatile private var cache: Pair<List<WowChapter>, List<WowLevel>>? = null
+    @Volatile private var cacheLang = ""
 
     fun load(context: Context): Pair<List<WowChapter>, List<WowLevel>> {
-        cache?.let { return it }
+        val lang = if (com.example.i18n.I18n.isEn) "en" else "tr"
+        if (cacheLang == lang) cache?.let { return it }
         synchronized(this) {
-            cache?.let { return it }
-            val text = context.assets.open("wow.json").bufferedReader(Charsets.UTF_8).use { it.readText() }
+            if (cacheLang == lang) cache?.let { return it }
+            val text = context.assets.open(if (lang == "en") "wow_en.json" else "wow.json").bufferedReader(Charsets.UTF_8).use { it.readText() }
             val root = JSONObject(text)
             val ch = root.getJSONArray("chapters")
             val chapters = (0 until ch.length()).map { i ->
@@ -83,7 +85,7 @@ object WowData {
                     bonus = (0 until bonus.length()).map { bonus.getString(it) }.toSet()
                 )
             }
-            return (chapters to levels).also { cache = it }
+            return (chapters to levels).also { cache = it; cacheLang = lang }
         }
     }
 

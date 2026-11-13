@@ -26,6 +26,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        com.example.i18n.I18n.init(this)
+        if (BuildConfig.DEBUG) intent?.getStringExtra("zp_lang")?.let { com.example.i18n.I18n.setPreference(this, it) }
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(AndroidColor.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.dark(AndroidColor.TRANSPARENT)

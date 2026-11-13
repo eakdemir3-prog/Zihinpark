@@ -41,7 +41,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -55,6 +55,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -168,7 +169,7 @@ fun ProfileScreen(
         reminderPrefs.isReminderEnabled = granted
         if (granted) NotificationHelper.scheduleDailyReminder(context, reminderHour, reminderMinute)
         else NotificationHelper.cancelDailyReminder(context)
-        Toast.makeText(context, if (granted) "Günlük hatırlatıcı açıldı" else "Bildirim izni verilmedi", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, com.example.i18n.I18n.t(if (granted) "Günlük hatırlatıcı açıldı" else "Bildirim izni verilmedi"), Toast.LENGTH_SHORT).show()
     }
 
     val stars = totalStars ?: 0
@@ -196,7 +197,7 @@ fun ProfileScreen(
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.bounceClick { editName = true }) {
-                    Text(userName, style = MaterialTheme.typography.headlineSmall, color = TextPrimary, fontWeight = FontWeight.ExtraBold)
+                    Text(com.example.i18n.I18n.raw(userName), style = MaterialTheme.typography.headlineSmall, color = TextPrimary, fontWeight = FontWeight.ExtraBold)
                     Spacer(Modifier.width(6.dp))
                     Icon(Icons.Default.Edit, contentDescription = "İsmi düzenle", tint = NeonCyan, modifier = Modifier.size(18.dp))
                 }
@@ -226,7 +227,7 @@ fun ProfileScreen(
             val share = {
                 val i = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(android.content.Intent.EXTRA_TEXT, "ZihinPark'ta zekâmı çalıştırıyorum! 30 oyun, 1500 seviye, Lingo ve Bulmaca Dünyası. Sen de dene: https://play.google.com/store/apps/details?id=${context.packageName}")
+                    putExtra(android.content.Intent.EXTRA_TEXT, com.example.i18n.I18n.t("ZihinPark'ta zekâmı çalıştırıyorum! 30 oyun, 1500 seviye, Lingo ve Bulmaca Dünyası. Sen de dene: https://play.google.com/store/apps/details?id=${context.packageName}"))
                 }
                 runCatching { context.startActivity(android.content.Intent.createChooser(i, "Davet et")) }
                 Unit
@@ -306,6 +307,7 @@ fun ProfileScreen(
             SectionTitle("Ayarlar")
             Spacer(Modifier.height(10.dp))
             GlassCard(accent = NeonCyan, contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)) {
+                LanguageRow()
                 SettingRow("☀️", "Açık tema", if (lightTheme) "Lavanta açık tema" else "Neon koyu tema", lightTheme) {
                     com.example.ui.theme.ZpColors.palette = if (it) com.example.ui.theme.LightPalette else com.example.ui.theme.NeonPalette
                     scope.launch { prefs.setLightTheme(it) }
@@ -333,7 +335,7 @@ fun ProfileScreen(
                         NeonButton("Saat: ${reminderPrefs.getFormattedTime()}", { editTime = true }, color = NeonCyan, outlined = true, height = 42.dp, modifier = Modifier.weight(1f))
                         NeonButton("Dene", {
                             val ok = NotificationHelper.sendImmediateTestNotification(context)
-                            Toast.makeText(context, if (ok) "🔔 Test bildirimi gönderildi" else "Bildirimler kapalı", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, com.example.i18n.I18n.t(if (ok) "🔔 Test bildirimi gönderildi" else "Bildirimler kapalı"), Toast.LENGTH_SHORT).show()
                         }, color = NeonPurple, outlined = true, height = 42.dp)
                     }
                 }
@@ -430,7 +432,7 @@ fun ProfileScreen(
                 scope.launch {
                     repository.resetAllProgress()
                     prefs.resetAll()
-                    Toast.makeText(context, "İlerleme sıfırlandı", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, com.example.i18n.I18n.t("İlerleme sıfırlandı"), Toast.LENGTH_SHORT).show()
                 }
                 confirmReset = false
             }
@@ -472,6 +474,32 @@ private fun MiniStat(emoji: String, value: String, label: String) {
         Text(emoji, fontSize = 18.sp)
         Text(value, color = TextPrimary, fontWeight = FontWeight.ExtraBold, fontSize = 18.sp)
         Text(label, color = TextSecondary, style = MaterialTheme.typography.labelSmall)
+    }
+}
+
+@Composable
+private fun LanguageRow() {
+    val context = LocalContext.current
+    val pref = com.example.i18n.I18n.pref
+    Row(Modifier.fillMaxWidth().padding(vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text("🌐", fontSize = 22.sp)
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text("Dil / Language", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
+            Text(if (pref == "auto") "Telefonun diline göre" else if (pref == "tr") "Türkçe" else "English", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
+        }
+    }
+    Row(Modifier.fillMaxWidth().padding(bottom = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        listOf("auto" to "Otomatik", "tr" to "Türkçe", "en" to "English").forEach { (k, label) ->
+            val on = pref == k
+            val shape = RoundedCornerShape(12.dp)
+            Box(
+                Modifier.weight(1f).clip(shape).background(if (on) NeonPurple else NeonCardHigh)
+                    .border(1.dp, if (on) NeonPurple else NeonBorder, shape)
+                    .bounceClick { com.example.i18n.I18n.setPreference(context, k) }.padding(vertical = 9.dp),
+                contentAlignment = Alignment.Center
+            ) { Text(label, color = if (on) Color.White else TextPrimary, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, maxLines = 1) }
+        }
     }
 }
 

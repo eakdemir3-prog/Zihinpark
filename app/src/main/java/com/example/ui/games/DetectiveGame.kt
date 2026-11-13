@@ -18,7 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import com.example.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -149,7 +149,7 @@ private fun DetectiveBoard(p: DetectivePuzzle, ctl: RoundControls, finish: Finis
                             ) {
                                 Text(if (isOut) "❌" else s.avatar, fontSize = 30.sp)
                                 Spacer(Modifier.height(4.dp))
-                                Text(s.name, color = if (isOut) TextMuted else TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
+                                Text(com.example.i18n.I18n.raw(s.name), color = if (isOut) TextMuted else TextPrimary, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
                                 Text(s.role, color = TextSecondary, style = MaterialTheme.typography.labelSmall, textAlign = TextAlign.Center, maxLines = 2)
                             }
                         }

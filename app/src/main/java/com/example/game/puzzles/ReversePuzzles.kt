@@ -137,7 +137,14 @@ object ReverseGenerator : PuzzleGenerator<ReversePuzzle> {
         return "${if (h == 0) 12 else h}:${mm.toString().padStart(2, '0')}"
     }
 
+    private val en get() = com.example.i18n.I18n.isEn
+
     private fun riddle(rng: Random): ReversePuzzle {
+        if (en) {
+            val r = RIDDLES_EN.pick(rng)
+            val opts = listOf(r[1], r[2], r[3], r[4]).shuffled(rng)
+            return ReversePuzzle(0, r[0], opts, opts.indexOf(r[1]), r[5], key = "R:" + r[0])
+        }
         val r = RIDDLES.pick(rng)
         val opts = listOf(r.a, r.w1, r.w2, r.w3).shuffled(rng)
         return ReversePuzzle(0, r.q, opts, opts.indexOf(r.a), r.why, key = "R:" + r.q)
@@ -154,9 +161,10 @@ object ReverseGenerator : PuzzleGenerator<ReversePuzzle> {
         if (wrong.size < 3) return null
         val opts = (wrong + real).shuffled(rng)
         return ReversePuzzle(
-            1, "Bu saat AYNADA böyle görünüyor. Gerçek saat kaç?",
+            1, if (en) "This is how the clock looks in a MIRROR. What is the real time?" else "Bu saat AYNADA böyle görünüyor. Gerçek saat kaç?",
             opts.map { fmtTime(it) }, opts.indexOf(real),
-            "Aynadaki saat ${fmtTime(shown)} gibi görünür; gerçek saat 12:00 − ${fmtTime(shown)} = ${fmtTime(real)}.",
+            if (en) "The mirror shows ${fmtTime(shown)}; the real time is 12:00 − ${fmtTime(shown)} = ${fmtTime(real)}."
+            else "Aynadaki saat ${fmtTime(shown)} gibi görünür; gerçek saat 12:00 − ${fmtTime(shown)} = ${fmtTime(real)}.",
             clockMinutes = shown, key = "C:$shown"
         )
     }
@@ -170,22 +178,23 @@ object ReverseGenerator : PuzzleGenerator<ReversePuzzle> {
         repeat(steps) {
             val op = rng.nextInt(if (tier == 0) 3 else 4)
             when (op) {
-                0 -> { val a = rng.nextInt(2, 15); v += a; parts += "$a ekledim" }
-                1 -> { val a = rng.nextInt(1, (v - 1).coerceAtLeast(2)); if (a >= v) return null; v -= a; parts += "$a çıkardım" }
-                2 -> { val k = rng.nextInt(2, if (tier >= 2) 6 else 4); v *= k; parts += "$k ile çarptım" }
+                0 -> { val a = rng.nextInt(2, 15); v += a; parts += if (en) "added $a" else "$a ekledim" }
+                1 -> { val a = rng.nextInt(1, (v - 1).coerceAtLeast(2)); if (a >= v) return null; v -= a; parts += if (en) "subtracted $a" else "$a çıkardım" }
+                2 -> { val k = rng.nextInt(2, if (tier >= 2) 6 else 4); v *= k; parts += if (en) "multiplied by $k" else "$k ile çarptım" }
                 else -> {
                     val divisors = (2..6).filter { v % it == 0 && v / it > 1 }
-                    if (divisors.isEmpty()) { val a = rng.nextInt(2, 9); v += a; parts += "$a ekledim" }
-                    else { val k = divisors.pick(rng); v /= k; parts += "$k'${suffixDative(k)} böldüm" }
+                    if (divisors.isEmpty()) { val a = rng.nextInt(2, 9); v += a; parts += if (en) "added $a" else "$a ekledim" }
+                    else { val k = divisors.pick(rng); v /= k; parts += if (en) "divided by $k" else "$k'${suffixDative(k)} böldüm" }
                 }
             }
         }
         if (v > 2000 || v < 1) return null
-        val q = "Bir sayı tuttum: " + parts.joinToString(", ") + ". Sonuç $v. Tuttuğum sayı kaç?"
+        val q = if (en) "I picked a number, " + parts.joinToString(", ") + ". The result is $v. What was my number?"
+            else "Bir sayı tuttum: " + parts.joinToString(", ") + ". Sonuç $v. Tuttuğum sayı kaç?"
         val cands = linkedSetOf(x + 1, x - 1, x + 2, x * 2, v, x + 3).filter { it != x && it > 0 }.shuffled(rng).take(3)
         if (cands.size < 3) return null
         val opts = (cands + x).shuffled(rng)
-        return ReversePuzzle(2, q, opts.map { "$it" }, opts.indexOf(x), "Sondan başa ters işlemleri uygula: cevap $x.", key = "O:$q")
+        return ReversePuzzle(2, q, opts.map { "$it" }, opts.indexOf(x), if (en) "Undo the steps from the end: the answer is $x." else "Sondan başa ters işlemleri uygula: cevap $x.", key = "O:$q")
     }
 
     /** Sayıdan sonra gelen yönelme eki (2'ye, 3'e, 4'e, 5'e, 6'ya). */
@@ -211,7 +220,8 @@ object ReverseGenerator : PuzzleGenerator<ReversePuzzle> {
         }
         if (cands.size < 3) return null
         val opts = (cands.toList() + w).shuffled(rng)
-        return ReversePuzzle(3, "Tersten yazılmış kelimeyi düz oku:  $rev", opts, opts.indexOf(w), "$rev tersten okununca $w olur.", key = "W:$w")
+        return if (en) ReversePuzzle(3, "Read the reversed word forwards:  $rev", opts, opts.indexOf(w), "$rev read backwards is $w.", key = "W:$w")
+        else ReversePuzzle(3, "Tersten yazılmış kelimeyi düz oku:  $rev", opts, opts.indexOf(w), "$rev tersten okununca $w olur.", key = "W:$w")
     }
 
     override fun generate(index: Int, difficulty: Float, rng: Random): ReversePuzzle? {
