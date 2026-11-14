@@ -1,5 +1,6 @@
 package com.example.ui.screens.profile
 
+import androidx.compose.ui.graphics.drawscope.rotate as dsRotate
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
@@ -137,19 +138,19 @@ fun ProfileAvatar(avatarId: Int, frameId: String, size: Dp) {
             val brush = if (frame.colors.size > 1) Brush.sweepGradient(frame.colors + frame.colors.first(), c) else androidx.compose.ui.graphics.SolidColor(frame.colors.first())
             val rot = phase * 360f
             when (shape) {
-                com.example.domain.model.FrameShape.Ring -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) { drawCircle(brush, R, c) }
+                com.example.domain.model.FrameShape.Ring -> dsRotate(rot, c) { drawCircle(brush, R, c) }
                 com.example.domain.model.FrameShape.Dots -> {
                     for (k in 0 until 18) {
                         val a = k * 2.0 * Math.PI / 18
                         drawCircle(frame.colors[k % frame.colors.size], R * 0.075f, androidx.compose.ui.geometry.Offset(c.x + R * 0.90f * kotlin.math.cos(a).toFloat(), c.y + R * 0.90f * kotlin.math.sin(a).toFloat()))
                     }
                 }
-                com.example.domain.model.FrameShape.Hex -> androidx.compose.ui.graphics.drawscope.rotate(30f, c) { drawPath(polarPath(c.x, c.y, 6) { R }, brush) }
+                com.example.domain.model.FrameShape.Hex -> dsRotate(30f, c) { drawPath(polarPath(c.x, c.y, 6) { R }, brush) }
                 com.example.domain.model.FrameShape.Scallop -> drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.925f + 0.075f * kotlin.math.cos(12 * a).toFloat()) }, brush)
-                com.example.domain.model.FrameShape.Gear -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                com.example.domain.model.FrameShape.Gear -> dsRotate(rot, c) {
                     drawPath(polarPath(c.x, c.y, 240) { a -> R * (if (kotlin.math.cos(10 * a) > 0) 1f else 0.87f) }, brush)
                 }
-                com.example.domain.model.FrameShape.Burst -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                com.example.domain.model.FrameShape.Burst -> dsRotate(rot, c) {
                     drawPath(polarPath(c.x, c.y, 32) { a -> if (Math.round(a * 32 / (2 * Math.PI)) % 2 == 0L) R else R * 0.82f }, brush)
                 }
                 com.example.domain.model.FrameShape.Petal -> drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.86f + 0.14f * kotlin.math.abs(kotlin.math.cos(4 * a)).toFloat()) }, brush)
@@ -166,7 +167,7 @@ fun ProfileAvatar(avatarId: Int, frameId: String, size: Dp) {
                     drawCircle(brush, R * 0.88f, c)
                 }
                 com.example.domain.model.FrameShape.Crown -> {
-                    androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                    dsRotate(rot, c) {
                         drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.90f + 0.06f * kotlin.math.cos(16 * a).toFloat()) }, brush)
                     }
                 }
