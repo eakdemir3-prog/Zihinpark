@@ -102,7 +102,8 @@ class MainActivity : ComponentActivity() {
                         soundManager = soundManager,
                         startRoute = debugRoute
                     )
-                }
+                }                // Uygulama içi tam ekran katman (günlük hediye vb.): sistem diyaloğu yerine burada çizilir
+                com.example.ui.components.AppOverlay.content?.invoke()
             }
         }
     }

@@ -84,4 +84,10 @@ EN = {
 "Sabah": "Morning", "Gece": "Night",
 "Değiştirince kısayol ana ekrandan kalkabilir; yeniden eklemen gerekir.": "Changing it may remove the home screen shortcut; you'll need to add it again.",
 "Gece Bilgesi": "Night Owl", "Sabah Bilgesi": "Morning Owl",
+"Bilge": "Bilge", "Göz Kırpan Bilge": "Winking Bilge", "Neşeli Bilge": "Cheerful Bilge", "Düşünür Bilge": "Thinker Bilge",
+"Havalı Bilge": "Cool Bilge", "Parti Bilgesi": "Party Bilge", "Müziksever Bilge": "DJ Bilge", "Kış Bilgesi": "Winter Bilge",
+"Ninja Bilge": "Ninja Bilge", "Korsan Bilge": "Pirate Bilge", "Astronot Bilge": "Astronaut Bilge", "Büyücü Bilge": "Wizard Bilge",
+"Süper Bilge": "Super Bilge", "Altın Bilge": "Golden Bilge", "Kral Bilge": "King Bilge", "Gökkuşağı Bilgesi": "Rainbow Bilge",
+"Noktalı Halka": "Dotted Ring", "Altıgen Kalkan": "Hex Shield", "Papatya": "Daisy", "Dönen Çark": "Spinning Gear",
+"Güneş Patlaması": "Sunburst", "Lotus": "Lotus", "Yörünge": "Orbit", "Nabız": "Pulse", "Gökkuşağı Yıldızı": "Rainbow Star", "Kraliyet Tacı": "Royal Crown",
 }

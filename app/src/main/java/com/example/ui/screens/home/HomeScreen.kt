@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -209,12 +210,18 @@ fun HomeScreen(
         }
     }
 
-    if (showGift) {
-        DailyGiftSheet(
-            step = giftStep, rewards = prefs.giftRewards,
-            onClaim = { scope.launch { prefs.claimDailyGift(); delay(900); showGift = false } },
-            onDismiss = { showGift = false }
-        )
+    // Hediye sayfası kök katmanda çizilir (alt gezinme çubuğunun da üstünde, ekran içine sığar)
+    androidx.compose.runtime.DisposableEffect(showGift, giftStep) {
+        if (showGift) {
+            com.example.ui.components.AppOverlay.content = {
+                DailyGiftSheet(
+                    step = giftStep, rewards = prefs.giftRewards,
+                    onClaim = { scope.launch { prefs.claimDailyGift(); delay(900); showGift = false } },
+                    onDismiss = { showGift = false }
+                )
+            }
+        }
+        onDispose { com.example.ui.components.AppOverlay.content = null }
     }
 }
 
@@ -344,16 +351,21 @@ private fun DailyGiftSheet(step: Int, rewards: List<com.example.data.pref.UserPr
     val fx = com.example.ui.game.rememberGameFx()
     var claimed by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { delay(250); fx.confetti() }
-    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss, properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
-        Box(Modifier.fillMaxSize().bounceClick(pressedScale = 1f, onClick = onDismiss), contentAlignment = Alignment.BottomCenter) {
+    androidx.activity.compose.BackHandler(onBack = onDismiss)
+    run {
+        // Tüm sistem çubuklarının içinde kalan alan: buton hiçbir telefonda ekran dışına çıkamaz
+        Box(
+            Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.55f)).bounceClick(pressedScale = 1f, onClick = onDismiss)
+                .safeDrawingPadding().padding(horizontal = 10.dp, vertical = 10.dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
             val density = androidx.compose.ui.platform.LocalDensity.current
             val small = with(density) { 11.dp.toSp() }
             val tiny = with(density) { 10.dp.toSp() }
             val icon = with(density) { 20.dp.toSp() }
-            val maxH = (androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp * 0.88f).dp
             Column(
-                Modifier.fillMaxWidth().heightIn(max = maxH).clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)).background(NeonCard)
-                    .bounceClick(pressedScale = 1f) {}.navigationBarsPadding().padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 20.dp),
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(28.dp)).background(NeonCard)
+                    .bounceClick(pressedScale = 1f) {}.padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 18.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(Modifier.width(44.dp).height(5.dp).clip(RoundedCornerShape(3.dp)).background(NeonBorder))

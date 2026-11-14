@@ -92,35 +92,104 @@ import com.example.ui.theme.TextSecondary
 import com.example.util.SoundAndVibeManager
 import kotlinx.coroutines.launch
 
-/** Avatar ve takılı çerçeve (dönen neon halka). */
+/** Avatarın yüzü: Bilge kılığı ya da emoji. [size] dairenin çapıdır. */
+@Composable
+fun AvatarFace(avatar: com.example.domain.model.Avatar, size: Dp, modifier: Modifier = Modifier) {
+    Box(
+        modifier.size(size).clip(CircleShape)
+            .background(if (avatar.bg.size > 1) Brush.verticalGradient(avatar.bg) else Brush.verticalGradient(listOf(NeonCard, NeonCard))),
+        contentAlignment = Alignment.Center
+    ) {
+        val st = avatar.mascot
+        if (st != null) {
+            com.example.ui.components.Mascot(avatar.mood, size * 0.84f, Modifier.padding(top = size * 0.06f), animate = avatar.animated, style = st)
+        } else Text(avatar.emoji, fontSize = (size.value * 0.52f).sp)
+    }
+}
+
+/** Kutupsal yarıçap fonksiyonundan kapalı şekil üretir. */
+private fun polarPath(cx: Float, cy: Float, n: Int, r: (Double) -> Float): androidx.compose.ui.graphics.Path {
+    val p = androidx.compose.ui.graphics.Path()
+    for (k in 0 until n) {
+        val a = k * 2.0 * Math.PI / n
+        val rr = r(a)
+        val x = cx + rr * kotlin.math.cos(a).toFloat(); val y = cy + rr * kotlin.math.sin(a).toFloat()
+        if (k == 0) p.moveTo(x, y) else p.lineTo(x, y)
+    }
+    p.close(); return p
+}
+
+/** Avatar ve takılı çerçeve (halka ya da şekilli; bazıları hareketli). */
 @Composable
 fun ProfileAvatar(avatarId: Int, frameId: String, size: Dp) {
     val frame = Cosmetics.frame(frameId)
-    val animated = frame.id != "none"
-    val rot = if (animated) {
+    val has = frame.id != "none"
+    val phase = if (has && frame.animated) {
         val t = rememberInfiniteTransition(label = "frame")
-        t.animateFloat(0f, 360f, infiniteRepeatable(tween(6000, easing = LinearEasing), RepeatMode.Restart), label = "r").value
+        t.animateFloat(0f, 1f, infiniteRepeatable(tween(6000, easing = LinearEasing), RepeatMode.Restart), label = "r").value
     } else 0f
+    val shape = frame.shape
     Box(Modifier.size(size), contentAlignment = Alignment.Center) {
-        Box(
-            Modifier
-                .size(size)
-                .then(if (animated) Modifier.neonGlow(frame.colors.first(), size * 0.18f, size, 0.6f) else Modifier)
-                .graphicsLayer { rotationZ = rot }
-                .clip(CircleShape)
-                .background(
-                    if (frame.colors.size > 1) Brush.sweepGradient(frame.colors + frame.colors.first())
-                    else Brush.linearGradient(listOf(frame.colors.first(), frame.colors.first()))
-                )
-        )
-        Box(
-            Modifier
-                .size(size * if (animated) 0.86f else 0.96f)
-                .clip(CircleShape)
-                .background(NeonCard),
-            contentAlignment = Alignment.Center
+        androidx.compose.foundation.Canvas(
+            Modifier.size(size).then(if (has && frame.animated) Modifier.neonGlow(frame.colors.first(), size * 0.16f, size, 0.5f) else Modifier)
         ) {
-            Text(Cosmetics.avatar(avatarId).emoji, fontSize = (size.value * 0.5f).sp)
+            val w = this.size.width; val c = androidx.compose.ui.geometry.Offset(w / 2f, w / 2f); val R = w / 2f
+            val brush = if (frame.colors.size > 1) Brush.sweepGradient(frame.colors + frame.colors.first(), c) else androidx.compose.ui.graphics.SolidColor(frame.colors.first())
+            val rot = phase * 360f
+            when (shape) {
+                com.example.domain.model.FrameShape.Ring -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) { drawCircle(brush, R, c) }
+                com.example.domain.model.FrameShape.Dots -> {
+                    for (k in 0 until 18) {
+                        val a = k * 2.0 * Math.PI / 18
+                        drawCircle(frame.colors[k % frame.colors.size], R * 0.075f, androidx.compose.ui.geometry.Offset(c.x + R * 0.90f * kotlin.math.cos(a).toFloat(), c.y + R * 0.90f * kotlin.math.sin(a).toFloat()))
+                    }
+                }
+                com.example.domain.model.FrameShape.Hex -> androidx.compose.ui.graphics.drawscope.rotate(30f, c) { drawPath(polarPath(c.x, c.y, 6) { R }, brush) }
+                com.example.domain.model.FrameShape.Scallop -> drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.925f + 0.075f * kotlin.math.cos(12 * a).toFloat()) }, brush)
+                com.example.domain.model.FrameShape.Gear -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                    drawPath(polarPath(c.x, c.y, 240) { a -> R * (if (kotlin.math.cos(10 * a) > 0) 1f else 0.87f) }, brush)
+                }
+                com.example.domain.model.FrameShape.Burst -> androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                    drawPath(polarPath(c.x, c.y, 32) { a -> if (Math.round(a * 32 / (2 * Math.PI)) % 2 == 0L) R else R * 0.82f }, brush)
+                }
+                com.example.domain.model.FrameShape.Petal -> drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.86f + 0.14f * kotlin.math.abs(kotlin.math.cos(4 * a)).toFloat()) }, brush)
+                com.example.domain.model.FrameShape.Orbit -> {
+                    drawCircle(brush, R * 0.90f, c, style = androidx.compose.ui.graphics.drawscope.Stroke(R * 0.07f))
+                    for (k in 0 until 3) {
+                        val a = (phase * 2 * Math.PI) + k * 2.0 * Math.PI / 3
+                        drawCircle(frame.colors[k % frame.colors.size], R * 0.10f, androidx.compose.ui.geometry.Offset(c.x + R * 0.90f * kotlin.math.cos(a).toFloat(), c.y + R * 0.90f * kotlin.math.sin(a).toFloat()))
+                    }
+                }
+                com.example.domain.model.FrameShape.Pulse -> {
+                    val p2 = (phase * 3f) % 1f
+                    drawCircle(frame.colors.first().copy(alpha = (1f - p2) * 0.55f), R * (0.84f + 0.16f * p2), c, style = androidx.compose.ui.graphics.drawscope.Stroke(R * 0.07f))
+                    drawCircle(brush, R * 0.88f, c)
+                }
+                com.example.domain.model.FrameShape.Crown -> {
+                    androidx.compose.ui.graphics.drawscope.rotate(rot, c) {
+                        drawPath(polarPath(c.x, c.y, 240) { a -> R * (0.90f + 0.06f * kotlin.math.cos(16 * a).toFloat()) }, brush)
+                    }
+                }
+            }
+        }
+        val inner = when (shape) {
+            com.example.domain.model.FrameShape.Ring -> if (has) 0.86f else 0.96f
+            com.example.domain.model.FrameShape.Hex -> 0.76f
+            com.example.domain.model.FrameShape.Dots, com.example.domain.model.FrameShape.Orbit -> 0.74f
+            else -> 0.76f
+        }
+        AvatarFace(Cosmetics.avatar(avatarId), size * inner)
+        if (shape == com.example.domain.model.FrameShape.Crown) {
+            // Tepedeki taç dönmez
+            androidx.compose.foundation.Canvas(Modifier.size(size)) {
+                val w = this.size.width
+                val p = androidx.compose.ui.graphics.Path().apply {
+                    moveTo(w * 0.34f, w * 0.16f); lineTo(w * 0.34f, w * 0.00f); lineTo(w * 0.42f, w * 0.08f); lineTo(w * 0.50f, -w * 0.04f)
+                    lineTo(w * 0.58f, w * 0.08f); lineTo(w * 0.66f, w * 0.00f); lineTo(w * 0.66f, w * 0.16f); close()
+                }
+                drawPath(p, androidx.compose.ui.graphics.Color(0xFFFFC23D))
+                drawCircle(androidx.compose.ui.graphics.Color(0xFFDC2626), w * 0.022f, androidx.compose.ui.geometry.Offset(w * 0.50f, w * 0.085f))
+            }
         }
     }
 }
@@ -291,7 +360,7 @@ fun ProfileScreen(
                             .border(if (sel) 2.dp else 1.dp, if (sel) NeonCyan else NeonBorder, CircleShape)
                             .bounceClick { soundManager.uiTick(); scope.launch { prefs.setAvatarId(a.id) } },
                         contentAlignment = Alignment.Center
-                    ) { Text(a.emoji, fontSize = 26.sp) }
+                    ) { AvatarFace(a, 44.dp) }
                 }
                 item {
                     Box(

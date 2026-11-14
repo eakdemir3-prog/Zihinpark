@@ -55,16 +55,20 @@ $T adb shell am start -S -n $ACT --ez zp_skip_tutorial true; sleep 25
 $T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang tr > /dev/null
 sleep 12
 $T adb exec-out screencap -p > "shots/store_0_gift.png"
-# ---- Sabah / Gece Bilgesi ----
-$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --es zp_lang tr --es zp_sky day > /dev/null
+# ---- Hediye penceresi: büyük yazı + büyük ekran ölçeği ----
+$T adb shell settings put system font_scale 1.3
+$T adb shell wm density 520
+$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --ez zp_gift true --es zp_lang tr > /dev/null
+sleep 14
+$T adb exec-out screencap -p > "shots/gift_big.png"
+$T adb shell settings put system font_scale 1.0
+$T adb shell wm density reset
+# ---- Avatarlar ve çerçeveler ----
+$T adb shell am start -S -n $ACT --es zp_route shop --ez zp_skip_tutorial true > /dev/null
 sleep 12
-$T adb exec-out screencap -p > "shots/sky_day.png"
-$T adb shell am start -S -n $ACT --es zp_route tab_home --ez zp_skip_tutorial true --es zp_sky night > /dev/null
-sleep 10
-$T adb exec-out screencap -p > "shots/sky_night.png"
-$T adb shell am start -S -n $ACT --es zp_route tab_profile --ez zp_skip_tutorial true > /dev/null
-sleep 10
-$T adb shell input swipe 540 1700 540 500 300; sleep 2
-$T adb shell input swipe 540 1700 540 900 300; sleep 3
-$T adb exec-out screencap -p > "shots/sky_profile.png"
+$T adb exec-out screencap -p > "shots/cos_0.png"
+for n in 1 2 3 4; do
+  $T adb shell input swipe 540 1900 540 600 400; sleep 3
+  $T adb exec-out screencap -p > "shots/cos_$n.png"
+done
 ls -la shots

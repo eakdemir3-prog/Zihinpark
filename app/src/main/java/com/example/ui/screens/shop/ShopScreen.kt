@@ -142,7 +142,12 @@ fun ShopScreen(
                                 has = has,
                                 cost = a.cost,
                                 accent = if (a.cost >= 300) NeonYellow else if (a.cost > 0) NeonPink else NeonCyan,
-                                visual = { Text(a.emoji, fontSize = 34.sp) },
+                                visual = {
+                                    Box(contentAlignment = Alignment.TopEnd) {
+                                        com.example.ui.screens.profile.AvatarFace(a, 56.dp)
+                                        if (a.animated) Text("✨", fontSize = 13.sp)
+                                    }
+                                },
                                 onClick = {
                                     scope.launch {
                                         if (has) { prefs.setAvatarId(a.id); toast("${a.name} avatarın oldu", true) }
@@ -161,7 +166,7 @@ fun ShopScreen(
                                 has = has,
                                 cost = f.cost,
                                 accent = f.colors.first(),
-                                visual = { ProfileAvatar(avatarId, f.id, 52.dp) },
+                                visual = { ProfileAvatar(avatarId, f.id, 58.dp) },
                                 onClick = {
                                     scope.launch {
                                         if (has) { prefs.equipFrame(f.id); toast("${f.name} takıldı", true) }
