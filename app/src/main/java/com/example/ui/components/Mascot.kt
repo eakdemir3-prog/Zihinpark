@@ -152,9 +152,9 @@ private fun DrawScope.drawOwl(mood: MascotMood, bob: Float) {
 
 /** Maskot + konuşma balonu. */
 @Composable
-fun MascotSays(text: String, title: String? = null, mood: MascotMood = MascotMood.Happy, modifier: Modifier = Modifier, size: Dp = 84.dp) {
+fun MascotSays(text: String, title: String? = null, mood: MascotMood = MascotMood.Happy, modifier: Modifier = Modifier, size: Dp = 84.dp, sky: Boolean = false) {
     Row(modifier, verticalAlignment = Alignment.CenterVertically) {
-        Mascot(mood, size)
+        if (sky) SkyMascot(mood, size) else Mascot(mood, size)
         Spacer(Modifier.width(6.dp))
         val shape = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp, bottomEnd = 18.dp, bottomStart = 6.dp)
         Box(
@@ -167,3 +167,40 @@ fun MascotSays(text: String, title: String? = null, mood: MascotMood = MascotMoo
         }
     }
 }
+
+/**
+ * Günün saatine göre Sabah Bilgesi (güneşli) ya da Gece Bilgesi (ay ve yıldızlı) görünümü.
+ * Uygulama simgelerindeki iki sahnenin uygulama içi karşılığı.
+ */
+@Composable
+fun SkyMascot(mood: MascotMood = MascotMood.Happy, size: Dp = 84.dp, modifier: Modifier = Modifier) {
+    val day = SkyDebug.force ?: androidx.compose.runtime.remember { java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY) in 6..17 }
+    Box(modifier.size(size * 1.12f), contentAlignment = Alignment.BottomCenter) {
+        Canvas(Modifier.size(size * 1.12f)) {
+            val w = this.size.width
+            val c = Offset(w / 2f, w / 2f)
+            if (day) {
+                drawCircle(Brush.linearGradient(listOf(Color(0xFFEDE4FF), Color(0xFFFFD9EC), Color(0xFFFFE9B8))), w / 2f, c)
+                val sun = Offset(w * 0.80f, w * 0.20f)
+                for (i in 0 until 10) {
+                    val a = i * (2 * Math.PI / 10)
+                    val dx = kotlin.math.cos(a).toFloat(); val dy = sin(a).toFloat()
+                    drawLine(Color(0xFFFFC23D), Offset(sun.x + dx * w * 0.115f, sun.y + dy * w * 0.115f), Offset(sun.x + dx * w * 0.155f, sun.y + dy * w * 0.155f), w * 0.02f, cap = StrokeCap.Round)
+                }
+                drawCircle(Color(0xFFFFC23D), w * 0.085f, sun)
+            } else {
+                drawCircle(Brush.radialGradient(listOf(Color(0xFF3A2A7A), Color(0xFF140E2E)), center = Offset(w / 2f, w * 0.3f), radius = w * 0.9f), w / 2f, c)
+                val moon = Offset(w * 0.78f, w * 0.20f)
+                drawCircle(Color(0xFFFFE57A), w * 0.09f, moon)
+                drawCircle(Color(0xFF2A1F5E), w * 0.075f, Offset(moon.x + w * 0.04f, moon.y - w * 0.025f))
+                for ((x, y, r) in listOf(Triple(0.16f, 0.24f, 0.018f), Triple(0.10f, 0.62f, 0.014f), Triple(0.90f, 0.58f, 0.014f), Triple(0.34f, 0.10f, 0.012f))) {
+                    drawCircle(Color(0xFFFFD34D), w * r, Offset(w * x, w * y))
+                }
+            }
+        }
+        Mascot(mood, size * 0.86f)
+    }
+}
+
+/** Ekran görüntüsü testleri için gündüz/gece zorlaması (yalnızca debug). */
+object SkyDebug { var force: Boolean? = null }

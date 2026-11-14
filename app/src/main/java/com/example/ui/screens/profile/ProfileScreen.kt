@@ -513,14 +513,11 @@ private fun IconRow() {
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text("Uygulama simgesi", color = TextPrimary, style = MaterialTheme.typography.titleSmall)
-            Text(
-                if (mode == "auto") "Gündüz Sabah Bilgesi, akşam Gece Bilgesi" else "Uygulamadan çıkınca değişir",
-                color = TextSecondary, style = MaterialTheme.typography.bodySmall
-            )
+            Text("Değiştirince kısayol ana ekrandan kalkabilir; yeniden eklemen gerekir.", color = TextSecondary, style = MaterialTheme.typography.bodySmall)
         }
     }
     Row(Modifier.fillMaxWidth().padding(bottom = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        listOf("auto" to "Otomatik", "day" to "Sabah", "night" to "Gece").forEach { (k, label) ->
+        listOf("night" to "Gece Bilgesi", "day" to "Sabah Bilgesi").forEach { (k, label) ->
             val on = mode == k
             val shape = RoundedCornerShape(12.dp)
             Box(

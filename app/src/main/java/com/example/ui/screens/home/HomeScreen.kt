@@ -140,7 +140,8 @@ fun HomeScreen(
             MascotSays(
                 title = com.example.i18n.I18n.RAW + "${com.example.i18n.I18n.t(hello)} ${if (userName == "Zihin Gezgini") com.example.i18n.I18n.t(firstName) else firstName}! 👋",
                 text = if (done) "Bugünkü hedefini tamamladın, harikasın! 🎉" else "Bugün ${goal - today.levels} seviye daha. Hadi ısınalım!",
-                mood = if (done) MascotMood.Cheer else MascotMood.Wink
+                mood = if (done) MascotMood.Cheer else MascotMood.Wink,
+                size = 78.dp, sky = true
             )
         }
         item {

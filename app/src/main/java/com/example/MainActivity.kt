@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
         com.example.i18n.I18n.init(this)
         com.example.util.IconSwitcher.init(this)
         if (BuildConfig.DEBUG) intent?.getStringExtra("zp_icon")?.let { com.example.util.IconSwitcher.setMode(this, it) }
+        if (BuildConfig.DEBUG) intent?.getStringExtra("zp_sky")?.let { com.example.ui.components.SkyDebug.force = it == "day" }
         if (BuildConfig.DEBUG) intent?.getStringExtra("zp_lang")?.let { com.example.i18n.I18n.setPreference(this, it) }
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(AndroidColor.TRANSPARENT),

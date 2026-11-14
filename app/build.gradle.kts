@@ -16,8 +16,8 @@ android {
     applicationId = "com.eavisionlabs.zihinpark"
     minSdk = 24
     targetSdk = 36
-    versionCode = 21
-    versionName = "1.1.1"
+    versionCode = 22
+    versionName = "1.1.2"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }

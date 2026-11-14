@@ -82,4 +82,6 @@ EN = {
 "Gündüz Sabah Bilgesi, akşam Gece Bilgesi": "Morning owl by day, night owl in the evening",
 "Uygulamadan çıkınca değişir": "Changes when you leave the app",
 "Sabah": "Morning", "Gece": "Night",
+"Değiştirince kısayol ana ekrandan kalkabilir; yeniden eklemen gerekir.": "Changing it may remove the home screen shortcut; you'll need to add it again.",
+"Gece Bilgesi": "Night Owl", "Sabah Bilgesi": "Morning Owl",
 }

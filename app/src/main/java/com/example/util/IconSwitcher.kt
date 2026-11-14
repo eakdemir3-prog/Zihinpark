@@ -6,11 +6,11 @@ import android.content.pm.PackageManager
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import java.util.Calendar
 
 /**
- * Uygulama simgesi: Sabah Bilgesi (06:00–17:59) / Gece Bilgesi.
- * Değişim yalnızca uygulama arka plana geçerken yapılır ki kullanım sırasında ekran kapanmasın.
+ * Uygulama simgesi: Gece Bilgesi (varsayılan) ya da Sabah Bilgesi. Yalnızca kullanıcı seçince değişir;
+ * Android simge değişiminde ana ekran kısayolunu kaldırabildiği için otomatik değişim yoktur.
+ * Değişim uygulama arka plana geçerken yapılır ki kullanım sırasında ekran kapanmasın.
  */
 object IconSwitcher {
     private const val PREFS = "zp_icon"
@@ -18,12 +18,13 @@ object IconSwitcher {
     private const val NIGHT = "com.example.IconNight"
     private const val DAY = "com.example.IconDay"
 
-    /** "auto" | "day" | "night" */
-    var mode by mutableStateOf("auto")
+    /** "day" | "night" */
+    var mode by mutableStateOf("night")
         private set
 
     fun init(context: Context) {
-        mode = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY, "auto") ?: "auto"
+        // Eski "auto" tercihi artık Gece sayılır
+        mode = if (context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY, "night") == "day") "day" else "night"
     }
 
     fun setMode(context: Context, m: String) {
@@ -31,11 +32,7 @@ object IconSwitcher {
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString(KEY, m).apply()
     }
 
-    private fun wantDay(): Boolean = when (mode) {
-        "day" -> true
-        "night" -> false
-        else -> Calendar.getInstance().get(Calendar.HOUR_OF_DAY) in 6..17
-    }
+    private fun wantDay(): Boolean = mode == "day"
 
     /** Gerekliyse simgeyi değiştirir; zaten doğruysa hiçbir şey yapmaz. */
     fun apply(context: Context) {
