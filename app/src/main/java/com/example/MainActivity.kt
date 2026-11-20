@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.setValue
 import com.example.data.repository.GameRepository
@@ -74,6 +75,24 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val repository = remember { GameRepository(applicationContext) }
+            // Play Games başarımları: ilerleme değiştikçe (3 sn bekleyerek) Play Games'e yansıt
+            LaunchedEffect(repository) {
+                com.example.games.GamesServices.init(this@MainActivity)
+                kotlinx.coroutines.flow.combine(repository.allProgress, repository.preferences.dailyStreak) { progress, streak ->
+                    val zones = com.example.game.engine.LevelRules.ZONE_COUNT
+                    com.example.games.AchievementStats(
+                        cleared = progress.values.sumOf { it.clearedCount },
+                        gamesStarted = progress.values.count { it.clearedCount > 0 },
+                        totalGames = com.example.domain.model.GameRegistry.ALL_GAMES.size,
+                        bosses = progress.values.sumOf { p -> (1..zones).count { p.stars(it * 10) > 0 } },
+                        totalStars = progress.values.sumOf { it.totalStars },
+                        perfect = progress.values.sumOf { p -> p.starsByLevel.count { it.value == 3 } },
+                        zonesMastered = progress.values.sumOf { p -> (0 until zones).count { p.zoneStars(it) == 30 } },
+                        endless = progress.values.count { it.isEndlessUnlocked },
+                        streak = streak
+                    )
+                }.let { @OptIn(kotlinx.coroutines.FlowPreview::class) it.debounce(3000) }.collect { com.example.games.GamesServices.sync(this@MainActivity, it) }
+            }
             LaunchedEffect(skipTutorials) {
                 if (skipTutorials) com.example.domain.model.GameRegistry.ALL_GAMES.forEach { repository.preferences.markTutorialSeen(it.id) }
             }

@@ -90,4 +90,7 @@ EN = {
 "Süper Bilge": "Super Bilge", "Altın Bilge": "Golden Bilge", "Kral Bilge": "King Bilge", "Gökkuşağı Bilgesi": "Rainbow Bilge",
 "Noktalı Halka": "Dotted Ring", "Altıgen Kalkan": "Hex Shield", "Papatya": "Daisy", "Dönen Çark": "Spinning Gear",
 "Güneş Patlaması": "Sunburst", "Lotus": "Lotus", "Yörünge": "Orbit", "Nabız": "Pulse", "Gökkuşağı Yıldızı": "Rainbow Star", "Kraliyet Tacı": "Royal Crown",
+"Google Play Games başarıları": "Google Play Games achievements",
+"Rozetlerin Play Games profilinde de açılır": "Your badges also unlock on your Play Games profile",
+"Google Play Games şu an açılamadı": "Couldn't open Google Play Games right now",
 }

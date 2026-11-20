@@ -16,8 +16,8 @@ android {
     applicationId = "com.eavisionlabs.zihinpark"
     minSdk = 24
     targetSdk = 36
-    versionCode = 23
-    versionName = "1.1.3"
+    versionCode = 24
+    versionName = "1.1.4"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -122,7 +122,8 @@ dependencies {
   implementation(libs.play.services.auth)
   implementation(libs.kotlinx.coroutines.play.services)
   // Reklam (AdMob) ve Google Play ödemeleri
-  implementation(libs.play.services.ads)
+  implementation(libs.play.services.games)
+    implementation(libs.play.services.ads)
   implementation(libs.ump)
   implementation(libs.billing)
   implementation(libs.kotlinx.coroutines.android)

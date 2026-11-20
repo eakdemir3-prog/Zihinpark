@@ -37,6 +37,7 @@ import com.example.game.engine.GameProgress
 import com.example.game.engine.LevelRules
 import com.example.ui.components.EmojiBadge
 import com.example.ui.components.GlassCard
+import com.example.ui.components.bounceClick
 import com.example.ui.components.NeonChip
 import com.example.ui.components.NeonProgressBar
 import com.example.ui.screens.profile.SegmentedTabs
@@ -145,6 +146,28 @@ fun LeaderboardScreen(repository: GameRepository) {
                     }
                 }
                 else -> LazyColumn(contentPadding = PaddingValues(16.dp, 0.dp, 16.dp, 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    item(key = "play_games") {
+                        val ctx = androidx.compose.ui.platform.LocalContext.current
+                        GlassCard(
+                            accent = NeonGreen, contentPadding = PaddingValues(12.dp),
+                            modifier = Modifier.fillMaxWidth().bounceClick {
+                                val act = ctx as? android.app.Activity ?: return@bounceClick
+                                com.example.games.GamesServices.showAchievements(act) {
+                                    android.widget.Toast.makeText(ctx, com.example.i18n.I18n.t("Google Play Games şu an açılamadı"), android.widget.Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                EmojiBadge("🎮", NeonGreen, size = 44.dp)
+                                Spacer(Modifier.width(12.dp))
+                                Column(Modifier.weight(1f)) {
+                                    Text("Google Play Games başarıları", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                                    Text("Rozetlerin Play Games profilinde de açılır", style = MaterialTheme.typography.bodySmall, color = TextSecondary)
+                                }
+                                Text("›", color = TextSecondary, style = MaterialTheme.typography.titleLarge)
+                            }
+                        }
+                    }
                     itemsIndexed(badges, key = { _, b -> b.title }) { _, b ->
                         val done = b.progress >= b.goal
                         GlassCard(accent = if (done) b.color else NeonBorder, glow = done, contentPadding = PaddingValues(12.dp)) {

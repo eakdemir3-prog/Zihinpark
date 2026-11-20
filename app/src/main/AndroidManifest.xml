@@ -23,6 +23,9 @@
         android:theme="@style/Theme.MyApplication">
         <!-- AdMob uygulama kimliği (şimdilik Google test kimliği) -->
         <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id" />
         <activity
